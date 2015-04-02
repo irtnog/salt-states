@@ -1,0 +1,108 @@
+#### TOP.SLS --- Apply listed SLS modules to the targeted Salt minions
+
+#### For more information about the format of this file, see
+#### http://docs.saltstack.com/en/latest/ref/states/top.html.  For
+#### more information about change management procedures, see TODO.
+#### The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+#### NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and
+#### "OPTIONAL" in this document are to be interpreted as described in
+#### RFC 2119, http://www.rfc-editor.org/rfc/rfc2119.txt.
+
+#### WARNING: DO NOT ENABLE FORMULAS IN ANY ENVIRONMENT until the
+#### following conditions have been met:
+####   - The formula has been forked (or imported) into the irtnog
+####     GitHub organization.
+####   - It has been enabled in the "salt_formulas:list" pillar for
+####     the correct environment(s).
+####   - A highstate job has been run on the Salt master twice, once
+####     to clone the formula on the master via the salt.formulas SLS,
+####     and again to ensure that the master is configured properly.
+
+###
+### BASE ENVIRONMENT
+###
+
+## Currently, the base environment is not used except for targeting
+## (i.e., this file).  This environment corresponds with the master
+## branch of this repository.
+
+base:
+  '*':
+    []                          # no-op
+
+###
+### DEVELOPMENT ENVIRONMENT
+###
+
+## The development environment is a sandbox which requires no prior
+## change authorization.  Instead, this environment is where system
+## administrators must prototype any proposed changes to the
+## production environment.  This environment corresponds with the
+## development branch of this repository.
+
+development:
+  'I@environment:development':
+    - match: compound
+    - epel                      # epel-formula
+    - fail2ban                  # fail2ban-formula
+    - git                       # git-formula
+    - ntp.ng                    # ntp-formula
+    - postfix                   # postfix-formula
+    - postfix.config
+    - salt.minion               # salt-formula
+    - snmp                      # snmp-formula
+    - snmp.conf
+    - snmp.options
+    - sudoers                   # sudoers-formula
+    - sysctl                    # sysctl-formula
+    - users                     # users-formula
+
+  'I@environment:development and I@role:salt-master':
+    - match: compound
+    - salt.api                  # salt-formula
+    - salt.cloud
+    - salt.formulas
+    - salt.gitfs.gitpython
+    - salt.master
+    - salt.ssh
+
+###
+### TESTING ENVIRONMENT
+###
+
+## The testing environment is for non-production functional,
+## performance, or quality assurance testing.  This environment
+## corresponds with the testing branch of this repository.
+
+testing:
+  '*':
+    []                          # no-op
+
+###
+### STAGING ENVIRONMENT
+###
+
+## The staging environment is for pre-production user acceptance
+## testing.  Any changes to SLS modules or SLS targeting in this
+## environment require Change Advisory Board approval.  This
+## environment corresponds with the staging branch of this repository.
+
+staging:
+  '*':
+    []                          # no-op
+
+###
+### PRODUCTION ENVIRONMENT
+###
+
+## The production environment includes all user-facing services and
+## related resources.  Any changes to SLS modules or SLS targeting in
+## this environment require Change Advisory Board approval.  This
+## environment corresponds with the production branch of this
+## repository.
+
+production:
+  '*':
+    []                          # no-op
+
+#### TOP.SLS ends here.
