@@ -57,6 +57,11 @@ development:
     - sysctl                    # sysctl-formula
     - users                     # users-formula
 
+  'I@environment:development and G@os_family:RedHat':
+    - epel                      # epel-formula
+    - nux.dextop                # nux-formula (requires EPEL)
+    - nux.misc
+
   'I@environment:development and I@role:salt-master':
     - match: compound
     - salt.api                  # salt-formula
