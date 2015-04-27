@@ -18,6 +18,24 @@
 ####     to clone the formula on the master via the salt.formulas SLS,
 ####     and again to ensure that the master is configured properly.
 
+#### NOTE: Use the "git checkout" command to merge approved changes
+#### from the development branch to the testing, staging, or
+#### production branches.  For example, the following commands would
+#### merge changes in the "salt" folder from the development branch to
+#### testing:
+####
+#### $ git checkout testing
+#### $ git checkout development salt
+#### $ git commit -m "Merge from branch 'development' into testing"
+####
+#### To merge file/directory deletions, use the "git cherry-pick"
+#### command.  For example, if commit aaaa00 is of a file being
+#### deleted in the development branch, the following will apply that
+#### commit to testing:
+####
+#### $ git checkout testing
+#### $ git cherry-pick -x aaaa00
+
 ###
 ### BASE ENVIRONMENT
 ###
@@ -75,9 +93,9 @@ development:
 ### TESTING ENVIRONMENT
 ###
 
-## The testing environment is for non-production functional,
-## performance, or quality assurance testing.  This environment
-## corresponds with the testing branch of this repository.
+## The testing environment is for semi-automated non-production
+## functional, performance, or quality assurance testing.  This
+## environment corresponds with the testing branch of this repository.
 
 testing:
   '*':
