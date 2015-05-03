@@ -93,6 +93,8 @@ development:
     - postgres                  # postgres-formula
     - postgres.client
     - postgres.python
+    - rabbitmq                  # rabbitmq-formula
+    - rabbitmq.config
 
 ###
 ### TESTING ENVIRONMENT
