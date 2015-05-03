@@ -61,7 +61,6 @@ base:
 development:
   'I@environment:development':
     - match: compound
-    - epel                      # epel-formula
     - fail2ban                  # fail2ban-formula
     - git                       # git-formula
     - ntp.ng                    # ntp-formula
@@ -88,6 +87,12 @@ development:
     - salt.gitfs.gitpython
     - salt.master
     - salt.ssh
+
+  'I@environment:development and I@role:devstack':
+    - match: compound
+    - postgres                  # postgres-formula
+    - postgres.client
+    - postgres.python
 
 ###
 ### TESTING ENVIRONMENT
