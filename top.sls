@@ -90,6 +90,9 @@ development:
 
   'I@environment:development and I@role:devstack':
     - match: compound
+    - apache                    # apache-formula
+    - apache.modules
+    - apache.mod_wsgi
     - postgres                  # postgres-formula
     - postgres.client
     - postgres.python
