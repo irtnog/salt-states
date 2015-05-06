@@ -97,9 +97,9 @@ development:
     - apache                    # apache-formula
     - apache.modules
     - apache.mod_wsgi
-    - postgres                  # postgres-formula
-    - postgres.client
-    - postgres.python
+    - mysql                     # mysql-formula
+    - mysql.python
+    - mysql.remove_test_database
     - rabbitmq                  # rabbitmq-formula
     - rabbitmq.config
 
