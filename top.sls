@@ -81,12 +81,16 @@ development:
 
   'I@environment:development and I@role:salt-master':
     - match: compound
+    - apache                    # apache-formula
+    - apache.modules
+    - apache.mod_wsgi
     - salt.api                  # salt-formula
     - salt.cloud
     - salt.formulas
     - salt.gitfs.gitpython
     - salt.master
     - salt.ssh
+    - poudriere
 
   'I@environment:development and I@role:devstack':
     - match: compound
