@@ -102,6 +102,7 @@ development:
     - mysql.remove_test_database
     - rabbitmq                  # rabbitmq-formula
     - rabbitmq.config
+    - openstack.repo            # openstack-formula
 
 ###
 ### TESTING ENVIRONMENT
