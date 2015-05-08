@@ -20,13 +20,14 @@
 
 #### NOTE: Use the "git checkout" command to merge approved changes
 #### from the development branch to the testing, staging, or
-#### production branches.  For example, the following commands would
-#### merge changes in the "salt" folder from the development branch to
-#### testing:
+#### production branches.  Make sure to include the approved change
+#### request ID in the commit message.  For example, the following
+#### commands would merge the development version of the "salt"
+#### directory (including its subdirectories) with the testing branch:
 ####
 #### $ git checkout testing
 #### $ git checkout development salt
-#### $ git commit -m "Merge from branch 'development' into testing"
+#### $ git commit -m "Begin testing modified Salt config per CR#1234"
 ####
 #### To merge file/directory deletions, use the "git cherry-pick"
 #### command.  For example, if commit aaaa00 is of a file being
@@ -35,6 +36,9 @@
 ####
 #### $ git checkout testing
 #### $ git cherry-pick -x aaaa00
+####
+#### In both cases the changelog and commit messages will be imported
+#### into the target branch.
 
 ###
 ### BASE ENVIRONMENT
