@@ -1,0 +1,8 @@
+{% set accounting = salt['grains.filter_by']({
+    'FreeBSD': { 'packages': None,
+                 'service':  'accounting', },
+    'RedHat':  { 'packages': ['psacct'],
+                 'service':  'psacct', },
+    'Solaris': { 'packages': None,
+                 'service':  'svc:/system/extended-accounting:process', },
+  }, merge=salt['pillar.get']('accounting:lookup')) %}
