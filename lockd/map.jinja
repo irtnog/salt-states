@@ -1,0 +1,10 @@
+{% if grains['os_family'] == 'RedHat' %}
+  {% set lockd_redhat_service = 'nfs-lock' if grains['osmajorrelease'][0] == '7' else 'nfslock' %}
+{% endif %}
+
+{% set lockd = salt['grains.filter_by']({
+    'FreeBSD': { 'packages': None,
+                 'service': 'lockd', },
+    'RedHat':  { 'packages': [ 'nfs-utils', ],
+                 'service': lockd_redhat_service },
+  }, merge=salt['pillar.get']('lockd:lookup')) %}
