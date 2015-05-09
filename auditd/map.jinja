@@ -1,0 +1,6 @@
+{% set auditd = salt['grains.filter_by']({
+    'FreeBSD': { 'packages': None,
+                 'service':  'auditd', },
+    'RedHat':  { 'packages': [ 'audit', ],
+                 'service': 'auditd', },
+  }, merge=salt['pillar.get']('auditd:lookup')) %}
