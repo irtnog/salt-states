@@ -1,0 +1,4 @@
+{% set cron = salt['grains.filter_by']({
+    'FreeBSD': { 'packages': [ 'moreutils', ], },
+    'RedHat':  { 'packages': [ 'moreutils', ], },
+  }, merge=salt['pillar.get']('cron:lookup')) %}
