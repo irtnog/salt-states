@@ -1,0 +1,6 @@
+{% set rpcbind = salt['grains.filter_by']({
+    'FreeBSD': { 'packages': None,
+                 'service': 'rpcbind', },
+    'RedHat':  { 'packages': [ 'rpcbind', ],
+                 'service': 'rpcbind', },
+  }, merge=salt['pillar.get']('rpcbind:lookup')) %}
