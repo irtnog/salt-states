@@ -1,0 +1,4 @@
+{% set pam_krb5 = salt['grains.filter_by']({
+    'FreeBSD': { 'packages': None, },
+    'RedHat':  { 'packages': [ 'pam_krb5', ], },
+  }, merge=salt['pillar.get']('pam_krb5:lookup')) %}
