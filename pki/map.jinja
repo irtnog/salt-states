@@ -1,0 +1,14 @@
+{% set pki = salt['grains.filter_by']({
+    'FreeBSD': {
+      'packages': [
+        'ca_root_nss',
+      ],
+      'ca_file': '/usr/local/share/certs/ca-root-nss.crt',
+    },
+    'RedHat': {
+      'packages': [
+        'ca-certificates',
+      ],
+      'ca_file': '/etc/pki/tls/certs/ca-bundle.crt',
+    },
+  }, merge=salt['pillar.get']('pki:lookup')) %}
