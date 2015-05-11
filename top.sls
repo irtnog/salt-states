@@ -65,30 +65,30 @@ base:
 development:
   'I@environment:development':
     - match: compound
-    - fail2ban                  # fail2ban-formula
-    - git                       # git-formula
-    - ntp.ng                    # ntp-formula
-    - postfix                   # postfix-formula
+    - fail2ban
+    - git
+    - ntp.ng
+    - postfix
     - postfix.config
-    - salt.minion               # salt-formula
-    - snmp                      # snmp-formula
+    - salt.minion
+    - snmp
     - snmp.conf
     - snmp.options
-    - sudoers                   # sudoers-formula
-    - sysctl                    # sysctl-formula
-    - users                     # users-formula
+    - sudoers
+    - sysctl
+    - users
 
   'I@environment:development and G@os_family:RedHat':
-    - epel                      # epel-formula
-    - nux.dextop                # nux-formula (requires EPEL)
+    - epel
+    - nux.dextop                # requires EPEL
     - nux.misc
 
   'I@environment:development and I@role:salt-master':
     - match: compound
-    - apache                    # apache-formula
+    - apache
     - apache.modules
     - apache.mod_wsgi
-    - salt.api                  # salt-formula
+    - salt.api
     - salt.cloud
     - salt.formulas
     - salt.gitfs.gitpython
@@ -98,15 +98,15 @@ development:
 
   'I@environment:development and I@role:devstack':
     - match: compound
-    - apache                    # apache-formula
+    - apache
     - apache.modules
     - apache.mod_wsgi
-    - mysql                     # mysql-formula
+    - mysql
     - mysql.python
     - mysql.remove_test_database
-    - rabbitmq                  # rabbitmq-formula
+    - rabbitmq
     - rabbitmq.config
-    - openstack.repo            # openstack-formula
+    - openstack.repo
 
 ###
 ### TESTING ENVIRONMENT
