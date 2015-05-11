@@ -65,18 +65,37 @@ base:
 development:
   'I@environment:development':
     - match: compound
+    - accounting
+    - aliases
+    - auditd
+    - banners
+    - bgfsck
+    - cron
     - fail2ban
     - fail2ban.config
     - git
+    - hyperv
+    - lockd
+    - mounts
+    - moused
+    - nfsclient
     - ntp.ng
+    - pam_krb5
+    - periodic
+    - pki
     - postfix
     - postfix.config
+    - rc
+    - rpcbind
     - salt.minion
+    - schannel
     - snmp
     - snmp.conf
     - snmp.options
+    - statd
     - sudoers
     - sysctl
+    - syscons
     - users
 
   'I@environment:development and G@os_family:RedHat':
