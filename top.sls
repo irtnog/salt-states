@@ -66,6 +66,7 @@ development:
   'I@environment:development':
     - match: compound
     - fail2ban
+    - fail2ban.config
     - git
     - ntp.ng
     - postfix
