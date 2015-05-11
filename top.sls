@@ -99,6 +99,7 @@ development:
     - users
 
   'I@environment:development and G@os_family:RedHat':
+    - match: compound
     - epel
     - nux.dextop                # requires EPEL
     - nux.misc
@@ -137,8 +138,46 @@ development:
 ## environment corresponds with the testing branch of this repository.
 
 testing:
-  '*':
-    []                          # no-op
+  'I@environment:testing':
+    - match: compound
+    - accounting
+    - aliases
+    - auditd
+    - banners
+    - bgfsck
+    - cron
+    - fail2ban
+    - fail2ban.config
+    - git
+    - hyperv
+    - lockd
+    - mounts
+    - moused
+    - nfsclient
+    - ntp.ng
+    - pam_krb5
+    - periodic
+    - pki
+    - postfix
+    - postfix.config
+    - rc
+    - rpcbind
+    - salt.minion
+    - schannel
+    - snmp
+    - snmp.conf
+    - snmp.options
+    - statd
+    - sudoers
+    - sysctl
+    - syscons
+    - users
+
+  'I@environment:testing and G@os_family:RedHat':
+    - match: compound
+    - epel
+    - nux.dextop                # requires EPEL
+    - nux.misc
 
 ###
 ### STAGING ENVIRONMENT
@@ -150,8 +189,46 @@ testing:
 ## environment corresponds with the staging branch of this repository.
 
 staging:
-  '*':
-    []                          # no-op
+  'I@environment:staging':
+    - match: compound
+    - accounting
+    - aliases
+    - auditd
+    - banners
+    - bgfsck
+    - cron
+    - fail2ban
+    - fail2ban.config
+    - git
+    - hyperv
+    - lockd
+    - mounts
+    - moused
+    - nfsclient
+    - ntp.ng
+    - pam_krb5
+    - periodic
+    - pki
+    - postfix
+    - postfix.config
+    - rc
+    - rpcbind
+    - salt.minion
+    - schannel
+    - snmp
+    - snmp.conf
+    - snmp.options
+    - statd
+    - sudoers
+    - sysctl
+    - syscons
+    - users
+
+  'I@environment:staging and G@os_family:RedHat':
+    - match: compound
+    - epel
+    - nux.dextop                # requires EPEL
+    - nux.misc
 
 ###
 ### PRODUCTION ENVIRONMENT
@@ -164,7 +241,49 @@ staging:
 ## repository.
 
 production:
-  '*':
-    []                          # no-op
+  'I@environment:production':
+    - match: compound
+    - accounting
+    - aliases
+    - auditd
+    - banners
+    - bgfsck
+    - cron
+    - fail2ban
+    - fail2ban.config
+    - git
+    - hyperv
+    - lockd
+    - mounts
+    - moused
+    - nfsclient
+    - ntp.ng
+    - pam_krb5
+    - periodic
+    - pki
+    - postfix
+    - postfix.config
+    - rc
+    - rpcbind
+    - salt.minion
+    - schannel
+    - snmp
+    - snmp.conf
+    - snmp.options
+    - statd
+    - sudoers
+    - sysctl
+    - syscons
+    - users
+
+  'I@environment:production and G@os_family:RedHat':
+    - match: compound
+    - epel
+    - nux.dextop                # requires EPEL
+    - nux.misc
+
+  'I@environment:production and I@role:minecraft':
+    - match: compound
+    - spigotmc
 
 #### TOP.SLS ends here.
