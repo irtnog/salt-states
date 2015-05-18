@@ -1,0 +1,3 @@
+{% for pkg in salt['pillar.get']('poudriere:pkglist', []) %}
+{{ pkg }}
+{% endfor %}

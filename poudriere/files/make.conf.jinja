@@ -1,0 +1,3 @@
+{% for setting in salt['pillar.get']('poudriere:make_conf', []) %}
+{{ setting }}
+{% endfor %}
