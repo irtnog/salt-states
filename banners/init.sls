@@ -1,5 +1,4 @@
-{% from "banners/map.jinja" import banners with context %}
-{% if banners %}
+{% if salt['grains.get']('os_family') in ['FreeBSD', 'RedHat', 'Solaris', 'Ubuntu'] %}
 
 /etc/issue:
   file:

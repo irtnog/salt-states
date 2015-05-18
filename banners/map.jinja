@@ -1,4 +1,0 @@
-{% set banners = salt['grains.filter_by']({
-    'Windows': False,
-    'default': True,
-  }, merge=salt['pillar.get']('banners:lookup')) %}
