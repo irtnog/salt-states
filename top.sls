@@ -179,6 +179,19 @@ testing:
     - nux.dextop                # requires EPEL
     - nux.misc
 
+  'I@environment:testing and I@role:salt-master':
+    - match: compound
+    - apache
+    - apache.modules
+    - apache.mod_wsgi
+    - salt.api
+    - salt.cloud
+    - salt.formulas
+    - salt.gitfs.gitpython
+    - salt.master
+    - salt.ssh
+    - poudriere
+
 ###
 ### STAGING ENVIRONMENT
 ###
@@ -229,6 +242,19 @@ staging:
     - epel
     - nux.dextop                # requires EPEL
     - nux.misc
+
+  'I@environment:staging and I@role:salt-master':
+    - match: compound
+    - apache
+    - apache.modules
+    - apache.mod_wsgi
+    - salt.api
+    - salt.cloud
+    - salt.formulas
+    - salt.gitfs.gitpython
+    - salt.master
+    - salt.ssh
+    - poudriere
 
 ###
 ### PRODUCTION ENVIRONMENT
@@ -281,6 +307,19 @@ production:
     - epel
     - nux.dextop                # requires EPEL
     - nux.misc
+
+  'I@environment:production and I@role:salt-master':
+    - match: compound
+    - apache
+    - apache.modules
+    - apache.mod_wsgi
+    - salt.api
+    - salt.cloud
+    - salt.formulas
+    - salt.gitfs.gitpython
+    - salt.master
+    - salt.ssh
+    - poudriere
 
   'I@environment:production and I@role:minecraft':
     - match: compound
