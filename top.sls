@@ -85,6 +85,7 @@ development:
     - pki
     - postfix
     - postfix.config
+    - poudriere.client
     - rc
     - rpcbind
     - salt.minion
@@ -160,6 +161,7 @@ testing:
     - pki
     - postfix
     - postfix.config
+    - poudriere.client
     - rc
     - rpcbind
     - salt.minion
@@ -224,6 +226,7 @@ staging:
     - pki
     - postfix
     - postfix.config
+    - poudriere.client
     - rc
     - rpcbind
     - salt.minion
@@ -289,6 +292,7 @@ production:
     - pki
     - postfix
     - postfix.config
+    - poudriere.client
     - rc
     - rpcbind
     - salt.minion
