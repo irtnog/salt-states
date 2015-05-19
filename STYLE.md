@@ -60,13 +60,11 @@ base:
     - role.salt-master
 ```
 
-We also normally use two number signs for comments between top-level
-YAML elements within a section, which are always full sentences.
-
 **Triple and Quadruple Number Sign**
 
 Comments that start with three number signs, `###`, should start at
-the left margin.  We use them for paragraph-length comments.  Comments
+the left margin.  We use them for comments between top-level YAML
+elements within a section, which are always full sentences.  Comments
 that start with four number signs, `####`, should be aligned to the
 left margin and are used for headings of major sections of a program.
 For example:
