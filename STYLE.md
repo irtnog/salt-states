@@ -44,7 +44,7 @@ Comments that start with two number signs, `##`, should be aligned to
 the same level of indentation as the code or data at that point in the
 YAML file.  Such comments usually describe the purpose of the
 following lines or the condition of a system or service at that point
-and are normally complete sentences.  For example:
+and may be complete sentences.  For example:
 
 ```yaml
 base:
