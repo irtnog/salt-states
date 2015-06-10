@@ -1,0 +1,3 @@
+ypbind:
+  domain: example.com
+  servers: ~
