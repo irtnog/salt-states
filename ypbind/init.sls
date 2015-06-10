@@ -56,6 +56,24 @@ ypbind_group:
     - text: +:*::
 
 {% elif grains['os_family'] == 'RedHat' %}
+ypbind_authconfig:
+  file.replace:
+    - name: /etc/sysconfig/authconfig
+    - pattern: ^USENIS=no
+    - repl: USENIS=yes
+    - append_if_not_found: True
+    - require:
+      - pkg: ypbind
+
+ypbind_network:
+  file.replace:
+    - name: /etc/sysconfig/network
+    - pattern: ^NISDOMAIN=(?!{{ ypbind_settings.domain }}).*
+    - repl: NISDOMAIN={{ ypbind_settings.domain }}
+    - append_if_not_found: True
+    - require:
+      - pkg: ypbind
+
 ypbind_conf:
   file.blockreplace:
     - name: /etc/yp.conf
@@ -87,6 +105,14 @@ ypbind_nsswitch_{{ element }}:
   file.replace:
     - name: /etc/nsswitch.conf
     - pattern: ^({{ element }}:\s+files)(?! nis)(.*)
+    - repl: \1 nis\2
+{% endfor %}
+
+{% for file in ['password', 'system'] %}
+ypbind_pam_{{ file }}_auth:
+  file.replace:
+    - name: /etc/pam.d/{{ file }}-auth-ac
+    - pattern: ^(password.*sufficient.*pam_unix.*shadow)(?! nis)(.*)
     - repl: \1 nis\2
 {% endfor %}
 
