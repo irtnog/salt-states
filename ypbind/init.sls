@@ -1,5 +1,6 @@
 ## TODO: add support for Debian/Ubuntu, SLE/OpenSUSE, Solaris
 
+{% if grains['kernel'] in ['FreeBSD', 'Linux', 'Solaris'] %}
 {% from "ypbind/map.jinja" import ypbind_settings with context %}
 
 ypbind:
@@ -48,7 +49,7 @@ rc_conf_nis_client_flags:
 
 ypbind_passwd:
   cmd.script:
-    - name: salt://ypbind/files/enable-passwd-map.sh
+    - name: salt://ypbind/files/freebsd-enable-nis-passwd-map.sh
 
 ypbind_group:
   file.append:
@@ -115,5 +116,6 @@ ypbind_pam_{{ file }}_auth:
     - pattern: ^(password.*sufficient.*pam_unix.*shadow)(?! nis)(.*)
     - repl: \1 nis\2
 {% endfor %}
+{% endif %}
 
 {% endif %}
