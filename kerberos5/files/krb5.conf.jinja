@@ -1,16 +1,16 @@
 {%- from "kerberos5/map.jinja" import kerberos5_settings with context -%}
-{% for section, settings in kerberos5_settings.config.items() -%}
+{% for section, settings in kerberos5_settings.config.items() %}
 [{{ section }}]
 {% for keyword, value in settings.items() -%}
 {% if value is mapping -%}
 {{ keyword }} = {
-  {% for keyword, value in value.items() %}
-  {% if value is sameas(True) or value is sameas(False) %}
+  {% for keyword, value in value.items() -%}
+  {% if value is sameas(True) or value is sameas(False) -%}
   {{ keyword }} = {{ "true" if value else "false" }}
-  {% else %}
+  {% else -%}
   {{ keyword }} = {{ value }}
-  {% endif %}
-  {% endfor %}
+  {% endif -%}
+  {%- endfor %}
 }
 {% elif value is sameas(True) or value is sameas(False) -%}
 {{ keyword }} = {{ "true" if value else "false" }}
