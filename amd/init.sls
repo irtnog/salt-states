@@ -1,12 +1,12 @@
 {% if salt['grains.get']('os_family') in ['FreeBSD', 'RedHat'] %}
-{% from "amd/map.jinja" import amd with context %}
+{% from "amd/map.jinja" import amd_settings with context %}
 
 amd:
-  {% if amd.packages %}
+  {% if amd_settings.packages %}
   pkg:
     - installed
     - pkgs:
-      {% for package in amd.packages %}
+      {% for package in amd_settings.packages %}
       - {{ package }}
       {% endfor %}
     - watch_in:
@@ -14,7 +14,7 @@ amd:
   {% endif %}
   service:
     - running
-    - name: {{ amd.service }}
+    - name: {{ amd_settings.service }}
     - enable: True
     - watch:
       - service: rpcbind
