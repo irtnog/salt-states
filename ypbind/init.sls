@@ -65,6 +65,14 @@ ypbind_authconfig:
     - append_if_not_found: True
     - require:
       - pkg: ypbind
+  cmd.run:
+    - name: authconfig --updateall
+    - watch:
+      - pkg: ypbind
+      - file: ypbind
+      - file: ypbind_authconfig
+      - file: ypbind_network
+      - file: ypbind_conf
 
 ypbind_network:
   file.replace:
@@ -99,22 +107,6 @@ ypbind_conf_domain_broadcast:
     - text: domain {{ ypbind_settings.domain }} broadcast
     - require_in:
       - file: ypbind_conf
-{% endfor %}
-
-{% for element in ['passwd', 'shadow', 'group', 'hosts', 'netgroup', 'automount'] %}
-ypbind_nsswitch_{{ element }}:
-  file.replace:
-    - name: /etc/nsswitch.conf
-    - pattern: ^({{ element }}:\s+files)(?! nis)(.*)
-    - repl: \1 nis\2
-{% endfor %}
-
-{% for file in ['password', 'system'] %}
-ypbind_pam_{{ file }}_auth:
-  file.replace:
-    - name: /etc/pam.d/{{ file }}-auth-ac
-    - pattern: ^(password.*sufficient.*pam_unix.*shadow)(?! nis)(.*)
-    - repl: \1 nis\2
 {% endfor %}
 {% endif %}
 
