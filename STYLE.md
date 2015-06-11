@@ -1,4 +1,4 @@
-# Saltstack Style Guide
+# IRTNOG Salt Style Guide
 
 For more information about change management procedures, see TODO.
 The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
