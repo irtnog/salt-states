@@ -7,8 +7,6 @@ poudriere:
     - pkgs:
       - poudriere
       - ccache
-    - require:
-      - module: update_repos
     - require_in:
       - file: poudriere_conf
 

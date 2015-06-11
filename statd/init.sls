@@ -9,8 +9,6 @@ statd:
       {% for package in statd.packages %}
       - {{ package }}
       {% endfor %}
-    - require:
-      - module: update_repos
     - watch_in:
       - service: statd
   {% endif %}

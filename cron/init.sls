@@ -9,8 +9,6 @@ cron:
       {% for package in cron.packages %}
       - {{ package }}
       {% endfor %}
-    - require:
-      - module: update_repos
   {% else %}
   []
   {% endif %}

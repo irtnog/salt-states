@@ -9,8 +9,6 @@ auditd:
       {% for package in auditd.packages %}
       - {{ package }}
       {% endfor %}
-    - require:
-      - module: update_repos
     - watch_in:
       - service: auditd
   {% endif %}

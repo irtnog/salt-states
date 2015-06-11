@@ -9,8 +9,6 @@ pki:
       {% for package in pki.packages %}
       - {{ package }}
       {% endfor %}
-    - require:
-      - module: update_repos
   {% endif %}
 
 {% endif %}

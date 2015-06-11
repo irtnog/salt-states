@@ -9,8 +9,6 @@ accounting:
       {% for package in accounting.packages %}
       - {{ package }}
       {% endfor %}
-    - require:
-      - module: update_repos
     - watch_in:
       - service: accounting
   {% endif %}

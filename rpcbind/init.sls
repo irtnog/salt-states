@@ -9,8 +9,6 @@ rpcbind:
       {% for package in rpcbind.packages %}
       - {{ package }}
       {% endfor %}
-    - require:
-      - module: update_repos
     - watch_in:
       - service: rpcbind
   {% endif %}

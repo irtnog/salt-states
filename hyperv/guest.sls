@@ -9,8 +9,6 @@ hyperv:
       {% for package in hyperv.packages %}
       - {{ package }}
       {% endfor %}
-    - require:
-      - module: update_repos
 {% endif %}
 
 ## FIXME: what about services to install, configure, and start?

@@ -9,8 +9,6 @@ amd:
       {% for package in amd.packages %}
       - {{ package }}
       {% endfor %}
-    - require:
-      - module: update_repos
     - watch_in:
       - service: amd
   {% endif %}
