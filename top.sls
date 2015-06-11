@@ -80,7 +80,7 @@ development:
     - moused
     - nfsclient
     - ntp.ng
-    - pam_krb5
+    - kerberos5
     - periodic
     - pki
     - postfix
@@ -157,7 +157,7 @@ testing:
     - moused
     - nfsclient
     - ntp.ng
-    - pam_krb5
+    - kerberos5
     - periodic
     - pki
     - postfix
@@ -223,7 +223,7 @@ staging:
     - moused
     - nfsclient
     - ntp.ng
-    - pam_krb5
+    - kerberos5
     - periodic
     - pki
     - postfix
@@ -289,7 +289,7 @@ production:
     - moused
     - nfsclient
     - ntp.ng
-    - pam_krb5
+    - kerberos5
     - periodic
     - pki
     - postfix
