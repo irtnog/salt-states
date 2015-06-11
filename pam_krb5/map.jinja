@@ -1,4 +1,21 @@
-{% set pam_krb5 = salt['grains.filter_by']({
-    'FreeBSD': { 'packages': None, },
-    'RedHat':  { 'packages': [ 'pam_krb5', ], },
-  }, merge=salt['pillar.get']('pam_krb5:lookup')) %}
+{% import_yaml "kerberos5/defaults.yaml" as default_settings %}
+
+{% set distro_map = salt['grains.filter_by']({
+    'Debian':  { },
+    'FreeBSD': { },
+    'RedHat':  { 'packages': ['pam_krb5'],
+                 'config': {
+                   'logging': {
+                     'default': 'FILE:/var/log/krb5libs.log',
+                     'kdc', 'FILE:/var/log/krb5kdc.log',
+                     'admin_server', 'FILE:/var/log/kadmind.log',
+                   },
+                 },
+               },
+    'Suse':    { },
+    'Solaris': { },
+  }, merge=salt['pillar.get']('kerberos5:lookup')) %}
+
+{% do default_settings.kerberos5.update(distro_map) %}
+
+{% set kerberos5_settings = salt['pillar.get']('kerberos5', default=default_settings.kerberos5, merge=True) %}

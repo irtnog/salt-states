@@ -1,20 +1,23 @@
-# TODO: /etc/krb5.conf?
-# FIXME: kerberos client operation when the Internet link is down?
+{% if grains['kernel'] in ['FreeBSD', 'Linux', 'Solaris'] %}
+{% from "kerberos5/map.jinja" import kerberos5_settings with context %}
 
-{% from "pam_krb5/map.jinja" import pam_krb5 with context %}
-{% if pam_krb5 %}
-
-{% if pam_krb5.packages %}
-pam_krb5:
-  pkg:
-    - installed
+kerberos5:
+  {% if kerberos5_settings.packages %}
+  pkg.installed:
     - pkgs:
-      {% for package in pam_krb5.packages %}
+      {% for package in kerberos5_settings.packages %}
       - {{ package }}
       {% endfor %}
-    - require:
-      - module: update_repos
-{% endif %}
+    - require_in:
+      - file: kerberos5
+  {% endif %}
+  file.managed:
+    - name: /etc/krb5.conf
+    - source: salt://kerberos5/files/krb5.conf.jinja
+    - template: jinja
+    - user: root
+    - group: 0
+    - mode: 444
 
 {% if grains['os_family'] == 'FreeBSD' %}
 {% for file in ['ftp', 'imap', 'other', 'pop3', 'sshd', 'system', 'telnetd', 'xdm'] %}
@@ -33,6 +36,12 @@ pam_service_ftpd:
     - name: ln -f /etc/pam.d/ftp /etc/pam.d/ftpd
     - watch:
       - file: pam_service_ftp
+
+{% elif grains['os_family'] == 'RedHat' %}
+## TODO
+
+{% elif grains['os_family'] == 'Solaris' %}
+## TODO
 {% endif %}
 
 {% endif %}

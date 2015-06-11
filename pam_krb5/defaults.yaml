@@ -1,0 +1,8 @@
+kerberos5:
+  config:
+    libdefaults:
+      ticket_lifetime: 24h
+      renew_lifetime: 7d
+      warn_pwexpire: 14d
+      forwardable: True
+      default_ccache_name: KEYRING:persistent:%{uid}

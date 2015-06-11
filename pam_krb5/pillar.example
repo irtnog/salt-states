@@ -1,0 +1,15 @@
+kerberos5:
+  config:
+    libdefaults:
+      default_realm: EXAMPLE.COM
+      dns_lookup_realm: True
+      dns_lookup_kdc: True
+      warn_pwexpire: 14 days
+    realms:
+      EXAMPLE.COM: {}
+      CHILD.EXAMPLE.COM:
+        kdc: kerberos.child.example.com
+        admin_server: kerberos.child.example.com
+    domain_realm:
+      .example.com: EXAMPLE.COM
+      example.com: EXAMPLE.COM
