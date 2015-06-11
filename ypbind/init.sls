@@ -86,28 +86,18 @@ ypbind_network:
 ypbind_conf:
   file.blockreplace:
     - name: /etc/yp.conf
+    - content: |
+        {% if ypbind_settings.servers is iterable -%}
+        domain {{ ypbind_settings.domain }} server {{ ypbind_settings.servers[0] }}
+        {% for server in ypbind_settings.servers.sort() -%}
+        ypserver {{ server }}
+        {% endfor -%}
+        {% else -%}
+        domain {{ ypbind_settings.domain }} broadcast
+        {% endif -%}
     - append_if_not_found: True
     - require:
       - pkg: ypbind
-
-{% for server in ypbind_settings.servers %}
-ypbind_conf_domain_server_{{ loop.index }}:
-  file.accumulated:
-    - name: ypbind_conf_accumulator
-    - filename: /etc/yp.conf
-    - text: ypserver {{ server }}
-    - require_in:
-      - file: ypbind_conf
-
-{% else %}
-ypbind_conf_domain_broadcast:
-  file.accumulated:
-    - name: ypbind_conf_accumulator
-    - filename: /etc/yp.conf
-    - text: domain {{ ypbind_settings.domain }} broadcast
-    - require_in:
-      - file: ypbind_conf
-{% endfor %}
 {% endif %}
 
 {% endif %}
