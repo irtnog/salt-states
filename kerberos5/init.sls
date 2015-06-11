@@ -38,7 +38,20 @@ pam_service_ftpd:
       - file: pam_service_ftp
 
 {% elif grains['os_family'] == 'RedHat' %}
-## TODO
+kerberos5_authconfig:
+  file.replace:
+    - name: /etc/sysconfig/authconfig
+    - pattern: ^USEKERBEROS=no
+    - repl: USEKERBEROS=yes
+    - append_if_not_found: True
+    - require:
+      - pkg: kerberos5
+  cmd.wait:
+    - name: authconfig --updateall
+    - watch:
+      - pkg: kerberos5
+      - file: kerberos5
+      - file: kerberos5_authconfig
 
 {% elif grains['os_family'] == 'Solaris' %}
 ## TODO
