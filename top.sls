@@ -77,7 +77,7 @@ development:
     - fail2ban
     - fail2ban.config
     - git
-    - hyperv
+    - hyperv.guest
     - lockd
     - mounts
     - moused
@@ -154,7 +154,7 @@ testing:
     - fail2ban
     - fail2ban.config
     - git
-    - hyperv
+    - hyperv.guest
     - lockd
     - mounts
     - moused
@@ -220,7 +220,7 @@ staging:
     - fail2ban
     - fail2ban.config
     - git
-    - hyperv
+    - hyperv.guest
     - lockd
     - mounts
     - moused
@@ -286,7 +286,7 @@ production:
     - fail2ban
     - fail2ban.config
     - git
-    - hyperv
+    - hyperv.guest
     - lockd
     - mounts
     - moused
