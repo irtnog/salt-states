@@ -16,6 +16,6 @@
 {{ keyword }} = {{ "true" if value else "false" }}
 {% else -%}
 {{ keyword }} = {{ value }}
-{% endif %}
-{% endfor %}
+{% endif -%}
+{%- endfor %}
 {% endfor %}
