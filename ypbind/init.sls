@@ -89,7 +89,8 @@ ypbind_conf:
     - content: |
         {% if ypbind_settings.servers is iterable -%}
         domain {{ ypbind_settings.domain }} server {{ ypbind_settings.servers[0] }}
-        {% for server in ypbind_settings.servers.sort() -%}
+        {% ypbind_settings.servers.sort() -%}
+        {% for server in ypbind_settings.servers -%}
         ypserver {{ server }}
         {% endfor -%}
         {% else -%}
