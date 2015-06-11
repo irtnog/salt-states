@@ -95,7 +95,7 @@ ypbind_conf_domain_server_{{ loop.index }}:
   file.accumulated:
     - name: ypbind_conf_accumulator
     - filename: /etc/yp.conf
-    - text: domain {{ ypbind_settings.domain }} server {{ server }}
+    - text: ypserver {{ server }}
     - require_in:
       - file: ypbind_conf
 
