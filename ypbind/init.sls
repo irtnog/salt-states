@@ -95,7 +95,7 @@ ypbind_conf:
         {% endfor -%}
         {% else -%}
         domain {{ ypbind_settings.domain }} broadcast
-        {% endif -%}
+        {% endif %}
     - append_if_not_found: True
     - require:
       - pkg: ypbind
