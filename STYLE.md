@@ -1,10 +1,13 @@
 # Saltstack Style Guide
 
 For more information about change management procedures, see TODO.
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
 document are to be interpreted as described in
-[RFC 2119](http://www.rfc-editor.org/rfc/rfc2119.txt).
+[RFC 2119](http://www.rfc-editor.org/rfc/rfc2119.txt).  The keywords
+"DANGER", "WARNING", and "CAUTION" in this document are to be
+interpreted as described in
+[OSHA 1910.145](https://www.osha.gov/pls/oshaweb/owadisp.show_document?p_table=standards&p_id=9794).
 
 ## State Formulas
 
