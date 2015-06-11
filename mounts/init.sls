@@ -3,7 +3,7 @@
   mount.mounted:
     - device:   {{ mount.get('device') }}
     - fstype:   {{ mount.get('fstype') }}
-    - opts:     {{ mount.get('options', 'rw' }}
+    - opts:     {{ mount.get('options', 'rw') }}
     - dump:     {{ mount.get('dumpfreq', 0) }}
     - pass_num: {{ mount.get('passno', 0) }}
 {% endfor %}
