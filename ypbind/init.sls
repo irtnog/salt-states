@@ -66,36 +66,18 @@ ypbind_authconfig:
     - require:
       - pkg: ypbind
   cmd.run:
-    - name: authconfig --updateall
+    - name: authconfig --update --enablenis --nisdomain={{ ypbind_settings.domain }} {% if ypbind_settings.servers is iterable %}--nisserver={{ ypbind_settings.servers[0] }}{% endif %}
     - watch:
       - pkg: ypbind
       - file: ypbind
       - file: ypbind_authconfig
       - file: ypbind_network
-      - file: ypbind_conf
 
 ypbind_network:
   file.replace:
     - name: /etc/sysconfig/network
     - pattern: ^NISDOMAIN=(?!{{ ypbind_settings.domain }}).*
     - repl: NISDOMAIN={{ ypbind_settings.domain }}
-    - append_if_not_found: True
-    - require:
-      - pkg: ypbind
-
-ypbind_conf:
-  file.blockreplace:
-    - name: /etc/yp.conf
-    - content: |
-        {% if ypbind_settings.servers is iterable -%}
-        domain {{ ypbind_settings.domain }} server {{ ypbind_settings.servers[0] }}
-        {% set result = ypbind_settings.servers.sort() -%}
-        {% for server in ypbind_settings.servers -%}
-        ypserver {{ server }}
-        {% endfor -%}
-        {% else -%}
-        domain {{ ypbind_settings.domain }} broadcast
-        {% endif %}
     - append_if_not_found: True
     - require:
       - pkg: ypbind
