@@ -6,7 +6,10 @@
 ### words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 ### "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in
 ### this document are to be interpreted as described in RFC 2119,
-### http://www.rfc-editor.org/rfc/rfc2119.txt.
+### http://www.rfc-editor.org/rfc/rfc2119.txt.  The keywords "DANGER",
+### "WARNING", and "CAUTION" in this document are to be interpreted as
+### described in OSHA 1910.145,
+### https://www.osha.gov/pls/oshaweb/owadisp.show_document?p_table=standards&p_id=9794.
 
 ### WARNING: DO NOT ENABLE FORMULAS IN ANY ENVIRONMENT until the
 ### following conditions have been met:
