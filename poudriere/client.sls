@@ -44,8 +44,6 @@ enable_freebsd_repo::
     - name: /usr/local/etc/pkg/repos/FreeBSD.conf
     - require:
       - file: install_irtnog_repo
-    - require_in:
-      - module: update_repos
 {% else %}
 disable_freebsd_repo:
   file:
@@ -59,8 +57,6 @@ disable_freebsd_repo:
     - source: salt://poudriere/files/FreeBSD.conf
     - require:
       - file: install_irtnog_repo
-    - require_in:
-      - module: update_repos
 {% endif %}
 
 {% endif %}
