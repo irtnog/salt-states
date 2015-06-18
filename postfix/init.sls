@@ -25,34 +25,34 @@ postfix_main.cf:
     - name: {{ postfix_settings.prefix }}/etc/postfix/main.cf
     - append_if_not_found: True
     - content: |
-        {% for entry in postfix_settings.main -%}
-        {% if entry is mapping -%}
-        {% for key, value in entry.items() -%}
-        {% if value is string or value is number -%}
+        {% for entry in postfix_settings.main %}
+        {% if entry is mapping %}
+        {% for key, value in entry.items() %}
+        {% if value is string or value is number %}
         {{ key }} = {{ value }}
-        {% elif value is sameas true or value is sameas false -%}
+        {% elif value is sameas true or value is sameas false %}
         {{ key }} = {{ "yes" if value else "no" }}
-        {% elif value is iterable -%}
+        {% elif value is iterable %}
         {{ key }} = {{ value | join(', ') }}
-        {% endif -%}
-        {% endfor -%}
-        {% else -%}
+        {% endif %}
+        {% endfor %}
+        {% else %}
         {{ entry }}
-        {% endif -%}
-        {% else -%}
+        {% endif %}
+        {% else %}
         ## Nothing to see here.  Move along.
-        {% endfor -%}
+        {% endfor %}
 
 postfix_master.cf:
   file.blockreplace:
     - name: {{ postfix_settings.prefix }}/etc/postfix/master.cf
     - append_if_not_found: True
     - content: |
-        {% for entry in postfix_settings.master -%}
+        {% for entry in postfix_settings.master %}
         {{ entry }}
-        {% else -%}
+        {% else %}
         ## Nothing to see here.  Move along.
-        {% endfor -%}
+        {% endfor %}
 
 {% for type, maps in postfix_settings.maps.items() %}
 {% for map, entries in maps.items() %}
@@ -60,23 +60,23 @@ postmap_{{ type }}_{{ map }}:
   file.managed:
     - name: {{ postfix_settings.prefix }}/etc/postfix/{{ map }}
     - content: |
-        {% for entry in entries -%}
-        {% if entry is mapping -%}
-        {% for key, value in entry.items() -%}
-        {% if value is string or value is number -%}
+        {% for entry in entries %}
+        {% if entry is mapping %}
+        {% for key, value in entry.items() %}
+        {% if value is string or value is number %}
         {{ key }} = {{ value }}
-        {% elif value is sameas true or value is sameas false -%}
+        {% elif value is sameas true or value is sameas false %}
         {{ key }} = {{ "yes" if value else "no" }}
-        {% elif value is iterable -%}
+        {% elif value is iterable %}
         {{ key }} = {{ value | join(', ') }}
-        {% endif -%}
-        {% endfor -%}
-        {% else -%}
+        {% endif %}
+        {% endfor %}
+        {% else %}
         {{ entry }}
-        {% endif -%}
-        {% else -%}
+        {% endif %}
+        {% else %}
         ## Nothing to see here.  Move along.
-        {% endfor -%}
+        {% endfor %}
     - user: root
     - group: 0
     - mode: 640
