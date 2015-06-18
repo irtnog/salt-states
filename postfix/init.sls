@@ -25,7 +25,7 @@ postfix_main.cf:
     - name: {{ postfix_settings.prefix }}/etc/postfix/main.cf
     - content: |
         {% for entry in postfix_settings.main -%}
-        {% if entry is mappable -%}
+        {% if entry is mapping -%}
         {% for key, value in entry.items() -%}
         {% if value is string or value is number -%}
         {{ key }} = {{ value }}
@@ -61,7 +61,7 @@ postmap_{{ type }}_{{ map }}:
     - name: {{ prefix }}/etc/postfix/{{ map }}
     - content: |
         {% for entry in entries -%}
-        {% if entry is mappable -%}
+        {% if entry is mapping -%}
         {% for key, value in entry.items() -%}
         {% if value is string or value is number -%}
         {{ key }} = {{ value }}
