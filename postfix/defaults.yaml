@@ -1,0 +1,19 @@
+postfix:
+  packages:
+    - postfix
+  prefix:
+    ""
+  service:
+    postfix
+  main: []
+  master: []
+  maps:
+    hash:
+      access: []
+      canonical: []
+      generic: []
+      relocated: []
+      transport: []
+      virtual: []
+    pcre:
+      header_checks: []

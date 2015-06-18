@@ -1,0 +1,9 @@
+{% import_yaml "postfix/defaults.yaml" as default_settings %}
+
+{% set distro_map = salt['grains.filter_by']({
+    'FreeBSD': { 'prefix': '/usr/local', },
+  }, merge=salt['pillar.get']('postfix:lookup')) %}
+
+{% do default_settings.postfix.update(distro_map) %}
+
+{% set postfix_settings = salt['pillar.get']('postfix', default=default_settings.postfix, merge=True) %}
