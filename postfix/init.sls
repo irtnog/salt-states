@@ -34,11 +34,11 @@ postfix_main.cf:
         {{ key }} = {{ "yes" if value else "no" }}
         {% elif value is iterable -%}
         {{ key }} = {{ value | join(', ') }}
-        {%- endif %}
-        {%- endfor %}
+        {% endif -%}
+        {% endfor -%}
         {% else -%}
         {{ entry }}
-        {%- endif %}
+        {% endif -%}
         {% else -%}
         ## Nothing to see here.  Move along.
         {%- endfor %}
