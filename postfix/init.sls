@@ -82,10 +82,12 @@ postmap_{{ type }}_{{ map }}:
     - mode: 640
     - require:
       - file: postfix_main.cf
+  {% if type in ['btree', 'cdb', 'dbm', 'hash', 'fail', 'sdbm'] %}
   cmd.wait:
     - name: postmap {{ type }}:{{ postfix_settings.prefix }}/etc/postfix/{{ map }}
     - watch:
       - file: postmap_{{ type }}_{{ map }}
+  {% endif %}
     - require_in:
       - service: postfix
 {% endfor %}
