@@ -54,8 +54,8 @@ postfix_master.cf:
         {% endfor -%}
     - append_if_not_found: True
 
-{% for type, maps in postfix_settings.maps %}
-{% for map, entries in maps %}
+{% for type, maps in postfix_settings.maps.items() %}
+{% for map, entries in maps.items() %}
 postmap_{{ type }}_{{ map }}:
   file.managed:
     - name: {{ prefix }}/etc/postfix/{{ map }}
