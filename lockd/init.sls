@@ -9,8 +9,6 @@ lockd:
       {% for package in lockd.packages %}
       - {{ package }}
       {% endfor %}
-    - require:
-      - module: update_repos
     - watch_in:
       - service: lockd
   {% endif %}
