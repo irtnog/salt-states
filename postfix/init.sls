@@ -23,6 +23,7 @@ postfix:
 postfix_main.cf:
   file.blockreplace:
     - name: {{ postfix_settings.prefix }}/etc/postfix/main.cf
+    - append_if_not_found: True
     - content: |
         {% for entry in postfix_settings.main -%}
         {% if entry is mapping -%}
@@ -41,18 +42,17 @@ postfix_main.cf:
         {% else -%}
         ## Nothing to see here.  Move along.
         {% endfor -%}
-    - append_if_not_found: True
 
 postfix_master.cf:
   file.blockreplace:
     - name: {{ postfix_settings.prefix }}/etc/postfix/master.cf
+    - append_if_not_found: True
     - content: |
         {% for entry in postfix_settings.master -%}
         {{ entry }}
         {% else -%}
         ## Nothing to see here.  Move along.
         {% endfor -%}
-    - append_if_not_found: True
 
 {% for type, maps in postfix_settings.maps.items() %}
 {% for map, entries in maps.items() %}
