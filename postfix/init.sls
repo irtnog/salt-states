@@ -46,7 +46,7 @@ postfix_main.cf:
 postfix_master.cf:
   file.blockreplace:
     - name: {{ postfix_settings.prefix }}/etc/postfix/master.cf
-    - contents: |
+    - content: |
         {% for entry in postfix_settings.master -%}
         {{ entry }}
         {% else -%}
