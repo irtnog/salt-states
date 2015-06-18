@@ -83,7 +83,7 @@ postmap_{{ type }}_{{ map }}:
     - require:
       - file: postfix_main.cf
   cmd.wait:
-    - name: postmap {{ type }}:{{ postfix_setings.prefix }}/etc/postfix/{{ map }}
+    - name: postmap {{ type }}:{{ postfix_settings.prefix }}/etc/postfix/{{ map }}
     - watch:
       - file: postmap_{{ type }}_{{ map }}
     - require_in:
