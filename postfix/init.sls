@@ -29,7 +29,7 @@ postfix_main.cf:
         {% for key, value in entry.items() -%}
         {% if value is string or value is number -%}
         {{ key }} = {{ value }}
-        {% elif value is boolean -%}
+        {% elif value is sameas true or value is sameas false -%}
         {{ key }} = {{ "yes" if value else "no" }}
         {% elif value is iterable -%}
         {{ key }} = {{ value | join(', ') }}
@@ -65,7 +65,7 @@ postmap_{{ type }}_{{ map }}:
         {% for key, value in entry.items() -%}
         {% if value is string or value is number -%}
         {{ key }} = {{ value }}
-        {% elif value is boolean -%}
+        {% elif value is sameas true or value is sameas false -%}
         {{ key }} = {{ "yes" if value else "no" }}
         {% elif value is iterable -%}
         {{ key }} = {{ value | join(', ') }}
