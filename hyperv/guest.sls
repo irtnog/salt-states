@@ -1,28 +1,20 @@
-{% from "hyperv/map.jinja" import hyperv with context %}
-{% if hyperv %}
+{% from "hyperv/map.jinja" import hyperv_settings with context %}
 
-{% if hyperv.packages %}
+{% if hyperv_settings.packages %}
 hyperv:
   pkg:
     - installed
     - pkgs:
-      {% for package in hyperv.packages %}
+      {% for package in hyperv_settings.packages %}
       - {{ package }}
       {% endfor %}
 {% endif %}
 
-## FIXME: what about services to install, configure, and start?
-
 {% if grains['os_family'] == 'RedHat' %}
-###
-### RED HAT FAMILY-SPECIFIC
-###
-
 ## The Hyper-V Synthetic Video Frame Buffer driver (hyperv_fb)
 ## defaults to a screen resolution 1152x864 on Linux.  This change
 ## lowers it to 640x480, which better suits a text-only server
 ## console.
-
 hyperv_fb_modprobe_conf:
   file:
     - managed
@@ -35,7 +27,6 @@ hyperv_fb_modprobe_conf:
 ## The Hyper-V Dynamic Memory feature requres additional configuration
 ## on CentOS and Red Hat Enterprise Linux in order to enable Hot-Add
 ## support (http://technet.microsoft.com/en-us/library/dn531026.aspx).
-
 hyperv_memory_udev_balloon_rules:
   file:
     - managed
@@ -44,6 +35,4 @@ hyperv_memory_udev_balloon_rules:
     - group: 0
     - mode: 444
     - source: salt://hyperv/files/100-balloon.rules
-{% endif %}
-
 {% endif %}

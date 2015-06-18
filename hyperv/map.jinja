@@ -1,19 +1,12 @@
-## FIXME
-{% if grains['os_family'] == 'RedHat' %}
-  {% if grains['osmajorrelease'][0] == '6' %}
-    {% set hyperv_redhat_packages = [
-      'hypervkvpd',
-    ] %}
-  {% elif grains['osmajorrelease'][0] == '7' %}
-    {% set hyperv_redhat_packaegs = [
-      'hyperv-daemons',
-    ] %}
-  {% else %}
-    {% set hyperv_redhat_packages = None %}
-  {% endif %}
-{% endif %}
-
-{% set hyperv = salt['grains.filter_by']({
-    'FreeBSD': { 'packages': None, },
-    'RedHat':  { 'packages': hyperv_redhat_packages, },
-  }, merge=salt['pillar.get']('hyperv:lookup')) %}
+{% set hyperv_settings = salt['grains.filter_by']({
+    'default': {
+      'packages': None,
+    },
+  }, merge=salt['grains.filter_by']({
+    'CentOS Linux-6': {
+      'packages': ['hypervkvpd'],
+    },
+    'CentOS Linux-7': {
+      'packages': ['hyperv-daemons'],
+    },
+  }, grain='osfinger', merge=salt['pillar.get']('hyperv:lookup')) %}
