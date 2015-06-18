@@ -41,7 +41,7 @@ postfix_main.cf:
         {% endif -%}
         {% else -%}
         ## Nothing to see here.  Move along.
-        {%- endfor %}
+        {% endfor -%}
 
 postfix_master.cf:
   file.blockreplace:
