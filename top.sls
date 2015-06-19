@@ -98,6 +98,7 @@ development:
     - snmp.options
     - statd
     - sudoers
+    - symlinks
     - sysctl
     - syscons
     - users
@@ -175,6 +176,7 @@ testing:
     - snmp.options
     - statd
     - sudoers
+    - symlinks
     - sysctl
     - syscons
     - users
@@ -241,6 +243,7 @@ staging:
     - snmp.options
     - statd
     - sudoers
+    - symlinks
     - sysctl
     - syscons
     - users
@@ -307,6 +310,7 @@ production:
     - snmp.options
     - statd
     - sudoers
+    - symlinks
     - sysctl
     - syscons
     - users
