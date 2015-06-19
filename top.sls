@@ -117,7 +117,7 @@ development:
     - salt.api
     - salt.cloud
     - salt.formulas
-    - salt.gitfs.pygit2
+    - salt.gitfs.gitpython
     - salt.master
     - salt.ssh
     - poudriere
@@ -195,7 +195,7 @@ testing:
     - salt.api
     - salt.cloud
     - salt.formulas
-    - salt.gitfs.pygit2
+    - salt.gitfs.gitpython
     - salt.master
     - salt.ssh
     - poudriere
@@ -262,7 +262,7 @@ staging:
     - salt.api
     - salt.cloud
     - salt.formulas
-    - salt.gitfs.pygit2
+    - salt.gitfs.gitpython
     - salt.master
     - salt.ssh
     - poudriere
@@ -329,7 +329,7 @@ production:
     - salt.api
     - salt.cloud
     - salt.formulas
-    - salt.gitfs.pygit2
+    - salt.gitfs.gitpython
     - salt.master
     - salt.ssh
     - poudriere
