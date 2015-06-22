@@ -134,6 +134,7 @@ development:
     - sudoers
     - symlinks
     - sysctl
+    - tcsh
     - users
     - ypbind
 
