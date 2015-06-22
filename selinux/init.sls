@@ -11,6 +11,7 @@ policycoreutils-python:
 
 create /etc/selinux/targeted/src/local.te:
   file.managed:
+    - name: /etc/selinux/targeted/src/local.te
     - user: root
     - group: root
     - mode: 600
