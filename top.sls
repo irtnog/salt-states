@@ -66,8 +66,9 @@ base:
 ### development branch of this repository.
 
 development:
-  'I@environment:development':
+  'I@environment:development and G@os_family:FreeBSD':
     - match: compound
+    - poudriere.client          # local pkgng repo
     - accounting
     - aliases
     - auditd
@@ -87,12 +88,9 @@ development:
     - periodic
     - pki
     - postfix
-    - postfix.config
-    - poudriere.client
     - rc
     - rpcbind
     - salt.minion
-    - schannel
     - snmp
     - snmp.conf
     - snmp.options
@@ -102,12 +100,45 @@ development:
     - sysctl
     - syscons
     - users
+    - ypbind
 
   'I@environment:development and G@os_family:RedHat':
     - match: compound
     - epel
     - nux.dextop                # requires EPEL
     - nux.misc
+    - accounting
+    - aliases
+    - amd
+    - auditd
+    - banners
+    - cron
+    - fail2ban
+    - fail2ban.config
+    - git
+    - hyperv.guest
+    - kerberos5
+    - lockd
+    - mounts
+    - nfsclient
+    - ntp.ng
+    - pki
+    - postfix
+    - rpcbind
+    - salt.minion
+    - snmp
+    - snmp.conf
+    - snmp.options
+    - statd
+    - sudoers
+    - symlinks
+    - sysctl
+    - users
+    - ypbind
+
+  'I@environment:development and G@os_family:Windows':
+    - match: compound
+    - schannel
 
   'I@environment:development and I@role:salt-master':
     - match: compound
