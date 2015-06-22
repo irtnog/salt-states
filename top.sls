@@ -122,6 +122,7 @@ development:
     - mounts
     - nfsclient
     - ntp.ng
+    - pam_mkhomedir
     - pki
     - postfix
     - rpcbind
