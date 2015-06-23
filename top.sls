@@ -141,7 +141,10 @@ development:
 
   'I@environment:development and G@os_family:Windows':
     - match: compound
+    - git
+    - salt.minion
     - schannel
+    - users
 
   'I@environment:development and I@role:salt-master':
     - match: compound
@@ -168,6 +171,10 @@ development:
     - rabbitmq.config
     - openstack.repo
 
+  'I@environment:development and I@role:minecraft':
+    - match: compound
+    - spigotmc
+
 ####
 #### TESTING ENVIRONMENT
 ####
@@ -178,8 +185,9 @@ development:
 ### repository.
 
 testing:
-  'I@environment:testing':
+  'I@environment:testing and G@os_family:FreeBSD':
     - match: compound
+    - poudriere.client          # local pkgng repo
     - accounting
     - aliases
     - auditd
@@ -199,12 +207,9 @@ testing:
     - periodic
     - pki
     - postfix
-    - postfix.config
-    - poudriere.client
     - rc
     - rpcbind
     - salt.minion
-    - schannel
     - snmp
     - snmp.conf
     - snmp.options
@@ -214,12 +219,51 @@ testing:
     - sysctl
     - syscons
     - users
+    - ypbind
 
   'I@environment:testing and G@os_family:RedHat':
     - match: compound
     - epel
     - nux.dextop                # requires EPEL
     - nux.misc
+    - accounting
+    - aliases
+    - amd
+    - auditd
+    - banners
+    - cron
+    - fail2ban
+    - fail2ban.config
+    - git
+    - hyperv.guest
+    - kerberos5
+    - lockd
+    - mounts
+    - nfsclient
+    - ntp.ng
+    - pam_mkhomedir
+    - pki
+    - postfix
+    - rpcbind
+    - salt.minion
+    - selinux
+    - snmp
+    - snmp.conf
+    - snmp.options
+    - statd
+    - sudoers
+    - symlinks
+    - sysctl
+    - tcsh
+    - users
+    - ypbind
+
+  'I@environment:testing and G@os_family:Windows':
+    - match: compound
+    - git
+    - salt.minion
+    - schannel
+    - users
 
   'I@environment:testing and I@role:salt-master':
     - match: compound
@@ -234,6 +278,22 @@ testing:
     - salt.ssh
     - poudriere
 
+  'I@environment:testing and I@role:devstack':
+    - match: compound
+    - apache
+    - apache.modules
+    - apache.mod_wsgi
+    - mysql
+    - mysql.python
+    - mysql.remove_test_database
+    - rabbitmq
+    - rabbitmq.config
+    - openstack.repo
+
+  'I@environment:testing and I@role:minecraft':
+    - match: compound
+    - spigotmc
+
 ####
 #### STAGING ENVIRONMENT
 ####
@@ -245,8 +305,9 @@ testing:
 ### repository.
 
 staging:
-  'I@environment:staging':
+  'I@environment:staging and G@os_family:FreeBSD':
     - match: compound
+    - poudriere.client          # local pkgng repo
     - accounting
     - aliases
     - auditd
@@ -266,12 +327,9 @@ staging:
     - periodic
     - pki
     - postfix
-    - postfix.config
-    - poudriere.client
     - rc
     - rpcbind
     - salt.minion
-    - schannel
     - snmp
     - snmp.conf
     - snmp.options
@@ -281,12 +339,51 @@ staging:
     - sysctl
     - syscons
     - users
+    - ypbind
 
   'I@environment:staging and G@os_family:RedHat':
     - match: compound
     - epel
     - nux.dextop                # requires EPEL
     - nux.misc
+    - accounting
+    - aliases
+    - amd
+    - auditd
+    - banners
+    - cron
+    - fail2ban
+    - fail2ban.config
+    - git
+    - hyperv.guest
+    - kerberos5
+    - lockd
+    - mounts
+    - nfsclient
+    - ntp.ng
+    - pam_mkhomedir
+    - pki
+    - postfix
+    - rpcbind
+    - salt.minion
+    - selinux
+    - snmp
+    - snmp.conf
+    - snmp.options
+    - statd
+    - sudoers
+    - symlinks
+    - sysctl
+    - tcsh
+    - users
+    - ypbind
+
+  'I@environment:staging and G@os_family:Windows':
+    - match: compound
+    - git
+    - salt.minion
+    - schannel
+    - users
 
   'I@environment:staging and I@role:salt-master':
     - match: compound
@@ -301,6 +398,22 @@ staging:
     - salt.ssh
     - poudriere
 
+  'I@environment:staging and I@role:devstack':
+    - match: compound
+    - apache
+    - apache.modules
+    - apache.mod_wsgi
+    - mysql
+    - mysql.python
+    - mysql.remove_test_database
+    - rabbitmq
+    - rabbitmq.config
+    - openstack.repo
+
+  'I@environment:staging and I@role:minecraft':
+    - match: compound
+    - spigotmc
+
 ####
 #### PRODUCTION ENVIRONMENT
 ####
@@ -312,8 +425,9 @@ staging:
 ### repository.
 
 production:
-  'I@environment:production':
+  'I@environment:production and G@os_family:FreeBSD':
     - match: compound
+    - poudriere.client          # local pkgng repo
     - accounting
     - aliases
     - auditd
@@ -333,12 +447,9 @@ production:
     - periodic
     - pki
     - postfix
-    - postfix.config
-    - poudriere.client
     - rc
     - rpcbind
     - salt.minion
-    - schannel
     - snmp
     - snmp.conf
     - snmp.options
@@ -348,12 +459,51 @@ production:
     - sysctl
     - syscons
     - users
+    - ypbind
 
   'I@environment:production and G@os_family:RedHat':
     - match: compound
     - epel
     - nux.dextop                # requires EPEL
     - nux.misc
+    - accounting
+    - aliases
+    - amd
+    - auditd
+    - banners
+    - cron
+    - fail2ban
+    - fail2ban.config
+    - git
+    - hyperv.guest
+    - kerberos5
+    - lockd
+    - mounts
+    - nfsclient
+    - ntp.ng
+    - pam_mkhomedir
+    - pki
+    - postfix
+    - rpcbind
+    - salt.minion
+    - selinux
+    - snmp
+    - snmp.conf
+    - snmp.options
+    - statd
+    - sudoers
+    - symlinks
+    - sysctl
+    - tcsh
+    - users
+    - ypbind
+
+  'I@environment:production and G@os_family:Windows':
+    - match: compound
+    - git
+    - salt.minion
+    - schannel
+    - users
 
   'I@environment:production and I@role:salt-master':
     - match: compound
@@ -367,6 +517,18 @@ production:
     - salt.master
     - salt.ssh
     - poudriere
+
+  'I@environment:production and I@role:devstack':
+    - match: compound
+    - apache
+    - apache.modules
+    - apache.mod_wsgi
+    - mysql
+    - mysql.python
+    - mysql.remove_test_database
+    - rabbitmq
+    - rabbitmq.config
+    - openstack.repo
 
   'I@environment:production and I@role:minecraft':
     - match: compound
