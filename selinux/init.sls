@@ -3,39 +3,45 @@
 policycoreutils-python:
   pkg.installed
 
-/etc/selinux/targeted/src:
+/etc/selinux/targeted/local:
   file.directory:
     - user: root
     - group: root
     - mode: 700
 
-create /etc/selinux/targeted/src/local.te:
+create /etc/selinux/targeted/local/local.te:
   file.managed:
-    - name: /etc/selinux/targeted/src/local.te
+    - name: /etc/selinux/targeted/local/local.te
     - user: root
     - group: root
     - mode: 600
     - require:
-      - file: /etc/selinux/targeted/src
+      - file: /etc/selinux/targeted/local
 
-/etc/selinux/targeted/src/local.te:
+/etc/selinux/targeted/local/local.te:
   file.blockreplace:
     - append_if_not_found: True
     - require:
-      - file: create /etc/selinux/targeted/src/local.te
+      - file: create /etc/selinux/targeted/local/local.te
 
-audit2allow -M local:
+checkmodule -M -m -o local.mod local.te:
   cmd.wait:
-    - cwd: /etc/selinux/targeted/src
+    - cwd: /etc/selinux/targeted/local
     - require:
       - pkg: policycoreutils-python
     - watch:
-      - file: /etc/selinux/targeted/src/local.te
+      - file: /etc/selinux/targeted/local/local.te
+
+semodule_package -o local.pp -m local.mod:
+  cmd.wait:
+    - cwd: /etc/selinux/targeted/local
+    - watch:
+      - cmd: checkmodule -M -m -o local.mod local.te
 
 semodule -i local.pp:
   cmd.wait:
-    - cwd: /etc/selinux/targeted/src
+    - cwd: /etc/selinux/targeted/local
     - watch:
-      - cmd: audit2allow -M local
+      - cmd: semodule_package -o local.pp -m local.mod
 
 {% endif %}
