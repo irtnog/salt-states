@@ -6,7 +6,7 @@ pam_mkhomedir:
 
 pam_mkhomedir_selinux_exception:
   file.accumulated:
-    - filename: /etc/selinux/targeted/src/local.te
+    - filename: /etc/selinux/targeted/local/local.te
     - text: |
         #============= unconfined_t ==============
         allow unconfined_t oddjob_mkhomedir_exec_t:file entrypoint;
