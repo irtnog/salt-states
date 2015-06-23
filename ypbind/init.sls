@@ -54,7 +54,7 @@ ypbind_passwd:
 ypbind_group:
   file.append:
     - name: /etc/group
-    - text: +:*::
+    - text: '+:*::'
 
 {% elif grains['os_family'] == 'RedHat' %}
 ypbind_authconfig:
