@@ -11,6 +11,6 @@ pam_mkhomedir_selinux_exception:
         #============= unconfined_t ==============
         allow unconfined_t oddjob_mkhomedir_exec_t:file entrypoint;
     - require_in:
-      - file: /etc/selinux/targeted/src/local.te
+      - file: /etc/selinux/targeted/local/local.te
 
 {% endif %}
