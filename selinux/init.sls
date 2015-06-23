@@ -9,20 +9,15 @@ policycoreutils-python:
     - group: root
     - mode: 700
 
-create /etc/selinux/targeted/local/local.te:
+/etc/selinux/targeted/local/local.te:
   file.managed:
     - name: /etc/selinux/targeted/local/local.te
+    - source: salt://selinux/files/local.te
     - user: root
     - group: root
     - mode: 600
     - require:
       - file: /etc/selinux/targeted/local
-
-/etc/selinux/targeted/local/local.te:
-  file.blockreplace:
-    - append_if_not_found: True
-    - require:
-      - file: create /etc/selinux/targeted/local/local.te
 
 checkmodule -M -m -o local.mod local.te:
   cmd.wait:
