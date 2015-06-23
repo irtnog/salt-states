@@ -37,6 +37,13 @@ rc_conf_nisdomainname:
     - watch_in:
       - service: ypbind
 
+nisdomain:
+  service.running:
+    - watch:
+      - file: rc_conf_nisdomainname
+    - require_in:
+      - service: ypbind
+
 rc_conf_nis_client_flags:
   file.accumulated:
     - name: rc_conf_accumulator
