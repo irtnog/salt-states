@@ -127,6 +127,7 @@ development:
     - postfix
     - rpcbind
     - salt.minion
+    - selinux
     - snmp
     - snmp.conf
     - snmp.options
