@@ -159,6 +159,11 @@ development:
     - salt.ssh
     - poudriere
 
+  'I@environment:development and I@role:mail-relay':
+    - match: compound
+    - amavisd
+    - clamav
+
   'I@environment:development and I@role:devstack':
     - match: compound
     - apache
@@ -277,6 +282,11 @@ testing:
     - salt.master
     - salt.ssh
     - poudriere
+
+  'I@environment:testing and I@role:mail-relay':
+    - match: compound
+    - amavisd
+    - clamav
 
   'I@environment:testing and I@role:devstack':
     - match: compound
@@ -398,6 +408,11 @@ staging:
     - salt.ssh
     - poudriere
 
+  'I@environment:staging and I@role:mail-relay':
+    - match: compound
+    - amavisd
+    - clamav
+
   'I@environment:staging and I@role:devstack':
     - match: compound
     - apache
@@ -517,6 +532,11 @@ production:
     - salt.master
     - salt.ssh
     - poudriere
+
+  'I@environment:production and I@role:mail-relay':
+    - match: compound
+    - amavisd
+    - clamav
 
   'I@environment:production and I@role:devstack':
     - match: compound
