@@ -79,6 +79,8 @@ ypbind_authconfig:
       - file: ypbind
       - file: ypbind_authconfig
       - file: ypbind_network
+    - watch_in:
+      - service: ypbind
 
 ypbind_network:
   file.replace:
