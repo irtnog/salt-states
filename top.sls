@@ -142,6 +142,7 @@ development:
   'I@environment:development and G@os_family:Windows':
     - match: compound
     - git
+    - powershell
     - salt.minion
     - schannel
     - users
@@ -266,6 +267,7 @@ testing:
   'I@environment:testing and G@os_family:Windows':
     - match: compound
     - git
+    - powershell
     - salt.minion
     - schannel
     - users
@@ -391,6 +393,7 @@ staging:
   'I@environment:staging and G@os_family:Windows':
     - match: compound
     - git
+    - powershell
     - salt.minion
     - schannel
     - users
@@ -516,6 +519,7 @@ production:
   'I@environment:production and G@os_family:Windows':
     - match: compound
     - git
+    - powershell
     - salt.minion
     - schannel
     - users
