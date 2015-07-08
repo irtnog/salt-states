@@ -142,10 +142,13 @@ development:
   'I@environment:development and G@os_family:Windows':
     - match: compound
     - git
+    - gpmc
     - powershell
+    - rsat
     - salt.minion
     - schannel
     - users
+    - web-mgmt-tools
 
   'I@environment:development and I@role:salt-master':
     - match: compound
@@ -267,10 +270,13 @@ testing:
   'I@environment:testing and G@os_family:Windows':
     - match: compound
     - git
+    - gpmc
     - powershell
+    - rsat
     - salt.minion
     - schannel
     - users
+    - web-mgmt-tools
 
   'I@environment:testing and I@role:salt-master':
     - match: compound
@@ -393,10 +399,13 @@ staging:
   'I@environment:staging and G@os_family:Windows':
     - match: compound
     - git
+    - gpmc
     - powershell
+    - rsat
     - salt.minion
     - schannel
     - users
+    - web-mgmt-tools
 
   'I@environment:staging and I@role:salt-master':
     - match: compound
@@ -519,10 +528,13 @@ production:
   'I@environment:production and G@os_family:Windows':
     - match: compound
     - git
+    - gpmc
     - powershell
+    - rsat
     - salt.minion
     - schannel
     - users
+    - web-mgmt-tools
 
   'I@environment:production and I@role:salt-master':
     - match: compound
