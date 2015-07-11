@@ -15,7 +15,8 @@ the following branches:
 - *testing*, for semi-automated non-production functional,
   performance, or quality assurance testing;
 
-- *staging*, for pre-production user acceptance testing; and
+- *staging*, for pre-production user acceptance testing and production
+  deployments; and
 
 - *production*, managing the configuration of online user-facing
   services and related resources.
