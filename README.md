@@ -29,7 +29,16 @@ Pillar data, refer to the
 
 ## Targeting
 
-TODO
+The Salt master assigns minions a *role* in an *environment* based on
+their fully qualified domain name.  These assignments are stored in
+Pillar in order to limit what configuration data attackers can access
+should a minion be compromised.  If the assignments were stored as
+Grains data, i.e., in the minions' configuration files, attackers with
+root access to any minion would be able to change its role/environment
+assignments and access the configuration data of any other minion
+without attacking the Salt master.  (Note that attackers cannot change
+the minion ID used to make role/environment assignments in Pillar
+without also having privileged access to the master.)
 
 ## Authoring
 
