@@ -153,8 +153,6 @@ development:
   'I@environment:development and I@role:salt-master':
     - match: compound
     - apache
-    - apache.modules
-    - apache.mod_wsgi
     - salt.api
     - salt.cloud
     - salt.formulas
@@ -171,8 +169,6 @@ development:
   'I@environment:development and I@role:devstack':
     - match: compound
     - apache
-    - apache.modules
-    - apache.mod_wsgi
     - mysql
     - mysql.python
     - mysql.remove_test_database
@@ -281,8 +277,6 @@ testing:
   'I@environment:testing and I@role:salt-master':
     - match: compound
     - apache
-    - apache.modules
-    - apache.mod_wsgi
     - salt.api
     - salt.cloud
     - salt.formulas
@@ -299,8 +293,6 @@ testing:
   'I@environment:testing and I@role:devstack':
     - match: compound
     - apache
-    - apache.modules
-    - apache.mod_wsgi
     - mysql
     - mysql.python
     - mysql.remove_test_database
@@ -410,8 +402,6 @@ staging:
   'I@environment:staging and I@role:salt-master':
     - match: compound
     - apache
-    - apache.modules
-    - apache.mod_wsgi
     - salt.api
     - salt.cloud
     - salt.formulas
@@ -428,8 +418,6 @@ staging:
   'I@environment:staging and I@role:devstack':
     - match: compound
     - apache
-    - apache.modules
-    - apache.mod_wsgi
     - mysql
     - mysql.python
     - mysql.remove_test_database
@@ -539,8 +527,6 @@ production:
   'I@environment:production and I@role:salt-master':
     - match: compound
     - apache
-    - apache.modules
-    - apache.mod_wsgi
     - salt.api
     - salt.cloud
     - salt.formulas
@@ -557,8 +543,6 @@ production:
   'I@environment:production and I@role:devstack':
     - match: compound
     - apache
-    - apache.modules
-    - apache.mod_wsgi
     - mysql
     - mysql.python
     - mysql.remove_test_database
