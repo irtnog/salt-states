@@ -60,7 +60,7 @@ FL %{MULTIPART_FILE_LIMIT_EXCEEDED}'"
     SecAuditLogParts: ABIJDEFHZ
     SecAuditLogType: Serial
     SecAuditLog: /var/log/modsec_audit.log
-    SecArgumentSeparator: &
+    SecArgumentSeparator: '&'
     SecCookieFormat: 0
     SecUnicodeMapFile: unicode.mapping 20127
     SecStatusEngine: off        # don't report usage to third parties by default!
