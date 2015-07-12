@@ -1,0 +1,32 @@
+{% import_yaml "apache/defaults.yaml" as default_settings %}
+
+{% set distro_map = salt['grains.filter_by']({
+    'FreeBSD': { 'packages': ['apache24', 'ap24-mod_security'],
+                 'service': 'apache24',
+                 'confdir': '/usr/local/etc/apache24/Includes/',
+                 'dbdir': '/var/db/httpd/',
+                 'module_prefix': 'libexec/apache24/mod_',
+                 'ssl': {
+                   'SSLSessionCache': 'shmcb:/var/db/httpd/ssl_gcache_data(512000)',
+                   'SSLStaplingCache': 'shmcb:/var/db/httpd/ocsp_gcache_data(51200)'
+                 },
+                 'security2': {
+                   'SecDataDir': '/var/db/httpd/security2',
+                   'SecUnicodeMapFile': '/usr/local/etc/modsecurity/unicode.mapping 20127',
+                 },
+               },
+    'RedHat':  { 'packages': ['httpd-devel', 'httpd-tools', 'mod_security', 'mod_ssl'],
+                 'confdir': '/etc/httpd/conf.d/',
+                 'module_prefix': 'modules/mod_',
+                 'security2': {
+                   'SecUnicodeMapFile': None,
+                 },
+               },
+    'Windows': { 'packages': [],
+                 'module_suffix': '.dll',
+    },
+  }, merge=salt['pillar.get']('apache:lookup')) %}
+
+{% do default_settings.apache.update(distro_map) %}
+
+{% set apache_settings = salt['pillar.get']('apache', default=default_settings.apache, merge=True) %}

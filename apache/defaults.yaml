@@ -1,0 +1,122 @@
+apache:
+  user: www
+  group: www
+  service: httpd
+  dbdir: /var/lib/httpd/
+  logdir: /var/log/httpd/
+  module_suffix: .so
+
+  modules:
+    - unique_id                 # required by mod_security
+    - security2
+    - socache_shmcb             # required by mod_ssl
+    - ssl
+
+  security2:
+    SecRuleEngine: DetectionOnly
+    SecRequestBodyAccess: on
+    SecRule REQUEST_HEADERS:Content-Type "text/xml":
+      "id:'200000',phase:1,t:none,t:lowercase,pass,nolog,ctl:requestBodyProcessor=XML"
+    SecRule REQUEST_HEADERS:Content-Type "application/json":
+      "id:'200001',phase:1,t:none,t:lowercase,pass,nolog,ctl:requestBodyProcessor=JSON"
+    SecRequestBodyLimit: 13107200
+    SecRequestBodyNoFilesLimit: 131072
+    SecRequestBodyInMemoryLimit: 131072
+    SecRequestBodyLimitAction: Reject
+    SecRule REQBODY_ERROR "!@eq 0":
+      "id:'200002', phase:2,t:none,log,deny,status:400,msg:'Failed to parse request body.',logdata:'%{reqbody_error_msg}',severity:2"
+    SecRule MULTIPART_STRICT_ERROR "!@eq 0":
+      "id:'200003',phase:2,t:none,log,deny,status:400, \
+msg:'Multipart request body failed strict validation: \
+PE %{REQBODY_PROCESSOR_ERROR}, \
+BQ %{MULTIPART_BOUNDARY_QUOTED}, \
+BW %{MULTIPART_BOUNDARY_WHITESPACE}, \
+DB %{MULTIPART_DATA_BEFORE}, \
+DA %{MULTIPART_DATA_AFTER}, \
+HF %{MULTIPART_HEADER_FOLDING}, \
+LF %{MULTIPART_LF_LINE}, \
+SM %{MULTIPART_MISSING_SEMICOLON}, \
+IQ %{MULTIPART_INVALID_QUOTING}, \
+IP %{MULTIPART_INVALID_PART}, \
+IH %{MULTIPART_INVALID_HEADER_FOLDING}, \
+FL %{MULTIPART_FILE_LIMIT_EXCEEDED}'"
+    SecRule MULTIPART_UNMATCHED_BOUNDARY "!@eq 0":
+      "id:'200004',phase:2,t:none,log,deny,msg:'Multipart parser detected a possible unmatched boundary.'"
+    SecPcreMatchLimit: 1000
+    SecPcreMatchLimitRecursion: 1000
+    SecRule TX:/^MSC_/ "!@streq 0":
+      "id:'200005',phase:2,t:none,deny,msg:'ModSecurity internal error flagged: %{MATCHED_VAR_NAME}'"
+    SecResponseBodyAccess: On
+    SecResponseBodyMimeType:
+      - text/plain
+      - text/html
+      - text/xml
+    SecResponseBodyLimit: 524288
+    SecResponseBodyLimitAction: ProcessPartial
+    SecTmpDir: /tmp/
+    SecDataDir: /var/lib/httpd/security2/
+    SecAuditEngine: RelevantOnly
+    SecAuditLogRelevantStatus: "^(?:5|4(?!04))"
+    SecAuditLogParts: ABIJDEFHZ
+    SecAuditLogType: Serial
+    SecAuditLog: /var/log/modsec_audit.log
+    SecArgumentSeparator: &
+    SecCookieFormat: 0
+    SecUnicodeMapFile: unicode.mapping 20127
+    SecStatusEngine: off        # don't report usage to third parties by default!
+
+  ssl:
+    Listen: 443
+    SSLRandomSeed startup: file:/dev/urandom 512
+    SSLRandomSeed connect: file:/dev/urandom 512
+    SSLProtocol: all -SSLv2 -SSLv3 -TLSv1
+    SSLCipherSuite: 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!3DES:!MD5:!PSK'
+    SSLHonorCipherOrder: on
+    SSLCompression: off
+    SSLSessionCache: shmcb:/var/lib/httpd/ssl_gcache_data(512000)
+    SSLSessionCacheTimeout: 300
+    SSLUseStapling: on
+    SSLStaplingReturnResponderErrors: off
+    SSLStaplingCache: shmcb:/var/lib/httpd/ocsp_gcache_data(51200)
+
+owasp_modsecurity_crs:
+  repo: https://github.com/SpiderLabs/owasp-modsecurity-crs.git
+  activated_rulesets:
+    base_rules:
+      - modsecurity_35_bad_robots.data
+      - modsecurity_35_scanners.data
+      - modsecurity_40_generic_attacks.data
+      - modsecurity_50_outbound.data
+      - modsecurity_50_outbound_malware.data
+      - modsecurity_crs_20_protocol_violations.conf
+      - modsecurity_crs_21_protocol_anomalies.conf
+      - modsecurity_crs_23_request_limits.conf
+      - modsecurity_crs_30_http_policy.conf
+      - modsecurity_crs_35_bad_robots.conf
+      - modsecurity_crs_40_generic_attacks.conf
+      - modsecurity_crs_41_sql_injection_attacks.conf
+      - modsecurity_crs_41_xss_attacks.conf
+      - modsecurity_crs_42_tight_security.conf
+      - modsecurity_crs_45_trojans.conf
+      - modsecurity_crs_47_common_exceptions.conf
+      - modsecurity_crs_49_inbound_blocking.conf
+      - modsecurity_crs_50_outbound.conf
+      - modsecurity_crs_59_outbound_blocking.conf
+      - modsecurity_crs_60_correlation.conf
+    optional_rules:
+      - modsecurity_42_comment_spam.data
+      - modsecurity_crs_11_avs_traffic.conf
+      - modsecurity_crs_13_xml_enabler.conf
+      - modsecurity_crs_16_authentication_tracking.conf
+      - modsecurity_crs_16_session_hijacking.conf
+      - modsecurity_crs_16_username_tracking.conf
+      - modsecurity_crs_25_cc_known.conf
+      - modsecurity_crs_42_comment_spam.conf
+      - modsecurity_crs_43_csrf_protection.conf
+      - modsecurity_crs_46_av_scanning.conf
+      - modsecurity_crs_47_skip_outbound_checks.conf
+      - modsecurity_crs_55_marketing.conf
+    experimental_rules:
+      []
+    slr_rules:
+      []

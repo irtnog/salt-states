@@ -1,0 +1,43 @@
+{%- set enclosing_directives = [
+    'AuthnProviderAlias',
+    'AuthzProviderAlias',
+    'Directory',
+    'DirectoryMatch',
+    'Else',
+    'ElseIf',
+    'Files',
+    'FilesMatch',
+    'If',
+    'IfDefine',
+    'IfModule',
+    'IfVersion',
+    'Limit',
+    'LimitExcept',
+    'Location',
+    'LocationMatch',
+    'Macro',
+    'Proxy',
+    'ProxyMatch',
+    'RequireAll',
+    'RequireAny',
+    'RequireNone',
+    'VirtualHost',
+  ] -%}
+
+{%- macro render_apache_config(dict, width=0) %}
+  {% for directive, argument in dict.items() %}
+    {% if argument is undefined %}
+      {# no-op #}
+    {% elif directive.split()[0] in enclosing_directives %}
+      {{ '<{}>'|format(directive)|indent(width, True) }}
+      {{ render_apache_config(argument, width+4) }}
+      {{ '</{}>'|format(directive.split()[0])|indent(width, True) }}
+    {% elif argument is sequence and argument is not string %}
+      {{ '{} "{}"'|format(directive, argument|join('" "'),)|indent(width, True) }}
+    {% elif argument is sameas True or argument is sameas False %}
+      {{ '{} {}'|format(directive, "on" if argument else "off")|indent(width, True) }}
+    {% else %}
+      {{ '{} {}'|format(directive, argument)|indent(width, True) }}
+    {% endif %}
+  {% endfor %}
+{%- endmacro %}

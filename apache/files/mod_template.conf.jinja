@@ -1,0 +1,8 @@
+{%- from "apache/map.jinja" import apache_settings with context -%}
+{%- from "apache/lib.jinja" import render_apache_config with context -%}
+
+<IfModule !{{ module }}_module>
+LoadModule {{ module }}_module {{ apache_settings.module_prefix }}{{ module }}{{ apache_settings.module_suffix }}
+</IfModule>
+
+{% render_apache_config(apache_settings[module]) %}
