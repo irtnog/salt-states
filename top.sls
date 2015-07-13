@@ -71,6 +71,7 @@ development:
     - poudriere.client          # local pkgng repo
     - accounting
     - aliases
+    - amd
     - auditd
     - banners
     - bgfsck
@@ -194,6 +195,7 @@ testing:
     - poudriere.client          # local pkgng repo
     - accounting
     - aliases
+    - amd
     - auditd
     - banners
     - bgfsck
@@ -317,6 +319,7 @@ staging:
     - match: compound
     - poudriere.client          # local pkgng repo
     - accounting
+    - amd
     - aliases
     - auditd
     - banners
@@ -442,6 +445,7 @@ production:
     - poudriere.client          # local pkgng repo
     - accounting
     - aliases
+    - amd
     - auditd
     - banners
     - bgfsck
