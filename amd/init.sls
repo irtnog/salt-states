@@ -1,4 +1,3 @@
-{% if salt['grains.get']('os_family') in ['FreeBSD', 'RedHat'] %}
 {% from "amd/map.jinja" import amd_settings with context %}
 
 amd:
@@ -23,5 +22,3 @@ amd:
       {% endif %}
       - service: statd
       - service: lockd
-
-{% endif %}
