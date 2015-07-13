@@ -1,8 +1,7 @@
 {% import_yaml "amd/defaults.yaml" as default_settings %}
 
 {% set distro_map = salt['grains.filter_by']({
-    'FreeBSD':  { 'packages': None,
-                  'service': 'amd', },
+    'FreeBSD':  { 'service': 'amd', },
     'RedHat':   { 'packages': ['autofs', 'nfs-utils'],
                   'service': 'autofs', },
   }, merge=salt['pillar.get']('amd:lookup')) %}

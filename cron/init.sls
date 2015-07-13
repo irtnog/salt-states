@@ -2,16 +2,9 @@
 {% if cron %}
 
 cron:
-  {% if cron.packages %}
   pkg:
     - installed
-    - pkgs:
-      {% for package in cron.packages %}
-      - {{ package }}
-      {% endfor %}
-  {% else %}
-  []
-  {% endif %}
+    - pkgs: {{ cron.packages|yaml }}
 
 {% if grains['os_family'] == 'FreeBSD' %}
 crontab_enable_local_path:

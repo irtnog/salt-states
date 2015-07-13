@@ -4,25 +4,21 @@
 {% from "ypbind/map.jinja" import ypbind_settings with context %}
 
 ypbind:
-  {% if ypbind_settings.packages %}
   pkg.installed:
-    - pkgs:
-      {% for package in ypbind_settings.packages %}
-      - {{ package }}
-      {% endfor %}
-    - watch_in:
-      - service: ypbind
-  {% endif %}
+    - pkgs: {{ ypbind_settings.packages|yaml }}
   file.managed:
     - name: /etc/domainname
     - user: root
     - group: 0
     - mode: 444
     - contents: {{ ypbind_settings.domain }}
+    - require:
+      - pkg: ypbind
   service.running:
     - name: {{ ypbind_settings.service }}
     - enable: True
     - watch:
+      - pkg: ypbind
       - file: ypbind
       - service: rpcbind
 

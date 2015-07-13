@@ -2,13 +2,8 @@
 {% if pki %}
 
 pki:
-  {% if pki.packages != None %}
   pkg:
     - installed
-    - pkgs:
-      {% for package in pki.packages %}
-      - {{ package }}
-      {% endfor %}
-  {% endif %}
+    - pkgs: {{ pki.packages|yaml }}
 
 {% endif %}

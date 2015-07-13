@@ -2,21 +2,17 @@
 {% if lockd %}
 
 lockd:
-  {% if lockd.packages %}
   pkg:
     - installed
-    - pkgs:
-      {% for package in lockd.packages %}
-      - {{ package }}
-      {% endfor %}
+    - pkgs: {{ lockd.packages|yaml }}
     - watch_in:
       - service: lockd
-  {% endif %}
   service:
     - running
     - name: {{ lockd.service }}
     - enable: True
     - watch:
+      - pkg: lockd
       - service: rpcbind
 
 {% endif %}

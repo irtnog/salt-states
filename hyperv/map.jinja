@@ -1,6 +1,6 @@
 {% set hyperv_settings = salt['grains.filter_by']({
     'default': {
-      'packages': None,
+      'packages': [],
     },
   }, merge=salt['grains.filter_by']({
     'CentOS Linux-6': {

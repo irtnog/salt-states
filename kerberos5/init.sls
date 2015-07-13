@@ -2,15 +2,8 @@
 {% from "kerberos5/map.jinja" import kerberos5_settings with context %}
 
 kerberos5:
-  {% if kerberos5_settings.packages %}
   pkg.installed:
-    - pkgs:
-      {% for package in kerberos5_settings.packages %}
-      - {{ package }}
-      {% endfor %}
-    - require_in:
-      - file: kerberos5
-  {% endif %}
+    - pkgs: {{ kerberos5_settings.packages|yaml }}
   file.managed:
     - name: /etc/krb5.conf
     - source: salt://kerberos5/files/krb5.conf.jinja
@@ -18,6 +11,8 @@ kerberos5:
     - user: root
     - group: 0
     - mode: 444
+    - require:
+      - pkg: kerberos5
 
 {% if grains['os_family'] == 'FreeBSD' %}
 {% for file in ['ftp', 'imap', 'other', 'pop3', 'sshd', 'system', 'telnetd', 'xdm'] %}

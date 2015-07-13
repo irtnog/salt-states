@@ -2,20 +2,15 @@
 {% if accounting %}
 
 accounting:
-  {% if accounting.packages %}
   pkg:
     - installed
-    - pkgs:
-      {% for package in accounting.packages %}
-      - {{ package }}
-      {% endfor %}
-    - watch_in:
-      - service: accounting
-  {% endif %}
+    - pkgs: {{ accounting.packages|yaml }}
   service:
     - running
     - name: {{ accounting.service}}
     - enable: True
+    - watch:
+      - pkg: accounting
 
 {% if grains['os_family'] == 'FreeBSD' %}
 periodic_conf_accounting_settings:

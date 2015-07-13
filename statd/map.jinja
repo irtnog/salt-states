@@ -3,7 +3,7 @@
 {% endif %}
 
 {% set statd = salt['grains.filter_by']({
-    'FreeBSD': { 'packages': None,
+    'FreeBSD': { 'packages': [],
                  'service': 'statd', },
     'RedHat':  { 'packages': [ 'nfs-utils', ],
                  'service': statd_redhat_service, },

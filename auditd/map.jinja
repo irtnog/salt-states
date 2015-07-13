@@ -1,5 +1,5 @@
 {% set auditd = salt['grains.filter_by']({
-    'FreeBSD': { 'packages': None,
+    'FreeBSD': { 'packages': [],
                  'service':  'auditd', },
     'RedHat':  { 'packages': [ 'audit', ],
                  'service': 'auditd', },

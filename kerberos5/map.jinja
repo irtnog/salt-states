@@ -2,8 +2,7 @@
 
 {% set distro_map = salt['grains.filter_by']({
     'Debian':  { },
-    'FreeBSD': { 'packages': None,
-                 'config': {
+    'FreeBSD': { 'config': {
                    'logging': {
                      'default': 'SYSLOG:INFO:USER',
                      'kdc': 'SYSLOG:INFO:AUTH',

@@ -1,4 +1,6 @@
 kerberos5:
+  packages: []
+
   config:
     libdefaults:
       ticket_lifetime: 24h

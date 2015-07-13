@@ -2,21 +2,15 @@
 {% if statd %}
 
 statd:
-  {% if statd.packages %}
   pkg:
     - installed
-    - pkgs:
-      {% for package in statd.packages %}
-      - {{ package }}
-      {% endfor %}
-    - watch_in:
-      - service: statd
-  {% endif %}
+    - pkgs: {{ statd.packages|yaml }}
   service:
     - running
     - name: {{ statd.service }}
     - enable: True
     - watch:
+      - pkg: statd
       - service: rpcbind
       {% if grains['os_family'] == 'FreeBSD' %}
       - service: nfsclient

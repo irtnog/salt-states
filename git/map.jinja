@@ -3,7 +3,6 @@
 {% set distro_map = salt['grains.filter_by']({
     'Gentoo':   { 'packages': [ 'dev-vcs/git', ], },
     'Windows':  { 'packages': [ 'msysgit', ], },
-    'default':  { 'packages': [ 'git', ], },
   }, merge=salt['pillar.get']('git:lookup')) %}
 
 {% do default_settings.git.update(distro_map) %}

@@ -3,7 +3,7 @@
 {% endif %}
 
 {% set lockd = salt['grains.filter_by']({
-    'FreeBSD': { 'packages': None,
+    'FreeBSD': { 'packages': [],
                  'service': 'lockd', },
     'RedHat':  { 'packages': [ 'nfs-utils', ],
                  'service': lockd_redhat_service },

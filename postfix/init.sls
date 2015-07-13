@@ -1,22 +1,13 @@
 {% from "postfix/map.jinja" import postfix_settings with context %}
 
 postfix:
-  {% if postfix_settings.packages is iterable %}
   pkg.installed:
-    - pkgs:
-      {% for package in postfix_settings.packages %}
-      - {{ package }}
-      {% endfor %}
-    - require_in:
-      - file: postfix_main.cf
-      - file: postfix_master.cf
-    - watch_in:
-      - service: postfix
-  {% endif %}
+    - pkgs: {{ postfix_settings.packages|yaml }}
   service.running:
     - name: {{ postfix_settings.service }}
     - enable: True
     - watch:
+      - pkg: postfix
       - file: postfix_main.cf
       - file: postfix_master.cf
 
@@ -42,6 +33,8 @@ postfix_main.cf:
         {% else -%}
         ## Nothing to see here.  Move along.
         {%- endfor %}
+    - require:
+      - pkg: postfix
 
 postfix_master.cf:
   file.blockreplace:
@@ -53,6 +46,8 @@ postfix_master.cf:
         {% else -%}
         ## Nothing to see here.  Move along.
         {%- endfor %}
+    - require:
+      - pkg: postfix
 
 {% for type, maps in postfix_settings.maps.items() %}
 {% for map, entries in maps.items() %}
