@@ -25,6 +25,8 @@ poudriere_repo_key:
     - user: root
     - group: 0
     - mode: 400
+    - makedirs: True
+    - dir_mode: 700
     - contents_pillar: poudriere:repo:secret
 
 poudriere_svn_cert:
