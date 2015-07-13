@@ -29,15 +29,15 @@
     {% if argument is undefined %}
       {# no-op #}
     {% elif directive.split()[0] in enclosing_directives %}
-      {{ '<{}>'|format(directive)|indent(width, True) }}
+      {{ '<%s>'|format(directive)|indent(width, True) }}
       {{ render_apache_config(argument, width+4) }}
-      {{ '</{}>'|format(directive.split()[0])|indent(width, True) }}
+      {{ '</%s>'|format(directive.split()[0])|indent(width, True) }}
     {% elif argument is sequence and argument is not string %}
-      {{ '{} "{}"'|format(directive, argument|join('" "'),)|indent(width, True) }}
+      {{ '%s "%s"'|format(directive, argument|join('" "'),)|indent(width, True) }}
     {% elif argument is sameas True or argument is sameas False %}
-      {{ '{} {}'|format(directive, "on" if argument else "off")|indent(width, True) }}
+      {{ '%s %s'|format(directive, "on" if argument else "off")|indent(width, True) }}
     {% else %}
-      {{ '{} {}'|format(directive, argument)|indent(width, True) }}
+      {{ '%s %s'|format(directive, argument)|indent(width, True) }}
     {% endif %}
   {% endfor %}
 {%- endmacro %}

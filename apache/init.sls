@@ -23,7 +23,7 @@ apache_dbdir:
 {% for module in apache_settings.modules %}
 apache_{{ module }}_module:
   file.managed:
-    - name: {{ apache_settings.confdir }}_{{ "{:03d}"|format(loop.index) }}_mod_{{ module }}.conf
+    - name: {{ apache_settings.confdir }}_{{ "%03d"|format(loop.index) }}_mod_{{ module }}.conf
     - source: salt://apache/files/mod_template.conf.jinja
     - template: jinja
     - user: {{ apache_settings.user }}
