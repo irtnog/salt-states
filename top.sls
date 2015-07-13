@@ -153,7 +153,6 @@ development:
   'I@environment:development and I@role:salt-master':
     - match: compound
     - apache
-    - salt.api
     - salt.cloud
     - salt.formulas
     - salt.gitfs.gitpython
@@ -277,7 +276,6 @@ testing:
   'I@environment:testing and I@role:salt-master':
     - match: compound
     - apache
-    - salt.api
     - salt.cloud
     - salt.formulas
     - salt.gitfs.gitpython
@@ -402,7 +400,6 @@ staging:
   'I@environment:staging and I@role:salt-master':
     - match: compound
     - apache
-    - salt.api
     - salt.cloud
     - salt.formulas
     - salt.gitfs.gitpython
@@ -527,7 +524,6 @@ production:
   'I@environment:production and I@role:salt-master':
     - match: compound
     - apache
-    - salt.api
     - salt.cloud
     - salt.formulas
     - salt.gitfs.gitpython
