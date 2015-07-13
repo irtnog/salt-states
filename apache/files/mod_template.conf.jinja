@@ -5,4 +5,4 @@
 LoadModule {{ module }}_module {{ apache_settings.module_prefix }}{{ module }}{{ apache_settings.module_suffix }}
 </IfModule>
 
-{% render_apache_config(apache_settings[module]) %}
+{{ render_apache_config(apache_settings[module]) }}
