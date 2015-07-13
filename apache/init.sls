@@ -26,6 +26,8 @@ apache_{{ module }}_module:
     - name: {{ apache_settings.confdir }}_{{ "%03d"|format(loop.index) }}_mod_{{ module }}.conf
     - source: salt://apache/files/mod_template.conf.jinja
     - template: jinja
+    - context:
+        module: {{ module }}
     - user: {{ apache_settings.user }}
     - group: {{ apache_settings.group }}
     - mode: 400
