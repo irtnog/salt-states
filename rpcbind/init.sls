@@ -1,15 +1,12 @@
-{% from "rpcbind/map.jinja" import rpcbind with context %}
-{% if rpcbind %}
+{% from "rpcbind/map.jinja" import rpcbind_settings with context %}
 
 rpcbind:
   pkg:
     - installed
-    - pkgs: {{ rpcbind.packages|yaml }}
+    - pkgs: {{ rpcbind_settings.packages|yaml }}
   service:
     - running
-    - name: {{ rpcbind.service }}
+    - name: {{ rpcbind_settings.service }}
     - enable: True
     - watch:
       - pkg: rpcbind
-
-{% endif %}
