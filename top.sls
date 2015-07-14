@@ -66,6 +66,31 @@ base:
 ### development branch of this repository.
 
 development:
+  'I@environment:development and G@os_family:Debian':
+    - match: compound
+    - salt.minion               # general settings
+    - accounting
+    - auditd
+    - banners
+    - cron
+    - fail2ban
+    - fail2ban.config
+    - git
+    - sysctl
+    - tcsh
+    - rpcbind                   # NFS client
+    - amd
+    - lockd
+    - statd
+    - mounts
+    - symlinks
+    - pki                       # domain membership
+    - kerberos5
+    - ypbind
+    - pam_mkhomedir
+    - postfix                   # email
+    - aliases
+
   'I@environment:development and G@os_family:FreeBSD':
     - match: compound
     - poudriere.client          # local pkgng repo
