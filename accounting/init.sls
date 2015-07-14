@@ -1,13 +1,12 @@
-{% from "accounting/map.jinja" import accounting with context %}
-{% if accounting %}
+{% from "accounting/map.jinja" import accounting_settings with context %}
 
 accounting:
   pkg:
     - installed
-    - pkgs: {{ accounting.packages|yaml }}
+    - pkgs: {{ accounting_settings.packages|yaml }}
   service:
     - running
-    - name: {{ accounting.service}}
+    - name: {{ accounting_settings.service}}
     - enable: True
     - watch:
       - pkg: accounting
@@ -68,6 +67,4 @@ task_accounting:
     - enable: True
     - require:
       - cmd: task_accounting
-{% endif %}
-
 {% endif %}

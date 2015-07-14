@@ -1,8 +1,12 @@
-{% set accounting = salt['grains.filter_by']({
-    'FreeBSD': { 'packages': [],
-                 'service':  'accounting', },
+{% import_yaml "accounting/defaults.yaml" as default settings %}
+
+{% set distro_map = salt['grains.filter_by']({
+    'FreeBSD': { 'service':  'accounting', },
     'RedHat':  { 'packages': ['psacct'],
                  'service':  'psacct', },
-    'Solaris': { 'packages': [],
-                 'service':  'svc:/system/extended-accounting:process', },
+    'Solaris': { 'service':  'svc:/system/extended-accounting:process', },
   }, merge=salt['pillar.get']('accounting:lookup')) %}
+
+{% do default_settings.accounting.update(distro_map) %}
+
+{% set accounting_settings = salt['pillar.get']('accounting', default=default_settings.accounting, merge=True) %}
