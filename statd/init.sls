@@ -1,13 +1,12 @@
-{% from "statd/map.jinja" import statd with context %}
-{% if statd %}
+{% from "statd/map.jinja" import statd_settings with context %}
 
 statd:
   pkg:
     - installed
-    - pkgs: {{ statd.packages|yaml }}
+    - pkgs: {{ statd_settings.packages|yaml }}
   service:
     - running
-    - name: {{ statd.service }}
+    - name: {{ statd_settings.service }}
     - enable: True
     - watch:
       - pkg: statd
@@ -15,5 +14,3 @@ statd:
       {% if grains['os_family'] == 'FreeBSD' %}
       - service: nfsclient
       {% endif %}
-
-{% endif %}
