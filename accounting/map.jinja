@@ -1,4 +1,4 @@
-{% import_yaml "accounting/defaults.yaml" as default settings %}
+{% import_yaml "accounting/defaults.yaml" as default_settings %}
 
 {% set distro_map = salt['grains.filter_by']({
     'Debian':  { 'packages': ['acct'],
