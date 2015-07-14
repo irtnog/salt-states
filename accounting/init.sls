@@ -11,7 +11,7 @@ accounting:
     - watch:
       - pkg: accounting
 
-{% if grains['os_family'] == 'FreeBSD' %}
+{% if grains.os_family == 'FreeBSD' %}
 periodic_conf_accounting_settings:
   file:
     - accumulated
@@ -23,7 +23,7 @@ periodic_conf_accounting_settings:
     - require_in:
       - file: periodic_conf
 
-{% elif grains['os_family'] == 'Solaris' %}
+{% elif grains.os_family == 'Solaris' %}
 flow_accounting:
   cmd:
     - run
