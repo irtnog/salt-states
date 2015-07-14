@@ -1,15 +1,12 @@
-{% from "auditd/map.jinja" import auditd with context %}
-{% if auditd %}
+{% from "auditd/map.jinja" import auditd_settings with context %}
 
 auditd:
   pkg:
     - installed
-    - pkgs: {{ auditd.packages|yaml }}
+    - pkgs: {{ auditd_settings.packages|yaml }}
   service:
     - running
-    - name: {{ auditd.service }}
+    - name: {{ auditd_settings.service }}
     - enable: True
     - watch:
       - pkg: auditd
-
-{% endif %}

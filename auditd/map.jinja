@@ -1,6 +1,10 @@
-{% set auditd = salt['grains.filter_by']({
-    'FreeBSD': { 'packages': [],
-                 'service':  'auditd', },
-    'RedHat':  { 'packages': [ 'audit', ],
-                 'service': 'auditd', },
+{% import_yaml "auditd/defaults.yaml" as default_settings %}
+
+{% set distro_map = salt['grains.filter_by']({
+    'RedHat':  { 'packages': [ 'audit', ], },
+    'default': {},
   }, merge=salt['pillar.get']('auditd:lookup')) %}
+
+{% do default_settings.auditd.update(distro_map) %}
+
+{% set auditd_settings = salt['pillar.get']('auditd', default=default_settings.auditd, merge=True) %}
