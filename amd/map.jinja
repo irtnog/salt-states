@@ -3,6 +3,7 @@
 {% set distro_map = salt['grains.filter_by']({
     'FreeBSD':  { 'service': 'amd', },
     'RedHat':   { 'packages': ['autofs', 'nfs-utils'], },
+    'default':  {},
   }, merge=salt['pillar.get']('amd:lookup')) %}
 
 {% do default_settings.amd.update(distro_map) %}
