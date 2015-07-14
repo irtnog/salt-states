@@ -1,2 +1,3 @@
 amd:
   packages: []
+  service: autofs
