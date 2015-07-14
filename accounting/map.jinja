@@ -1,10 +1,15 @@
 {% import_yaml "accounting/defaults.yaml" as default settings %}
 
 {% set distro_map = salt['grains.filter_by']({
-    'FreeBSD': { 'service':  'accounting', },
+    'Debian':  { 'packages': ['acct'],
+                 'service':  'acct', },
+    'Gentoo':  { 'packages': ['sys-process/acct'], },
     'RedHat':  { 'packages': ['psacct'],
                  'service':  'psacct', },
     'Solaris': { 'service':  'svc:/system/extended-accounting:process', },
+    'SUSE':    { 'packages': ['acct'],
+                 'service':  'acct', },
+    'default': {},
   }, merge=salt['pillar.get']('accounting:lookup')) %}
 
 {% do default_settings.accounting.update(distro_map) %}
