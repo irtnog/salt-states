@@ -1,11 +1,29 @@
-## TODO: add support for Debian/Ubuntu, SLE/OpenSUSE, Solaris
-
-{% if grains['kernel'] in ['FreeBSD', 'Linux', 'Solaris'] %}
 {% from "ypbind/map.jinja" import ypbind_settings with context %}
 
 ypbind:
   pkg.installed:
     - pkgs: {{ ypbind_settings.packages|yaml }}
+  file.blockreplace:
+    - name: /etc/yp.conf
+    - marker_start: '#-- {{ sls }}: start managed zone --'
+    - marker_end:   '#-- {{ sls }}: end managed zone --'
+    - append_if_not_found: True
+    - contents: |
+      {% for server in ypbind_settings.servers -%}
+        domain {{ ypbind_settings.domain }} server {{ server }}
+      {% else -%}
+        domain {{ ypbind_settings.domain }} broadcast
+      {%- endfor %}
+  service.running:
+    - name: {{ ypbind_settings.service }}
+    - enable: True
+    - watch:
+      - pkg: ypbind
+      - file: ypbind
+      - file: ypbind_domainname
+      - service: rpcbind
+
+ypbind_domainname:
   file.managed:
     - name: /etc/domainname
     - user: root
@@ -14,13 +32,6 @@ ypbind:
     - contents: {{ ypbind_settings.domain }}
     - require:
       - pkg: ypbind
-  service.running:
-    - name: {{ ypbind_settings.service }}
-    - enable: True
-    - watch:
-      - pkg: ypbind
-      - file: ypbind
-      - service: rpcbind
 
 {% if grains['os_family'] == 'FreeBSD' %}
 rc_conf_nisdomainname:
@@ -73,6 +84,7 @@ ypbind_authconfig:
     - watch:
       - pkg: ypbind
       - file: ypbind
+      - file: ypbind_domainname
       - file: ypbind_authconfig
       - file: ypbind_network
     - watch_in:
@@ -86,6 +98,4 @@ ypbind_network:
     - append_if_not_found: True
     - require:
       - pkg: ypbind
-{% endif %}
-
 {% endif %}

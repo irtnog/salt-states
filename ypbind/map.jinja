@@ -1,13 +1,13 @@
 {% import_yaml "ypbind/defaults.yaml" as default_settings %}
 
 {% set distro_map = salt['grains.filter_by']({
-    'Debian':  None,
-    'FreeBSD': { 'service':  'ypbind', },
-    'RedHat':  { 'packages': ['ypbind'],
-                 'service':  'ypbind', },
+    'Debian':  { 'packages': ['nis'],
+                 'service':  'nis', },
+    'RedHat':  { 'packages': ['ypbind'], },
     'Solaris': { 'packages': ['SUNWnisr', 'SUNWnisu'],
                  'service':  'network/nis/client', },
     'Suse':    None,
+    'default': {},
   }, merge=salt['pillar.get']('ypbind:lookup')) %}
 
 {% do default_settings.ypbind.update(distro_map) %}

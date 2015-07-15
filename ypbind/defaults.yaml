@@ -1,4 +1,5 @@
 ypbind:
   packages: []
+  service: ypbind
   domain: example.com
-  servers: ~
+  servers: []
