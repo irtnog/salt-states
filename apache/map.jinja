@@ -1,6 +1,19 @@
 {% import_yaml "apache/defaults.yaml" as default_settings %}
 
 {% set distro_map = salt['grains.filter_by']({
+    'Debian':  { 'packages': ['apache2', 'libapache2-mod-security2'],
+                 'service': 'apache2',
+                 'confdir': '/etc/apache2/conf-enabled',
+                 'dbdir': '/var/lib/apache2',
+                 'module_prefix': '/usr/lib/apache2/modules/mod_',
+                 'ssl': {
+                   'SSLSessionCache': 'shmcb:/var/lib/apache2/ssl_gcache_data(512000)',
+                   'SSLStaplingCache': 'shmcb:/var/lib/apache2/ocsp_gcache_data(512000)',
+                 },
+                 'security2': {
+                   'SecDataDir': '/var/cache/modsecurity',
+                   'SecUnicodeMapFile': '/etc/modsecurity/unicode.mapping 20127',
+                 },
     'FreeBSD': { 'packages': ['apache24', 'ap24-mod_security'],
                  'service': 'apache24',
                  'confdir': '/usr/local/etc/apache24/Includes/',
@@ -8,7 +21,7 @@
                  'module_prefix': 'libexec/apache24/mod_',
                  'ssl': {
                    'SSLSessionCache': 'shmcb:/var/db/httpd/ssl_gcache_data(512000)',
-                   'SSLStaplingCache': 'shmcb:/var/db/httpd/ocsp_gcache_data(51200)'
+                   'SSLStaplingCache': 'shmcb:/var/db/httpd/ocsp_gcache_data(51200)',
                  },
                  'security2': {
                    'SecDataDir': '/var/db/httpd/security2',
