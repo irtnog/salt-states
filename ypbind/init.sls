@@ -11,9 +11,9 @@ ypbind:
     - contents: |
       {%- for server in ypbind_settings.servers %}
         domain {{ ypbind_settings.domain }} server {{ server }}
-      {% else -%}
+      {% else %}
         domain {{ ypbind_settings.domain }} broadcast
-      {% endfor -%}
+      {%- endfor %}
     - require:
       - pkg: ypbind
   service.running:
