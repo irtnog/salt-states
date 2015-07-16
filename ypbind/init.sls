@@ -14,6 +14,8 @@ ypbind:
       {% else -%}
         domain {{ ypbind_settings.domain }} broadcast
       {% endfor -%}
+    - require:
+      - pkg: ypbind
   service.running:
     - name: {{ ypbind_settings.service }}
     - enable: True
