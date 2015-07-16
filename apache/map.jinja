@@ -14,6 +14,7 @@
                    'SecDataDir': '/var/cache/modsecurity',
                    'SecUnicodeMapFile': '/etc/modsecurity/unicode.mapping 20127',
                  },
+               },
     'FreeBSD': { 'packages': ['apache24', 'ap24-mod_security'],
                  'service': 'apache24',
                  'confdir': '/usr/local/etc/apache24/Includes/',
@@ -37,7 +38,7 @@
                },
     'Windows': { 'packages': [],
                  'module_suffix': '.dll',
-    },
+               },
   }, merge=salt['pillar.get']('apache:lookup')) %}
 
 {% do default_settings.apache.update(distro_map) %}
