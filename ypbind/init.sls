@@ -9,11 +9,11 @@ ypbind:
     - marker_end:   '#-- {{ sls }}: end managed zone --'
     - append_if_not_found: True
     - contents: |
-      {% for server in ypbind_settings.servers -%}
+      {%- for server in ypbind_settings.servers %}
         domain {{ ypbind_settings.domain }} server {{ server }}
       {% else -%}
         domain {{ ypbind_settings.domain }} broadcast
-      {%- endfor %}
+      {% endfor -%}
   service.running:
     - name: {{ ypbind_settings.service }}
     - enable: True
