@@ -8,7 +8,7 @@ ypbind:
     - marker_start: '#-- {{ sls }}: start managed zone --'
     - marker_end:   '#-- {{ sls }}: end managed zone --'
     - append_if_not_found: True
-    - contents: |
+    - content: |
       {%- for server in ypbind_settings.servers %}
         domain {{ ypbind_settings.domain }} server {{ server }}
       {% else %}
