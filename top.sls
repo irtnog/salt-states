@@ -80,7 +80,7 @@ development:
     - tcsh
     - rpcbind                   # NFS client
     - amd
-    - lockd
+    ## NOTE: in-kernel lockd
     - statd
     - mounts
     - symlinks
