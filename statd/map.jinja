@@ -8,9 +8,7 @@
     }, grain='osmajorrelease') %}
 {% endif %}
 
-{% if os_map is defined %}
-  {% do default_settings.statd.update(os_map) %}
-{% endif %}
+{% do default_settings.statd.update(os_map) if os_map is defined %}
 
 {# handle the usual operating system family-specific settings (plus
  # 'lookup' overrides) second #}
