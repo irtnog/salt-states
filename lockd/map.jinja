@@ -1,10 +1,22 @@
+{% import_yaml "lockd/defaults.yaml" as default_settings %}
+
+{# handle operating system version-specific settings first #}
 {% if grains['os_family'] == 'RedHat' %}
-  {% set lockd_redhat_service = 'nfs-lock' if grains['osmajorrelease'][0] == '7' else 'nfslock' %}
+  {% set os_map = salt['grains.filter_by']({
+      '7':       { 'service': 'nfs-lock', },
+      'default': { 'service': 'nfslock', },
+    }, grain='osmajorrelease') %}
 {% endif %}
 
-{% set lockd = salt['grains.filter_by']({
-    'FreeBSD': { 'packages': [],
-                 'service': 'lockd', },
-    'RedHat':  { 'packages': [ 'nfs-utils', ],
-                 'service': lockd_redhat_service },
+{% do default_settings.lockd.update(os_map) if os_map is defined %}
+
+{# handle the usual operating system family-specific settings (plus
+ # 'lookup' overrides) second #}
+{% set distro_map = salt['grains.filter_by']({
+    'RedHat':  { 'packages': ['nfs-utils'], },
+    'default': {},
   }, merge=salt['pillar.get']('lockd:lookup')) %}
+
+{% do default_settings.lockd.update(distro_map) %}
+
+{% set lockd_settings = salt['pillar.get']('lockd', default=default_settings.lockd, merge=True) %}
