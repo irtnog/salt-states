@@ -11,8 +11,10 @@ amd:
     - watch:
       - pkg: amd
       - service: rpcbind
-      {% if grains['os_family'] == 'FreeBSD' %}
+      {% if grains['os_family'] in ['FreeBSD'] %}
       - service: nfsclient
       {% endif %}
       - service: statd
+      {% if grains['os_family'] not in ['Debian'] %}
       - service: lockd
+      {% endif %}
