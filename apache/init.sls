@@ -36,3 +36,20 @@ apache_{{ module }}_module:
     - watch_in:
       - service: apache
 {% endfor %}
+
+{% for site in apache_settings.sites %}
+apache_{{ site }}_site:
+  file.managed:
+    - name: {{ apache_settings.confdir }}_{{ "%03d"|format(loop.index) }}_site_{{ site }}.conf
+    - source: salt://apache/files/site_template.conf.jinja
+    - template: jinja
+    - context:
+        site: {{ site }}
+    - user: {{ apache_settings.user }}
+    - group: {{ apache_settings.group }}
+    - mode: 400
+    - require:
+      - pkg: apache
+    - watch_in:
+      - service: apache
+{% endfor %}

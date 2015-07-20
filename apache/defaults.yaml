@@ -12,6 +12,8 @@ apache:
     - socache_shmcb             # required by mod_ssl
     - ssl
 
+  sites: []
+
   security2:
     SecRuleEngine: DetectionOnly
     SecRequestBodyAccess: on
