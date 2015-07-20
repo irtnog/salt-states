@@ -30,7 +30,7 @@
 ###
 ###   $ git checkout testing
 ###   $ git checkout development salt
-###   $ git commit -m "Begin testing modified Salt config per CR#1234"
+###   $ git commit -m "Begin testing modified Salt config per #1234"
 ###
 ### To merge file/directory deletions, use the "git cherry-pick"
 ### command.  For example, if commit aaaa00 is of a file being
@@ -215,6 +215,31 @@ development:
 ### repository.
 
 testing:
+  'I@environment:testing and G@os_family:Debian':
+    - match: compound
+    - salt.minion               # general settings
+    - accounting
+    - auditd
+    - banners
+    - cron
+    - fail2ban
+    - fail2ban.config
+    - git
+    - sysctl
+    - tcsh
+    - rpcbind                   # NFS client
+    - amd
+    ## NOTE: in-kernel lockd
+    - statd
+    - mounts
+    - symlinks
+    - pki                       # domain membership
+    - kerberos5
+    - ypbind
+    - pam_mkhomedir
+    - postfix                   # email
+    - aliases
+
   'I@environment:testing and G@os_family:FreeBSD':
     - match: compound
     - poudriere.client          # local pkgng repo
@@ -340,6 +365,31 @@ testing:
 ### repository.
 
 staging:
+  'I@environment:staging and G@os_family:Debian':
+    - match: compound
+    - salt.minion               # general settings
+    - accounting
+    - auditd
+    - banners
+    - cron
+    - fail2ban
+    - fail2ban.config
+    - git
+    - sysctl
+    - tcsh
+    - rpcbind                   # NFS client
+    - amd
+    ## NOTE: in-kernel lockd
+    - statd
+    - mounts
+    - symlinks
+    - pki                       # domain membership
+    - kerberos5
+    - ypbind
+    - pam_mkhomedir
+    - postfix                   # email
+    - aliases
+
   'I@environment:staging and G@os_family:FreeBSD':
     - match: compound
     - poudriere.client          # local pkgng repo
@@ -465,6 +515,31 @@ staging:
 ### repository.
 
 production:
+  'I@environment:production and G@os_family:Debian':
+    - match: compound
+    - salt.minion               # general settings
+    - accounting
+    - auditd
+    - banners
+    - cron
+    - fail2ban
+    - fail2ban.config
+    - git
+    - sysctl
+    - tcsh
+    - rpcbind                   # NFS client
+    - amd
+    ## NOTE: in-kernel lockd
+    - statd
+    - mounts
+    - symlinks
+    - pki                       # domain membership
+    - kerberos5
+    - ypbind
+    - pam_mkhomedir
+    - postfix                   # email
+    - aliases
+
   'I@environment:production and G@os_family:FreeBSD':
     - match: compound
     - poudriere.client          # local pkgng repo
