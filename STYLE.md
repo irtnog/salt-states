@@ -1,9 +1,13 @@
 # IRTNOG Salt Style Guide
 
-For more information about change management procedures, see TODO.
-The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-"SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-document are to be interpreted as described in
+This document describes rules and guidelines for how state formulas,
+comments, and commit messages are formatted.  This leads to more
+readable code/messages that are easier to follow when reading formulas
+or looking through the project history.  For more information about
+change management procedures, see TODO.  The keywords "MUST", "MUST
+NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT",
+"RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
+interpreted as described in
 [RFC 2119](http://www.rfc-editor.org/rfc/rfc2119.txt).  The keywords
 "DANGER", "WARNING", and "CAUTION" in this document are to be
 interpreted as described in
@@ -20,10 +24,17 @@ documentation.
 
 ## Comments
 
+(This has been adapted in part from the
+[GNU Emacs Lisp Reference Manual, Section D.7 ("Tips on Writing Comments")](https://www.gnu.org/software/emacs/manual/html_node/elisp/Comment-Tips.html#Comment-Tips).)
+
+### "FIXME", "TODO", and Other Comment Annotations
+
+TODO
+
 ### YAML
 
-We recommend these conventions for comments in YAML files (i.e., files
-ending in `.yaml` or `.sls`).
+Comments in YAML files (i.e., files ending in `.yaml` or `.sls`)
+should take the following forms.
 
 **Single Number Sign**
 
@@ -84,4 +95,86 @@ For example:
 base:
   '*':
     []                          # no-op
+```
+
+## Git Commit Messages
+
+(This has been adapted from
+[Contributing to AngularJS](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit)
+and the
+[AngularJS Git Commit Message Conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#).)
+
+### Commit Message Format
+
+Each commit message must consist of a header, a body, and a footer.
+The header must follow a special format that includes a type, an
+optional scope, and a subject:
+
+```
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+Any line must not be longer than 70 characters.  This makes the commit
+message easier to read on GitHub and in various git tools.
+
+### Type
+
+The commit's type should be one of the following:
+
+  - **feat**: a new feature
+
+  - **fix**: a bug fix or other correction
+
+  - **docs**: documentation-only changes
+
+  - **style**: changes that do not affect the meeting of the code
+    (e.g., whitespace, formatting, missing syntax elements, etc.)
+
+  - **refactor**: changes that neither fix bugs nor add features
+
+  - **perf**: changes that improve performance
+
+  - **test**: adding missing tests
+
+  - **chore**: changes to the build process or auxiliary tools and
+  libraries such as document generation
+
+### Scope
+
+The commit's scope may be anything specifying the place of the commit
+change, e.g., an SLS module name like "kerberos5" or "poudriere", an
+environment name like "testing", a role name like "salt-master" or
+"mail-relay".
+
+### Subject
+
+The subject must contain a short, one-line description of the change.
+It must start with a verb in the imperative, present tense ("change",
+not "changes" nor "changed").  It must all be in lower case except for
+proper nouns, and it must not have sentence-ending punctuation at the
+end (such as a period or exclamation mark).
+
+### Body
+
+The body should provide a meaningful commit message, which like the
+subject must use the imperative, present tense, as if giving orders.
+The message should include the motivations for the change and contrast
+its implementation with previous behavior.  Make sure the explanation
+can be understood without external resources (e.g., don't just link to
+a change request ticket, but also summarize the relevant points of the
+request's discussion or commentary).
+
+### Footer
+
+Closed service incident or problem reports should be listed with each
+on a separate line in the footer, prefixed with the "Closes" keyword.
+For example:
+
+```
+Closes #234
+Closes https://helpdesk.example.com/zentrack/ticket.php?id=65535
 ```
