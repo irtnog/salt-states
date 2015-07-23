@@ -1,8 +1,0 @@
-{% import_yaml "jetty/defaults.yaml" as default_settings %}
-
-{% set distro_map = salt['grains.filter_by']({
-  }, merge=salt['pillar.get']('jetty:lookup')) %}
-
-{% do default_settings.jetty.update(distro_map) %}
-
-{% set jetty_settings = salt['pillar.get']('jetty', default=default_settings.jetty, merge=True) %}
