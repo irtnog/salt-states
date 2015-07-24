@@ -94,9 +94,10 @@ development:
   'I@environment:development and G@os_family:FreeBSD':
     - match: compound
     - poudriere.client          # local pkgng repo
+    - rc                        # general settings
+    - sysctl
+    - periodic
     - accounting
-    - aliases
-    - amd
     - auditd
     - banners
     - bgfsck
@@ -105,28 +106,27 @@ development:
     - fail2ban.config
     - git
     - hyperv.guest
-    - lockd
     - mounts
     - moused
-    - nfsclient
-    - ntp.ng
-    - kerberos5
-    - periodic
-    - pki
-    - postfix
-    - rc
-    - rpcbind
     - salt.minion
     - snmp
     - snmp.conf
     - snmp.options
-    - statd
     - sudoers
     - symlinks
-    - sysctl
     - syscons
     - users
+    - rpcbind                   # NFS client
+    - nfsclient
+    - lockd
+    - statd
+    - amd
+    - pki                       # domain membership
+    - ntp.ng
+    - kerberos5
     - ypbind
+    - postfix                   # email
+    - aliases
 
   'I@environment:development and G@os_family:RedHat':
     - match: compound
