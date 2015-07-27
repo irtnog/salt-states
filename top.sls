@@ -76,6 +76,7 @@ development:
     - fail2ban
     - fail2ban.config
     - git
+    - openssh
     - sysctl
     - tcsh
     - rpcbind                   # NFS client
@@ -108,6 +109,7 @@ development:
     - hyperv.guest
     - mounts
     - moused
+    - openssh
     - salt.minion
     - snmp
     - snmp.conf
@@ -148,6 +150,7 @@ development:
     - mounts
     - nfsclient
     - ntp.ng
+    - openssh
     - pam_mkhomedir
     - pki
     - postfix
