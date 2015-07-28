@@ -106,7 +106,6 @@ development:
     - fail2ban
     - fail2ban.config
     - git
-    - hyperv.guest
     - mounts
     - moused
     - openssh
@@ -135,38 +134,37 @@ development:
     - epel
     - nux.dextop                # requires EPEL
     - nux.misc
+    - salt.minion               # general settings
     - accounting
-    - aliases
-    - amd
     - auditd
     - banners
     - cron
     - fail2ban
     - fail2ban.config
     - git
-    - hyperv.guest
-    - kerberos5
-    - lockd
     - mounts
-    - nfsclient
-    - ntp.ng
     - openssh
-    - pam_mkhomedir
     - pki
-    - postfix
-    - rpcbind
-    - salt.minion
     - selinux
     - snmp
     - snmp.conf
     - snmp.options
-    - statd
     - sudoers
     - symlinks
     - sysctl
     - tcsh
     - users
+    - rpcbind                   # NFS client
+    - amd
+    - nfsclient
+    - lockd
+    - statd
+    - ntp.ng                    # domain membership
+    - kerberos5
     - ypbind
+    - pam_mkhomedir
+    - postfix                   # email
+    - aliases
 
   'I@environment:development and G@os_family:Windows':
     - match: compound
@@ -178,6 +176,10 @@ development:
     - schannel
     - users
     - web-mgmt-tools
+
+  'I@environment:development and G@virtual:VirtualPC':
+    - match: compound
+    - hyperv.guest
 
   'I@environment:development and I@role:salt-master':
     - match: compound
