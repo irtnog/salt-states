@@ -1,11 +1,9 @@
 {% from "amd/map.jinja" import amd_settings with context %}
 
 amd:
-  pkg:
-    - installed
+  pkg.installed:
     - pkgs: {{ amd_settings.packages|yaml }}
-  service:
-    - running
+  service.running:
     - name: {{ amd_settings.service }}
     - enable: True
     - watch:

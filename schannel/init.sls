@@ -7,8 +7,7 @@
 ### rebooted.
 
 {{ schannel }}\Protocols\TLS 1.2\Server\DisabledByDefault:
-  reg:
-    - present
+  reg.present:
     - vtype: REG_DWORD
     - value: 0
 
@@ -17,38 +16,32 @@
 ### client-side access to older web applications or services.
 
 {{ schannel }}\Protocols\PCT 1.0\Client\DisabledByDefault:
-  reg:
-    - present
+  reg.present:
     - vtype: REG_DWORD
     - value: 1
 
 {{ schannel }}\Protocols\PCT 1.0\Server\Enabled:
-  reg:
-    - present
+  reg.present:
     - vtype: REG_DWORD
     - value: 0
 
 {{ schannel }}\Protocols\SSL 2.0\Client\DisabledByDefault:
-  reg:
-    - present
+  reg.present:
     - vtype: REG_DWORD
     - value: 1
 
 {{ schannel }}\Protocols\SSL 2.0\Server\Enabled:
-  reg:
-    - present
+  reg.present:
     - vtype: REG_DWORD
     - value: 0
 
 {{ schannel }}\Protocols\SSL 3.0\Client\DisabledByDefault:
-  reg:
-    - present
+  reg.present:
     - vtype: REG_DWORD
     - value: 1
 
 {{ schannel }}\Protocols\SSL 3.0\Server\Enabled:
-  reg:
-    - present
+  reg.present:
     - vtype: REG_DWORD
     - value: 0
 
@@ -56,8 +49,7 @@
 ## as these operating systems lack support for anything better.
 {% if grains['osversion'] >= '6.1.7601' %}
 {{ schannel }}\Protocols\TLS 1.0\Server\Enabled:
-  reg:
-    - present
+  reg.present:
     - vtype: REG_DWORD
     - value: 0
 {% endif %} {# if grains['osversion'] < '6.1.7601' #}
@@ -66,44 +58,37 @@
 ### These changes take effect immediately.
 
 {{ schannel }}\Ciphers\DES 56/56\Enabled:
-  reg:
-    - present
+  reg.present:
     - vtype: REG_DWORD
     - value: 0
 
 {{ schannel }}\Ciphers\NULL\Enabled:
-  reg:
-    - present
+  reg.present:
     - vtype: REG_DWORD
     - value: 0
 
 {{ schannel }}\Ciphers\RC2 128/128\Enabled:
-  reg:
-    - present
+  reg.present:
     - vtype: REG_DWORD
     - value: 0
 
 {{ schannel }}\Ciphers\RC2 40/128\Enabled:
-  reg:
-    - present
+  reg.present:
     - vtype: REG_DWORD
     - value: 0
 
 {{ schannel }}\Ciphers\RC4 40/128\Enabled:
-  reg:
-    - present
+  reg.present:
     - vtype: REG_DWORD
     - value: 0
 
 {{ schannel }}\Ciphers\RC4 56/128\Enabled:
-  reg:
-    - present
+  reg.present:
     - vtype: REG_DWORD
     - value: 0
 
 {{ schannel }}\Hashes\MD5\Enabled:
-  reg:
-    - present
+  reg.present:
     - vtype: REG_DWORD
     - value: 0
 

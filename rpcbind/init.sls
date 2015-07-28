@@ -1,11 +1,9 @@
 {% from "rpcbind/map.jinja" import rpcbind_settings with context %}
 
 rpcbind:
-  pkg:
-    - installed
+  pkg.installed:
     - pkgs: {{ rpcbind_settings.packages|yaml }}
-  service:
-    - running
+  service.running:
     - name: {{ rpcbind_settings.service }}
     - enable: True
     - watch:

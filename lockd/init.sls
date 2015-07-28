@@ -1,13 +1,11 @@
 {% from "lockd/map.jinja" import lockd_settings with context %}
 
 lockd:
-  pkg:
-    - installed
+  pkg.installed:
     - pkgs: {{ lockd_settings.packages|yaml }}
     - watch_in:
       - service: lockd
-  service:
-    - running
+  service.running:
     - name: {{ lockd_settings.service }}
     - enable: True
     - watch:

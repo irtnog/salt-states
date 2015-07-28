@@ -1,12 +1,10 @@
 {% if grains['os_family'] == 'FreeBSD' %}
 
 bgfsck:
-  service:
-    - disabled
+  service.disabled:
 
 rc_conf_bgfsck_settings:
-  file:
-    - accumulated
+  file.accumulated:
     - name: rc_conf_accumulator
     - filename: /etc/rc.conf
     - text: 'fsck_y_enable="YES"'

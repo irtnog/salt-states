@@ -17,8 +17,7 @@ kerberos5:
 {% if grains['os_family'] == 'FreeBSD' %}
 {% for file in ['ftp', 'imap', 'other', 'pop3', 'sshd', 'system', 'telnetd', 'xdm'] %}
 pam_service_{{ file }}:
-  file:
-    - replace
+  file.replace:
     - name: /etc/pam.d/{{ file }}
     - pattern: '#(.*pam_krb5.*)'
     - repl: '\1'
@@ -26,8 +25,7 @@ pam_service_{{ file }}:
 {% endfor %}
 
 pam_service_ftpd:
-  cmd:
-    - wait
+  cmd.wait:
     - name: ln -f /etc/pam.d/ftp /etc/pam.d/ftpd
     - watch:
       - file: pam_service_ftp

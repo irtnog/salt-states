@@ -17,8 +17,7 @@
   {% if setting in syscons %}
     {% set value = syscons[setting] %}
 rc_conf_syscons_{{ setting }}:
-  file:
-    - accumulated
+  file.accumulated:
     - name: rc_conf_accumulator
     - filename: /etc/rc.conf
     - text: '{{ setting }}="{{ value }}"'

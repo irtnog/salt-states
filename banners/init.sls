@@ -1,24 +1,21 @@
 {% if salt['grains.get']('os_family') in ['FreeBSD', 'RedHat', 'Solaris', 'Ubuntu'] %}
 
 /etc/issue:
-  file:
-    - managed
+  file.managed:
     - source: salt://banners/files/issue
     - user: root
     - group: 0
     - mode: 444
 
 /etc/issue.net:
-  file:
-    - symlink
+  file.symlink:
     - target: /etc/issue
     - force: True
     - require:
       - file: /etc/issue
 
 /etc/motd:
-  file:
-    - managed
+  file.managed:
     - source: salt://banners/files/motd
     - user: root
     - group: 0

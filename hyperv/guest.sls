@@ -1,8 +1,7 @@
 {% from "hyperv/map.jinja" import hyperv_settings with context %}
 
 hyperv:
-  pkg:
-    - installed
+  pkg.installed:
     - pkgs: {{ hyperv_settings.packages|yaml }}
 
 {% if grains['os_family'] == 'RedHat' %}
@@ -11,8 +10,7 @@ hyperv:
 ## lowers it to 640x480, which better suits a text-only server
 ## console.
 hyperv_fb_modprobe_conf:
-  file:
-    - managed
+  file.managed:
     - name: /etc/modprobe.d/hyperv_fb.conf
     - user: root
     - group: 0
@@ -25,8 +23,7 @@ hyperv_fb_modprobe_conf:
 ## on CentOS and Red Hat Enterprise Linux in order to enable Hot-Add
 ## support (http://technet.microsoft.com/en-us/library/dn531026.aspx).
 hyperv_memory_udev_balloon_rules:
-  file:
-    - managed
+  file.managed:
     - name: /etc/udev/rules.d/100-balloon.rules
     - user: root
     - group: 0

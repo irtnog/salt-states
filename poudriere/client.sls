@@ -1,8 +1,7 @@
 {% if salt['grains.get']('os_family') == 'FreeBSD' %}
 
 install_irtnog_pubkey:
-  file:
-    - managed
+  file.managed:
     - name: /usr/local/etc/pkg/repos/irtnog.pub
     - user: root
     - group: 0
@@ -12,8 +11,7 @@ install_irtnog_pubkey:
     - source: salt://poudriere/files/irtnog.pub
 
 install_irtnog_repo:
-  file:
-    - managed
+  file.managed:
     - name: /usr/local/etc/pkg/repos/irtnog.conf
     - user: root
     - group: 0
@@ -27,27 +25,23 @@ install_irtnog_repo:
     {% endif %}
 
 install_make_conf:
-  cmd:
-    - run
+  cmd.run:
     - name: touch /etc/make.conf
     - onlyif: test ! -f /etc/make.conf
-  file:
-    - append
+  file.append:
     - name: /etc/make.conf
     - source: salt://poudriere/files/make.conf.jinja
     - template: jinja
 
 {% if salt['pillar.get']('repos:freebsd:enabled', False) %}
 enable_freebsd_repo::
-  file:
-    - absent
+  file.absent:
     - name: /usr/local/etc/pkg/repos/FreeBSD.conf
     - require:
       - file: install_irtnog_repo
 {% else %}
 disable_freebsd_repo:
-  file:
-    - managed
+  file.managed:
     - name: /usr/local/etc/pkg/repos/FreeBSD.conf
     - user: root
     - group: 0

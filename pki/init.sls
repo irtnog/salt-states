@@ -2,8 +2,7 @@
 {% if pki %}
 
 pki:
-  pkg:
-    - installed
+  pkg.installed:
     - pkgs: {{ pki.packages|yaml }}
 
 {% endif %}

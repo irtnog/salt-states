@@ -1,11 +1,9 @@
 {% from "statd/map.jinja" import statd_settings with context %}
 
 statd:
-  pkg:
-    - installed
+  pkg.installed:
     - pkgs: {{ statd_settings.packages|yaml }}
-  service:
-    - running
+  service.running:
     - name: {{ statd_settings.service }}
     - enable: True
     - watch:

@@ -2,8 +2,7 @@
 {% if salt['pillar.get']('moused:enable', True) %}
 
 moused:
-  service:
-    - running
+  service.running:
     - enable: True
     - watch:
       - file: rc_conf
@@ -11,8 +10,7 @@ moused:
 {% set moused_nondefault_enable = salt['pillar.get']('moused:nondefault_enable', None) %}
 {% if moused_nondefault_enable %}
 rc_conf_moused_nondefault_enable:
-  file:
-    - accumulated
+  file.accumulated:
     - name: rc_conf_accumulator
     - filename: /etc/rc.conf
     - text: 'moused_nondefault_enable="{{ moused_nondefault_enable }}"'
@@ -23,8 +21,7 @@ rc_conf_moused_nondefault_enable:
 {% set moused_type = salt['pillar.get']('moused:type', None) %}
 {% if moused_type %}
 rc_conf_moused_type:
-  file:
-    - accumulated
+  file.accumulated:
     - name: rc_conf_accumulator
     - filename: /etc/rc.conf
     - text: 'moused_type="{{ moused_type }}"'
@@ -35,8 +32,7 @@ rc_conf_moused_type:
 {% set moused_port = salt['pillar.get']('moused:port', None) %}
 {% if moused_port %}
 rc_conf_moused_port:
-  file:
-    - accumulated
+  file.accumulated:
     - name: rc_conf_accumulator
     - filename: /etc/rc.conf
     - text: 'moused_port="{{ moused_port }}"'
@@ -47,8 +43,7 @@ rc_conf_moused_port:
 {% set moused_flags = salt['pillar.get']('moused:flags', None) %}
 {% if moused_flags %}
 rc_conf_moused_flags:
-  file:
-    - accumulated
+  file.accumulated:
     - name: rc_conf_accumulator
     - filename: /etc/rc.conf
     - text: 'moused_flags="{{ moused_flags }}"'
@@ -59,8 +54,7 @@ rc_conf_moused_flags:
 {% set mousechar_start = salt['pillar.get']('moused:mousechar_start', None) %}
 {% if mousechar_start %}
 rc_conf_mousechar_start:
-  file:
-    - accumulated
+  file.accumulated:
     - name: rc_conf_accumulator
     - filename: /etc/rc.conf
     - text: 'mousechar_start="{{ mousechar_start }}"'
@@ -71,8 +65,7 @@ rc_conf_mousechar_start:
 {% else %} {# if salt['pillar.get']('moused:enable', True) #}
 
 moused:
-  service:
-    - dead
+  service.dead:
     - enable: False
 
 {% endif %} {# if salt['pillar.get']('moused:enable', True) #}

@@ -2,15 +2,13 @@
 {% if grains['os_family'] == 'FreeBSD' %}
 
 poudriere:
-  pkg:
-    - installed
+  pkg.installed:
     - pkgs:
       - poudriere
       - ccache
 
 poudriere_pkglist:
-  file:
-    - managed
+  file.managed:
     - name: /usr/local/etc/pkglist
     - source: salt://poudriere/files/pkglist.jinja
     - template: jinja
@@ -19,8 +17,7 @@ poudriere_pkglist:
     - mode: 444
 
 poudriere_repo_key:
-  file:
-    - managed
+  file.managed:
     - name: /etc/ssl/keys/repo.key
     - user: root
     - group: 0
@@ -30,8 +27,7 @@ poudriere_repo_key:
     - contents_pillar: poudriere:repo:secret
 
 poudriere_svn_cert:
-  file:
-    - managed
+  file.managed:
     - name: /root/.subversion/auth/svn.ssl.server/87ff8e8fd0384311d1630a5693b2abb5
     - source: salt://poudriere/files/87ff8e8fd0384311d1630a5693b2abb5
     - user: root
@@ -41,8 +37,7 @@ poudriere_svn_cert:
     - dir_mode: 755
 
 poudriere_make_conf:
-  file:
-    - managed
+  file.managed:
     - name: /usr/local/etc/poudriere.d/make.conf
     - source: salt://poudriere/files/make.conf.jinja
     - template: jinja
@@ -53,8 +48,7 @@ poudriere_make_conf:
       - pkg: poudriere
 
 poudriere_conf:
-  file:
-    - managed
+  file.managed:
     - name: /usr/local/etc/poudriere.conf
     - source: salt://poudriere/files/poudriere.conf.jinja
     - template: jinja

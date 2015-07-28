@@ -1,14 +1,12 @@
 {% if grains['os_family'] == 'FreeBSD' %}
 
 create_periodic_conf:
-  cmd:
-    - run
+  cmd.run:
     - name: touch /etc/periodic.conf
     - onlyif: test ! -f /etc/periodic.conf
 
 periodic_conf:
-  file:
-    - blockreplace
+  file.blockreplace:
     - name: /etc/periodic.conf
     - append_if_not_found: True
     - backup: False
@@ -16,8 +14,7 @@ periodic_conf:
       - cmd: create_periodic_conf
 
 periodic_conf_general_settings:
-  file:
-    - accumulated
+  file.accumulated:
     - name: periodic_conf_accumulator
     - filename: /etc/periodic.conf
     - text: |
