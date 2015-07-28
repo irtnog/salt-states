@@ -1,0 +1,13 @@
+{%- from "jetty/map.jinja" import jetty_settings with context -%}
+[Unit]
+Description=Jetty Web Application Server
+After=syslog.target network.target
+
+[Service]
+Type=simple
+ExecStart={{ jetty_settings.prefix }}/bin/jetty.sh
+User={{ jetty_settings.user }}
+Group={{ jetty_settings.group }}
+
+[Install]
+WantedBy=multi-user.target
