@@ -3,6 +3,15 @@
 apache:
   pkg.installed:
     - pkgs: {{ apache_settings.packages|yaml }}
+  file.managed:
+    - name: {{ apache_settings.confdir }}_000_general.conf
+    - source: salt://apache/files/general.conf.jinja
+    - template: jinja
+    - user: {{ apache_settings.user }}
+    - group: {{ apache_settings.group }}
+    - mode: 644
+    - require:
+      - pkg: apache
   service.running:
     - name: {{ apache_settings.service }}
     - enable: True
@@ -12,6 +21,7 @@ apache:
       - file: apache_keys
     - watch:
       - pkg: apache
+      - file: apache
 
 apache_dbdir:
   file.directory:

@@ -16,6 +16,7 @@
                      'SecUnicodeMapFile': '/etc/modsecurity/unicode.mapping 20127',
                    },
                    'ssl': {
+                     'SSLCACertificateFile': '/etc/ssl/certs/ca-certificates.crt',
                      'SSLSessionCache': 'shmcb:/var/lib/apache2/ssl_gcache_data(512000)',
                      'SSLStaplingCache': 'shmcb:/var/lib/apache2/ocsp_gcache_data(512000)',
                    },
@@ -34,6 +35,7 @@
                      'SecUnicodeMapFile': '/usr/local/etc/modsecurity/unicode.mapping 20127',
                    },
                    'ssl': {
+                     'SSLCACertificateFile': '/usr/local/share/certs/ca-root-nss.crt',
                      'SSLSessionCache': 'shmcb:/var/db/httpd/ssl_gcache_data(512000)',
                      'SSLStaplingCache': 'shmcb:/var/db/httpd/ocsp_gcache_data(51200)',
                    },
@@ -45,6 +47,9 @@
                  'modules': {
                    'security2': {
                      'SecUnicodeMapFile': None,
+                   },
+                   'ssl': {
+                     'SSLCACertificateFile': '/etc/pki/tls/certs/ca-bundle.crt',
                    },
                  },
                },
