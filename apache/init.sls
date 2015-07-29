@@ -9,7 +9,7 @@ apache:
     - template: jinja
     - user: {{ apache_settings.user }}
     - group: {{ apache_settings.group }}
-    - mode: 600
+    - mode: 400                 # in case configs include sensitive data
     - require:
       - pkg: apache
   service.running:
@@ -114,7 +114,7 @@ apache_{{ site }}_site:
         site: {{ site }}
     - user: {{ apache_settings.user }}
     - group: {{ apache_settings.group }}
-    - mode: 400
+    - mode: 400                 # in case configs include sensitive data
     - require:
       - pkg: apache
     - watch_in:
