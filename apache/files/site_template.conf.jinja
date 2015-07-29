@@ -1,4 +1,4 @@
 {%- from "apache/map.jinja" import apache_settings with context -%}
 {%- from "apache/lib.jinja" import render_apache_config with context -%}
 
-{{ render_apache_config(apache_settings[site]) }}
+{{ render_apache_config(apache_settings.sites[site]) }}

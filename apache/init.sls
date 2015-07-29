@@ -8,6 +8,8 @@ apache:
     - enable: True
     - require:
       - file: apache_dbdir
+      - file: apache_certs
+      - file: apache_keys
     - watch:
       - pkg: apache
 
@@ -17,6 +19,24 @@ apache_dbdir:
     - user: {{ apache_settings.user }}
     - group: {{ apache_settings.group }}
     - dir_mode: 710
+    - require:
+      - pkg: apache
+
+apache_certs:
+  file.directory:
+    - name: {{ apache_settings.certs }}
+    - user: {{ apache_settings.user }}
+    - group: {{ apache_settings.group }}
+    - dir_mode: 755
+    - require:
+      - pkg: apache
+
+apache_keys:
+  file.directory:
+    - name: {{ apache_settings.keys }}
+    - user: {{ apache_settings.user }}
+    - group: {{ apache_settings.group }}
+    - dir_mode: 750
     - require:
       - pkg: apache
 
@@ -30,9 +50,43 @@ apache_{{ module }}_module:
         module: {{ module }}
     - user: {{ apache_settings.user }}
     - group: {{ apache_settings.group }}
-    - mode: 400
+    - mode: 400                 # in case configs include sensitive data
     - require:
       - pkg: apache
+    - watch_in:
+      - service: apache
+{% endfor %}
+
+{% for keypair in apache_settings.keypairs %}
+apache_{{ keypair }}_certificate:
+  file.managed:
+    - name: {{ apache_settings.certs }}{{ keypair }}.crt
+    - source: salt://apache/files/keypair_template.crt.jinja
+    - template: jinja
+    - context:
+        keypair: {{ keypair }}
+    - user: {{ apache_settings.user }}
+    - group: {{ apache_settings.group }}
+    - mode: 644
+    - require:
+      - pkg: apache
+      - file: apache_certs
+    - watch_in:
+      - service: apache
+
+apache_{{ keypair }}_key:
+  file.managed:
+    - name: {{ apache_settings.keys }}{{ keypair }}.key
+    - source: salt://apache/files/keypair_template.key.jinja
+    - template: jinja
+    - context:
+        keypair: {{ keypair }}
+    - user: {{ apache_settings.user }}
+    - group: {{ apache_settings.group }}
+    - mode: 600
+    - require:
+      - pkg: apache
+      - file: apache_certs
     - watch_in:
       - service: apache
 {% endfor %}

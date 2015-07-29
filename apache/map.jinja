@@ -7,35 +7,45 @@
                  'group': 'www-data',
                  'confdir': '/etc/apache2/conf-enabled',
                  'dbdir': '/var/lib/apache2',
+                 'pubdir': '/etc/apache2/certs',
+                 'keydir': '/etc/apache2/keys',
                  'module_prefix': '/usr/lib/apache2/modules/mod_',
-                 'ssl': {
-                   'SSLSessionCache': 'shmcb:/var/lib/apache2/ssl_gcache_data(512000)',
-                   'SSLStaplingCache': 'shmcb:/var/lib/apache2/ocsp_gcache_data(512000)',
-                 },
-                 'security2': {
-                   'SecDataDir': '/var/cache/modsecurity',
-                   'SecUnicodeMapFile': '/etc/modsecurity/unicode.mapping 20127',
+                 'modules': {
+                   'security2': {
+                     'SecDataDir': '/var/cache/modsecurity',
+                     'SecUnicodeMapFile': '/etc/modsecurity/unicode.mapping 20127',
+                   },
+                   'ssl': {
+                     'SSLSessionCache': 'shmcb:/var/lib/apache2/ssl_gcache_data(512000)',
+                     'SSLStaplingCache': 'shmcb:/var/lib/apache2/ocsp_gcache_data(512000)',
+                   },
                  },
                },
     'FreeBSD': { 'packages': ['apache24', 'ap24-mod_security'],
                  'service': 'apache24',
                  'confdir': '/usr/local/etc/apache24/Includes/',
                  'dbdir': '/var/db/httpd/',
+                 'pubdir': '/usr/local/etc/apache24/certs',
+                 'keydir': '/usr/local/etc/apache24/keys,
                  'module_prefix': 'libexec/apache24/mod_',
-                 'ssl': {
-                   'SSLSessionCache': 'shmcb:/var/db/httpd/ssl_gcache_data(512000)',
-                   'SSLStaplingCache': 'shmcb:/var/db/httpd/ocsp_gcache_data(51200)',
-                 },
-                 'security2': {
-                   'SecDataDir': '/var/db/httpd/security2',
-                   'SecUnicodeMapFile': '/usr/local/etc/modsecurity/unicode.mapping 20127',
+                 'modules': {
+                   'security2': {
+                     'SecDataDir': '/var/db/httpd/security2',
+                     'SecUnicodeMapFile': '/usr/local/etc/modsecurity/unicode.mapping 20127',
+                   },
+                   'ssl': {
+                     'SSLSessionCache': 'shmcb:/var/db/httpd/ssl_gcache_data(512000)',
+                     'SSLStaplingCache': 'shmcb:/var/db/httpd/ocsp_gcache_data(51200)',
+                   },
                  },
                },
     'RedHat':  { 'packages': ['httpd-devel', 'httpd-tools', 'mod_security', 'mod_ssl'],
                  'confdir': '/etc/httpd/conf.d/',
                  'module_prefix': 'modules/mod_',
-                 'security2': {
-                   'SecUnicodeMapFile': None,
+                 'modules': {
+                   'security2': {
+                     'SecUnicodeMapFile': None,
+                   },
                  },
                },
     'Windows': { 'packages': [],

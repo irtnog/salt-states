@@ -3,32 +3,27 @@ apache:
   group: www
   service: httpd
   dbdir: /var/lib/httpd/
+  pubdir: /etc/httpd/certs/
+  keydir: /etc/httpd/keys/
   logdir: /var/log/httpd/
   module_suffix: .so
-
   modules:
-    - unique_id                 # required by mod_security
-    - security2
-    - socache_shmcb             # required by mod_ssl
-    - ssl
-
-  sites: []
-
-  security2:
-    SecRuleEngine: DetectionOnly
-    SecRequestBodyAccess: on
-    SecRule REQUEST_HEADERS:Content-Type "text/xml":
-      "id:'200000',phase:1,t:none,t:lowercase,pass,nolog,ctl:requestBodyProcessor=XML"
-    SecRule REQUEST_HEADERS:Content-Type "application/json":
-      "id:'200001',phase:1,t:none,t:lowercase,pass,nolog,ctl:requestBodyProcessor=JSON"
-    SecRequestBodyLimit: 13107200
-    SecRequestBodyNoFilesLimit: 131072
-    SecRequestBodyInMemoryLimit: 131072
-    SecRequestBodyLimitAction: Reject
-    SecRule REQBODY_ERROR "!@eq 0":
-      "id:'200002', phase:2,t:none,log,deny,status:400,msg:'Failed to parse request body.',logdata:'%{reqbody_error_msg}',severity:2"
-    SecRule MULTIPART_STRICT_ERROR "!@eq 0":
-      "id:'200003',phase:2,t:none,log,deny,status:400, \
+    unique_id: {}               # required by mod_security
+    security2:
+      SecRuleEngine: DetectionOnly
+      SecRequestBodyAccess: on
+      SecRule REQUEST_HEADERS:Content-Type "text/xml":
+        "id:'200000',phase:1,t:none,t:lowercase,pass,nolog,ctl:requestBodyProcessor=XML"
+      SecRule REQUEST_HEADERS:Content-Type "application/json":
+        "id:'200001',phase:1,t:none,t:lowercase,pass,nolog,ctl:requestBodyProcessor=JSON"
+      SecRequestBodyLimit: 13107200
+      SecRequestBodyNoFilesLimit: 131072
+      SecRequestBodyInMemoryLimit: 131072
+      SecRequestBodyLimitAction: Reject
+      SecRule REQBODY_ERROR "!@eq 0":
+        "id:'200002', phase:2,t:none,log,deny,status:400,msg:'Failed to parse request body.',logdata:'%{reqbody_error_msg}',severity:2"
+      SecRule MULTIPART_STRICT_ERROR "!@eq 0":
+        "id:'200003',phase:2,t:none,log,deny,status:400, \
 msg:'Multipart request body failed strict validation: \
 PE %{REQBODY_PROCESSOR_ERROR}, \
 BQ %{MULTIPART_BOUNDARY_QUOTED}, \
@@ -42,44 +37,46 @@ IQ %{MULTIPART_INVALID_QUOTING}, \
 IP %{MULTIPART_INVALID_PART}, \
 IH %{MULTIPART_INVALID_HEADER_FOLDING}, \
 FL %{MULTIPART_FILE_LIMIT_EXCEEDED}'"
-    SecRule MULTIPART_UNMATCHED_BOUNDARY "!@eq 0":
-      "id:'200004',phase:2,t:none,log,deny,msg:'Multipart parser detected a possible unmatched boundary.'"
-    SecPcreMatchLimit: 1000
-    SecPcreMatchLimitRecursion: 1000
-    SecRule TX:/^MSC_/ "!@streq 0":
-      "id:'200005',phase:2,t:none,deny,msg:'ModSecurity internal error flagged: %{MATCHED_VAR_NAME}'"
-    SecResponseBodyAccess: On
-    SecResponseBodyMimeType:
-      - text/plain
-      - text/html
-      - text/xml
-    SecResponseBodyLimit: 524288
-    SecResponseBodyLimitAction: ProcessPartial
-    SecTmpDir: /tmp/
-    SecDataDir: /var/lib/httpd/security2/
-    SecAuditEngine: RelevantOnly
-    SecAuditLogRelevantStatus: "^(?:5|4(?!04))"
-    SecAuditLogParts: ABIJDEFHZ
-    SecAuditLogType: Serial
-    SecAuditLog: /var/log/modsec_audit.log
-    SecArgumentSeparator: '&'
-    SecCookieFormat: 0
-    SecUnicodeMapFile: unicode.mapping 20127
-    SecStatusEngine: off        # don't report usage to third parties by default!
-
-  ssl:
-    Listen: 443
-    SSLRandomSeed startup: file:/dev/urandom 512
-    SSLRandomSeed connect: file:/dev/urandom 512
-    SSLProtocol: all -SSLv2 -SSLv3 -TLSv1
-    SSLCipherSuite: 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!3DES:!MD5:!PSK'
-    SSLHonorCipherOrder: on
-    SSLCompression: off
-    SSLSessionCache: shmcb:/var/lib/httpd/ssl_gcache_data(512000)
-    SSLSessionCacheTimeout: 300
-    SSLUseStapling: on
-    SSLStaplingReturnResponderErrors: off
-    SSLStaplingCache: shmcb:/var/lib/httpd/ocsp_gcache_data(51200)
+      SecRule MULTIPART_UNMATCHED_BOUNDARY "!@eq 0":
+        "id:'200004',phase:2,t:none,log,deny,msg:'Multipart parser detected a possible unmatched boundary.'"
+      SecPcreMatchLimit: 1000
+      SecPcreMatchLimitRecursion: 1000
+      SecRule TX:/^MSC_/ "!@streq 0":
+        "id:'200005',phase:2,t:none,deny,msg:'ModSecurity internal error flagged: %{MATCHED_VAR_NAME}'"
+      SecResponseBodyAccess: On
+      SecResponseBodyMimeType:
+        - text/plain
+        - text/html
+        - text/xml
+      SecResponseBodyLimit: 524288
+      SecResponseBodyLimitAction: ProcessPartial
+      SecTmpDir: /tmp/
+      SecDataDir: /var/lib/httpd/security2/
+      SecAuditEngine: RelevantOnly
+      SecAuditLogRelevantStatus: "^(?:5|4(?!04))"
+      SecAuditLogParts: ABIJDEFHZ
+      SecAuditLogType: Serial
+      SecAuditLog: /var/log/modsec_audit.log
+      SecArgumentSeparator: '&'
+      SecCookieFormat: 0
+      SecUnicodeMapFile: unicode.mapping 20127
+      SecStatusEngine: off      # don't report usage to third parties by default!
+    socache_shmcb: {}           # required by mod_ssl
+    ssl:
+      Listen: 443
+      SSLRandomSeed startup: file:/dev/urandom 512
+      SSLRandomSeed connect: file:/dev/urandom 512
+      SSLProtocol: all -SSLv2 -SSLv3 -TLSv1
+      SSLCipherSuite: 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!3DES:!MD5:!PSK'
+      SSLHonorCipherOrder: on
+      SSLCompression: off
+      SSLSessionCache: shmcb:/var/lib/httpd/ssl_gcache_data(512000)
+      SSLSessionCacheTimeout: 300
+      SSLUseStapling: on
+      SSLStaplingReturnResponderErrors: off
+      SSLStaplingCache: shmcb:/var/lib/httpd/ocsp_gcache_data(51200)
+  keypairs: {}
+  sites: {}
 
 owasp_modsecurity_crs:
   repo: https://github.com/SpiderLabs/owasp-modsecurity-crs.git
