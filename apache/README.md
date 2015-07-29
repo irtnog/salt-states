@@ -46,12 +46,8 @@ configuration.
 *   `apache`
 
     Installs (or updates) the web server and related packages (if
-    any).
-
-*   `apache.config`
-
-    Configures the web server, modules, and web sites based on default
-    settings or settings in Pillar.
+    any); and configures the web server, modules, and web sites based
+    on settings in Pillar.
 
 *   `apache.owasp_modsecurity_crs`
 
