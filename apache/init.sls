@@ -40,7 +40,7 @@ apache_keys:
     - require:
       - pkg: apache
 
-{% for module in apache_settings.modules %}
+{% for module in apache_settings.modules if apache_settings.modules[module] is mapping %}
 apache_{{ module }}_module:
   file.managed:
     - name: {{ apache_settings.confdir }}_{{ "%03d"|format(loop.index) }}_mod_{{ module }}.conf
