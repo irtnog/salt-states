@@ -9,7 +9,7 @@ apache:
     - template: jinja
     - user: {{ apache_settings.user }}
     - group: {{ apache_settings.group }}
-    - mode: 644
+    - mode: 600
     - require:
       - pkg: apache
   service.running:
