@@ -78,7 +78,7 @@ apache_{{ keypair }}_certificate:
         keypair: {{ keypair }}
     - user: {{ apache_settings.user }}
     - group: {{ apache_settings.group }}
-    - mode: 644
+    - mode: 444
     - require:
       - pkg: apache
       - file: apache_certdir
@@ -95,7 +95,7 @@ apache_{{ keypair }}_key:
         keypair: {{ keypair }}
     - user: {{ apache_settings.user }}
     - group: {{ apache_settings.group }}
-    - mode: 600
+    - mode: 400
     - require:
       - pkg: apache
       - file: apache_keydir
