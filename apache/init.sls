@@ -17,8 +17,8 @@ apache:
     - enable: True
     - require:
       - file: apache_dbdir
-      - file: apache_certs
-      - file: apache_keys
+      - file: apache_pubdir
+      - file: apache_keydir
     - watch:
       - pkg: apache
       - file: apache
@@ -32,18 +32,18 @@ apache_dbdir:
     - require:
       - pkg: apache
 
-apache_certs:
+apache_pubdir:
   file.directory:
-    - name: {{ apache_settings.certs }}
+    - name: {{ apache_settings.pubdir }}
     - user: {{ apache_settings.user }}
     - group: {{ apache_settings.group }}
     - dir_mode: 755
     - require:
       - pkg: apache
 
-apache_keys:
+apache_keydir:
   file.directory:
-    - name: {{ apache_settings.keys }}
+    - name: {{ apache_settings.keydir }}
     - user: {{ apache_settings.user }}
     - group: {{ apache_settings.group }}
     - dir_mode: 750
@@ -68,9 +68,10 @@ apache_{{ module }}_module:
 {% endfor %}
 
 {% for keypair in apache_settings.keypairs %}
+{% if apache_settings.keypairs[keypair].certificate is defined %}
 apache_{{ keypair }}_certificate:
   file.managed:
-    - name: {{ apache_settings.certs }}{{ keypair }}.crt
+    - name: {{ apache_settings.pubdir }}{{ keypair }}.crt
     - source: salt://apache/files/keypair_template.crt.jinja
     - template: jinja
     - context:
@@ -80,13 +81,14 @@ apache_{{ keypair }}_certificate:
     - mode: 644
     - require:
       - pkg: apache
-      - file: apache_certs
+      - file: apache_pubdir
     - watch_in:
       - service: apache
-
+{% endif %}
+{% if apache_settings.keypairs[keypair].key is defined %}
 apache_{{ keypair }}_key:
   file.managed:
-    - name: {{ apache_settings.keys }}{{ keypair }}.key
+    - name: {{ apache_settings.keydir }}{{ keypair }}.key
     - source: salt://apache/files/keypair_template.key.jinja
     - template: jinja
     - context:
@@ -96,9 +98,10 @@ apache_{{ keypair }}_key:
     - mode: 600
     - require:
       - pkg: apache
-      - file: apache_certs
+      - file: apache_keydir
     - watch_in:
       - service: apache
+{% endif %}
 {% endfor %}
 
 {% for site in apache_settings.sites %}
