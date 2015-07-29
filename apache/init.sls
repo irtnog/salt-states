@@ -17,7 +17,7 @@ apache:
     - enable: True
     - require:
       - file: apache_dbdir
-      - file: apache_pubdir
+      - file: apache_certdir
       - file: apache_keydir
     - watch:
       - pkg: apache
@@ -32,9 +32,9 @@ apache_dbdir:
     - require:
       - pkg: apache
 
-apache_pubdir:
+apache_certdir:
   file.directory:
-    - name: {{ apache_settings.pubdir }}
+    - name: {{ apache_settings.certdir }}
     - user: {{ apache_settings.user }}
     - group: {{ apache_settings.group }}
     - dir_mode: 755
@@ -71,8 +71,8 @@ apache_{{ module }}_module:
 {% if apache_settings.keypairs[keypair].certificate is defined %}
 apache_{{ keypair }}_certificate:
   file.managed:
-    - name: {{ apache_settings.pubdir }}{{ keypair }}.crt
-    - source: salt://apache/files/keypair_template.crt.jinja
+    - name: {{ apache_settings.certdir }}{{ keypair }}.cert
+    - source: salt://apache/files/keypair_template.cert.jinja
     - template: jinja
     - context:
         keypair: {{ keypair }}
@@ -81,7 +81,7 @@ apache_{{ keypair }}_certificate:
     - mode: 644
     - require:
       - pkg: apache
-      - file: apache_pubdir
+      - file: apache_certdir
     - watch_in:
       - service: apache
 {% endif %}

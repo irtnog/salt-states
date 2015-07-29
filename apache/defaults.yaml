@@ -3,7 +3,7 @@ apache:
   group: www
   service: httpd
   dbdir: /var/lib/httpd/
-  crtdir: /etc/httpd/certs/
+  certdir: /etc/httpd/certs/
   keydir: /etc/httpd/keys/
   logdir: /var/log/httpd/
   module_suffix: .so
