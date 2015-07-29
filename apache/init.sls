@@ -53,7 +53,7 @@ apache_keydir:
 {% for module in apache_settings.modules if apache_settings.modules[module] is mapping %}
 apache_{{ module }}_module:
   file.managed:
-    - name: {{ apache_settings.confdir }}_{{ "%03d"|format(100+loop.index0) }}_mod_{{ module }}.conf
+    - name: {{ apache_settings.confdir }}_{{ "%03d"|format(loop.index) }}_mod_{{ module }}.conf
     - source: salt://apache/files/mod_template.conf.jinja
     - template: jinja
     - context:
