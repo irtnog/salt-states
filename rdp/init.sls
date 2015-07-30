@@ -1,0 +1,2 @@
+remote-desktop:
+  rdp.enabled
