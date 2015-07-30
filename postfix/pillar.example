@@ -1,0 +1,171 @@
+## client example
+postfix:
+  mail:
+    - relayhost: [smtp.example.com]:submission
+    - smtp_sasl_auth_enable: yes
+    - smtp_sasl_password_maps:
+      {% if grains['os_family'] == 'FreeBSD' %}
+        hash:/usr/local/etc/postfix/sasl_passwd
+      {% else %}
+        hash:/etc/postfix/sasl_passwd
+      {% endif %}
+    - smtp_use_tls: yes
+    - smtp_tls_mandatory_protocols:
+      - '!SSLv2'
+      - '!SSLv3'
+    - smtp_tls_CAfile:
+      {% if grains['os_family'] == 'Debian' %}
+        /etc/ssl/certs/ca-certificates.crt
+      {% elif grains['os_family'] == 'FreeBSD' %}
+        /usr/local/share/certs/ca-root-nss.crt
+      {% elif grains['os_family'] == 'RedHat' and grains['osmajorrelease'] > 4 %}
+        /etc/pki/tls/certs/ca-bundle.crt
+      {% elif grains['os_family'] == 'RedHat' and grains['osmajorrelease'] <= 4 %}
+        /usr/share/ssl/certs/ca-bundle.crt
+      {% elif grains['os_family'] == 'OpenBSD' %}
+        /etc/ssl/cert.pem
+      {% else %}
+        FIXME
+      {% endif %}
+  maps:
+    hash:
+      sasl_passwd:
+        - '[smtp.example.com]:submission s-smmsp:@rsL0nga,V1taBr3v!s'
+
+## mail relay example (FreeBSD host, amavisd-new spam filter, Exchange back end)
+postfix:
+  main:
+    - myhostname: smtp.example.com
+    - mydomain: example.com
+    - mynetworks: cidr:/usr/local/etc/postfix/network_table
+    - smtpd_banner: $myhostname ESMTP
+    - relay_domains:
+      - example.com
+      - example.net
+    - relay_recipient_maps:
+      - hash:/usr/local/etc/postfix/relay_recipients
+      - ldap:/usr/local/etc/postfix/example_exchange
+    - proxy_interfaces: 192.0.2.100 # if behind NAT, change to public IP
+    - transport_maps: hash:/usr/local/etc/postfix/transport
+    - virtual_alias_maps: hash:/usr/local/etc/postfix/virtual
+    - smtpd_helo_required: yes
+    - strict_rfc821_envelopes: yes
+    - recipient_delimiter: +
+    - smtpd_proxy_filter: localhost:10024 # change to amavisd-new listener
+    - smtpd_proxy_options: speed_adjust
+    - smtpd_client_restrictions:
+      - permit_mynetworks
+      - permit_sasl_authenticated
+      - check_client_access hash:/usr/local/etc/postfix/access_client
+      - check_client_access cidr:/usr/local/etc/postfix/network_table
+      - reject_rbl_client zen.spamhaus.org
+      - reject_rbl_client bl.spamcop.net
+      - reject_rbl_client b.barracudacentral.org
+    - smtpd_helo_restrictions:
+      - permit_mynetworks
+      - reject_invalid_helo_hostname
+      - reject_non_fqdn_helo_hostname
+    - smtpd_sender_restrictions:
+      - permit_mynetworks
+      - check_sender_access hash:/usr/local/etc/postfix/access_sender
+      - reject_non_fqdn_sender
+      - reject_rhsbl_sender dbl.spamhaus.org
+      - reject_unknown_sender_domain
+    - smtpd_recipient_restrictions:
+      - permit_mynetworks
+      - check_recipient_access hash:/usr/local/etc/postfix/access_recipient
+      - reject_unauth_destination
+      - reject_non_fqdn_recipient
+    - smtpd_etrn_restrictions: reject
+    - smtpd_tls_security_level: may
+    - smtpd_tls_session_cache_database: btree:/var/spool/postfix/private/smtpd_scache
+    - smtpd_tls_cert_file: /usr/local/etc/postfix/ssl.crt
+    - smtpd_tls_key_file: /usr/local/etc/postfix/ssl.key
+    - message_size_limit: 104857600
+    - smtp_use_tls: yes
+    - smtp_tls_mandatory_protocols:
+      - '!SSLv2'
+      - '!SSLv3'
+    - smtp_tls_CAfile: /usr/local/share/certs/ca-root-nss.crt
+  master:
+    - 10025     inet  n       -       n       -        -      smtpd -o mynetworks=127.0.0.0/8,[::1]/128 -o smtpd_proxy_filter= -o smtpd_client_connection_count_limit=50 -o smtpd_proxy_options= -o smtpd_authorized_xforward_hosts=$mynetworks -o smtpd_client_restrictions= -o smtpd_helo_restrictions= -o smtpd_sender_restrictions= -o smtpd_relay_restrictions= -o smtpd_recipient_restrictions=permit_mynetworks,reject -o smtpd_data_restrictions= -o receive_override_options=no_unknown_recipient_checks 
+  maps:
+    cidr:
+      network_table:
+        - 10.0.0.0/8 OK
+        - 172.16.0.0/12 OK
+        - 192.168.0.0/16 OK
+        - '[fe80::]/10' OK
+    file:
+      ssl.crt:
+        ## server certificate
+        - '-----BEGIN CERTIFICATE-----
+XoeaUnFuAXE73GlKja4LiBkXMyEe1QOMwqvQOP+dbUc7C4GVy11PFsR3srRC578l
+aXoemLSeo682V7rmZsC3FXwxDH5H9JhP42AdaMrQLKYviSzHiyHsyiacTgxxqjc1
+sQVQtbxq7vK5opjm66EUqqSnR4ZQOW6NG0uAonoAETaak1yM6ybF7kKvi4nIR0Xg
+zojBbXLAoOFfo6VZluJ2fq207DIzsK6+D9HY2VKst3xJ+k04j2H0dWAVBhm9og13
+L3vK8HRxaN+19ATrLoo1EUBEcLSOgi2O8dsaIETC+xGCbeVb2Kixd157VWodt9vR
+KBJTigpD0fDKiK4JZ4g6m2FlQDsV70TfBbsmV9AmGkTT6D+Oz0joIOBt9gcmP0oY
+88vCt7FBjBVnb/SfCHLV1WaWHiYyC6USXqeoOBhsMedmkexYABuotBFlQoOm/AFd
+FhrPh6jjlW1r0jzHmvXOoQlXRAbhK58VroTxTcqgRhMohxbyAWAjRmW648RkNWC+
+GRSS3JxgfO1QOFpp9sKApZZ0ti0fU//32dvCO1okD3rnP0qpNqgOFXCkMFzVubCv
+CEGVAIGa/5weMMeidWFcLC0HYREm3DM62vtI7fcQQwj0iXZi7/WQyUNPG+K57yPM
+k+VJRHuE/dxSubA7QyDFKS9udb9Qf2FK1puuqtr4QfY=
+-----END CERTIFICATE-----'
+        ## list intermediate (chain) certificates next, in
+        ## leaf-to-root order
+        - '-----BEGIN CERTIFICATE-----
+bm//SNpqlEY/zbmHNb1LXJAGG2CfLpm3Z/OkR7BOk8G34Yld8DZ0yejjDXv136IN
+ETyBwf7kZCXGP6n0z3Tnp+aZRh4ddVdLVdg29fT66Pnff7/7IT6tyf7xIqa4Ya9y
+EPTPYXj/YDR9zz6RBM0VuUCk+hl0wYrA41mrE2e5eyo0LCJQuX62Aw5ZefVCdPjw
+MRbfjip8huOtC+gqGuCxb+pE7i/qmjkjFpcldPQHEkvHt0nDHO6WKuXIGnrdeTK6
+y0tLnUsRYeqPnNZI6qxpyQ58uiq24FWhQ5F1eSTMtgtyIWCk79GCcEww0HqDXN7J
+dpDBbq9SQyrbsEm4wLnsjVv1MUqF7tKIX2YeeIgph3mH6SBbm0ecjuTQzH6NtQaA
+AIEuyeyUGnsELCAEbLHkd6JwvRdSm+LYn0olAlA3PP+v65v80m2c3zdTg6XIlS8z
+rqJDC0LkdRnsBg+WPwZW2MoNCNZvHFXm9z1M0LSkJ1lgS7MMwgybkSorbN3tvO+R
+p7eL5p0tgS1eqdwBWO75gQj0IVPjPeUHbGQUuQVpgWTDhgAUz6CcTwSfZa41tHdo
+fsTq4OQsFzw1sv/fuG0CKKkLRJcjFu3nqF4AaHm1P+NYao4f5nRDP3v4pA3wgT2b
+8JOoWUhH74topTSHaSCuNu2y7PpuvweUOLMdKIld3po=
+-----END CERTIFICATE-----'
+      ssl.key:
+        - '-----BEGIN PRIVATE KEY-----
+ZNF17QTx4kfPEfRqI7AA4y3jJ7zXOzT1WBh7XJ8o5Tm/W+zVR5ngC7h5hLZaL4gl
+7nmtDqKWXvY695BByTaW9QB2gM+9y8z5tFNowPkQYsSRpWctjLyOiq6IeuBblJo9
+kJ03hhgdV3zJ1dhnq3p6LDiOw4HqcPkx2LzIPWKQgDGeIzzWPJnDVgD3DfcnuTVs
+zguDOFDpFdiFytQwWWoqHmn1wbrj1p0SHZoVfnDp5HSQ6WZ7kLLTySrYJ920ku8A
+DUlwy287Lwh/qO2hX80lXnqZYqPHXryPqxJK4PtERCCwCJdGRvrFi3CpAn99DhPz
+d4tFBjQu19Z0/rUELPEQuCfbCtscpJZ2q/lir5xjj44yJtiky8Go73uK8E/WslEZ
+kESPaq6LE/4MvlE5pquHkBgZA0u9VigNp+4D0RVbcWhmM5b+ZR2HRszsH+dfjA9f
+8ums30Dxf6TGrhdQLW39Be6fIz0pisVC+hARW/6RmLvQRCmgZTkSZcjQNBICkbLe
+v44pQ1XpbXGP8WpnGKKSyYTyXEV6GwFOzF5uWicUgpzpCJMk1RjXAyiybcg0o5fS
+2xsofsGmuWHyhKEarwEheFEyz1RtQ2h0uWEG3+l1Hi+rQAO1uxnEv1H3cfEu2bc6
+BkvGmo8EcpTkRvBU1aRVHhzGXp3kzR+SPV261qYYDBI=
+-----END PRIVATE KEY-----'
+    hash:
+      access_client:
+        - google.com OK
+        - microsoft.com OK
+      access_sender:
+        - @example.org REJECT
+      access_recipient: []
+      relay_recipients:
+        - \#@example.com OK
+      transport:
+        - example.com smtp:[mail.example.com]
+        - example.net smtp:[mail.example.com]
+      virtual:
+        - '## Allow mail addressed to "postmaster@[IP address]".'
+        - postmaster postmaster@example.com
+        - abuse abuse@example.com
+    ldap:
+      example_exchange:
+        - server_host: ldaps://dc1.example.net
+        - search_base: dc=example,dc=net
+        - query_filter: (proxyAddresses=smtp:%s)
+        - result_attribute: ""
+        - leaf_result_attribute: cn
+        - bind_dn: s-listrecipients@EXAMPLE.NET
+        - bind_pw: 'V1v1t3,a!t,fu5ie.'
+        - chase_referrals: "no" # string, not boolean
+        - version: 3
+        - tls_ca_cert_file: /usr/local/share/certs/ca-root-nss.crt
