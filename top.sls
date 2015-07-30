@@ -171,6 +171,7 @@ development:
     - git
     - gpmc
     - powershell
+    - rdp
     - rsat
     - salt.minion
     - schannel
