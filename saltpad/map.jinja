@@ -1,0 +1,11 @@
+{% import_yaml "saltpad/defaults.yaml" as default_settings %}
+
+{% set distro_map = salt['grains.filter_by']({
+    'Debian':  {},
+    'FreeBSD': { 'packages': [ 'py27-pip', 'py27-virtualenv', 'py27-werkzeug', ], },
+    'RedHat':  {},
+  }, merge=salt['pillar.get']('saltpad:lookup')) %}
+
+{% do default_settings.saltpad.update(distro_map) %}
+
+{% set saltpad_settings = salt['pillar.get']('saltpad', default=default_settings.saltpad, merge=True) %}

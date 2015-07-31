@@ -1,0 +1,5 @@
+saltpad:
+  packages:
+    - python-pip
+    - python-virtualenv
+    - python-werkzeug
