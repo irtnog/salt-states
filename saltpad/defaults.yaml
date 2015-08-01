@@ -5,3 +5,5 @@ saltpad:
     - python-werkzeug
   git_repo: https://github.com/tinyclues/saltpad.git
   prefix: /opt/saltpad
+  user: www
+  group: www
