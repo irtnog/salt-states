@@ -1,0 +1,52 @@
+{%- from "saltpad/map.jinja" import saltpad_settings with context -%}
+#### LOCAL_SETTINGS.PY --- SaltPad configuration
+
+## if salt-master is not localhost, uncomment and change API URL
+{%- if saltpad_settings.api_url is defined %}
+API_URL = {{ saltpad_settings.api_url|yaml_squote }}
+{%- else %}
+# API_URL = 'https://YOURSALTMASTER.net'
+{%- endif %}
+
+## generate random key with os.urandom(24)
+{%- if saltpad_settings.secret_key is defined %}
+SECRET_KEY = {{ saltpad_settings.secret_key|yaml_squote }}
+{%- else %}
+SECRET_KEY = ''
+{%- endif %}
+
+## enable sentry support (requires raven[flask])
+{%- if saltpad_settings.sentry_dsn is defined %}
+SENTRY_DSN = {{ saltpad_settings.sentry_dsn|yaml_squote }}
+{%- else %}
+# SENTRY_DSN = 'https://YOUR_SENTRY_DSN'
+{%- endif %}
+
+## set to True if salt-api uses a self-signed HTTPS certificate
+{%- if saltpad_settings.verify_ssl is defined %}
+VERIFY_SSL = {{ "True" if saltpad_settings.verify_ssl else "False" }}
+{%- else %}
+# VERIFY_SSL = False
+{%- endif %}
+
+## listener address (for test purposes only - for production
+## deployments, use a WSGI server)
+{%- if saltpad_settings.host is defined %}
+HOST = {{ saltpad_settings.test_host|yaml_squote }}
+{%- else %}
+# HOST = "0.0.0.0"
+{%- endif %}
+
+## salt external auth module (defaults to pam)
+{%- if saltpad_settings.external_auth_module is defined %}
+EAUTH = {{ saltpad_settings.external_auth_module|yaml_squote }}
+{%- else %}
+# EAUTH = "pam"
+{%- endif %}
+
+#### Local Variables:
+#### mode: python
+#### python-indent-offset: 4
+#### End:
+
+#### LOCAL_SETTINGS.PY ends here.
