@@ -3,3 +3,6 @@
 saltpad:
   pkg.installed:
     - pkgs: {{ saltpad_settings.packages|yaml }}
+  git.latest:
+    - name: {{ saltpad_settings.git_repo }}
+    - target: {{ saltpad_settings.prefix }}
