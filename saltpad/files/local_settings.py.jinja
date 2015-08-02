@@ -29,10 +29,10 @@ VERIFY_SSL = {{ "True" if saltpad_settings.verify_ssl else "False" }}
 # VERIFY_SSL = False
 {%- endif %}
 
-## listener address (for test purposes only - for production
-## deployments, use a WSGI server)
+## listener address (for test purposes only---use a WSGI server in
+## production deployments)
 {%- if saltpad_settings.host is defined %}
-HOST = {{ saltpad_settings.test_host|yaml_squote }}
+HOST = {{ saltpad_settings.host|yaml_squote }}
 {%- else %}
 # HOST = "0.0.0.0"
 {%- endif %}
