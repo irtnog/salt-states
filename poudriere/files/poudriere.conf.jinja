@@ -154,3 +154,5 @@ URL_BASE={{ salt['pillar.get']('poudriere:url_base', 'http://www.example.com/pou
 # This defines the how long (in seconds) before a command is considered to
 # be in a runaway state for having no output on stdout. Default: 7200
 #NOHANG_TIME=7200
+
+GIT_URL={{ salt['pillar.get']('poudriere:git_url', 'https://github.com/freebsd/freebsd-ports.git') }}
