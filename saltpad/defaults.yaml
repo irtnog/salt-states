@@ -3,6 +3,12 @@ saltpad:
     - python-pip
     - python-virtualenv
     - python-werkzeug
+    - python-jinja2
+    - python-flask
+    - python-flask-wtf
+    - python-requests
+    - python-pymongo
+    - python-six
   git_repo: https://github.com/tinyclues/saltpad.git
   prefix: /opt/saltpad
   user: www

@@ -2,7 +2,9 @@
 
 {% set distro_map = salt['grains.filter_by']({
     'Debian':  {},
-    'FreeBSD': { 'packages': [ 'py27-pip', 'py27-virtualenv', 'py27-werkzeug', ], },
+    'FreeBSD': { 'packages': [ 'py27-pip', 'py27-virtualenv', 'py27-werkzeug',
+                               'py27-Jinja2', 'py27-Flask', 'py27-Flask-WTF',
+                               'py27-requests', 'py27-pymongo', 'py27-six', ], },
     'RedHat':  {},
   }, merge=salt['pillar.get']('saltpad:lookup')) %}
 
