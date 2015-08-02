@@ -144,7 +144,7 @@ NO_PACKAGE_BUILDING=yes
 # Define as the URL that your POUDRIERE_DATA/logs is hosted at
 # This will be used for giving URL hints to the HTML output when
 # scheduling and starting builds
-URL_BASE={{ salt['pillar.get']('poudriere:url_base', 'http://www.example.com/poudriere/') }}
+URL_BASE={{ salt['pillar.get']('poudriere:url_base', 'https://www.example.com/poudriere/') }}
 
 
 # This defines the max time (in seconds) that a command may run for a build
