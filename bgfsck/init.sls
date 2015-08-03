@@ -1,7 +1,7 @@
 {% if grains['os_family'] == 'FreeBSD' %}
 
 bgfsck:
-  service.disabled:
+  service.disabled
 
 rc_conf_bgfsck_settings:
   file.accumulated:
