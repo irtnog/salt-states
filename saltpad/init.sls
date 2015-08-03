@@ -13,3 +13,11 @@ saltpad:
     - user: {{ saltpad_settings.user }}
     - group: {{ saltpad_settings.group }}
     - mode: 400
+
+saltpad_wsgi:
+  file.managed:
+    - name: {{ saltpad_settings.prefix }}/saltpad.wsgi
+    - source: salt://saltpad/files/saltpad.wsgi
+    - user: {{ saltpad_settings.user }}
+    - group: {{ saltpad_settings.group }}
+    - mode: 644
