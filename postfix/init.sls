@@ -40,7 +40,7 @@ postfix_master.cf:
   file.blockreplace:
     - name: {{ postfix_settings.prefix }}/etc/postfix/master.cf
     - append_if_not_found: True
-      - content: |
+    - content: |
         {% for entry in postfix_settings.master -%}
         {{ entry }}
         {% else -%}
