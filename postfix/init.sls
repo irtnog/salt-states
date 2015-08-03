@@ -54,8 +54,10 @@ postfix_master.cf:
 postmap_{{ type }}_{{ map }}:
   file.managed:
     - name: {{ postfix_settings.prefix }}/etc/postfix/{{ map }}
+    {% if type == 'file' -%}
+    - contents: {{ entries|yaml_encode }}
+    {% else -%}
     - contents: |
-        {% if entries is mapping -%}
         {% for entry in entries -%}
         {% if entry is mapping -%}
         {% for key, value in entry.items() -%}
@@ -73,9 +75,7 @@ postmap_{{ type }}_{{ map }}:
         {% else -%}
         ## Nothing to see here.  Move along.
         {%- endfor %}
-        {% else -%}
-        {{ entries|yaml }}
-        {%- endif %}
+    {%- endif %}
     - user: root
     - group: 0
     - mode: 640
