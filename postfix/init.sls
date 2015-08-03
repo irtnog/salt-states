@@ -55,6 +55,7 @@ postmap_{{ type }}_{{ map }}:
   file.managed:
     - name: {{ postfix_settings.prefix }}/etc/postfix/{{ map }}
     - contents: |
+        {% if entries is mapping -%}
         {% for entry in entries -%}
         {% if entry is mapping -%}
         {% for key, value in entry.items() -%}
@@ -72,6 +73,9 @@ postmap_{{ type }}_{{ map }}:
         {% else -%}
         ## Nothing to see here.  Move along.
         {%- endfor %}
+        {% else -%}
+        {{ entries|yaml }}
+        {%- endif %}
     - user: root
     - group: 0
     - mode: 640
