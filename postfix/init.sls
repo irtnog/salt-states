@@ -66,9 +66,9 @@ postmap_{{ type }}_{{ map }}:
         {{ key }} = {{ value | join(', ') }}
         {% endif -%}
         {% endfor -%}
-        {%- else %}
+        {% else -%}
         {{ entry }}
-        {% endif %}
+        {% endif -%}
         {% else -%}
         ## Nothing to see here.  Move along.
         {%- endfor %}
