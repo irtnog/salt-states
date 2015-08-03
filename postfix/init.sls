@@ -19,10 +19,10 @@ postfix_main.cf:
         {% for entry in postfix_settings.main -%}
         {% if entry is mapping -%}
         {% for key, value in entry.items() -%}
-        {% if value is string or value is number -%}
-        {{ key }} = {{ value }}
-        {% elif value is sameas True or value is sameas False -%}
+        {% if value == True or value == False -%}
         {{ key }} = {{ "yes" if value else "no" }}
+        {% elif value is string or value is number -%}
+        {{ key }} = {{ value }}
         {% elif value is iterable -%}
         {{ key }} = {{ value | join(', ') }}
         {% endif -%}
@@ -58,10 +58,10 @@ postmap_{{ type }}_{{ map }}:
         {% for entry in entries -%}
         {% if entry is mapping -%}
         {% for key, value in entry.items() -%}
-        {% if value is string or value is number -%}
-        {{ key }} = {{ value }}
-        {% elif value is sameas True or value is sameas False -%}
+        {% if value == True or value == False -%}
         {{ key }} = {{ "yes" if value else "no" }}
+        {% elif value is string or value is number -%}
+        {{ key }} = {{ value }}
         {% elif value is iterable -%}
         {{ key }} = {{ value | join(', ') }}
         {% endif -%}
