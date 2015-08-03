@@ -40,7 +40,7 @@ postfix_master.cf:
   file.blockreplace:
     - name: {{ postfix_settings.prefix }}/etc/postfix/master.cf
     - append_if_not_found: True
-    - content: |
+      - content: |
         {% for entry in postfix_settings.master -%}
         {{ entry }}
         {% else -%}
@@ -54,7 +54,7 @@ postfix_master.cf:
 postmap_{{ type }}_{{ map }}:
   file.managed:
     - name: {{ postfix_settings.prefix }}/etc/postfix/{{ map }}
-    - content: |
+    - contents: |
         {% for entry in entries -%}
         {% if entry is mapping -%}
         {% for key, value in entry.items() -%}
@@ -95,7 +95,7 @@ postfix_mailer.conf:
     - user: root
     - group: 0
     - mode: 444
-    - content: |
+    - contents: |
         sendmail   /usr/local/sbin/sendmail
         send-mail  /usr/local/sbin/sendmail
         mailq      /usr/local/sbin/sendmail
