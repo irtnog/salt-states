@@ -643,8 +643,8 @@ production:
 
   'I@environment:production and I@role:mail-relay':
     - match: compound
-    - amavisd
-    - clamav
+    # - amavisd
+    # - clamav
 
   'I@environment:production and I@role:devstack':
     - match: compound
