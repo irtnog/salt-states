@@ -17,13 +17,13 @@ clamd_conf:
     - name: {{ clamav_settings.clamd_conf }}
     - contents: |
         {% for key, value in clamav_settings.clamd.items() -%}
-          {% if value == True or value == False -%}
-            {{ key }} {{ "yes" if value else "no" }}
-          {% else -%}
-            {{ key }} {{ value }}
-          {% endif -%}
+        {% if value == True or value == False -%}
+        {{ key }} {{ "yes" if value else "no" }}
         {% else -%}
-          ## Nothing to see here.  Move along.
+        {{ key }} {{ value }}
+        {% endif -%}
+        {% else -%}
+        ## Nothing to see here.  Move along.
         {%- endfor %}
     - user: root
     - group: 0
@@ -36,13 +36,13 @@ freshclam_conf:
     - name: {{ clamav_settings.freshclam_conf }}
     - contents: |
         {% for key, value in clamav_settings.freshclam.items() -%}
-          {% if value == True or value == False -%}
-            {{ key }} {{ "yes" if value else "no" }}
-          {% else -%}
-            {{ key }} {{ value }}
-          {% endif -%}
+        {% if value == True or value == False -%}
+        {{ key }} {{ "yes" if value else "no" }}
         {% else -%}
-          ## Nothing to see here.  Move along.
+        {{ key }} {{ value }}
+        {% endif -%}
+        {% else -%}
+        ## Nothing to see here.  Move along.
         {%- endfor %}
     - user: root
     - group: 0
