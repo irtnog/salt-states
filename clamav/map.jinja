@@ -19,14 +19,33 @@
                  'clamd_conf': '/usr/local/etc/clamd.conf',
                  'freshclam_conf': '/usr/local/etc/freshclam.conf',
                  'clamd': {
+                   'LogFile': '/var/log/clamav/clamd.log',
+                   'PidFile': '/var/run/clamav/clamd.pid',
                    'DatabaseDirectory': '/var/db/clamav',
+                   'LocalSocket': '/var/run/clamav/clamd.sock',
+                   'FixStaleSocket': 'yes',
+                   'User': 'clamav',
+                   'ScanMail': 'yes',
                  },
                  'freshclam': {
-                   'DatabaseDirectory': '/var/db/clamav',
+                   'UpdateLogFile': '/var/log/clamav/freshclam.log',
+                   'PidFile': '/var/run/clamav/freshclam.pid',
+                   'DatabaseOwner': 'clamav',
+                   'DatabaseMirror': 'database.clamav.net',
+                   'NotifyClamd': '/usr/local/etc/clamd.conf',
                  },
                },
     'RedHat':  { 'clamd_conf': '/etc/clamd.d/scan.conf',
-                 'freshclam_conf': '/etc/freshclam.conf', },
+                 'freshclam_conf': '/etc/freshclam.conf',
+                 'clamd': {
+                   'LogSyslog': 'yes',
+                   'User': 'clamscan',
+                 },
+                 'clamd': {
+                   'LogSyslog': 'yes',
+                   'User': 'clamscan',
+                 },
+               },
   }, merge=salt['pillar.get']('clamav:lookup')) %}
 
 {% do default_settings.clamav.update(distro_map) %}
