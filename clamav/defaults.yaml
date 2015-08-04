@@ -1,8 +1,6 @@
 clamav:
   packages: []
   services: []
-  user: clamav
-  group: clamav
   dbdir: /var/lib/clamav
   clamd_conf: /etc/clamav/clamd.conf
   freshclam_conf: /etc/clamav/freshclam.conf
