@@ -6,7 +6,7 @@ clamav:
   freshclam_conf: /etc/clamav/freshclam.conf
 
   clamd:
-    AllowSupplementaryGroup: yes
+    AllowSupplementaryGroups: yes
 
   freshclam:
-    AllowSupplementaryGroup: yes
+    AllowSupplementaryGroups: yes
