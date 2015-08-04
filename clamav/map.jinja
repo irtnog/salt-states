@@ -5,7 +5,7 @@
   {% set os_map = salt['grains.filter_by']({
         '7': { 'packages': [ 'clamav-scanner-systemd', 'clamav-update', ],
                'services': [ 'clamd@scan', ], },
-      }, grains='osmajorrelease') %}
+      }, grain='osmajorrelease') %}
 {% endif %}
 
 {% do default_settings.clamav.update(os_map) if os_map is defined %}
