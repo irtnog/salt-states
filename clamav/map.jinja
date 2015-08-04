@@ -1,0 +1,22 @@
+{% import_yaml "clamav/defaults.yaml" as default_settings %}
+
+{% set distro_map = salt['grains.filter_by']({
+      'FreeBSD': { 'packages': [ 'clamav', ],
+                   'services': [ 'clamav-clamd', 'clamav-freshclam', ],
+                   'dbdir': '/var/db/clamav',
+                   'clamd_conf': '/usr/local/etc/clamd.conf',
+                   'freshclam_conf': '/usr/local/etc/freshclam.conf',
+                   'clamd': {
+                     'DatabaseDirectory': '/var/db/clamav',
+                   },
+                   'freshclam': {
+                     'DatabaseDirectory': '/var/db/clamav',
+                   },
+                 },
+      'RedHat':  { 'packages': [ 'clamav', 'clamav-server', 'clamav-update', ],
+                   'services': [ 'clamd.amavisd', 'freshclam', ], },
+    }, merge=salt['pillar.get']('clamav:lookup')) %}
+
+{% do default_settings.clamav.update(distro_map) %}
+
+{% set clamav_settings = salt['pillar.get']('clamav', default=default_settings.clamav, merge=True) %}

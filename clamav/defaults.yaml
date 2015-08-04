@@ -1,0 +1,27 @@
+clamav:
+  packages: []
+  services: []
+  user: clamav
+  group: clamav
+  dbdir: /var/lib/clamav
+  clamd_conf: /etc/clamav/clamd.conf
+  freshclam_conf: /etc/clamav/freshclam.conf
+
+  clamd:
+    LogFile: /var/log/clamav/clamd.log
+    PidFile: /var/run/clamav/clamd.pid
+    DatabaseDirectory: /var/lib/clamav
+    LocalSocket: /var/run/clamav/clamd.sock
+    FixStaleSocket: yes
+    User: clamav
+    AllowSupplementaryGroups: yes
+    ScanMail: yes
+
+  freshclam:
+    DatabaseDirectory: /var/lib/clamav
+    UpdateLogFile: /var/lib/clamav/freshclam.log
+    PidFile: /var/run/clamav/freshclam.pid
+    DatabaseOwner: clamav
+    AllowSupplementaryGroups: yes
+    DatabaseMirror: database.clamav.net
+    NotifyClamd: /etc/clamav/clamd.conf
