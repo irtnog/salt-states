@@ -11,10 +11,11 @@ def __virtual__():
     return 'irtnog'
 
 def dictupdate(dest, upd):
-    'Recursively merge dictionaries
+    '''Recursively merge dictionaries
 
-Contrast with Python\'s dict.update() method, which only performs a
-shallow merge.'
+    Contrast with Python\'s dict.update() method, which only performs
+    a shallow merge.
+    '''
     return salt.utils.dictupdate.update(dest, upd)
 
 #### _MODULES/IRTNOG.PY ends here.
