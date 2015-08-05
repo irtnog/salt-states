@@ -58,6 +58,6 @@
                },
   }, merge=salt['pillar.get']('apache:lookup')) %}
 
-{% do default_settings.apache.update(distro_map) %}
+{% do salt['irtnog.dictupdate'](default_settings.apache, distro_map) %}
 
 {% set apache_settings = salt['pillar.get']('apache', default=default_settings.apache, merge=True) %}
