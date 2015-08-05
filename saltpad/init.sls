@@ -16,7 +16,7 @@ saltpad:
 
 saltpad_wsgi:
   file.managed:
-    - name: {{ saltpad_settings.prefix }}/saltpad.wsgi
+    - name: {{ saltpad_settings.prefix }}/saltpad.wsgi.jinja
     - source: salt://saltpad/files/saltpad.wsgi
     - template: jinja
     - user: {{ saltpad_settings.user }}
