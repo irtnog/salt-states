@@ -1,0 +1,9 @@
+{%- from "saltpad/map.jinja" import saltpad_settings with context -%}
+#### SALTPAD.WSGI --- mod_wsgi startup code for SaltPad
+
+import sys
+sys.path.insert(0, {{ saltpad_settings.prefix|yaml_squote }})
+
+from saltpad.app import app as application
+
+#### SALTPAD.WSGI ends here.
