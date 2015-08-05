@@ -1,0 +1,56 @@
+## for example, on a FreeBSD Salt master, using the apache SLS from
+## this repository and the salt.master SLS from salt-formula
+apache:
+  packages:
+    - apache24
+    - ap24-mod_wsgi3
+  modules:
+    wsgi: {}
+  sites:
+    salt.example.com:
+      VirtualHost *:80:
+        ServerName: salt.example.com
+        ServerAdmin: webmaster@example.com
+        IfModule redirect_module:
+          Redirect permanent /: http://salt.example.com:443/
+      IfModule ssl_module:
+        VirtualHost *:443:
+          ServerName: salt.example.com
+          ServerAdmin: webmaster@example.com
+          SSLEngine: on
+          SSLCertificateFile: /usr/local/etc/apache24/certs/salt.example.com.cert
+          SSLCertificateKeyFile: /usr/local/etc/apache24/keys/salt.example.com.key
+          IfModule wsgi_module:
+            WSGIDaemonProcess: saltpad user=www group=www processes=2 threads=5
+            WSGIScriptAlias: /saltpad /opt/saltpad/saltpad.wsgi
+            Directory /opt/saltpad:
+              WSGIProcessGroup: saltpad
+              WSGIApplicationGroup: '%{GLOBAL}'
+              Require all: granted
+  keypairs:
+    salt.example.com:
+      certificate: |
+        -----BEGIN CERTIFICATE-----
+        ...
+        -----END CERTIFICATE-----
+      key: |
+        -----BEGIN PRIVATE KEY-----
+        ...
+        -----END PRIVATE KEY-----
+
+salt:
+  master:
+    rest_cherrypy:
+      port: 8000
+      ssl_crt: /usr/local/etc/apache24/certs/salt.example.com.cert
+      ssl_key: /usr/local/etc/apache24/keys/salt.example.com.key
+    external_auth:
+      pam:
+        someuser:
+          - .*
+          - '@runner'
+          - '@wheel'
+
+saltpad:
+  api_url: https://salt.example.com:8000
+  secret_key: '...'             # generate using os.urandom(24)
