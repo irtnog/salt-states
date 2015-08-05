@@ -13,3 +13,4 @@ saltpad:
   prefix: /opt/saltpad
   user: www
   group: www
+  log_file: /var/log/saltpad.log

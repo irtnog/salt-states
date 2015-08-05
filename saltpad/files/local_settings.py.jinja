@@ -44,6 +44,13 @@ EAUTH = {{ saltpad_settings.external_auth_module|yaml_squote }}
 # EAUTH = "pam"
 {%- endif %}
 
+## application log
+{%- if saltpad_settings.log_file is defined %}
+LOG_FILE = {{ saltpad_settings.log_file|yaml_squote }}
+{%- else %}
+# LOG_FILE = "saltpad.log"
+{%- endif %}
+
 #### Local Variables:
 #### mode: python
 #### python-indent-offset: 4

@@ -21,3 +21,10 @@ saltpad_wsgi:
     - user: {{ saltpad_settings.user }}
     - group: {{ saltpad_settings.group }}
     - mode: 644
+
+saltpad_log_file:
+  file.managed:
+    - name: {{ saltpad_settings.log_file }}
+    - user: {{ saltpad_settings.user }}
+    - group: {{ saltpad_settings.group }}
+    - mode: 640
