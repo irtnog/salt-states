@@ -33,9 +33,9 @@
         {{ '<%s>'|format(directive)|indent(width, True) }}
         {{ render_apache_config(argument, width+4) }}
         {{ '</%s>'|format(directive.split()[0])|indent(width, True) }}
-      {% elif argument is sequence and argument is not string %}
+      {% elif argument is sequence and is not string %}
         {{ '%s "%s"'|format(directive, argument|join('" "'),)|indent(width, True) }}
-      {% elif argument is sameas True or argument is sameas False %}
+      {% elif argument == True or argument == False %}
         {{ '%s %s'|format(directive, "on" if argument else "off")|indent(width, True) }}
       {% else %}
         {{ '%s %s'|format(directive, argument)|indent(width, True) }}
