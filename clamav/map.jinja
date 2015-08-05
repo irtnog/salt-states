@@ -8,7 +8,7 @@
       }, grain='osmajorrelease') %}
 {% endif %}
 
-{% do default_settings.clamav.update(os_map) if os_map is defined %}
+{% do salt['utils.dictupdate.update'](default_settings.clamav, os_map) if os_map is defined %}
 
 {# handle the usual operating system family-specific settings (plus
  # 'lookup' overrides) second #}
@@ -48,6 +48,6 @@
                },
   }, merge=salt['pillar.get']('clamav:lookup')) %}
 
-{% do default_settings.clamav.update(distro_map) %}
+{% do salt['utils.dictupdate.update'](default_settings.clamav, distro_map) %}
 
 {% set clamav_settings = salt['pillar.get']('clamav', default=default_settings.clamav, merge=True) %}
