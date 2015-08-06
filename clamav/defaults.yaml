@@ -4,9 +4,5 @@ clamav:
   dbdir: /var/lib/clamav
   clamd_conf: /etc/clamav/clamd.conf
   freshclam_conf: /etc/clamav/freshclam.conf
-
-  clamd:
-    AllowSupplementaryGroups: yes
-
-  freshclam:
-    AllowSupplementaryGroups: yes
+  clamd: {}
+  freshclam: {}

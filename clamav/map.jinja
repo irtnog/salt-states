@@ -1,17 +1,5 @@
 {% import_yaml "clamav/defaults.yaml" as default_settings %}
 
-{# handle operating system version-specific settings first #}
-{% if grains['os_family'] == 'RedHat' %}
-  {% set os_map = salt['grains.filter_by']({
-        '7': { 'packages': [ 'clamav-scanner-systemd', 'clamav-update', ],
-               'services': [ 'clamd@scan', ], },
-      }, grain='osmajorrelease') %}
-{% endif %}
-
-{% do salt['irtnog.dictupdate'](default_settings.clamav, os_map) if os_map is defined %}
-
-{# handle the usual operating system family-specific settings (plus
- # 'lookup' overrides) second #}
 {% set distro_map = salt['grains.filter_by']({
     'FreeBSD': { 'packages': [ 'clamav', ],
                  'services': [ 'clamav-clamd', 'clamav-freshclam', ],
@@ -25,6 +13,7 @@
                    'LocalSocket': '/var/run/clamav/clamd.sock',
                    'FixStaleSocket': 'yes',
                    'User': 'clamav',
+                   'AllowSupplementaryGroups': 'yes',
                    'ScanMail': 'yes',
                  },
                  'freshclam': {
@@ -33,6 +22,7 @@
                    'DatabaseOwner': 'clamav',
                    'DatabaseMirror': 'database.clamav.net',
                    'NotifyClamd': '/usr/local/etc/clamd.conf',
+                   'AllowSupplementaryGroups': yes,
                  },
                },
     'RedHat':  { 'clamd_conf': '/etc/clamd.d/scan.conf',
@@ -40,14 +30,25 @@
                  'clamd': {
                    'LogSyslog': 'yes',
                    'User': 'clamscan',
+                   'AllowSupplementaryGroups': yes,
                  },
                  'freshclam': {
                    'LogSyslog': 'yes',
                    'User': 'clamscan',
+                   'AllowSupplementaryGroups': yes,
                  },
                },
   }, merge=salt['pillar.get']('clamav:lookup')) %}
 
-{% do salt['irtnog.dictupdate'](default_settings.clamav, distro_map) %}
+{% if grains['os_family'] == 'RedHat' %}
+  {% set os_map = salt['grains.filter_by']({
+        '7': { 'packages': [ 'clamav-scanner-systemd', 'clamav-update', ],
+               'services': [ 'clamd@scan', ], },
+      }, grain='osmajorrelease') %}
+{% endif %}
+
+{% do default_settings.clamav.update(os_map) if os_map is defined %}
+
+{% do default_settings.clamav.update(distro_map) %}
 
 {% set clamav_settings = salt['pillar.get']('clamav', default=default_settings.clamav, merge=True) %}
