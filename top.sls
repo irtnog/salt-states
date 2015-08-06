@@ -62,8 +62,7 @@ base:
 ### The development environment is a sandbox which requires no prior
 ### change authorization.  Instead, this environment is where system
 ### administrators must prototype any proposed changes to the
-### production environment.  This environment corresponds with the
-### development branch of this repository.
+### production environment.
 
 development:
   'I@environment:development and G@os_family:Debian':
@@ -210,10 +209,9 @@ development:
 #### TESTING ENVIRONMENT
 ####
 
-### The testing environment is for semi-automated non-production
-### functional, performance, or quality assurance testing.  This
-### environment corresponds with the testing branch of this
-### repository.
+### The testing environment is for semi-automated, semi-permanent,
+### non-production system testing (e.g., performance testing,
+### usability testing, stress testing, and so on).
 
 testing:
   'I@environment:testing and G@os_family:Debian':
@@ -359,161 +357,28 @@ testing:
 #### STAGING ENVIRONMENT
 ####
 
-### The staging environment is for pre-production user acceptance
-### testing.  Any changes to SLS modules or SLS targeting in this
-### environment require Change Advisory Board approval.  This
-### environment corresponds with the staging branch of this
-### repository.
+### The staging environment is not used for SLS module targeting;
+### instead, it holds any proposed changes to the production
+### environment.  After SLS module changes pass system testing, they
+### must be merged into the staging environment.  Once merged, these
+### changes may be deployed to production servers for final user
+### acceptance testing via `state.sls` (with `saltenv` set to
+### `staging`).  Only accepted changes may then be merged into the
+### production environment.
 
 staging:
-  'I@environment:staging and G@os_family:Debian':
-    - match: compound
-    - salt.minion               # general settings
-    - accounting
-    - auditd
-    - banners
-    - cron
-    - fail2ban
-    - fail2ban.config
-    - git
-    - sysctl
-    - tcsh
-    - rpcbind                   # NFS client
-    - amd
-    ## NOTE: in-kernel lockd
-    - statd
-    - mounts
-    - symlinks
-    - pki                       # domain membership
-    - kerberos5
-    - ypbind
-    - pam_mkhomedir
-    - postfix                   # email
-    - aliases
-
-  'I@environment:staging and G@os_family:FreeBSD':
-    - match: compound
-    - poudriere.client          # local pkgng repo
-    - accounting
-    - amd
-    - aliases
-    - auditd
-    - banners
-    - bgfsck
-    - cron
-    - fail2ban
-    - fail2ban.config
-    - git
-    - hyperv.guest
-    - lockd
-    - mounts
-    - moused
-    - nfsclient
-    - ntp.ng
-    - kerberos5
-    - periodic
-    - pki
-    - postfix
-    - rc
-    - rpcbind
-    - salt.minion
-    - snmp
-    - snmp.conf
-    - snmp.options
-    - statd
-    - sudoers
-    - symlinks
-    - sysctl
-    - syscons
-    - users
-    - ypbind
-
-  'I@environment:staging and G@os_family:RedHat':
-    - match: compound
-    - epel
-    - nux.dextop                # requires EPEL
-    - nux.misc
-    - accounting
-    - aliases
-    - amd
-    - auditd
-    - banners
-    - cron
-    - fail2ban
-    - fail2ban.config
-    - git
-    - hyperv.guest
-    - kerberos5
-    - lockd
-    - mounts
-    - nfsclient
-    - ntp.ng
-    - pam_mkhomedir
-    - pki
-    - postfix
-    - rpcbind
-    - salt.minion
-    - selinux
-    - snmp
-    - snmp.conf
-    - snmp.options
-    - statd
-    - sudoers
-    - symlinks
-    - sysctl
-    - tcsh
-    - users
-    - ypbind
-
-  'I@environment:staging and G@os_family:Windows':
-    - match: compound
-    - git
-    - gpmc
-    - powershell
-    - rsat
-    - salt.minion
-    - schannel
-    - users
-    - web-mgmt-tools
-
-  'I@environment:staging and I@role:salt-master':
-    - match: compound
-    - apache
-    - salt.cloud
-    - salt.formulas
-    - salt.gitfs.gitpython
-    - salt.master
-    - salt.ssh
-    - poudriere
-
-  'I@environment:staging and I@role:mail-relay':
-    - match: compound
-    - amavisd
-    - clamav
-
-  'I@environment:staging and I@role:devstack':
-    - match: compound
-    - apache
-    - mysql
-    - mysql.python
-    - mysql.remove_test_database
-    - rabbitmq
-    - rabbitmq.config
-    - openstack.repo
-
-  'I@environment:staging and I@role:minecraft':
-    - match: compound
-    - spigotmc
+  '*':
+    []                          # no-op
 
 ####
 #### PRODUCTION ENVIRONMENT
 ####
 
-### The production environment includes all user-facing services and
-### related resources.  Any changes to SLS modules or SLS targeting in
-### this environment require Change Advisory Board approval.  This
-### environment corresponds with the production branch of this
-### repository.
+### The production environment reflects the current configuration of
+### all user-facing services and related resources.  Should user
+### acceptance testing of staged changes fail, production servers may
+### be returned to their original configuration by running a highstate
+### job.
 
 production:
   'I@environment:production and G@os_family:Debian':
