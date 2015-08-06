@@ -21,27 +21,14 @@
 ###     clone the formula on the master via the salt.formulas SLS, and
 ###     again to ensure that the master is configured properly.
 
-### NOTE: Use the "git checkout" command to merge approved changes
-### from the development branch to the testing, staging, or production
-### branches.  Make sure to include the approved change request ID in
-### the commit message.  For example, the following commands would
-### merge the development version of the "salt" directory (including
-### its subdirectories) with the testing branch:
-###
-###   $ git checkout testing
-###   $ git checkout development salt
-###   $ git commit -m "Begin testing modified Salt config per #1234"
-###
-### To merge file/directory deletions, use the "git cherry-pick"
-### command.  For example, if commit aaaa00 is of a file being
-### deleted in the development branch, the following will apply that
-### commit to testing:
+### NOTE: Use the "git merge" or "git cherry-pick" command to merge
+### approved changes from the development branch to the testing,
+### staging, or production branches.  For example, if commit aaaa00 is
+### of a file being deleted in the development branch, the following
+### will apply that commit to testing:
 ###
 ###   $ git checkout testing
 ###   $ git cherry-pick -x aaaa00
-###
-### In both cases the changelog and commit messages will be imported
-### into the target branch.
 
 ####
 #### BASE ENVIRONMENT
