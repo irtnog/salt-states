@@ -68,37 +68,40 @@ base:
 development:
   'I@environment:development and G@os_family:Debian':
     - match: compound
-    - salt.minion               # general settings
     - accounting
+    - aliases
     - auditd
     - banners
     - cron
     - fail2ban
     - fail2ban.config
     - git
-    - openssh
-    - sysctl
-    - tcsh
-    - rpcbind                   # NFS client
-    - amd
-    ## NOTE: in-kernel lockd
-    - statd
-    - mounts
-    - symlinks
-    - pki                       # domain membership
     - kerberos5
-    - ypbind
+    - mounts
+    - nis.client
+    - nfs.client
+    - ntp.ng
+    - openssh
     - pam_mkhomedir
-    - postfix                   # email
-    - aliases
+    - pki
+    - postfix
+    - tcsh
+    - salt.minion
+    - snmp
+    - snmp.conf
+    - snmp.options
+    - sudoers
+    - symlinks
+    - sysctl
+    - users
 
   'I@environment:development and G@os_family:FreeBSD':
     - match: compound
     - poudriere.client          # local pkgng repo
-    - rc                        # general settings
-    - sysctl
+    - rc
     - periodic
     - accounting
+    - aliases
     - auditd
     - banners
     - bgfsck
@@ -106,9 +109,16 @@ development:
     - fail2ban
     - fail2ban.config
     - git
+    - kerberos5
     - mounts
     - moused
+    - nfs.client
+    - nis.client
+    - ntp.ng
     - openssh
+    - pam_mkhomedir
+    - pki
+    - postfix
     - salt.minion
     - snmp
     - snmp.conf
@@ -116,35 +126,31 @@ development:
     - sudoers
     - symlinks
     - syscons
+    - sysctl
     - users
-    - rpcbind                   # NFS client
-    - nfsclient
-    - lockd
-    - statd
-    - amd
-    - pki                       # domain membership
-    - ntp.ng
-    - kerberos5
-    - ypbind
-    - postfix                   # email
-    - aliases
 
   'I@environment:development and G@os_family:RedHat':
     - match: compound
     - epel
     - nux.dextop                # requires EPEL
     - nux.misc
-    - salt.minion               # general settings
     - accounting
+    - aliases
     - auditd
     - banners
     - cron
     - fail2ban
     - fail2ban.config
     - git
+    - kerberos5
     - mounts
+    - nfs.client
+    - ntp.ng
     - openssh
+    - pam_mkhomedir
     - pki
+    - postfix
+    - salt.minion
     - selinux
     - snmp
     - snmp.conf
@@ -154,17 +160,6 @@ development:
     - sysctl
     - tcsh
     - users
-    - rpcbind                   # NFS client
-    - amd
-    - nfsclient
-    - lockd
-    - statd
-    - ntp.ng                    # domain membership
-    - kerberos5
-    - ypbind
-    - pam_mkhomedir
-    - postfix                   # email
-    - aliases
 
   'I@environment:development and G@os_family:Windows':
     - match: compound
