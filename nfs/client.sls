@@ -3,7 +3,7 @@
 nfs_client:
   pkg.installed:
     - pkgs: {{ nfs_client_settings.packages|yaml }}
-  services.running:
+  service.running:
     - names: {{ nfs_client_settings.services|yaml }}
     - enable: True
     - watch:
