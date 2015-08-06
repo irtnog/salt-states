@@ -1,6 +1,6 @@
-ypbind:
+nis:
   domain: example.com
-  servers:
+  ypservers:
     - 192.0.2.100
     - 198.51.100.200
     - 203.0.113.30

@@ -1,0 +1,7 @@
+nis:
+  client_packages: []
+  client_services: []
+  server_packages: []
+  server_services: []
+  domain: example.com
+  ypservers: []

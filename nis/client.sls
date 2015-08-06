@@ -1,29 +1,28 @@
-{% from "ypbind/map.jinja" import ypbind_settings with context %}
+{% from "nis/map.jinja" import nis_settings with context %}
 
 ypbind:
   pkg.installed:
-    - pkgs: {{ ypbind_settings.packages|yaml }}
-  file.blockreplace:
+    - pkgs: {{ nis_settings.client_packages|yaml }}
+  file.managed:
     - name: /etc/yp.conf
-    - marker_start: '#-- {{ sls }}: start managed zone --'
-    - marker_end:   '#-- {{ sls }}: end managed zone --'
-    - append_if_not_found: True
-    - content: |
-      {%- for server in ypbind_settings.servers %}
-        domain {{ ypbind_settings.domain }} server {{ server }}
+    - contents: |
+      {%- for server in nis_settings.ypservers %}
+        domain {{ nis_settings.ypdomain }} server {{ server }}
       {% else %}
-        domain {{ ypbind_settings.domain }} broadcast
+        domain {{ nis_settings.ypdomain }} broadcast
       {%- endfor %}
+    - user: root
+    - group: 0
+    - mode: 444
     - require:
       - pkg: ypbind
   service.running:
-    - name: {{ ypbind_settings.service }}
+    - names: {{ nis_settings.client_services|yaml }}
     - enable: True
     - watch:
       - pkg: ypbind
-      - file: ypbind
+      - file: ypbind_config
       - file: ypbind_domainname
-      - service: rpcbind
 
 ypbind_domainname:
   file.managed:
@@ -31,7 +30,7 @@ ypbind_domainname:
     - user: root
     - group: 0
     - mode: 444
-    - contents: {{ ypbind_settings.domain }}
+    - contents: {{ nis_settings.domain }}
     - require:
       - pkg: ypbind
 
@@ -40,7 +39,7 @@ rc_conf_nisdomainname:
   file.accumulated:
     - name: rc_conf_accumulator
     - filename: /etc/rc.conf
-    - text: nisdomainname="{{ ypbind_settings.domain }}"
+    - text: nisdomainname="{{ nis_settings.domain }}"
     - require_in:
       - file: rc_conf
     - watch_in:
@@ -57,7 +56,7 @@ rc_conf_nis_client_flags:
   file.accumulated:
     - name: rc_conf_accumulator
     - filename: /etc/rc.conf
-    - text: nis_client_flags="-m -S {{ ypbind_settings.domain }}{%- for server in ypbind_settings.servers -%},{{ server }}{%- endfor -%}"
+    - text: nis_client_flags="-m -S {{ nis_settings.domain }}{%- for server in nis_settings.ypservers -%},{{ server }}{%- endfor -%}"
     - require_in:
       - file: rc_conf
     - watch_in:
@@ -82,7 +81,7 @@ ypbind_authconfig:
     - require:
       - pkg: ypbind
   cmd.run:
-    - name: authconfig --update --enablenis --nisdomain={{ ypbind_settings.domain }} {% if ypbind_settings.servers is iterable %}--nisserver={{ ypbind_settings.servers[0] }}{% endif %}
+    - name: authconfig --update --enablenis --nisdomain={{ nis_settings.domain }} {% if nis_settings.ypservers is iterable %}--nisserver={{ nis_settings.ypservers[0] }}{% endif %}
     - watch:
       - pkg: ypbind
       - file: ypbind
@@ -95,8 +94,8 @@ ypbind_authconfig:
 ypbind_network:
   file.replace:
     - name: /etc/sysconfig/network
-    - pattern: ^NISDOMAIN=(?!{{ ypbind_settings.domain }}).*
-    - repl: NISDOMAIN={{ ypbind_settings.domain }}
+    - pattern: ^NISDOMAIN=(?!{{ nis_settings.domain }}).*
+    - repl: NISDOMAIN={{ nis_settings.domain }}
     - append_if_not_found: True
     - require:
       - pkg: ypbind
