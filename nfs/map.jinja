@@ -18,4 +18,4 @@
 
 {% do default_settings.nfs.update(distro_map) %}
 
-{% set nfs_settings = salt['pillar.get']('nfs, default=default_settings.nfs, merge=True) %}
+{% set nfs_settings = salt['pillar.get']('nfs', default=default_settings.nfs, merge=True) %}
