@@ -1,7 +1,5 @@
 nfs:
-  client:
-    packages: []
-    services: []
-  server:
-    packages: []
-    services: []
+  client_packages: []
+  client_services: []
+  server_packages: []
+  server_services: []
