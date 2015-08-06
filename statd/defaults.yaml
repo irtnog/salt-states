@@ -1,3 +1,0 @@
-statd:
-  packages: []
-  service: statd

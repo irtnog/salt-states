@@ -1,0 +1,33 @@
+{% import_yaml "nfs/defaults.yaml" as default_settings %}
+
+{% set distro_map = salt['grains.filter_by']({
+    'Debian': {
+      'client': { 'packages': [ 'rpcbind', 'nfs-common', 'autofs', ],
+                  'services': [ 'rpcbind', 'rpc-statd', 'autofs' ], },
+    },
+    'FreeBSD': {
+      'client': { 'packages': [],
+                  'services': [ 'rpcbind', 'nfsclient', 'lockd', 'statd', 'amd' ], },
+    },
+    'RedHat': {
+      'client': { 'packages': [ 'rpcbind', 'nfs-utils', 'autofs', ], },
+    },
+  }, merge=salt['pillar.get']('nfs:lookup')) %}
+
+{% if grains['os_family'] == 'RedHat' %}
+  {% set os_map = salt['grains.filter_by']({
+      '7': {
+        'client': { 'services': [ 'rpcbind', 'nfs-lock', 'autofs', ], },
+      },
+      'default': {
+        'client': { 'services': [ 'rpcbind', 'nfslock', 'autofs', ], },
+      },
+    }, grain='osmajorrelease') %}
+{% endif %}
+
+{% do salt['irtnog.dictupdate'](default_settings.nfs, os_map) if os_map is defined %}
+
+{% do salt['irtnog.dictupdate'](default_settings.nfs, distro_map) %}
+
+{% set nfs_client_settings = salt['pillar.get']('nfs:client', default=default_settings.nfs.client, merge=True) %}
+{% set nfs_server_settings = salt['pillar.get']('nfs:server', default=default_settings.nfs.server, merge=True) %}

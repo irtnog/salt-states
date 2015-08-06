@@ -1,4 +1,0 @@
-rpcbind:
-  packages:
-    - rpcbind
-  service: rpcbind
