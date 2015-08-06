@@ -58,3 +58,14 @@ freshclam:
     - require:
       - file: freshclam_conf
       - file: clamd_conf
+
+{% if grains['os_family'] == 'RedHat' %}
+/etc/sysconfig/freshclam:
+  file.replace:
+    - pattern: '^.*REMOVE ME.*$'
+    - repl: ''
+    - flags:
+      - DOTALL
+    - require:
+      - pkg: clamav
+{% endif %}
