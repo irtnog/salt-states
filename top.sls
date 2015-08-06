@@ -203,35 +203,40 @@ development:
 testing:
   'I@environment:testing and G@os_family:Debian':
     - match: compound
-    - salt.minion               # general settings
     - accounting
+    - aliases
     - auditd
     - banners
     - cron
     - fail2ban
     - fail2ban.config
     - git
-    - sysctl
-    - tcsh
-    - rpcbind                   # NFS client
-    - amd
-    ## NOTE: in-kernel lockd
-    - statd
-    - mounts
-    - symlinks
-    - pki                       # domain membership
     - kerberos5
-    - ypbind
+    - mounts
+    - nis.client
+    - nfs.client
+    - ntp.ng
+    - openssh
     - pam_mkhomedir
-    - postfix                   # email
-    - aliases
+    - pki
+    - postfix
+    - tcsh
+    - salt.minion
+    - snmp
+    - snmp.conf
+    - snmp.options
+    - sudoers
+    - symlinks
+    - sysctl
+    - users
 
   'I@environment:testing and G@os_family:FreeBSD':
     - match: compound
     - poudriere.client          # local pkgng repo
+    - rc
+    - periodic
     - accounting
     - aliases
-    - amd
     - auditd
     - banners
     - bgfsck
@@ -239,29 +244,25 @@ testing:
     - fail2ban
     - fail2ban.config
     - git
-    - hyperv.guest
-    - lockd
+    - kerberos5
     - mounts
     - moused
-    - nfsclient
+    - nfs.client
+    - nis.client
     - ntp.ng
-    - kerberos5
-    - periodic
+    - openssh
+    - pam_mkhomedir
     - pki
     - postfix
-    - rc
-    - rpcbind
     - salt.minion
     - snmp
     - snmp.conf
     - snmp.options
-    - statd
     - sudoers
     - symlinks
-    - sysctl
     - syscons
+    - sysctl
     - users
-    - ypbind
 
   'I@environment:testing and G@os_family:RedHat':
     - match: compound
@@ -270,35 +271,30 @@ testing:
     - nux.misc
     - accounting
     - aliases
-    - amd
     - auditd
     - banners
     - cron
     - fail2ban
     - fail2ban.config
     - git
-    - hyperv.guest
     - kerberos5
-    - lockd
     - mounts
-    - nfsclient
+    - nfs.client
     - ntp.ng
+    - openssh
     - pam_mkhomedir
     - pki
     - postfix
-    - rpcbind
     - salt.minion
     - selinux
     - snmp
     - snmp.conf
     - snmp.options
-    - statd
     - sudoers
     - symlinks
     - sysctl
     - tcsh
     - users
-    - ypbind
 
   'I@environment:testing and G@os_family:Windows':
     - match: compound
@@ -370,35 +366,40 @@ staging:
 production:
   'I@environment:production and G@os_family:Debian':
     - match: compound
-    - salt.minion               # general settings
     - accounting
+    - aliases
     - auditd
     - banners
     - cron
     - fail2ban
     - fail2ban.config
     - git
-    - sysctl
-    - tcsh
-    - rpcbind                   # NFS client
-    - amd
-    ## NOTE: in-kernel lockd
-    - statd
-    - mounts
-    - symlinks
-    - pki                       # domain membership
     - kerberos5
-    - ypbind
+    - mounts
+    - nis.client
+    - nfs.client
+    - ntp.ng
+    - openssh
     - pam_mkhomedir
-    - postfix                   # email
-    - aliases
+    - pki
+    - postfix
+    - tcsh
+    - salt.minion
+    - snmp
+    - snmp.conf
+    - snmp.options
+    - sudoers
+    - symlinks
+    - sysctl
+    - users
 
   'I@environment:production and G@os_family:FreeBSD':
     - match: compound
     - poudriere.client          # local pkgng repo
+    - rc
+    - periodic
     - accounting
     - aliases
-    - amd
     - auditd
     - banners
     - bgfsck
@@ -406,29 +407,25 @@ production:
     - fail2ban
     - fail2ban.config
     - git
-    - hyperv.guest
-    - lockd
+    - kerberos5
     - mounts
     - moused
-    - nfsclient
+    - nfs.client
+    - nis.client
     - ntp.ng
-    - kerberos5
-    - periodic
+    - openssh
+    - pam_mkhomedir
     - pki
     - postfix
-    - rc
-    - rpcbind
     - salt.minion
     - snmp
     - snmp.conf
     - snmp.options
-    - statd
     - sudoers
     - symlinks
-    - sysctl
     - syscons
+    - sysctl
     - users
-    - ypbind
 
   'I@environment:production and G@os_family:RedHat':
     - match: compound
@@ -437,35 +434,30 @@ production:
     - nux.misc
     - accounting
     - aliases
-    - amd
     - auditd
     - banners
     - cron
     - fail2ban
     - fail2ban.config
     - git
-    - hyperv.guest
     - kerberos5
-    - lockd
     - mounts
-    - nfsclient
+    - nfs.client
     - ntp.ng
+    - openssh
     - pam_mkhomedir
     - pki
     - postfix
-    - rpcbind
     - salt.minion
     - selinux
     - snmp
     - snmp.conf
     - snmp.options
-    - statd
     - sudoers
     - symlinks
     - sysctl
     - tcsh
     - users
-    - ypbind
 
   'I@environment:production and G@os_family:Windows':
     - match: compound
