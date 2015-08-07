@@ -11,7 +11,7 @@ periodic_conf:
     - append_if_not_found: True
     - backup: False
     - require:
-      - cmd: create_periodic_conf
+        - cmd: create_periodic_conf
 
 periodic_conf_general_settings:
   file.accumulated:
@@ -32,6 +32,6 @@ periodic_conf_general_settings:
         monthly_status_security_inline="YES"
         security_status_chkportsum_enable="YES"
     - require_in:
-      - file: periodic_conf
+        - file: periodic_conf
 
 {% endif %}

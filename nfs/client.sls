@@ -7,4 +7,4 @@ nfs_client:
     - names: {{ nfs_settings.client_services|yaml }}
     - enable: True
     - watch:
-      - pkg: nfs_client
+        - pkg: nfs_client

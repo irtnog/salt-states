@@ -4,8 +4,8 @@
 poudriere:
   pkg.installed:
     - pkgs:
-      - poudriere
-      - ccache
+        - poudriere
+        - ccache
 
 poudriere_pkglist:
   file.managed:
@@ -45,7 +45,7 @@ poudriere_make_conf:
     - group: 0
     - mode: 644
     - require:
-      - pkg: poudriere
+        - pkg: poudriere
 
 poudriere_conf:
   file.managed:
@@ -56,10 +56,10 @@ poudriere_conf:
     - group: 0
     - mode: 644
     - require:
-      - pkg: poudriere
-      - file: poudriere_repo_key
-      - file: poudriere_svn_cert
-      - file: poudriere_make_conf
+        - pkg: poudriere
+        - file: poudriere_repo_key
+        - file: poudriere_svn_cert
+        - file: poudriere_make_conf
 
 # poudriere_ports_create:
 #   cmd:
@@ -67,7 +67,7 @@ poudriere_conf:
 #     - name: poudriere ports -c -m svn+https
 #     - onlyif: test ! -d /var/poudriere/ports/default/
 #     - require:
-#       - file: poudriere_conf
+#         - file: poudriere_conf
 
 # poudriere_ports_update:
 #   cron:
@@ -79,7 +79,7 @@ poudriere_conf:
 #     - hour: random
 #     - dayweek: 3
 #     - require:
-#       - cmd: poudriere_ports_create
+#         - cmd: poudriere_ports_create
 
 # poudriere_jail_freebsd_10_x86_32_create:
 #   cmd:
@@ -87,7 +87,7 @@ poudriere_conf:
 #     - name: poudriere jail -c -j freebsd:10:x86:32 -v 10.0-RELEASE -a i386
 #     - onlyif: test ! -d /var/poudriere/jails/freebsd:10:x86:32
 #     - require:
-#       - file: poudriere_conf
+#         - file: poudriere_conf
 
 # poudriere_jail_freebsd_10_x86_32_update:
 #   cron:
@@ -99,7 +99,7 @@ poudriere_conf:
 #     - hour: random
 #     - dayweek: 3
 #     - require:
-#       - cmd: poudriere_jail_freebsd_10_x86_32_create
+#         - cmd: poudriere_jail_freebsd_10_x86_32_create
 
 # poudriere_jail_freebsd_10_x86_64_create:
 #   cmd:
@@ -107,7 +107,7 @@ poudriere_conf:
 #     - name: poudriere jail -c -j freebsd:10:x86:64 -v 10.0-RELEASE -a amd64
 #     - onlyif: test ! -d /var/poudriere/jails/freebsd:10:x86:64
 #     - require:
-#       - file: poudriere_conf
+#         - file: poudriere_conf
 
 # poudriere_jail_freebsd_10_x86_64_update:
 #   cron:
@@ -119,7 +119,7 @@ poudriere_conf:
 #     - hour: random
 #     - dayweek: 3
 #     - require:
-#       - cmd: poudriere_jail_freebsd_10_x86_64_create
+#         - cmd: poudriere_jail_freebsd_10_x86_64_create
 
 # poudriere_bulk:
 #   cron:
@@ -131,9 +131,9 @@ poudriere_conf:
 #     - hour: random
 #     - dayweek: 6
 #     - require:
-#       - cmd: poudriere_ports_create
-#       - cmd: poudriere_jail_freebsd_10_x86_32_create
-#       - cmd: poudriere_jail_freebsd_10_x86_64_create
+#         - cmd: poudriere_ports_create
+#         - cmd: poudriere_jail_freebsd_10_x86_32_create
+#         - cmd: poudriere_jail_freebsd_10_x86_64_create
 
 # poudriere_bulk_freebsd_10_x86_32:
 #   cron:
@@ -145,9 +145,9 @@ poudriere_conf:
 #     - hour: random
 #     - dayweek: 6
 #     - require:
-#       - cmd: poudriere_ports_create
-#       - cmd: poudriere_jail_freebsd_10_x86_32_create
-#       - cmd: poudriere_jail_freebsd_10_x86_64_create
+#         - cmd: poudriere_ports_create
+#         - cmd: poudriere_jail_freebsd_10_x86_32_create
+#         - cmd: poudriere_jail_freebsd_10_x86_64_create
 
 # poudriere_bulk_freebsd_10_x86_64:
 #   cron:
@@ -159,8 +159,8 @@ poudriere_conf:
 #     - hour: random
 #     - dayweek: 6
 #     - require:
-#       - cmd: poudriere_ports_create
-#       - cmd: poudriere_jail_freebsd_10_x86_32_create
-#       - cmd: poudriere_jail_freebsd_10_x86_64_create
+#         - cmd: poudriere_ports_create
+#         - cmd: poudriere_jail_freebsd_10_x86_32_create
+#         - cmd: poudriere_jail_freebsd_10_x86_64_create
 
 {% endif %}

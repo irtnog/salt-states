@@ -9,6 +9,6 @@ rc_conf_bgfsck_settings:
     - filename: /etc/rc.conf
     - text: 'fsck_y_enable="YES"'
     - require_in:
-      - file: rc_conf
+        - file: rc_conf
 
 {% endif %}

@@ -7,10 +7,10 @@ clamav:
     - names: {{ clamav_settings.services|yaml }}
     - enable: True
     - watch:
-      - pkg: clamav
-      - file: clamd_conf
-      - file: freshclam_conf
-      - cmd: freshclam
+        - pkg: clamav
+        - file: clamd_conf
+        - file: freshclam_conf
+        - cmd: freshclam
 
 clamd_conf:
   file.managed:
@@ -29,7 +29,7 @@ clamd_conf:
     - group: 0
     - mode: 444
     - require:
-      - pkg: clamav
+        - pkg: clamav
 
 freshclam_conf:
   file.managed:
@@ -48,7 +48,7 @@ freshclam_conf:
     - group: 0
     - mode: 444
     - require:
-      - pkg: clamav
+        - pkg: clamav
 
 freshclam:
   cmd.run:
@@ -56,8 +56,8 @@ freshclam:
                 -o ! -s {{ clamav_settings.dbdir }}/daily.cvd \
                 -o ! -s {{ clamav_settings.dbdir }}/bytecode.cvd
     - require:
-      - file: freshclam_conf
-      - file: clamd_conf
+        - file: freshclam_conf
+        - file: clamd_conf
 
 {% if grains['os_family'] == 'RedHat' %}
 /etc/sysconfig/freshclam:
@@ -65,7 +65,7 @@ freshclam:
     - pattern: '^.*REMOVE ME.*$'
     - repl: ''
     - flags:
-      - DOTALL
+        - DOTALL
     - require:
-      - pkg: clamav
+        - pkg: clamav
 {% endif %}

@@ -7,9 +7,9 @@ postfix:
     - name: {{ postfix_settings.service }}
     - enable: True
     - watch:
-      - pkg: postfix
-      - file: postfix_main.cf
-      - file: postfix_master.cf
+        - pkg: postfix
+        - file: postfix_main.cf
+        - file: postfix_master.cf
 
 postfix_main.cf:
   file.blockreplace:
@@ -34,7 +34,7 @@ postfix_main.cf:
         ## Nothing to see here.  Move along.
         {%- endfor %}
     - require:
-      - pkg: postfix
+        - pkg: postfix
 
 postfix_master.cf:
   file.blockreplace:
@@ -47,7 +47,7 @@ postfix_master.cf:
         ## Nothing to see here.  Move along.
         {%- endfor %}
     - require:
-      - pkg: postfix
+        - pkg: postfix
 
 {% for type, maps in postfix_settings.maps.items() %}
 {% for map, entries in maps.items() %}
@@ -80,15 +80,15 @@ postmap_{{ type }}_{{ map }}:
     - group: 0
     - mode: 640
     - require:
-      - file: postfix_main.cf
+        - file: postfix_main.cf
   {% if type in ['btree', 'cdb', 'dbm', 'hash', 'fail', 'sdbm'] %}
   cmd.wait:
     - name: postmap {{ type }}:{{ postfix_settings.prefix }}/etc/postfix/{{ map }}
     - watch:
-      - file: postmap_{{ type }}_{{ map }}
+        - file: postmap_{{ type }}_{{ map }}
   {% endif %}
     - require_in:
-      - service: postfix
+        - service: postfix
 {% endfor %}
 {% endfor %}
 
@@ -105,7 +105,7 @@ postfix_mailer.conf:
         mailq      /usr/local/sbin/sendmail
         newaliases /usr/local/sbin/sendmail
     - require:
-      - file: postfix_main.cf
+        - file: postfix_main.cf
     - require_in:
-      - service: postfix
+        - service: postfix
 {% endif %}

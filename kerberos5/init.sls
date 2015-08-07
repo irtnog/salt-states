@@ -12,7 +12,7 @@ kerberos5:
     - group: 0
     - mode: 444
     - require:
-      - pkg: kerberos5
+        - pkg: kerberos5
 
 {% if grains['os_family'] == 'FreeBSD' %}
 {% for file in ['ftp', 'imap', 'other', 'pop3', 'sshd', 'system', 'telnetd', 'xdm'] %}
@@ -28,7 +28,7 @@ pam_service_ftpd:
   cmd.wait:
     - name: ln -f /etc/pam.d/ftp /etc/pam.d/ftpd
     - watch:
-      - file: pam_service_ftp
+        - file: pam_service_ftp
 
 {% elif grains['os_family'] == 'RedHat' %}
 kerberos5_authconfig:
@@ -38,13 +38,13 @@ kerberos5_authconfig:
     - repl: USEKERBEROS=yes
     - append_if_not_found: True
     - require:
-      - pkg: kerberos5
+        - pkg: kerberos5
   cmd.wait:
     - name: authconfig --updateall
     - watch:
-      - pkg: kerberos5
-      - file: kerberos5
-      - file: kerberos5_authconfig
+        - pkg: kerberos5
+        - file: kerberos5
+        - file: kerberos5_authconfig
 
 {% elif grains['os_family'] == 'Solaris' %}
 ## TODO

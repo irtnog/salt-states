@@ -22,7 +22,7 @@ rc_conf_syscons_{{ setting }}:
     - filename: /etc/rc.conf
     - text: '{{ setting }}="{{ value }}"'
     - require_in:
-      - file: rc_conf
+        - file: rc_conf
   {% endif %}
 {% endfor %}
 {% endif %}

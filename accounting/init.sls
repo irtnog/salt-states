@@ -7,7 +7,7 @@ accounting:
     - name: {{ accounting_settings.service}}
     - enable: True
     - watch:
-      - pkg: accounting
+        - pkg: accounting
 
 {% if grains.os_family == 'FreeBSD' %}
 periodic_conf_accounting_settings:
@@ -16,9 +16,9 @@ periodic_conf_accounting_settings:
     - filename: /etc/periodic.conf
     - text: 'daily_accounting_compress="YES"'
     - require:
-      - service: accounting
+        - service: accounting
     - require_in:
-      - file: periodic_conf
+        - file: periodic_conf
 
 {% elif grains.os_family == 'Solaris' %}
 flow_accounting:
@@ -29,7 +29,7 @@ flow_accounting:
     - name: svc:/system/extended-accounting:flow
     - enable: True
     - require:
-      - cmd: flow_accounting
+        - cmd: flow_accounting
 
 net_accounting:
   cmd.run:
@@ -39,14 +39,14 @@ net_accounting:
     - name: svc:/system/extended-accounting:net
     - enable: True
     - require:
-      - cmd: net_accounting
+        - cmd: net_accounting
 
 process_accounting:
   cmd.run:
     - name: acctadm -e extended -f /var/adm/exacct/proc process
     - onlyif: acctadm | grep "Process accounting: inactive"
     - require_in:
-      - service: accounting
+        - service: accounting
 
 task_accounting:
   cmd.run:
@@ -56,5 +56,5 @@ task_accounting:
     - name: svc:/system/extended-accounting:task
     - enable: True
     - require:
-      - cmd: task_accounting
+        - cmd: task_accounting
 {% endif %}

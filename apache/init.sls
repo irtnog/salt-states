@@ -11,17 +11,17 @@ apache:
     - group: {{ apache_settings.group }}
     - mode: 400                 # in case configs include sensitive data
     - require:
-      - pkg: apache
+        - pkg: apache
   service.running:
     - name: {{ apache_settings.service }}
     - enable: True
     - require:
-      - file: apache_dbdir
-      - file: apache_certdir
-      - file: apache_keydir
+        - file: apache_dbdir
+        - file: apache_certdir
+        - file: apache_keydir
     - watch:
-      - pkg: apache
-      - file: apache
+        - pkg: apache
+        - file: apache
 
 apache_dbdir:
   file.directory:
@@ -30,7 +30,7 @@ apache_dbdir:
     - group: {{ apache_settings.group }}
     - dir_mode: 710
     - require:
-      - pkg: apache
+        - pkg: apache
 
 apache_certdir:
   file.directory:
@@ -39,7 +39,7 @@ apache_certdir:
     - group: {{ apache_settings.group }}
     - dir_mode: 755
     - require:
-      - pkg: apache
+        - pkg: apache
 
 apache_keydir:
   file.directory:
@@ -48,7 +48,7 @@ apache_keydir:
     - group: {{ apache_settings.group }}
     - dir_mode: 750
     - require:
-      - pkg: apache
+        - pkg: apache
 
 {% for module in apache_settings.modules if apache_settings.modules[module] is mapping %}
 apache_{{ module }}_module:
@@ -62,9 +62,9 @@ apache_{{ module }}_module:
     - group: {{ apache_settings.group }}
     - mode: 400                 # in case configs include sensitive data
     - require:
-      - pkg: apache
+        - pkg: apache
     - watch_in:
-      - service: apache
+        - service: apache
 {% endfor %}
 
 {% for keypair in apache_settings.keypairs %}
@@ -80,10 +80,10 @@ apache_{{ keypair }}_certificate:
     - group: {{ apache_settings.group }}
     - mode: 444
     - require:
-      - pkg: apache
-      - file: apache_certdir
+        - pkg: apache
+        - file: apache_certdir
     - watch_in:
-      - service: apache
+        - service: apache
 {% endif %}
 {% if apache_settings.keypairs[keypair].key is defined %}
 apache_{{ keypair }}_key:
@@ -97,10 +97,10 @@ apache_{{ keypair }}_key:
     - group: {{ apache_settings.group }}
     - mode: 400
     - require:
-      - pkg: apache
-      - file: apache_keydir
+        - pkg: apache
+        - file: apache_keydir
     - watch_in:
-      - service: apache
+        - service: apache
 {% endif %}
 {% endfor %}
 
@@ -116,7 +116,7 @@ apache_{{ site }}_site:
     - group: {{ apache_settings.group }}
     - mode: 400                 # in case configs include sensitive data
     - require:
-      - pkg: apache
+        - pkg: apache
     - watch_in:
-      - service: apache
+        - service: apache
 {% endfor %}

@@ -17,7 +17,7 @@ hyperv_fb_modprobe_conf:
     - mode: 444
     - source: salt://hyperv/files/hyperv_fb.conf
     - require:
-      - pkg: hyperv
+        - pkg: hyperv
 
 ## The Hyper-V Dynamic Memory feature requres additional configuration
 ## on CentOS and Red Hat Enterprise Linux in order to enable Hot-Add
@@ -30,5 +30,5 @@ hyperv_memory_udev_balloon_rules:
     - mode: 444
     - source: salt://hyperv/files/100-balloon.rules
     - require:
-      - pkg: hyperv
+        - pkg: hyperv
 {% endif %}

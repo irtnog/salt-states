@@ -12,7 +12,7 @@
     - target: /etc/issue
     - force: True
     - require:
-      - file: /etc/issue
+        - file: /etc/issue
 
 /etc/motd:
   file.managed:

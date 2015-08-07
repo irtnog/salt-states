@@ -7,4 +7,4 @@ auditd:
     - name: {{ auditd_settings.service }}
     - enable: True
     - watch:
-      - pkg: auditd
+        - pkg: auditd

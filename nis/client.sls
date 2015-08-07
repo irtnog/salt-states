@@ -15,14 +15,14 @@ ypbind:
     - group: 0
     - mode: 444
     - require:
-      - pkg: ypbind
+        - pkg: ypbind
   service.running:
     - names: {{ nis_settings.client_services|yaml }}
     - enable: True
     - watch:
-      - pkg: ypbind
-      - file: ypbind_config
-      - file: ypbind_domainname
+        - pkg: ypbind
+        - file: ypbind_config
+        - file: ypbind_domainname
 
 ypbind_domainname:
   file.managed:
@@ -32,7 +32,7 @@ ypbind_domainname:
     - mode: 444
     - contents: {{ nis_settings.domain }}
     - require:
-      - pkg: ypbind
+        - pkg: ypbind
 
 {% if grains['os_family'] == 'FreeBSD' %}
 rc_conf_nisdomainname:
@@ -41,9 +41,9 @@ rc_conf_nisdomainname:
     - filename: /etc/rc.conf
     - text: nisdomainname="{{ nis_settings.domain }}"
     - require_in:
-      - file: rc_conf
+        - file: rc_conf
     - watch_in:
-      - service: ypbind
+        - service: ypbind
 
 nisdomain:
   service.running:
@@ -58,9 +58,9 @@ rc_conf_nis_client_flags:
     - filename: /etc/rc.conf
     - text: nis_client_flags="-m -S {{ nis_settings.domain }}{%- for server in nis_settings.ypservers -%},{{ server }}{%- endfor -%}"
     - require_in:
-      - file: rc_conf
+        - file: rc_conf
     - watch_in:
-      - service: ypbind
+        - service: ypbind
 
 ypbind_passwd:
   cmd.script:
@@ -79,17 +79,17 @@ ypbind_authconfig:
     - repl: USENIS=yes
     - append_if_not_found: True
     - require:
-      - pkg: ypbind
+        - pkg: ypbind
   cmd.run:
     - name: authconfig --update --enablenis --nisdomain={{ nis_settings.domain }} {% if nis_settings.ypservers is iterable %}--nisserver={{ nis_settings.ypservers[0] }}{% endif %}
     - watch:
-      - pkg: ypbind
-      - file: ypbind
-      - file: ypbind_domainname
-      - file: ypbind_authconfig
-      - file: ypbind_network
+        - pkg: ypbind
+        - file: ypbind
+        - file: ypbind_domainname
+        - file: ypbind_authconfig
+        - file: ypbind_network
     - watch_in:
-      - service: ypbind
+        - service: ypbind
 
 ypbind_network:
   file.replace:
@@ -98,5 +98,5 @@ ypbind_network:
     - repl: NISDOMAIN={{ nis_settings.domain }}
     - append_if_not_found: True
     - require:
-      - pkg: ypbind
+        - pkg: ypbind
 {% endif %}

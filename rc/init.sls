@@ -12,6 +12,6 @@ rc_conf_general_settings:
     - filename: /etc/rc.conf
     - text: 'clear_tmp_enable="YES"'
     - require_in:
-      - file: rc_conf
+        - file: rc_conf
 
 {% endif %}

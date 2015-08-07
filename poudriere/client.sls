@@ -38,7 +38,7 @@ enable_freebsd_repo::
   file.absent:
     - name: /usr/local/etc/pkg/repos/FreeBSD.conf
     - require:
-      - file: install_irtnog_repo
+        - file: install_irtnog_repo
 {% else %}
 disable_freebsd_repo:
   file.managed:
@@ -50,7 +50,7 @@ disable_freebsd_repo:
     - dir_mode: 755
     - source: salt://poudriere/files/FreeBSD.conf
     - require:
-      - file: install_irtnog_repo
+        - file: install_irtnog_repo
 {% endif %}
 
 {% endif %}

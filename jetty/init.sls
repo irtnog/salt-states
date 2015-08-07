@@ -10,12 +10,12 @@ jetty:
     - home: {{ jetty_settings.prefix }}
     - password: '*'
     - require:
-      - pkg: jetty
+        - pkg: jetty
   service.running:
     - name: {{ jetty_settings.service }}
     - enable: True
     - watch:
-      - pkg: jetty
+        - pkg: jetty
 
 ## TODO: configuration via Pillar à la the apache SLS
 
@@ -29,40 +29,40 @@ jetty_dist:
     - archive_format: tar
     - if_missing: {{ jetty_settings.prefix }}/../{{ jetty_settings.dist.folder }}
     - watch_in:
-      - service: jetty
+        - service: jetty
   file.directory:
     - name: {{ jetty_settings.prefix }}/../{{ jetty_settings.dist.folder }}
     - user: {{ jetty_settings.user }}
     - group: {{ jetty_settings.group }}
     - recurse:
-      - user
-      - group
+        - user
+        - group
     - require:
-      - user: jetty
+        - user: jetty
     - watch:
-      - archive: jetty_dist
+        - archive: jetty_dist
     - watch_in:
-      - service: jetty
+        - service: jetty
   mount.mounted:
     - name: {{ jetty_settings.prefix }}
     {% if grains['kernel'] == 'Linux' %}
     - device: overlay
     - fstype: overlay
     - opts:
-      - lowerdir={{ jetty_settings.prefix }}/../{{ jetty_settings.dist.folder }}
-      - upperdir={{ jetty_settings.prefix }}
-      - workdir={{ jetty_settings.prefix }}/../.jetty_workdir
+        - lowerdir={{ jetty_settings.prefix }}/../{{ jetty_settings.dist.folder }}
+        - upperdir={{ jetty_settings.prefix }}
+        - workdir={{ jetty_settings.prefix }}/../.jetty_workdir
     {% else %}
     - device: {{ jetty_settings.prefix }}/../{{ jetty_settings.dist.folder }}
     - fstype: union
     {% endif %}
     - require:
-      - file: jetty_dist
-      {% if grains['kernel'] == 'Linux' %}
-      - file: jetty_workdir
-      {% endif %}
+        - file: jetty_dist
+        {% if grains['kernel'] == 'Linux' %}
+        - file: jetty_workdir
+        {% endif %}
     - watch_in:
-      - service: jetty
+        - service: jetty
 
 {% if grains['kernel'] == 'Linux' %}
 jetty_workdir:
@@ -77,7 +77,7 @@ jetty_unit_file:
     - source: salt://jetty/files/jetty.service.jinja
     - template: jinja
     - require_in:
-      - service: jetty
+        - service: jetty
 {% else %}
 # TODO: SMF, SysV, and rc-style init scripts
 {% endif %}

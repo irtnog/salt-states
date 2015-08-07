@@ -17,26 +17,26 @@ policycoreutils-python:
     - group: root
     - mode: 600
     - require:
-      - file: /etc/selinux/targeted/local
+        - file: /etc/selinux/targeted/local
 
 checkmodule -M -m -o local.mod local.te:
   cmd.wait:
     - cwd: /etc/selinux/targeted/local
     - require:
-      - pkg: policycoreutils-python
+        - pkg: policycoreutils-python
     - watch:
-      - file: /etc/selinux/targeted/local/local.te
+        - file: /etc/selinux/targeted/local/local.te
 
 semodule_package -o local.pp -m local.mod:
   cmd.wait:
     - cwd: /etc/selinux/targeted/local
     - watch:
-      - cmd: checkmodule -M -m -o local.mod local.te
+        - cmd: checkmodule -M -m -o local.mod local.te
 
 semodule -i local.pp:
   cmd.wait:
     - cwd: /etc/selinux/targeted/local
     - watch:
-      - cmd: semodule_package -o local.pp -m local.mod
+        - cmd: semodule_package -o local.pp -m local.mod
 
 {% endif %}
