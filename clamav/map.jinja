@@ -34,8 +34,7 @@
                  },
                  'freshclam': {
                    'LogSyslog': 'yes',
-                   'User': 'clamscan',
-                   'AllowSupplementaryGroups': yes,
+                   'DatabaseMirror': 'database.clamav.net',
                  },
                },
   }, merge=salt['pillar.get']('clamav:lookup')) %}
