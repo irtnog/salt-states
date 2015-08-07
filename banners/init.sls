@@ -1,4 +1,4 @@
-{% if salt['grains.get']('os_family') in ['FreeBSD', 'RedHat', 'Solaris', 'Ubuntu'] %}
+{% if salt['grains.get']('os_family') in ['Debian', 'FreeBSD', 'RedHat', 'Solaris'] %}
 
 /etc/issue:
   file.managed:
