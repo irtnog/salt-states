@@ -3,5 +3,5 @@ nis:
   client_services: []
   server_packages: []
   server_services: []
-  domain: example.com
+  ypdomain: example.com
   ypservers: []
