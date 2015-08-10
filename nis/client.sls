@@ -30,7 +30,7 @@ ypbind_domainname:
     - user: root
     - group: 0
     - mode: 444
-    - contents: {{ nis_settings.domain }}
+    - contents: {{ nis_settings.ypdomain }}
     - require:
         - pkg: ypbind
 
@@ -39,7 +39,7 @@ rc_conf_nisdomainname:
   file.accumulated:
     - name: rc_conf_accumulator
     - filename: /etc/rc.conf
-    - text: nisdomainname="{{ nis_settings.domain }}"
+    - text: nisdomainname="{{ nis_settings.ypdomain }}"
     - require_in:
         - file: rc_conf
     - watch_in:
@@ -56,7 +56,7 @@ rc_conf_nis_client_flags:
   file.accumulated:
     - name: rc_conf_accumulator
     - filename: /etc/rc.conf
-    - text: nis_client_flags="-m -S {{ nis_settings.domain }}{%- for server in nis_settings.ypservers -%},{{ server }}{%- endfor -%}"
+    - text: nis_client_flags="-m -S {{ nis_settings.ypdomain }}{%- for server in nis_settings.ypservers -%},{{ server }}{%- endfor -%}"
     - require_in:
         - file: rc_conf
     - watch_in:
@@ -81,7 +81,7 @@ ypbind_authconfig:
     - require:
         - pkg: ypbind
   cmd.run:
-    - name: authconfig --update --enablenis --nisdomain={{ nis_settings.domain }} {% if nis_settings.ypservers is iterable %}--nisserver={{ nis_settings.ypservers[0] }}{% endif %}
+    - name: authconfig --update --enablenis --nisdomain={{ nis_settings.ypdomain }} {% if nis_settings.ypservers is iterable %}--nisserver={{ nis_settings.ypservers[0] }}{% endif %}
     - watch:
         - pkg: ypbind
         - file: ypbind
@@ -94,8 +94,8 @@ ypbind_authconfig:
 ypbind_network:
   file.replace:
     - name: /etc/sysconfig/network
-    - pattern: ^NISDOMAIN=(?!{{ nis_settings.domain }}).*
-    - repl: NISDOMAIN={{ nis_settings.domain }}
+    - pattern: ^NISDOMAIN=(?!{{ nis_settings.ypdomain }}).*
+    - repl: NISDOMAIN={{ nis_settings.ypdomain }}
     - append_if_not_found: True
     - require:
         - pkg: ypbind
