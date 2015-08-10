@@ -21,7 +21,7 @@ ypbind:
     - enable: True
     - watch:
         - pkg: ypbind
-        - file: ypbind_config
+        - file: ypbind
         - file: ypbind_domainname
 
 ypbind_domainname:
