@@ -64,7 +64,7 @@ rc_conf_nis_client_flags:
 
 ypbind_passwd:
   cmd.script:
-    - name: salt://ypbind/files/freebsd-enable-nis-passwd-map.sh
+    - name: salt://nis/files/freebsd-enable-nis-passwd-map.sh
 
 ypbind_group:
   file.append:
