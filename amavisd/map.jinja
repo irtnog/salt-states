@@ -6,3 +6,6 @@
                  'conffile': '/usr/local/etc/amavisd.conf', },
   }, merge=salt['pillar.get']('amavisd:lookup')) %}
 
+{% do default_settings.amavisd.update(distro_map) %}
+
+{% set amavisd_settings = salt['pillar.get']('amavisd', default=default_settings.amavisd, merge=True) %}
