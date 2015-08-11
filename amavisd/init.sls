@@ -18,10 +18,6 @@ amavisd:
         - file: amavisd
 
 sa-update:
-  cmd.wait:
-    - watch:
-        - pkg: amavisd
-        - file: amavisd
   cron.present:
     - identifier: sa-update
     - name: 'env PATH="${PATH}:/usr/local/bin:/usr/local/sbin" chronic sa-update'
@@ -30,3 +26,6 @@ sa-update:
     - require:
         - pkg: amavisd
         - file: amavisd
+  cmd.wait:
+    - watch:
+        - cron: sa-update
