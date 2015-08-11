@@ -6,5 +6,8 @@ vscan:
   group.present:
     - addusers:
         - clamav
+    - require:
+        - pkg: amavisd
+        - pkg: clamav
     - watch_in:
         - service: clamav
