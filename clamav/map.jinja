@@ -22,7 +22,7 @@
                    'DatabaseOwner': 'clamav',
                    'DatabaseMirror': 'database.clamav.net',
                    'NotifyClamd': '/usr/local/etc/clamd.conf',
-                   'AllowSupplementaryGroups': yes,
+                   'AllowSupplementaryGroups': 'yes',
                  },
                },
     'RedHat':  { 'clamd_conf': '/etc/clamd.d/scan.conf',
@@ -30,7 +30,7 @@
                  'clamd': {
                    'LogSyslog': 'yes',
                    'User': 'clamscan',
-                   'AllowSupplementaryGroups': yes,
+                   'AllowSupplementaryGroups': 'yes',
                  },
                  'freshclam': {
                    'LogSyslog': 'yes',
