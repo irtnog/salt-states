@@ -177,6 +177,7 @@ development:
     - match: compound
     - amavisd
     - clamav
+    - clamav.amavisd
 
   'I@environment:development and I@role:devstack':
     - match: compound
@@ -321,6 +322,7 @@ testing:
     - match: compound
     - amavisd
     - clamav
+    - clamav.amavisd
 
   'I@environment:testing and I@role:devstack':
     - match: compound
@@ -482,8 +484,9 @@ production:
 
   'I@environment:production and I@role:mail-relay':
     - match: compound
-    # - amavisd
+    - amavisd
     - clamav
+    - clamav.amavisd
 
   'I@environment:production and I@role:devstack':
     - match: compound
