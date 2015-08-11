@@ -2,7 +2,7 @@
 
 {% set distro_map = salt['grains.filter_by']({
     'FreeBSD': { 'packages': [ 'amavisd-new', 'net-snmp', 'p5-DBD-SQLite', 'p5-Net-SNMP', 'spamass-rules', 'moreutils', ],
-                 'services': [ 'amavisd', 'amavisd-p0fanalyzer', 'amavisd-snmp', ],
+                 'services': [ 'amavisd', 'amavis-p0fanalyzer, 'amavisd-snmp', ],
                  'conffile': '/usr/local/etc/amavisd.conf', },
   }, merge=salt['pillar.get']('amavisd:lookup')) %}
 
