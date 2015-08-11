@@ -13,6 +13,8 @@ amavisd:
   service.running:
     - names: {{ amavisd_settings.services|yaml }}
     - enable: True
+    - require:
+        - cmd: sa-update
     - watch:
         - pkg: amavisd
         - file: amavisd
