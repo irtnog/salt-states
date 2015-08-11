@@ -2,7 +2,7 @@
 
 amavisd:
   pkg.installed:
-    - pkgs: {{ amavsid_settings.packages|yaml }}
+    - pkgs: {{ amavisd_settings.packages|yaml }}
   file.managed:
     - name: {{ amavisd_settings.conffile }}
     - source: salt://amavisd/files/amavisd.conf.jinja
