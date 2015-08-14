@@ -75,6 +75,9 @@ FL %{MULTIPART_FILE_LIMIT_EXCEEDED}'"
       SSLUseStapling: on
       SSLStaplingReturnResponderErrors: off
       SSLStaplingCache: shmcb:/var/lib/httpd/ocsp_gcache_data(51200)
+  envvars_file: ""
+  envvars:
+    OPENSSL_NO_DEFAULT_ZLIB: 1
   keypairs: {}
   sites: {}
 

@@ -22,6 +22,7 @@ apache:
     - watch:
         - pkg: apache
         - file: apache
+        - file: apache_envvars_file
 
 apache_dbdir:
   file.directory:
@@ -66,6 +67,17 @@ apache_{{ module }}_module:
     - watch_in:
         - service: apache
 {% endfor %}
+
+apache_envvars_file:
+  file.managed:
+    - name: {{ apache_settings.envvars_file }}
+    - source: salt://apache/files/envvars.env.jinja
+    - template: jinja
+    - user: {{ apache_settings.user }}
+    - group: {{ apache_settings.group }}
+    - mode: 400                 # in case configs include sensitive data
+    - require:
+        - pkg: apache
 
 {% for keypair in apache_settings.keypairs %}
 {% if apache_settings.keypairs[keypair].certificate is defined %}
