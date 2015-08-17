@@ -1,0 +1,19 @@
+webhooks:
+  packages:
+    - python-flask
+    - python-ipaddress
+    - python-requests
+  git_repo: https://github.com/carlos-jenkins/python-github-webhooks.git
+  prefix: /opt/webhooks
+  user: www
+  group: www
+
+  ## restrict app to be called only by GitHub IPs
+  github_ips_only: True
+
+  ## enforce HTTP response body signature with X-Hub-Signature
+  enforce_secret: ""            # do not enforce
+
+  ## return a JSON with the stdout, stderr, and exit code for each
+  ## executed hook, using the hook name as key
+  return_scripts_info: True

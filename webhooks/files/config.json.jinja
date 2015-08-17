@@ -1,0 +1,5 @@
+{%- from "webhooks/map.jinja" import webhooks_settings with context -%}
+{%- set config = { 'github_ips_only': webhooks_settings.github_ips_only,
+                   'enforce_secret': webhooks_settings.enforce_secret,
+                   'return_scripts_info': webhooks_settings.return_scripts_info, } -%}
+{{ config|json }}
