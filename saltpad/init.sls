@@ -13,6 +13,8 @@ saltpad:
     - user: {{ saltpad_settings.user }}
     - group: {{ saltpad_settings.group }}
     - mode: 400
+    - require:
+        - git: saltpad
 
 saltpad_wsgi:
   file.managed:
@@ -22,6 +24,8 @@ saltpad_wsgi:
     - user: {{ saltpad_settings.user }}
     - group: {{ saltpad_settings.group }}
     - mode: 644
+    - require:
+        - git: saltpad
 
 saltpad_log_file:
   file.managed:
