@@ -172,7 +172,6 @@ development:
     - salt.master
     - salt.ssh
     - poudriere
-    - webhooks
 
   'I@environment:development and I@role:mail-relay':
     - match: compound
@@ -318,7 +317,6 @@ testing:
     - salt.master
     - salt.ssh
     - poudriere
-    - webhooks
 
   'I@environment:testing and I@role:mail-relay':
     - match: compound
@@ -483,7 +481,6 @@ production:
     - salt.master
     - salt.ssh
     - poudriere
-    - webhooks
 
   'I@environment:production and I@role:mail-relay':
     - match: compound
