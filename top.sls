@@ -131,6 +131,7 @@ development:
     - kerberos5
     - mounts
     - nfs.client
+    - nis.client
     - ntp.ng
     - openssh
     - pam_mkhomedir
@@ -299,6 +300,7 @@ testing:
     - kerberos5
     - mounts
     - nfs.client
+    - nis.client
     - ntp.ng
     - openssh
     - pam_mkhomedir
@@ -463,6 +465,7 @@ production:
     - kerberos5
     - mounts
     - nfs.client
+    - nis.client
     - ntp.ng
     - openssh
     - pam_mkhomedir
