@@ -111,7 +111,7 @@ def run():
     ## default).  rest_cherrypy will not put the raw (unmodified)
     ## request body into `data['body']` if it receives URL-encoded
     ## form data, which breaks signature verification.
-    secret = {{ salt['pillar.get']('salt:github:hook_secret', "None") }}
+    secret = {{ salt['pillar.get']('salt:github:hook_secret', '')|yaml_squote }}
     if secret:
 
         ## Read out the signature and the name of the cryptographic
