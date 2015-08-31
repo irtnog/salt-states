@@ -5,7 +5,7 @@ apache:
     - pkgs: {{ apache_settings.packages|yaml }}
   file.managed:
     - name: {{ apache_settings.confdir }}_000_general.conf
-    - source: salt://apache/files/general.conf.jinja
+    - source: salt://apache/files/general.conf
     - template: jinja
     - user: {{ apache_settings.user }}
     - group: {{ apache_settings.group }}
@@ -55,7 +55,7 @@ apache_keydir:
 apache_{{ module }}_module:
   file.managed:
     - name: {{ apache_settings.confdir }}_{{ "%03d"|format(loop.index) }}_mod_{{ module }}.conf
-    - source: salt://apache/files/mod_template.conf.jinja
+    - source: salt://apache/files/mod_template.conf
     - template: jinja
     - context:
         module: {{ module }}
@@ -71,7 +71,7 @@ apache_{{ module }}_module:
 apache_envvars_file:
   file.managed:
     - name: {{ apache_settings.envvars_file }}
-    - source: salt://apache/files/envvars.env.jinja
+    - source: salt://apache/files/envvars.env
     - template: jinja
     - user: {{ apache_settings.user }}
     - group: {{ apache_settings.group }}
@@ -84,7 +84,7 @@ apache_envvars_file:
 apache_{{ keypair }}_certificate:
   file.managed:
     - name: {{ apache_settings.certdir }}{{ keypair }}.cert
-    - source: salt://apache/files/keypair_template.cert.jinja
+    - source: salt://apache/files/keypair_template.cert
     - template: jinja
     - context:
         keypair: {{ keypair }}
@@ -101,7 +101,7 @@ apache_{{ keypair }}_certificate:
 apache_{{ keypair }}_key:
   file.managed:
     - name: {{ apache_settings.keydir }}{{ keypair }}.key
-    - source: salt://apache/files/keypair_template.key.jinja
+    - source: salt://apache/files/keypair_template.key
     - template: jinja
     - context:
         keypair: {{ keypair }}
@@ -120,7 +120,7 @@ apache_{{ keypair }}_key:
 apache_{{ site }}_site:
   file.managed:
     - name: {{ apache_settings.confdir }}{{ site }}.conf
-    - source: salt://apache/files/site_template.conf.jinja
+    - source: salt://apache/files/site_template.conf
     - template: jinja
     - context:
         site: {{ site }}
