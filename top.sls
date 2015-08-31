@@ -188,8 +188,8 @@ development:
     - salt.cloud
     - salt.formulas
     - salt.gitfs.gitpython
-    - salt.master
     - salt.reactors
+    - salt.master
     - salt.ssh
     - poudriere
 
@@ -334,9 +334,9 @@ testing:
     - apache
     - salt.cloud
     - salt.formulas
+    - salt.reactors
     - salt.gitfs.gitpython
     - salt.master
-    - salt.reactors
     - salt.ssh
     - poudriere
 
@@ -490,9 +490,9 @@ production:
     - apache
     - salt.cloud
     - salt.formulas
+    - salt.reactors
     - salt.gitfs.gitpython
     - salt.master
-    - salt.reactors
     - salt.ssh
     - poudriere
 
