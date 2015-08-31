@@ -344,16 +344,6 @@ testing:
     - clamav
     - clamav.amavisd
 
-  'I@environment:testing and I@role:devstack':
-    - match: compound
-    - apache
-    - mysql
-    - mysql.python
-    - mysql.remove_test_database
-    - rabbitmq
-    - rabbitmq.config
-    - openstack.repo
-
   'I@environment:testing and I@role:minecraft':
     - match: compound
     - spigotmc
@@ -508,16 +498,6 @@ production:
     - amavisd
     - clamav
     - clamav.amavisd
-
-  'I@environment:production and I@role:devstack':
-    - match: compound
-    - apache
-    - mysql
-    - mysql.python
-    - mysql.remove_test_database
-    - rabbitmq
-    - rabbitmq.config
-    - openstack.repo
 
   'I@environment:production and I@role:minecraft':
     - match: compound
