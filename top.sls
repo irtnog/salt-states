@@ -147,6 +147,24 @@ development:
     - tcsh
     - users
 
+  'I@environment:development and G@os_family:Solaris':
+    - match: compound
+    - accounting
+    - aliases
+    - auditd
+    - banners
+    - cron
+    - git
+    - kerberos5
+    - mounts
+    - nfs.client
+    - nis.client
+    - ntp.ng
+    - postfix
+    - sudoers
+    - symlinks
+    - users
+
   'I@environment:development and G@os_family:Windows':
     - match: compound
     - git
