@@ -8,6 +8,4 @@ salt-reactor-scripts:
     - clean: yes
     - dir_mode: 700
     - file_mode: 500
-      include_empty: yes
-    - watch_in:
-        - service: salt-master
+    - include_empty: yes
