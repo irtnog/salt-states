@@ -4,7 +4,7 @@
 poudriere:
   pkg.installed:
     - pkgs:
-        - poudriere
+        - poudriere-devel
         - ccache
 
 poudriere_pkglist:
