@@ -21,6 +21,7 @@ set_hostname:
         - cmd: set_hostname
 
     {% if salt['grains.get']('biosversion').find('amazon') > -1 %}
+## prevent cloud-init from overriding the hostname set above
 /etc/cloud/cloud.cfg.d/99_hostname.cfg:
   file.managed:
     - contents: |
