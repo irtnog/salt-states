@@ -1,3 +1,6 @@
+{% set osrelease = salt['grains.get']('osversion').split('.')
+{% set osmajorrelease = osrelease[0]|int %}
+{% set osminorrelease = osrelease[1]|int %}
 {% set schannel = 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL' %}
 
 ## Windows Server 2008 R2 supports TLS 1.2 but does not enable it by
@@ -8,14 +11,21 @@
     - value: 0
 
 ## Disable anything older than TLS 1.2 server-side or TLS 1.0
-## client-side.  Note that this ciphersuite configuration may break
+## client-side.  Do not disable server-side TLS 1.0 on Windows Server
+## 2008 or older, as these operating systems lack support for anything
+## better.  Note that this ciphersuite configuration may break
 ## client-side access to older web applications or services.
-{% for protocol in [ 'PCT 1.0', 'SSL 2.0', 'SSL 3.0', 'TLS 1.0', 'TLS 1.1', ] %}
+{% if osmajorrelease < 6 or (osmajorrelease == 6 and osminorrelease < 1) %}
+  {% set disable_protocols_server = [ 'PCT 1.0', 'SSL 2.0', 'SSL 3.0', ] %}
+{% else %}
+  {% set disable_protocols_server = [ 'PCT 1.0', 'SSL 2.0', 'SSL 3.0', 'TLS 1.0', 'TLS 1.1', ] %}
+{% endif %}
+{% for protocol in disable_protocols_sever %}
 {{ schannel }}\Protocols\{{ protocol }}\Server\Enabled:
   reg.present:
     - vtype: REG_DWORD
     - value: 0
-{% endfor %}
+  {% endif %}
 {% for protocol in [ 'PCT 1.0', 'SSL 2.0', 'SSL 3.0', ] %}
 {{ schannel }}\Protocols\{{ protocol }}\Client\DisabledByDefault:
   reg.present:
@@ -23,11 +33,6 @@
     - value: 1
 {% endfor %}
 
-## Do not disable server-side TLS 1.0 on Windows Server 2008 or older,
-## as these operating systems lack support for anything better.
-{% set osrelease = salt['grains.get']('osversion').split('.')
-{% set osmajorrelease = osrelease[0]|int %}
-{% set osminorrelease = osrelease[1]|int %}
 {% if osmajorrelease < 6 or (osmajorrelease == 6 and osminorrelease < 1) %}
 {{ schannel }}\Protocols\TLS 1.0\Server\Enabled:
   reg.present:
