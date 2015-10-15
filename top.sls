@@ -209,6 +209,7 @@ development:
     - rabbitmq
     - rabbitmq.config
     - openstack.repo
+    - openstack.keystone
 
   'I@environment:development and I@role:minecraft':
     - match: compound
