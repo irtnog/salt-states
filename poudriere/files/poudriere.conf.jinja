@@ -96,7 +96,7 @@ CHECK_CHANGED_DEPS=yes
 
 
 # Path to the RSA key to sign the PKGNG repo with. See pkg-repo(8)
-PKG_REPO_SIGNING_KEY=/etc/ssl/keys/repo.key
+PKG_REPO_SIGNING_KEY={{ salt['pillar.get']('poudriere:pkg_repo_signing_key', '/etc/ssl/keys/repo.key') }}
 
 
 # ccache support. Supply the path to your ccache cache directory.

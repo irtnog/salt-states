@@ -18,7 +18,7 @@ poudriere_pkglist:
 
 poudriere_repo_key:
   file.managed:
-    - name: /etc/ssl/keys/repo.key
+    - name: {{ salt['pillar.get']('poudriere:pkg_repo_signing_key', '/etc/ssl/keys/repo.key') }}
     - user: root
     - group: 0
     - mode: 400
