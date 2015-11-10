@@ -1,4 +1,4 @@
-{% set osrelease = salt['grains.get']('osversion').split('.')
+{% set osrelease = grains.osversion.split('.') %}
 {% set osmajorrelease = osrelease[0]|int %}
 {% set osminorrelease = osrelease[1]|int %}
 {% set schannel = 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL' %}

@@ -1,5 +1,3 @@
-{% if salt['grains.get']('os_family') == 'RedHat' %}
-
 policycoreutils-python:
   pkg.installed
 
@@ -38,5 +36,3 @@ semodule -i local.pp:
     - cwd: /etc/selinux/targeted/local
     - watch:
         - cmd: semodule_package -o local.pp -m local.mod
-
-{% endif %}

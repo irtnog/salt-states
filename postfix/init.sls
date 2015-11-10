@@ -92,7 +92,7 @@ postmap_{{ type }}_{{ map }}:
 {% endfor %}
 {% endfor %}
 
-{% if salt['grains.get']('os_family') == 'FreeBSD' %}
+{% if grains.os_family == 'FreeBSD' %}
 postfix_mailer.conf:
   file.managed:
     - name: /etc/mail/mailer.conf

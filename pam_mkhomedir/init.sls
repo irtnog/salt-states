@@ -1,4 +1,4 @@
-{% if salt['grains.get']('os_family') == 'RedHat' %}
+{% if grains.os_family == 'RedHat' %}
 
 pam_mkhomedir:
   cmd.run:

@@ -1,5 +1,3 @@
-{% if salt['grains.get']('os_family') == 'FreeBSD' %}
-
 install_irtnog_pubkey:
   file.managed:
     - name: /usr/local/etc/pkg/repos/irtnog.pub
@@ -18,11 +16,11 @@ install_irtnog_repo:
     - mode: 444
     - makedirs: True
     - dir_mode: 755
-    {% if salt['pillar.get']('repos:freebsd:irtnog_conf', False) %}
+{% if salt['pillar.get']('repos:freebsd:irtnog_conf', False) %}
     - contents_pillar: repos:freebsd:irtnog_conf
-    {% else %}
+{% else %}
     - source: salt://poudriere/files/irtnog.conf
-    {% endif %}
+{% endif %}
 
 install_make_conf:
   cmd.run:
@@ -51,6 +49,4 @@ disable_freebsd_repo:
     - source: salt://poudriere/files/FreeBSD.conf
     - require:
         - file: install_irtnog_repo
-{% endif %}
-
 {% endif %}
