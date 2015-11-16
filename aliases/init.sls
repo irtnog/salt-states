@@ -1,4 +1,4 @@
-{% for alias, target in salt['pillar.get']('aliases', {}).items() %}
+{% for alias, target in salt['pillar.get']('aliases', {})|dictsort %}
 {{ alias }}:
   alias.present:
     - target: {{ target }}

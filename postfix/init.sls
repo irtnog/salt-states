@@ -18,7 +18,7 @@ postfix_main.cf:
     - content: |
         {% for entry in postfix_settings.main -%}
         {% if entry is mapping -%}
-        {% for key, value in entry.items() -%}
+        {% for key, value in entry|dictsort -%}
         {% if value == True or value == False -%}
         {{ key }} = {{ "yes" if value else "no" }}
         {% elif value is string or value is number -%}
@@ -49,8 +49,8 @@ postfix_master.cf:
     - require:
         - pkg: postfix
 
-{% for type, maps in postfix_settings.maps.items() %}
-{% for map, entries in maps.items() %}
+{% for type, maps in postfix_settings.maps|dictsort %}
+{% for map, entries in maps|dictsort %}
 postmap_{{ type }}_{{ map }}:
   file.managed:
     - name: {{ postfix_settings.prefix }}/etc/postfix/{{ map }}
@@ -60,7 +60,7 @@ postmap_{{ type }}_{{ map }}:
     - contents: |
         {% for entry in entries -%}
         {% if entry is mapping -%}
-        {% for key, value in entry.items() -%}
+        {% for key, value in entry|dictsort -%}
         {% if value == True or value == False -%}
         {{ key }} = {{ "yes" if value else "no" }}
         {% elif value is string or value is number -%}

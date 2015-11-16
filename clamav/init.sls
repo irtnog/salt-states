@@ -16,7 +16,7 @@ clamd_conf:
   file.managed:
     - name: {{ clamav_settings.clamd_conf }}
     - contents: |
-        {% for key, value in clamav_settings.clamd.items() -%}
+        {% for key, value in clamav_settings.clamd|dictsort -%}
         {% if value == True or value == False -%}
         {{ key }} {{ "yes" if value else "no" }}
         {% else -%}
@@ -35,7 +35,7 @@ freshclam_conf:
   file.managed:
     - name: {{ clamav_settings.freshclam_conf }}
     - contents: |
-        {% for key, value in clamav_settings.freshclam.items() -%}
+        {% for key, value in clamav_settings.freshclam|dictsort -%}
         {% if value == True or value == False -%}
         {{ key }} {{ "yes" if value else "no" }}
         {% else -%}
