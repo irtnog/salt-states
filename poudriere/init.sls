@@ -6,6 +6,13 @@ poudriere:
     - pkgs:
         - poudriere-devel
         - ccache
+        - qemu-user-static
+
+qemu_user_static:
+  service.running:
+    - enable: True
+    - watch:
+        - pkg: poudriere
 
 poudriere_pkglist:
   file.managed:
