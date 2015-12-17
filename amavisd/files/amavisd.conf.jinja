@@ -129,7 +129,6 @@ $recipient_delimiter = '+'; # undef disables address extensions altogether
 # when enabling addr extensions do also Postfix/main.cf: recipient_delimiter=+
 
 $path = '/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin:/usr/bin:/bin';
-# $dspam = 'dspam';
 $dspam = 'dspam';
 
 $MAXLEVELS = 14;
@@ -187,6 +186,12 @@ $os_fingerprint_method = 'p0f:*:2345';
 # $bad_header_quarantine_to, $spam_quarantine_to,
 #
 # $defang_bad_header, $defang_undecipherable, $defang_spam
+
+# global sender white lists (from Postfix)
+@whitelist_sender_maps = (
+  read_hash("/usr/local/etc/postfix/access_client"),
+  read_hash("/usr/local/etc/postfix/access_sender")
+);
 
 
 # REMAINING IMPORTANT VARIABLES ARE LISTED HERE BECAUSE OF LONGER ASSIGNMENTS
