@@ -118,6 +118,7 @@ development:
   'I@environment:development and G@os_family:RedHat':
     - match: compound
     - hostname
+    - yum
     - epel
     - nux.dextop                # requires EPEL
     - nux.misc
@@ -290,6 +291,7 @@ testing:
   'I@environment:testing and G@os_family:RedHat':
     - match: compound
     - hostname
+    - yum
     - epel
     - nux.dextop                # requires EPEL
     - nux.misc
@@ -447,6 +449,7 @@ production:
   'I@environment:production and G@os_family:RedHat':
     - match: compound
     - hostname
+    - yum
     - epel
     - nux.dextop                # requires EPEL
     - nux.misc
