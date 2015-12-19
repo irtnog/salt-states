@@ -3,4 +3,7 @@
 deltarpm:
   pkg.installed
 
+yum-cron:
+  pkg.installed
+
 {% endif %}
