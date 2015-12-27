@@ -63,6 +63,7 @@ development:
     - fail2ban.config
     - git
     - kerberos5
+    - mosh
     - mounts
     - nis.client
     - nfs.client
@@ -96,6 +97,7 @@ development:
     - fail2ban.config
     - git
     - kerberos5
+    - mosh
     - mounts
     - moused
     - nfs.client
@@ -131,6 +133,7 @@ development:
     - fail2ban.config
     - git
     - kerberos5
+    - mosh
     - mounts
     - nfs.client
     - nis.client
@@ -159,6 +162,7 @@ development:
     - cron
     - git
     - kerberos5
+    - mosh
     - mounts
     - nfs.client
     - nis.client
@@ -236,6 +240,7 @@ testing:
     - fail2ban.config
     - git
     - kerberos5
+    - mosh
     - mounts
     - nis.client
     - nfs.client
@@ -269,6 +274,7 @@ testing:
     - fail2ban.config
     - git
     - kerberos5
+    - mosh
     - mounts
     - moused
     - nfs.client
@@ -304,6 +310,7 @@ testing:
     - fail2ban.config
     - git
     - kerberos5
+    - mosh
     - mounts
     - nfs.client
     - nis.client
@@ -394,6 +401,7 @@ production:
     - fail2ban.config
     - git
     - kerberos5
+    - mosh
     - mounts
     - nis.client
     - nfs.client
@@ -427,6 +435,7 @@ production:
     - fail2ban.config
     - git
     - kerberos5
+    - mosh
     - mounts
     - moused
     - nfs.client
@@ -462,6 +471,7 @@ production:
     - fail2ban.config
     - git
     - kerberos5
+    - mosh
     - mounts
     - nfs.client
     - nis.client
