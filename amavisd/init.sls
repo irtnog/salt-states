@@ -31,3 +31,15 @@ sa-update:
   cmd.wait:
     - watch:
         - cron: sa-update
+
+{% if amavisd_settings.dkim %}
+dkim:
+  file.managed:
+    - name: /var/db/dkim/dkim.key
+    - contents: {{ amavisd_settings.dkim|yaml_encode }}
+    - user: root
+    - group: 0
+    - mode: 600
+    - makedirs: True
+    - dir_mode: 700
+{% endif %}

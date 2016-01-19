@@ -46,6 +46,9 @@ $enable_db = 1;              # enable use of BerkeleyDB/libdb (SNMP and nanny)
 $nanny_details_level = 2;    # nanny verbosity: 1: traditional, 2: detailed
 $enable_dkim_verification = 1;  # enable DKIM signatures verification
 $enable_dkim_signing = 1;    # load DKIM signing code, keys defined by dkim_key
+# dkim_key('irtnog.org', 'mx1', '/var/db/dkim/dkim.key');
+# @dkim_signature_options_bysender_maps = (
+#   { '.' => { ttl => 21*24*3600, c => 'relaxed/simple' } } );
 
 # @local_domains_maps = ( [".$mydomain"] );  # list of all local domains
 @local_domains_maps = ( read_hash("/usr/local/etc/postfix/relay_domains") );
