@@ -9,9 +9,8 @@ poudriere:
         - qemu-user-static
 
 qemu_user_static:
-  service.running:
-    - enable: True
-    - watch:
+  service.enabled:
+    - require:
         - pkg: poudriere
 
 poudriere_pkglist:
