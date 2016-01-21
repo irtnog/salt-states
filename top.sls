@@ -108,9 +108,6 @@ development:
     - pki
     - postfix
     - salt.minion
-    - snmp
-    - snmp.conf
-    - snmp.options
     - sudoers
     - symlinks
     - syscons
@@ -285,9 +282,6 @@ testing:
     - pki
     - postfix
     - salt.minion
-    - snmp
-    - snmp.conf
-    - snmp.options
     - sudoers
     - symlinks
     - syscons
@@ -446,9 +440,6 @@ production:
     - pki
     - postfix
     - salt.minion
-    - snmp
-    - snmp.conf
-    - snmp.options
     - sudoers
     - symlinks
     - syscons
