@@ -1,0 +1,5 @@
+# NOTE: mounts done from a hosts map will be mounted with the
+#       "nosuid" and "nodev" options unless the "suid" and "dev"
+#       options are explicitly given.
+#
+/net   -hosts

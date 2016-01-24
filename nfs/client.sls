@@ -8,3 +8,14 @@ nfs_client:
     - enable: True
     - watch:
         - pkg: nfs_client
+
+{% if salt['grains.get']('os_family') == 'Debian' %}
+automounter_enable_hosts_map:
+  file.recurse:
+    - name: /etc/auto.master.d
+    - source: salt://nfs/files/auto.master.d
+    - user: root
+    - group: 0
+    - dir_mode: 755
+    - file_mode: 444
+{% endif %}
