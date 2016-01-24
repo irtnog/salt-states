@@ -76,7 +76,6 @@ development:
     - salt.minion
     - snmp
     - snmp.conf
-    - snmp.options
     - sudoers
     - symlinks
     - sysctl
@@ -250,7 +249,6 @@ testing:
     - salt.minion
     - snmp
     - snmp.conf
-    - snmp.options
     - sudoers
     - symlinks
     - sysctl
@@ -408,7 +406,6 @@ production:
     - salt.minion
     - snmp
     - snmp.conf
-    - snmp.options
     - sudoers
     - symlinks
     - sysctl
