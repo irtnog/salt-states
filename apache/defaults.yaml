@@ -38,7 +38,7 @@ IP %{MULTIPART_INVALID_PART}, \
 IH %{MULTIPART_INVALID_HEADER_FOLDING}, \
 FL %{MULTIPART_FILE_LIMIT_EXCEEDED}'"
       SecRule MULTIPART_UNMATCHED_BOUNDARY "!@eq 0":
-        "id:'200004',phase:2,t:none,log,deny,msg:'Multipart parser detected a possible unmatched boundary.'"
+        "\"id:'200004',phase:2,t:none,log,deny,msg:'Multipart parser detected a possible unmatched boundary.'\""
       SecPcreMatchLimit: 1000
       SecPcreMatchLimitRecursion: 1000
       SecRule TX:/^MSC_/ "!@streq 0":
