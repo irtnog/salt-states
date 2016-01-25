@@ -1,6 +1,6 @@
 apache:
-  user: www
-  group: www
+  user: apache
+  group: apache
   service: httpd
   dbdir: /var/lib/httpd/
   certdir: /etc/httpd/certs/

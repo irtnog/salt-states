@@ -23,6 +23,8 @@
                  },
                },
     'FreeBSD': { 'packages': ['apache24', 'ap24-mod_security'],
+                 'user': 'www',
+                 'group': 'www',
                  'service': 'apache24',
                  'confdir': '/usr/local/etc/apache24/Includes/',
                  'dbdir': '/var/db/httpd/',
