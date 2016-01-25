@@ -135,3 +135,22 @@ apache_{{ site }}_site:
     - watch_in:
         - service: apache
 {% endfor %}
+
+{% if salt['grains.get']('os_family') == 'RedHat' %}
+## Remove the default ModSecurity configuration file if it exists, as
+## it conflicts with the configuration files managed by this formula.
+/etc/httpd/conf.d/mod_security.conf:
+  file.absent:
+    - require:
+        - pkg: apache
+    - watch_in:
+        - service: apache
+
+## Same goes for the default mod_ssl configuration file.
+/etc/httpd/conf.d/ssl.conf:
+  file.absent:
+    - require:
+        - pkg: apache
+    - watch_in:
+        - service: apache
+{% endif %}
