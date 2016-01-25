@@ -58,7 +58,7 @@ FL %{MULTIPART_FILE_LIMIT_EXCEEDED}'\""
       SecAuditLogType: Serial
       SecAuditLog: /var/log/modsec_audit.log
       SecArgumentSeparator: '&'
-      SecCookieFormat: 0
+      SecCookieFormat: '0'
       SecUnicodeMapFile: unicode.mapping 20127
       SecStatusEngine: off      # don't report usage to third parties by default!
     socache_shmcb: {}           # required by mod_ssl
