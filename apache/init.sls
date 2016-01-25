@@ -22,7 +22,6 @@ apache:
     - watch:
         - pkg: apache
         - file: apache
-        - file: apache_envvars_file
 
 apache_dbdir:
   file.directory:
@@ -68,6 +67,7 @@ apache_{{ module }}_module:
         - service: apache
 {% endfor %}
 
+{% if apache_settings.envvars_file %}
 apache_envvars_file:
   file.managed:
     - name: {{ apache_settings.envvars_file }}
@@ -78,6 +78,9 @@ apache_envvars_file:
     - mode: 400                 # in case configs include sensitive data
     - require:
         - pkg: apache
+    - watch_in:
+        - service: apache
+{% endif %}
 
 {% for keypair in apache_settings.keypairs %}
 {% if apache_settings.keypairs[keypair].certificate is defined %}
