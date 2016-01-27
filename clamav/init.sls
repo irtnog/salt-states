@@ -80,4 +80,14 @@ antivirus_can_scan_system:
         - pkg: clamav
     - require_in:
         - service: clamav
+
+## Allow CLamAV to use the JIT compiler.
+antivirus_use_jit:
+  selinux.boolean:
+    - value: True
+    - persist: True
+    - require:
+        - pkg: clamav
+    - require_in:
+        - service: clamav
 {% endif %}
