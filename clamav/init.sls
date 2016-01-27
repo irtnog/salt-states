@@ -68,4 +68,16 @@ freshclam:
         - DOTALL
     - require:
         - pkg: clamav
+
+## Setting this boolean fixes the following error: "ERROR: During
+## database load : LibClamAV Warning: RWX mapping denied: Can't
+## allocate RWX Memory: Permission denied"
+antivirus_can_scan_system:
+  selinux.boolean:
+    - value: True
+    - persist: True
+    - require:
+        - pkg: clamav
+    - require_in:
+        - service: clamav
 {% endif %}
