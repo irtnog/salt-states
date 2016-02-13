@@ -34,7 +34,18 @@ ypbind_domainname:
     - require:
         - pkg: ypbind
 
-{% if grains['os_family'] == 'FreeBSD' %}
+{% if grains['os_family'] == 'Debian' %}
+
+ypbind_passwd:
+  cmd.script:
+    - name: salt://nis/files/debian-enable-nis-passwd-map.sh
+
+ypbind_group:
+  file.append:
+    - name: /etc/group
+    - text: '+:*::'
+
+{% elif grains['os_family'] == 'FreeBSD' %}
 rc_conf_nisdomainname:
   file.accumulated:
     - name: rc_conf_accumulator
