@@ -18,4 +18,6 @@ automounter_enable_hosts_map:
     - group: 0
     - dir_mode: 755
     - file_mode: 444
+    - watch_in:
+        - service: nfs_client
 {% endif %}
