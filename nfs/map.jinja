@@ -2,7 +2,7 @@
 
 {% set distro_map = salt['grains.filter_by']({
     'Debian':  { 'client_packages': [ 'rpcbind', 'nfs-common', 'autofs', ],
-                 'client_services': [ 'rpcbind', 'rpc-statd', 'autofs' ], },
+                 'client_services': [ 'rpcbind', 'statd', 'autofs' ], },
     'FreeBSD': { 'client_services': [ 'rpcbind', 'nfsclient', 'lockd', 'statd', 'amd' ], },
     'RedHat':  { 'client_packages': [ 'rpcbind', 'nfs-utils', 'autofs', ], },
   }, merge=salt['pillar.get']('nfs:lookup')) %}
