@@ -73,6 +73,7 @@ development:
     - pki
     - postfix
     - tcsh
+    - salt.pkgrepo
     - salt.minion
     - snmp
     - snmp.conf
@@ -138,6 +139,7 @@ development:
     - pam_mkhomedir
     - pki
     - postfix
+    - salt.pkgrepo
     - salt.minion
     - selinux
     - snmp
@@ -246,6 +248,7 @@ testing:
     - pki
     - postfix
     - tcsh
+    - salt.pkgrepo
     - salt.minion
     - snmp
     - snmp.conf
@@ -311,6 +314,7 @@ testing:
     - pam_mkhomedir
     - pki
     - postfix
+    - salt.pkgrepo
     - salt.minion
     - selinux
     - snmp
@@ -403,6 +407,7 @@ production:
     - pki
     - postfix
     - tcsh
+    - salt.pkgrepo
     - salt.minion
     - snmp
     - snmp.conf
@@ -468,6 +473,7 @@ production:
     - pam_mkhomedir
     - pki
     - postfix
+    - salt.pkgrepo
     - salt.minion
     - selinux
     - snmp
