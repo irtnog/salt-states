@@ -1,5 +1,20 @@
 {% from "nis/map.jinja" import nis_settings with context %}
 
+{% for ypserver in nis_settings.ypservers %}
+{% if not salt['dnsutil.check_ip'](ypserver) %}
+ypbind_hosts_{{ ypserver }}:
+  host.present:
+    - name: {{ ypserver }}
+    - ip: {{ salt['dnsutil.A'](ypserver)[0] }}
+    {% if grains['os_family'] == 'RedHat' %}
+    - require_in:
+        - cmd: ypbind_authconfig
+    {% endif %}
+    - watch_in:
+        - service: ypbind
+{% endif %}
+{% endfor %}
+
 ypbind:
   pkg.installed:
     - pkgs: {{ nis_settings.client_packages|yaml }}
@@ -22,17 +37,6 @@ ypbind:
     - watch:
         - pkg: ypbind
         - file: ypbind
-        - file: ypbind_domainname
-
-ypbind_domainname:
-  file.managed:
-    - name: /etc/domainname
-    - user: root
-    - group: 0
-    - mode: 444
-    - contents: {{ nis_settings.ypdomain }}
-    - require:
-        - pkg: ypbind
 
 {% if grains['os_family'] == 'Debian' %}
 
@@ -83,6 +87,7 @@ ypbind_group:
     - text: '+:*::'
 
 {% elif grains['os_family'] == 'RedHat' %}
+
 ypbind_authconfig:
   file.replace:
     - name: /etc/sysconfig/authconfig
@@ -96,7 +101,6 @@ ypbind_authconfig:
     - watch:
         - pkg: ypbind
         - file: ypbind
-        - file: ypbind_domainname
         - file: ypbind_authconfig
         - file: ypbind_network
     - watch_in:
@@ -110,4 +114,5 @@ ypbind_network:
     - append_if_not_found: True
     - require:
         - pkg: ypbind
+
 {% endif %}

@@ -1,6 +1,8 @@
 nis:
   client_packages: []
-  client_services: []
+  client_services:
+    - rpcbind
+    - ypbind
   server_packages: []
   server_services: []
   ypdomain: example.com

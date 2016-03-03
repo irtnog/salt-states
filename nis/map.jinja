@@ -1,13 +1,9 @@
 {% import_yaml "nis/defaults.yaml" as default_settings %}
 
 {% set distro_map = salt['grains.filter_by']({
-    'Debian':  { 'client_packages': [ 'nis', ],
-                 'client_services': [ 'rpcbind', 'ypbind', ], },
-    'FreeBSD': { 'client_services': [ 'rpcbind', 'ypbind', ], },
-    'RedHat':  { 'client_packages': [ 'ypbind' ],
-                 'client_services': [ 'rpcbind', 'ypbind', ], },
-    'Solaris': { 'client_packages': [ 'SUNWnisr', 'SUNWnisu', ],
-                 'client_services': [ 'network/nis/client', ], },
+    'Debian':  { 'client_packages': [ 'nis', ], },
+    'FreeBSD': { },
+    'RedHat':  { 'client_packages': [ 'ypbind' ], },
   }, merge=salt['pillar.get']('ypbind:lookup')) %}
 
 {% do default_settings.nis.update(distro_map) %}
