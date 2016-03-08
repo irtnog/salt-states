@@ -75,6 +75,7 @@ development:
     - tcsh
     - salt.pkgrepo
     - salt.minion
+    - screen
     - snmp
     - snmp.conf
     - sudoers
@@ -108,6 +109,7 @@ development:
     - pki
     - postfix
     - salt.minion
+    - screen
     - sudoers
     - symlinks
     - syscons
@@ -141,6 +143,7 @@ development:
     - postfix
     - salt.pkgrepo
     - salt.minion
+    - screen
     - selinux
     - snmp
     - snmp.conf
@@ -166,6 +169,7 @@ development:
     - nis.client
     - ntp.ng
     - postfix
+    - screen
     - sudoers
     - symlinks
     - users
@@ -250,6 +254,7 @@ testing:
     - tcsh
     - salt.pkgrepo
     - salt.minion
+    - screen
     - snmp
     - snmp.conf
     - sudoers
@@ -283,6 +288,7 @@ testing:
     - pki
     - postfix
     - salt.minion
+    - screen
     - sudoers
     - symlinks
     - syscons
@@ -316,6 +322,7 @@ testing:
     - postfix
     - salt.pkgrepo
     - salt.minion
+    - screen
     - selinux
     - snmp
     - snmp.conf
@@ -409,6 +416,7 @@ production:
     - tcsh
     - salt.pkgrepo
     - salt.minion
+    - screen
     - snmp
     - snmp.conf
     - sudoers
@@ -442,6 +450,7 @@ production:
     - pki
     - postfix
     - salt.minion
+    - screen
     - sudoers
     - symlinks
     - syscons
@@ -475,6 +484,7 @@ production:
     - postfix
     - salt.pkgrepo
     - salt.minion
+    - screen
     - selinux
     - snmp
     - snmp.conf
