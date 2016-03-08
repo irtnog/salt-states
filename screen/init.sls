@@ -1,0 +1,2 @@
+screen:
+  pkg.installed
