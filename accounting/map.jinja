@@ -7,7 +7,7 @@
     'RedHat':  { 'packages': ['psacct'],
                  'service':  'psacct', },
     'Solaris': { 'service':  'svc:/system/extended-accounting:process', },
-    'SUSE':    { 'packages': ['acct'],
+    'Suse':    { 'packages': ['acct'],
                  'service':  'acct', },
     'default': {},
   }, merge=salt['pillar.get']('accounting:lookup')) %}
