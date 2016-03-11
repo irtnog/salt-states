@@ -3,6 +3,7 @@
 {% set distro_map = salt['grains.filter_by']({
     'Debian':  { 'packages': [ 'auditd', ], },
     'RedHat':  { 'packages': [ 'audit', ], },
+    'Suse':    { 'packages': [ 'audit', ], },
     'default': {},
   }, merge=salt['pillar.get']('auditd:lookup')) %}
 
