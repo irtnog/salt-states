@@ -154,6 +154,35 @@ development:
     - tcsh
     - users
 
+  'I@environment:development and G@os_family:Suse':
+    - match: compound
+    - accounting
+    - aliases
+    - auditd
+    - banners
+    - cron
+    - fail2ban
+    - fail2ban.config
+    - git
+    - kerberos5
+    - mosh
+    - mounts
+    - nfs.client
+    - nis.client
+    - ntp.ng
+    - openssh
+    - salt.minion
+    - screen
+    - selinux
+    - snmp
+    - snmp.conf
+    - snmp.options
+    - sudoers
+    - symlinks
+    - sysctl
+    - tcsh
+    - users
+
   'I@environment:development and G@os_family:Solaris':
     - match: compound
     - accounting
