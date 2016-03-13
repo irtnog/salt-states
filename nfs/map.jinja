@@ -5,6 +5,8 @@
                  'client_services': [ 'rpcbind', 'statd', 'autofs' ], },
     'FreeBSD': { 'client_services': [ 'rpcbind', 'nfsclient', 'lockd', 'statd', 'amd' ], },
     'RedHat':  { 'client_packages': [ 'rpcbind', 'nfs-utils', 'autofs', ], },
+    'Suse':    { 'client_packages': [ 'rpcbind', 'autofs', ],
+                 'client_services': [ 'rpcbind', 'autofs', ], }
   }, merge=salt['pillar.get']('nfs:lookup')) %}
 
 {% if grains['os_family'] == 'RedHat' %}

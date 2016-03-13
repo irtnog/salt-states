@@ -9,7 +9,15 @@ nfs_client:
     - watch:
         - pkg: nfs_client
 
-{% if salt['grains.get']('os_family') == 'Debian' %}
+{% if salt['grains.get']('os_family') in ['Debian', 'Suse'] %}
+automounter_enable_config_dir:
+  file.replace:
+    - name: /etc/auto.master
+    - pattern: '^#(\+dir:/etc/auto.master.d)'
+    - repl: '\1'
+    - watch_in:
+        - service: nfs_client
+
 automounter_enable_hosts_map:
   file.recurse:
     - name: /etc/auto.master.d
