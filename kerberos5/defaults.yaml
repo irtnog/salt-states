@@ -7,7 +7,6 @@ kerberos5:
       renew_lifetime: 7d
       warn_pwexpire: 14d
       forwardable: True
-      default_ccache_name: KEYRING:persistent:%{uid}
     logging:
       default: SYSLOG:INFO:USER
       kdc: SYSLOG:INFO:AUTH
