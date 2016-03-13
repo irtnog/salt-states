@@ -161,8 +161,8 @@ development:
     - auditd
     - banners
     - cron
-    - fail2ban
-    - fail2ban.config
+    # - fail2ban
+    # - fail2ban.config
     - git
     - kerberos5
     - man
