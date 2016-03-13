@@ -2,27 +2,12 @@
 
 {% set distro_map = salt['grains.filter_by']({
     'Debian':  { 'packages': ['krb5-user', 'libpam-krb5'], },
-    'FreeBSD': { 'config': {
-                   'logging': {
-                     'default': 'SYSLOG:INFO:USER',
-                     'kdc': 'SYSLOG:INFO:AUTH',
-                     'admin_server': 'SYSLOG:INFO:AUTH',
-                   },
-                 },
-               },
-    'RedHat':  { 'packages': ['krb5-workstation', 'pam_krb5'],
-                 'config': {
-                   'logging': {
-                     'default': 'FILE:/var/log/krb5libs.log',
-                     'kdc': 'FILE:/var/log/krb5kdc.log',
-                     'admin_server': 'FILE:/var/log/kadmind.log',
-                   },
-                 },
-               },
-    'Suse':    { },
-    'Solaris': { },
+    'FreeBSD': {},
+    'RedHat':  { 'packages': ['krb5-workstation', 'pam_krb5'], },
+    'Suse':    { 'packages': ['krb5-client', 'pam_krb5'],},
+    'Solaris': {},
   }, merge=salt['pillar.get']('kerberos5:lookup')) %}
 
-{% do default_settings.kerberos5.update(distro_map) %}
+{% do salt['irtnog.dictupdate'](default_settings.kerberos5, distro_map) %}
 
 {% set kerberos5_settings = salt['pillar.get']('kerberos5', default=default_settings.kerberos5, merge=True) %}

@@ -8,3 +8,7 @@ kerberos5:
       warn_pwexpire: 14d
       forwardable: True
       default_ccache_name: KEYRING:persistent:%{uid}
+    logging:
+      default: SYSLOG:INFO:USER
+      kdc: SYSLOG:INFO:AUTH
+      admin_server: SYSLOG:INFO:AUTH
