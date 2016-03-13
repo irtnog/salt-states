@@ -165,6 +165,7 @@ development:
     - fail2ban.config
     - git
     - kerberos5
+    - man
     - mosh
     - mounts
     - nfs.client
