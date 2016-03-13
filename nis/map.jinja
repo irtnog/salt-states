@@ -2,8 +2,9 @@
 
 {% set distro_map = salt['grains.filter_by']({
     'Debian':  { 'client_packages': [ 'nis', ], },
-    'FreeBSD': { },
-    'RedHat':  { 'client_packages': [ 'ypbind' ], },
+    'FreeBSD': {},
+    'RedHat':  { 'client_packages': [ 'ypbind', ], },
+    'Suse':    { 'client_packages': [ 'ypbind', ], },
   }, merge=salt['pillar.get']('ypbind:lookup')) %}
 
 {% do default_settings.nis.update(distro_map) %}

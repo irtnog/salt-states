@@ -18,6 +18,9 @@ ypbind_hosts_{{ ypserver }}:
 ypbind:
   pkg.installed:
     - pkgs: {{ nis_settings.client_packages|yaml }}
+  {% if grains['os_family'] not in ['RedHat', 'Suse'] %}
+  ## Suse's netconfig guesses the correct values.
+  ## RedHat's authconfig overrides these settings.
   file.managed:
     - name: /etc/yp.conf
     - contents: |
@@ -31,12 +34,14 @@ ypbind:
     - mode: 444
     - require:
         - pkg: ypbind
+    - watch_in:
+        - service: ypbind
+  {% endif %}
   service.running:
     - names: {{ nis_settings.client_services|yaml }}
     - enable: True
     - watch:
         - pkg: ypbind
-        - file: ypbind
 
 {% if grains['os_family'] == 'Debian' %}
 
@@ -100,7 +105,6 @@ ypbind_authconfig:
     - name: authconfig --update --enablenis --nisdomain={{ nis_settings.ypdomain }} {% if nis_settings.ypservers is iterable %}--nisserver={{ nis_settings.ypservers[0] }}{% endif %}
     - watch:
         - pkg: ypbind
-        - file: ypbind
         - file: ypbind_authconfig
         - file: ypbind_network
     - watch_in:
