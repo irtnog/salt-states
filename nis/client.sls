@@ -43,11 +43,11 @@ ypbind:
     - watch:
         - pkg: ypbind
 
-{% if grains['os_family'] == 'Debian' %}
+{% if grains['os_family'] in ['Debian', 'Suse'] %}
 
 ypbind_passwd:
   cmd.script:
-    - name: salt://nis/files/debian-enable-nis-passwd-map.sh
+    - name: salt://nis/files/linux-enable-nis-passwd-map.sh
 
 ypbind_group:
   file.append:
