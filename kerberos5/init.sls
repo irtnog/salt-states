@@ -1,4 +1,3 @@
-{% if grains['kernel'] in ['FreeBSD', 'Linux', 'Solaris'] %}
 {% from "kerberos5/map.jinja" import kerberos5_settings with context %}
 
 kerberos5:
@@ -15,6 +14,7 @@ kerberos5:
         - pkg: kerberos5
 
 {% if grains['os_family'] == 'FreeBSD' %}
+
 {% for file in ['ftp', 'imap', 'other', 'pop3', 'sshd', 'system', 'telnetd', 'xdm'] %}
 pam_service_{{ file }}:
   file.replace:
@@ -31,6 +31,7 @@ pam_service_ftpd:
         - file: pam_service_ftp
 
 {% elif grains['os_family'] == 'RedHat' %}
+
 kerberos5_authconfig:
   file.replace:
     - name: /etc/sysconfig/authconfig
@@ -46,8 +47,12 @@ kerberos5_authconfig:
         - file: kerberos5
         - file: kerberos5_authconfig
 
-{% elif grains['os_family'] == 'Solaris' %}
-## TODO
-{% endif %}
+{% elif grains['os_family'] == 'Suse' %}
+
+kerberos5_pam-config:
+  cmd.run:
+    - name: pam-config -a --krb5 --krb5-ignore_unknown_principals
+    - require:
+        - pkg: kerberos5
 
 {% endif %}
