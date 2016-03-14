@@ -1,0 +1,2 @@
+emacs:
+  pkg.installed
