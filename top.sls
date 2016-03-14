@@ -59,6 +59,7 @@ development:
     - auditd
     - banners
     - cron
+    - emacs
     - fail2ban
     - fail2ban.config
     - git
@@ -67,11 +68,13 @@ development:
     - mounts
     - nis.client
     - nfs.client
+    - nmap
     - ntp.ng
     - openssh
     - pam_mkhomedir
     - pki
     - postfix
+    - tcpdump
     - tcsh
     - salt.pkgrepo
     - salt.minion
@@ -81,6 +84,8 @@ development:
     - sudoers
     - symlinks
     - sysctl
+    - tcpdump
+    - tcsh
     - users
 
   'I@environment:development and G@os_family:FreeBSD':
@@ -94,6 +99,7 @@ development:
     - banners
     - bgfsck
     - cron
+    - emacs
     - fail2ban
     - fail2ban.config
     - git
@@ -103,6 +109,7 @@ development:
     - moused
     - nfs.client
     - nis.client
+    - nmap
     - ntp.ng
     - openssh
     - pam_mkhomedir
@@ -128,6 +135,7 @@ development:
     - auditd
     - banners
     - cron
+    - emacs
     - fail2ban
     - fail2ban.config
     - git
@@ -136,6 +144,7 @@ development:
     - mounts
     - nfs.client
     - nis.client
+    - nmap
     - ntp.ng
     - openssh
     - pam_mkhomedir
@@ -151,6 +160,7 @@ development:
     - sudoers
     - symlinks
     - sysctl
+    - tcpdump
     - tcsh
     - users
 
@@ -161,6 +171,7 @@ development:
     - auditd
     - banners
     - cron
+    - emacs
     # - fail2ban
     # - fail2ban.config
     - git
@@ -170,6 +181,7 @@ development:
     - mounts
     - nfs.client
     - nis.client
+    - nmap
     - ntp.ng
     - openssh
     - salt.minion
@@ -181,6 +193,7 @@ development:
     - sudoers
     - symlinks
     - sysctl
+    - tcpdump
     - tcsh
     - users
 
@@ -191,17 +204,21 @@ development:
     - auditd
     - banners
     - cron
+    - emacs
     - git
     - kerberos5
     - mosh
     - mounts
     - nfs.client
     - nis.client
+    - nmap
     - ntp.ng
     - postfix
     - screen
     - sudoers
     - symlinks
+    - tcpdump
+    - tcsh
     - users
 
   'I@environment:development and G@os_family:Windows':
