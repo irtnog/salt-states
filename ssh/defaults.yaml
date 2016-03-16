@@ -1,0 +1,5 @@
+ssh:
+  packages:
+    []
+  config_directory:
+    /etc/ssh

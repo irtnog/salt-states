@@ -1,0 +1,44 @@
+{%- from "ssh/map.jinja" import ssh_settings with context -%}
+{#- remove formula-specific keys (kind of a hack) -#}
+{%- do ssh_settings.pop('packages') -%}
+{%- do ssh_settings.pop('config_directory') -%}
+#### SSH_CONFIG --- System-wide OpenSSH client configuration file
+
+### See ssh_config(5) for more information.  This file provides
+### defaults for users, and the values can be changed in per-user
+### configuration files or on the command line.
+
+### Configuration data is parsed as follows:
+###  1. command line options
+###  2. user-specific file
+###  3. system-wide file
+### Any configuration value is only changed the first time it is set.
+### Thus, host-specific definitions should be at the beginning of the
+### configuration file, and defaults at the end.
+
+{%- macro render_ssh_config(dict, width=0) -%}
+{%- if dict is defined and dict is mapping %}
+{%- for key, value in dict.items() %}
+{%- if value is sameas None %}
+{#- no-op -#}
+{%- elif key.split(' ')[0] in ['Host', 'Match'] %}
+{{ '%s'|format(key)|indent(width) }}{{ render_ssh_config(value, width+2) }}
+{%- elif value is sequence and value is not string %}
+{%- if key in ['DynamicForward', 'IdentityFile', 'LocalForward', 'RemoteForward', 'SendEnv'] %}
+{%- for v in value %}
+{{ '%s %s'|format(key, v)|indent(width, True) }}
+{%- endfor %}
+{%- else %}
+{{ '%s %s'|format(key, value|join(','))|indent(width, True) }}
+{%- endif %}
+{%- elif value is sameas(True) or value is sameas(False) %}
+{{ '%s %s'|format(key, "yes" if value else "no")|indent(width, True) }}
+{%- else %}
+{{ '%s %s'|format(key, value)|indent(width, True) }}
+{%- endif %}
+{%- endfor %}
+{%- endif %}
+{%- endmacro %}
+{{ render_ssh_config(ssh_settings) }}
+
+#### SSH_CONFIG ends here.
