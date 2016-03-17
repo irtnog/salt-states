@@ -1,0 +1,10 @@
+sshd:
+  packages:
+    []
+  config_directory:
+    /etc/ssh
+  services:
+    - sshd
+
+  Subsystem:
+    - sftp /usr/libexec/sftp-server
