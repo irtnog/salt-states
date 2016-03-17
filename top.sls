@@ -74,7 +74,6 @@ development:
     - nfs.client
     - nmap
     - ntp.ng
-    - openssh
     - pam_mkhomedir
     - pki
     - postfix
@@ -85,6 +84,8 @@ development:
     - screen
     - snmp
     - snmp.conf
+    - ssh
+    - sshd
     - sudoers
     - symlinks
     - sysctl
@@ -115,12 +116,13 @@ development:
     - nis.client
     - nmap
     - ntp.ng
-    - openssh
     - pam_mkhomedir
     - pki
     - postfix
     - salt.minion
     - screen
+    - ssh
+    - sshd
     - sudoers
     - symlinks
     - syscons
@@ -150,7 +152,6 @@ development:
     - nis.client
     - nmap
     - ntp.ng
-    - openssh
     - pam_mkhomedir
     - pki
     - postfix
@@ -161,6 +162,8 @@ development:
     - snmp
     - snmp.conf
     - snmp.options
+    - ssh
+    - sshd
     - sudoers
     - symlinks
     - sysctl
@@ -187,13 +190,14 @@ development:
     - nis.client
     - nmap
     - ntp.ng
-    - openssh
     - salt.minion
     - screen
     - selinux
     - snmp
     - snmp.conf
     - snmp.options
+    - ssh
+    - sshd
     - sudoers
     - symlinks
     - sysctl
@@ -219,6 +223,8 @@ development:
     - ntp.ng
     - postfix
     - screen
+    - ssh
+    - sshd
     - sudoers
     - symlinks
     - tcpdump
@@ -298,7 +304,6 @@ testing:
     - nis.client
     - nfs.client
     - ntp.ng
-    - openssh
     - pam_mkhomedir
     - pki
     - postfix
@@ -306,6 +311,8 @@ testing:
     - salt.pkgrepo
     - salt.minion
     - screen
+    - ssh
+    - sshd
     - snmp
     - snmp.conf
     - sudoers
@@ -334,12 +341,13 @@ testing:
     - nfs.client
     - nis.client
     - ntp.ng
-    - openssh
     - pam_mkhomedir
     - pki
     - postfix
     - salt.minion
     - screen
+    - ssh
+    - sshd
     - sudoers
     - symlinks
     - syscons
@@ -367,7 +375,6 @@ testing:
     - nfs.client
     - nis.client
     - ntp.ng
-    - openssh
     - pam_mkhomedir
     - pki
     - postfix
@@ -378,6 +385,8 @@ testing:
     - snmp
     - snmp.conf
     - snmp.options
+    - ssh
+    - sshd
     - sudoers
     - symlinks
     - sysctl
@@ -460,7 +469,6 @@ production:
     - nis.client
     - nfs.client
     - ntp.ng
-    - openssh
     - pam_mkhomedir
     - pki
     - postfix
@@ -468,6 +476,8 @@ production:
     - salt.pkgrepo
     - salt.minion
     - screen
+    - ssh
+    - sshd
     - snmp
     - snmp.conf
     - sudoers
@@ -496,12 +506,13 @@ production:
     - nfs.client
     - nis.client
     - ntp.ng
-    - openssh
     - pam_mkhomedir
     - pki
     - postfix
     - salt.minion
     - screen
+    - ssh
+    - sshd
     - sudoers
     - symlinks
     - syscons
@@ -529,7 +540,6 @@ production:
     - nfs.client
     - nis.client
     - ntp.ng
-    - openssh
     - pam_mkhomedir
     - pki
     - postfix
@@ -540,6 +550,8 @@ production:
     - snmp
     - snmp.conf
     - snmp.options
+    - ssh
+    - sshd
     - sudoers
     - symlinks
     - sysctl
