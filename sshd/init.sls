@@ -10,7 +10,7 @@ sshd:
     - template: jinja
     - user: root
     - group: 0
-    - dir_mode: 751
+    - dir_mode: 755
     - file_mode: 640
     - require:
         - pkg: sshd
