@@ -6,7 +6,11 @@
 ### words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 ### "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in
 ### this document are to be interpreted as described in RFC 2119,
-### http://www.rfc-editor.org/rfc/rfc2119.txt.  The keywords "DANGER",
+### https://tools.ietf.org/html/rfc2119.  The key words "MUST (BUT WE
+### KNOW YOU WON'T)", "SHOULD CONSIDER", "REALLY SHOULD NOT", "OUGHT
+### TO", "WOULD PROBABLY", "MAY WISH TO", "COULD", "POSSIBLE", and
+### "MIGHT" in this document are to be interpreted as described in RFC
+### 6919, https://tools.ietf.org/html/rfc6919.  The keywords "DANGER",
 ### "WARNING", and "CAUTION" in this document are to be interpreted as
 ### described in OSHA 1910.145,
 ### https://www.osha.gov/pls/oshaweb/owadisp.show_document?p_table=standards&p_id=9794.
