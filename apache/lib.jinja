@@ -1,3 +1,5 @@
+{%- from "apache/map.jinja" import apache_settings with context -%}
+{%- set indent = apache_settings.indent -%}
 {%- set enclosing_directives = [
     'AuthnProviderAlias',
     'AuthzProviderAlias',
@@ -30,7 +32,7 @@
 {%- if argument == None %}
 {#- no-op #}
 {%- elif directive.split()[0] in enclosing_directives %}
-{{ '<%s>'|format(directive)|indent(width, True) }}{{ render_apache_config(argument, width+4) }}
+{{ '<%s>'|format(directive)|indent(width, True) }}{{ render_apache_config(argument, width+indent) }}
 {{ '</%s>'|format(directive.split()[0])|indent(width, True) }}
 {%- elif argument is sequence and argument is not string %}
 {{ '%s "%s"'|format(directive, argument|join('" "'),)|indent(width, True) }}

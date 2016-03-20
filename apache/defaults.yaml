@@ -6,6 +6,7 @@ apache:
   certdir: /etc/httpd/certs/
   keydir: /etc/httpd/keys/
   logdir: /var/log/httpd/
+  indent: 8
   module_suffix: .so
   modules:
     unique_id: {}               # required by mod_security
