@@ -1,0 +1,10 @@
+trac:
+  packages:
+    - trac
+  prefix: /var/trac/
+  group: trac
+  gid: 1500
+  user: trac
+  uid: 1500
+  environments:
+    []

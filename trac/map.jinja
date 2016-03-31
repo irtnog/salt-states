@@ -1,0 +1,9 @@
+{% import_yaml "trac/defaults.yaml" as default_settings %}
+
+{% set distro_map = salt['grains.filter_by']({
+    'FreeBSD': {},
+  }) %}
+
+{% do default_settings.trac.update(distro_map) %}
+
+{% set trac_settings = salt['pillar.get']('trac', default=default_settings.trac, merge=True) %}
