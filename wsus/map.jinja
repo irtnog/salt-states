@@ -1,0 +1,12 @@
+{% import_yaml "wsus/defaults.yaml" as default_settings %}
+
+{% if salt['grains.get']('osrelease') in ['2008Server', '2008ServerR2'] %}
+  {% set os_map = salt['grains.filter_by']({
+      'Server Core': { 'features': [], },
+      'Standard':    { 'features': [], },
+    }, grains='osinstalltype') %}
+{% endif %}
+
+{% do default_settings.wsus.update(os_map) if os_map is defined %}
+
+{% set wsus_settings = salt['pillar.get']('wsus', default=default_settings.wsus, merge=True) %}

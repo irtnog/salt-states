@@ -1,0 +1,14 @@
+#### WSUS/DEFAULTS.YAML --- Default settings for Windows Server Update Services
+
+wsus:
+  packages:
+    []
+  features:
+    []
+  services:
+    - WsusService
+    - WSusCertServer
+    - W3SVC
+    - HTTP
+
+#### WSUS/DEFAULTS.YAML ends here.
