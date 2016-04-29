@@ -1,6 +1,5 @@
 plone:
-  pkg.installed:
-    - pkgs: plone
+  pkg.installed: []
   file.directory:
     - name: /opt/plone
     - user: www
