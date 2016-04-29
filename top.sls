@@ -243,6 +243,7 @@ development:
     - match: compound
     - git
     - gpmc
+    - perfmon
     - powershell
     - rdp
     - rsat
@@ -405,6 +406,7 @@ testing:
     - match: compound
     - git
     - gpmc
+    - perfmon
     - powershell
     - rsat
     - salt.minion
@@ -570,6 +572,7 @@ production:
     - match: compound
     - git
     - gpmc
+    - perfmon
     - powershell
     - rsat
     - salt.minion
