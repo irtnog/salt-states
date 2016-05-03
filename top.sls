@@ -288,6 +288,10 @@ development:
     - match: compound
     - spigotmc
 
+  'I@environment:development and I@role:web-server':
+    - match: compound
+    - opentracker
+
 ####
 #### TESTING ENVIRONMENT
 ####
@@ -434,6 +438,10 @@ testing:
   'I@environment:testing and I@role:minecraft':
     - match: compound
     - spigotmc
+
+  'I@environment:testing and I@role:web-server':
+    - match: compound
+    - opentracker
 
 ####
 #### STAGING ENVIRONMENT
@@ -600,5 +608,9 @@ production:
   'I@environment:production and I@role:minecraft':
     - match: compound
     - spigotmc
+
+  'I@environment:production and I@role:web-server':
+    - match: compound
+    - opentracker
 
 #### TOP.SLS ends here.
