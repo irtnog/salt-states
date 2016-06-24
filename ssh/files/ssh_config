@@ -25,7 +25,7 @@
 {%- if value is sameas None %}
 {#- no-op -#}
 {%- elif key.split(' ')[0] in ['Host', 'Match'] %}
-{{ '%s'|format(key)|indent(width) }}{{ render_ssh_config(value, width+2) }}
+{{ '%s'|format(key)|indent(width) }}{{ render_ssh_config(value, width+2) }}{{ '\n' if width == 0 }}
 {%- elif value is sequence and value is not string %}
 {%- if key in ['DynamicForward', 'IdentityFile', 'LocalForward', 'RemoteForward', 'SendEnv'] %}
 {%- for v in value %}
@@ -43,5 +43,4 @@
 {%- endif %}
 {%- endmacro %}
 {{ render_ssh_config(ssh_settings) }}
-
 #### SSH_CONFIG ends here.
