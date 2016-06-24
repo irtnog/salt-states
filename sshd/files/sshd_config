@@ -3,6 +3,7 @@
 {%- do sshd_settings.pop('packages') -%}
 {%- do sshd_settings.pop('config_directory') -%}
 {%- do sshd_settings.pop('services') -%}
+{%- do sshd_settings.pop('moduli') -%}
 #### SSHD_CONFIG --- System-wide OpenSSH server configuration file
 
 ### This is the sshd server system-wide configuration file, managed by
