@@ -14,8 +14,9 @@ sshd:
     - diffie-hellman-group-exchange-sha256
 
   ## disable the DSA and ECDSA server authentication algorithms, which
-  ## depend on the quality/integrity of the PRNG; DSA also requires
-  ## 1024-bit keys, which are too small
+  ## depend on the quality/integrity of the PRNG to prevent key
+  ## recovery attacks; DSA also requires 1024-bit keys, which are too
+  ## small
   HostKey:
     - /etc/ssh/ssh_host_ed25519_key
     - /etc/ssh/ssh_host_rsa_key
