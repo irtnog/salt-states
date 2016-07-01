@@ -290,7 +290,9 @@ development:
 
   'I@environment:development and I@role:web-server':
     - match: compound
+    - apache
     - opentracker
+    - trac
 
 ####
 #### TESTING ENVIRONMENT
@@ -441,7 +443,9 @@ testing:
 
   'I@environment:testing and I@role:web-server':
     - match: compound
+    - apache
     - opentracker
+    - trac
 
 ####
 #### STAGING ENVIRONMENT
@@ -611,6 +615,8 @@ production:
 
   'I@environment:production and I@role:web-server':
     - match: compound
+    - apache
     - opentracker
+    - trac
 
 #### TOP.SLS ends here.
