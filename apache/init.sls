@@ -4,7 +4,7 @@ apache:
   pkg.installed:
     - pkgs: {{ apache_settings.packages|yaml }}
   file.managed:
-    - name: {{ apache_settings.confdir }}_000_general.conf
+    - name: {{ apache_settings.confdir }}_0general.conf
     - source: salt://apache/files/general.conf
     - template: jinja
     - user: {{ apache_settings.user }}
@@ -53,7 +53,7 @@ apache_keydir:
 {% for module in apache_settings.modules if apache_settings.modules[module] is mapping %}
 apache_{{ module }}_module:
   file.managed:
-    - name: {{ apache_settings.confdir }}_{{ "%03d"|format(loop.index) }}_mod_{{ module }}.conf
+    - name: {{ apache_settings.confdir }}_mod_{{ module }}.conf
     - source: salt://apache/files/mod_template.conf
     - template: jinja
     - context:
