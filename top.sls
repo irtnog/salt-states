@@ -110,6 +110,7 @@ development:
     - aliases
     - auditd
     - banners
+    - bash
     - bgfsck
     - cron
     - emacs
@@ -344,6 +345,7 @@ testing:
     - aliases
     - auditd
     - banners
+    - bash
     - bgfsck
     - cron
     - fail2ban
@@ -516,6 +518,7 @@ production:
     - aliases
     - auditd
     - banners
+    - bash
     - bgfsck
     - cron
     - fail2ban
