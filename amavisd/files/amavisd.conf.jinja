@@ -128,7 +128,7 @@ $mailfrom_to_quarantine = ''; # null return path; uses original sender if undef
 @addr_extension_banned_maps     = ('banned');
 @addr_extension_spam_maps       = ('spam');
 @addr_extension_bad_header_maps = ('badh');
-$recipient_delimiter = '+'; # undef disables address extensions altogether
+# $recipient_delimiter = '+'; # undef disables address extensions altogether
 # when enabling addr extensions do also Postfix/main.cf: recipient_delimiter=+
 
 $path = '/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin:/usr/bin:/bin';
