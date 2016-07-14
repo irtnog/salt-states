@@ -1,12 +1,9 @@
 {% import_yaml "emacs/defaults.yaml" as default_settings %}
 
 {% set distro_map = salt['grains.filter_by']({
-    'Debian':  {},
     'FreeBSD': { 'packages': [ 'emacs24', ], },
-    'RedHat':  {},
-    'Suse':    {},
     'Solaris': { 'packages': [ 'gnu-emacs', ], },
-    'Windows': {},
+    'default': {},
   }, merge=salt['pillar.get']('emacs:lookup')) %}
 
 {% do default_settings.emacs.update(distro_map) %}
