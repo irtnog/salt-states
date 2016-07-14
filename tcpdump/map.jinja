@@ -1,0 +1,11 @@
+{% import_yaml 'tcpdump/defaults.yaml' as default_settings %}
+
+{% set distro_map = salt['grains.filter_by']({
+    'Windows': { 'packages': [ 'winpcap', 'wireshark', ], },
+    'default': {},
+  }, merge=salt['pillar.get']('tcpdump:lookup')) %}
+
+{% do default_settings.tcpdump.update(distro_map) %}
+
+{% set tcpdump_settings = salt['pillar.get']('tcpdump',
+  default=default_settings.tcpdump, merge=True) %}
