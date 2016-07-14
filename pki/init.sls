@@ -1,8 +1,5 @@
-{% from "pki/map.jinja" import pki with context %}
-{% if pki %}
+{% from "pki/map.jinja" import pki_settings with context %}
 
 pki:
   pkg.installed:
-    - pkgs: {{ pki.packages|yaml }}
-
-{% endif %}
+    - pkgs: {{ pki_settings.packages|yaml }}

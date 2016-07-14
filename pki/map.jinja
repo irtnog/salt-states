@@ -1,6 +1,18 @@
-{% set pki = salt['grains.filter_by']({
+{% import_yaml "pki/defaults.yaml" as default_settings %}
+
+{% set distro_map = salt['grains.filter_by']({
+    'Debian':  { 'packages': [ 'ca-certificates', ],
+                 'ca_file':  '/etc/ssl/certs/ca-certificates.crt', },
     'FreeBSD': { 'packages': [ 'ca_root_nss', ],
                  'ca_file':  '/usr/local/share/certs/ca-root-nss.crt', },
+    'MacOSX':  { 'ca_file':  '/System/Library/OpenSSL/certs/cert.pem', },
+    'OpenBSD': { 'ca_file':  '/etc/ssl/cert.pem', },
     'RedHat':  { 'packages': [ 'ca-certificates', ],
                  'ca_file':  '/etc/pki/tls/certs/ca-bundle.crt', },
+    'default': {},
   }, merge=salt['pillar.get']('pki:lookup')) %}
+
+{% do default_settings.pki.update(distro_map) %}
+
+{% set pki_settings = salt['pillar.get']('pki',
+  default=default_settings.pki, merge=True) %}
