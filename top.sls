@@ -324,7 +324,6 @@ testing:
     - pki
     - postfix
     - tcsh
-    - salt.pkgrepo
     - salt.minion
     - screen
     - ssh
@@ -395,7 +394,6 @@ testing:
     - pam_mkhomedir
     - pki
     - postfix
-    - salt.pkgrepo
     - salt.minion
     - screen
     - selinux
@@ -497,7 +495,6 @@ production:
     - pki
     - postfix
     - tcsh
-    - salt.pkgrepo
     - salt.minion
     - screen
     - ssh
@@ -568,7 +565,6 @@ production:
     - pam_mkhomedir
     - pki
     - postfix
-    - salt.pkgrepo
     - salt.minion
     - screen
     - selinux
