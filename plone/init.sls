@@ -27,3 +27,5 @@ rc_conf_plone:
     - text: zope213_instances="/opt/plone"
     - require:
         - cmd: plone
+    - require_in:
+        - file: rc_conf
