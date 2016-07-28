@@ -1,14 +1,14 @@
-{% for ... %}
+{% for k, v in salt['pillar.get']('aws:vpc', {})|dictsort %}
 {% set outer_loop = loop %}
 
 ## Create the VPC.
-{% set vpc_name = ... %}
-{% set vpc_net = ... %}
-{% set vpc_tenancy = ... %}
-{% set vpc_nsresolv = ... %}
-{% set vpc_dyndns = ... %}
-{% set vpc_tags = ... %}
-{% set vpc_region = ... %}
+{% set vpc_name = k %}
+{% set vpc_net = v['network']|default('192.168.0.0/16') %}
+{% set vpc_tenancy = v['tenancy']|default('default') %}
+{% set vpc_nsresolv = v['dns_resolution']|default(True) %}
+{% set vpc_dyndns = v['dns_hostnames']|default(True) %}
+{% set vpc_tags = v['tags']|default([]) %}
+{% set vpc_region = v['region']|default('us-east-1') %}
 aws_vpc_{{ outer_loop.index0 }}:
   boto_vpc.present:
     - name: {{ vpc_name|yaml_encode }}
@@ -19,12 +19,13 @@ aws_vpc_{{ outer_loop.index0 }}:
     - tags: {{ vpc_tags|yaml }}
     - region: {{ vpc_region|yaml_encode }}
 
+{#
 ## Create the VPC's subnets.
-{% for ... %}
-{% set subnet_name = ... %}
-{% set subnet_net = ... %}
-{% set subnet_az = ... %}
-{% set subnet_tags = ... %}
+{% for subnet in v['subnets']|default([]) %}
+{% set subnet_name = subnet['name'] %}
+{% set subnet_net = subnet['cidr'] %}
+{% set subnet_az = subnet['availability_zone']|default(None) %}
+{% set subnet_tags = subnet['tags']|default([]) %}
 aws_vpc_{{ outer_loop.index0 }}_subnet_{{ loop.index0 }}:
   boto_vpc.subnet_present:
     - name: {{ subnet_name|yaml_encode }}
@@ -90,5 +91,6 @@ aws_vpc_{{ outer_loop.index0 }}_dhcpopts_{{ loop.index0 }}:
 {% endfor %}
 
 ## TODO: attach a DHCP option set to the VPC.
+#}
 
 {% endfor %}
