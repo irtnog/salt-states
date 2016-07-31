@@ -34,12 +34,11 @@
 {#- special cases -#}
 {%- if 'RewriteEngine' in dict  %}
 {{ 'RewriteEngine %s'|format('on' if dict['RewriteEngine'] else 'off')|indent(width, True) }}
-{%- do dict.pop('RewriteEngine') %}
 {%- endif %}
 {%- for directive, argument in dict.items() %}
 {%- if argument == None %}
 {#- no-op #}
-{%- elif directive in ['module_id', 'module_filename'] %}
+{%- elif directive in ['module_id', 'module_filename', 'RewriteEngine'] %}
 {#- no-op #}
 {%- elif directive.split()[0] in enclosing_directives %}
 {{ '<%s>'|format(directive)|indent(width, True) }}{{ render_apache_config(argument, width+indent) }}
