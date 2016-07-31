@@ -28,6 +28,11 @@
 {%- set ordered_directives = [
     'RewriteCond',
   ] -%}
+{%- set filtered_keys = [
+    'module_id',
+    'module_filename',
+    'RewriteEngine',
+  ] -%}
 
 {%- macro render_apache_config(dict, width=0) %}
 {%- if dict is defined and dict is mapping %}
@@ -38,7 +43,7 @@
 {%- for directive, argument in dict.items() %}
 {%- if argument == None %}
 {#- no-op #}
-{%- elif directive in ['module_id', 'module_filename', 'RewriteEngine'] %}
+{%- elif directive in filtered_keys %}
 {#- no-op #}
 {%- elif directive.split()[0] in enclosing_directives %}
 {{ '<%s>'|format(directive)|indent(width, True) }}{{ render_apache_config(argument, width+indent) }}
