@@ -293,7 +293,6 @@ development:
     - match: compound
     - apache
     - opentracker
-    - plone
     - trac
 
 ####
@@ -446,7 +445,6 @@ testing:
     - match: compound
     - apache
     - opentracker
-    - plone
     - trac
 
 ####
@@ -618,7 +616,6 @@ production:
     - match: compound
     - apache
     - opentracker
-    - plone
     - trac
 
 #### TOP.SLS ends here.
