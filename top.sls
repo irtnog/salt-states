@@ -103,7 +103,7 @@ development:
 
   'I@environment:development and G@os_family:FreeBSD':
     - match: compound
-    - poudriere.client          # local pkgng repo
+    - poudriere.client
     - rc
     - periodic
     - accounting
@@ -143,7 +143,7 @@ development:
     - hostname
     - yum
     - epel
-    - nux.dextop                # requires EPEL
+    - nux.dextop
     - nux.misc
     - accounting
     - aliases
@@ -311,6 +311,7 @@ testing:
     - auditd
     - banners
     - cron
+    - emacs
     - fail2ban
     - fail2ban.config
     - git
@@ -319,25 +320,30 @@ testing:
     - mounts
     - nis.client
     - nfs.client
+    - nmap
     - ntp.ng
     - pam_mkhomedir
     - pki
     - postfix
+    - tcpdump
     - tcsh
+    - salt.pkgrepo
     - salt.minion
     - screen
-    - ssh
-    - sshd
     - snmp
     - snmp.conf
+    - ssh
+    - sshd
     - sudoers
     - symlinks
     - sysctl
+    - tcpdump
+    - tcsh
     - users
 
   'I@environment:testing and G@os_family:FreeBSD':
     - match: compound
-    - poudriere.client          # local pkgng repo
+    - poudriere.client
     - rc
     - periodic
     - accounting
@@ -347,6 +353,7 @@ testing:
     - bash
     - bgfsck
     - cron
+    - emacs
     - fail2ban
     - fail2ban.config
     - git
@@ -356,6 +363,7 @@ testing:
     - moused
     - nfs.client
     - nis.client
+    - nmap
     - ntp.ng
     - pam_mkhomedir
     - pki
@@ -375,13 +383,14 @@ testing:
     - hostname
     - yum
     - epel
-    - nux.dextop                # requires EPEL
+    - nux.dextop
     - nux.misc
     - accounting
     - aliases
     - auditd
     - banners
     - cron
+    - emacs
     - fail2ban
     - fail2ban.config
     - git
@@ -390,10 +399,12 @@ testing:
     - mounts
     - nfs.client
     - nis.client
+    - nmap
     - ntp.ng
     - pam_mkhomedir
     - pki
     - postfix
+    - salt.pkgrepo
     - salt.minion
     - screen
     - selinux
@@ -405,6 +416,67 @@ testing:
     - sudoers
     - symlinks
     - sysctl
+    - tcpdump
+    - tcsh
+    - users
+
+  'I@environment:testing and G@os_family:Suse':
+    - match: compound
+    - accounting
+    - aliases
+    - auditd
+    - banners
+    - cron
+    - emacs
+    # - fail2ban
+    # - fail2ban.config
+    - git
+    - kerberos5
+    - man
+    - mosh
+    - mounts
+    - nfs.client
+    - nis.client
+    - nmap
+    - ntp.ng
+    - salt.minion
+    - screen
+    - selinux
+    - snmp
+    - snmp.conf
+    - snmp.options
+    - ssh
+    - sshd
+    - sudoers
+    - symlinks
+    - sysctl
+    - tcpdump
+    - tcsh
+    - users
+
+  'I@environment:testing and G@os_family:Solaris':
+    - match: compound
+    - accounting
+    - aliases
+    - auditd
+    - banners
+    - cron
+    - emacs
+    - git
+    - kerberos5
+    - mosh
+    - mounts
+    - nfs.client
+    - nis.client
+    - nmap
+    - ntp.ng
+    - postfix
+    - screen
+    - ssh
+    - sshd
+    - sudoers
+    - symlinks
+    - tcpdump
     - tcsh
     - users
 
@@ -414,11 +486,16 @@ testing:
     - gpmc
     - perfmon
     - powershell
+    - rdp
     - rsat
     - salt.minion
     - schannel
     - users
     - web-mgmt-tools
+
+  'I@environment:testing and G@virtual:VirtualPC':
+    - match: compound
+    - hyperv.guest
 
   'I@environment:testing and I@role:salt-master':
     - match: compound
@@ -482,6 +559,7 @@ production:
     - auditd
     - banners
     - cron
+    - emacs
     - fail2ban
     - fail2ban.config
     - git
@@ -490,25 +568,30 @@ production:
     - mounts
     - nis.client
     - nfs.client
+    - nmap
     - ntp.ng
     - pam_mkhomedir
     - pki
     - postfix
+    - tcpdump
     - tcsh
+    - salt.pkgrepo
     - salt.minion
     - screen
-    - ssh
-    - sshd
     - snmp
     - snmp.conf
+    - ssh
+    - sshd
     - sudoers
     - symlinks
     - sysctl
+    - tcpdump
+    - tcsh
     - users
 
   'I@environment:production and G@os_family:FreeBSD':
     - match: compound
-    - poudriere.client          # local pkgng repo
+    - poudriere.client
     - rc
     - periodic
     - accounting
@@ -518,6 +601,7 @@ production:
     - bash
     - bgfsck
     - cron
+    - emacs
     - fail2ban
     - fail2ban.config
     - git
@@ -527,6 +611,7 @@ production:
     - moused
     - nfs.client
     - nis.client
+    - nmap
     - ntp.ng
     - pam_mkhomedir
     - pki
@@ -546,13 +631,14 @@ production:
     - hostname
     - yum
     - epel
-    - nux.dextop                # requires EPEL
+    - nux.dextop
     - nux.misc
     - accounting
     - aliases
     - auditd
     - banners
     - cron
+    - emacs
     - fail2ban
     - fail2ban.config
     - git
@@ -561,10 +647,12 @@ production:
     - mounts
     - nfs.client
     - nis.client
+    - nmap
     - ntp.ng
     - pam_mkhomedir
     - pki
     - postfix
+    - salt.pkgrepo
     - salt.minion
     - screen
     - selinux
@@ -576,6 +664,67 @@ production:
     - sudoers
     - symlinks
     - sysctl
+    - tcpdump
+    - tcsh
+    - users
+
+  'I@environment:production and G@os_family:Suse':
+    - match: compound
+    - accounting
+    - aliases
+    - auditd
+    - banners
+    - cron
+    - emacs
+    # - fail2ban
+    # - fail2ban.config
+    - git
+    - kerberos5
+    - man
+    - mosh
+    - mounts
+    - nfs.client
+    - nis.client
+    - nmap
+    - ntp.ng
+    - salt.minion
+    - screen
+    - selinux
+    - snmp
+    - snmp.conf
+    - snmp.options
+    - ssh
+    - sshd
+    - sudoers
+    - symlinks
+    - sysctl
+    - tcpdump
+    - tcsh
+    - users
+
+  'I@environment:production and G@os_family:Solaris':
+    - match: compound
+    - accounting
+    - aliases
+    - auditd
+    - banners
+    - cron
+    - emacs
+    - git
+    - kerberos5
+    - mosh
+    - mounts
+    - nfs.client
+    - nis.client
+    - nmap
+    - ntp.ng
+    - postfix
+    - screen
+    - ssh
+    - sshd
+    - sudoers
+    - symlinks
+    - tcpdump
     - tcsh
     - users
 
@@ -585,11 +734,16 @@ production:
     - gpmc
     - perfmon
     - powershell
+    - rdp
     - rsat
     - salt.minion
     - schannel
     - users
     - web-mgmt-tools
+
+  'I@environment:production and G@virtual:VirtualPC':
+    - match: compound
+    - hyperv.guest
 
   'I@environment:production and I@role:salt-master':
     - match: compound
