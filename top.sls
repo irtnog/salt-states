@@ -242,6 +242,7 @@ development:
 
   'I@environment:development and G@os_family:Windows':
     - match: compound
+    - csc
     - git
     - gpmc
     - perfmon
@@ -482,6 +483,7 @@ testing:
 
   'I@environment:testing and G@os_family:Windows':
     - match: compound
+    - csc
     - git
     - gpmc
     - perfmon
@@ -730,6 +732,7 @@ production:
 
   'I@environment:production and G@os_family:Windows':
     - match: compound
+    - csc
     - git
     - gpmc
     - perfmon
