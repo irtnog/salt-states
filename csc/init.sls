@@ -38,7 +38,9 @@
 ##   transitioned online.  This scenario may cause very slow access to
 ##   the remote file system on the server from the local computer.
 ##
-HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\NetCache\SilentForcedAutoReconnect:
+csc_silent_forced_autoreconnect:
   reg.present:
+    - name: HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\NetCache
+    - vname: SilentForcedAutoReconnect
     - vtype: REG_DWORD
-    - value: 1
+    - vdata: 1
