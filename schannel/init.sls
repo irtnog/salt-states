@@ -20,12 +20,12 @@
 {% else %}
   {% set disable_protocols_server = [ 'PCT 1.0', 'SSL 2.0', 'SSL 3.0', 'TLS 1.0', 'TLS 1.1', ] %}
 {% endif %}
-{% for protocol in disable_protocols_sever %}
+{% for protocol in disable_protocols_server %}
 {{ schannel }}\Protocols\{{ protocol }}\Server\Enabled:
   reg.present:
     - vtype: REG_DWORD
     - value: 0
-  {% endif %}
+{% endfor %}
 {% for protocol in [ 'PCT 1.0', 'SSL 2.0', 'SSL 3.0', ] %}
 {{ schannel }}\Protocols\{{ protocol }}\Client\DisabledByDefault:
   reg.present:
