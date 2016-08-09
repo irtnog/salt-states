@@ -250,7 +250,6 @@ development:
     - rdp
     - rsat
     - salt.minion
-    - schannel
     - users
     - web-mgmt-tools
 
@@ -491,7 +490,6 @@ testing:
     - rdp
     - rsat
     - salt.minion
-    - schannel
     - users
     - web-mgmt-tools
 
@@ -740,7 +738,6 @@ production:
     - rdp
     - rsat
     - salt.minion
-    - schannel
     - users
     - web-mgmt-tools
 
