@@ -23,10 +23,7 @@ install_irtnog_repo:
 {% endif %}
 
 install_make_conf:
-  cmd.run:
-    - name: touch /etc/make.conf
-    - onlyif: test ! -f /etc/make.conf
-  file.append:
+  file.managed:
     - name: /etc/make.conf
     - source: salt://poudriere/files/make.conf.jinja
     - template: jinja
