@@ -117,6 +117,7 @@ development:
     - fail2ban
     - fail2ban.config
     - git
+    - gnupg
     - kerberos5
     - mosh
     - mounts
@@ -357,6 +358,7 @@ testing:
     - fail2ban
     - fail2ban.config
     - git
+    - gnupg
     - kerberos5
     - mosh
     - mounts
@@ -605,6 +607,7 @@ production:
     - fail2ban
     - fail2ban.config
     - git
+    - gnupg
     - kerberos5
     - mosh
     - mounts
