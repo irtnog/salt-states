@@ -296,6 +296,10 @@ development:
     - opentracker
     - trac
 
+  'I@environment:development and I@role:shibboleth-idp':
+    - match: compound
+    - shib.idp
+
 ####
 #### TESTING ENVIRONMENT
 ####
@@ -525,6 +529,10 @@ testing:
     - apache
     - opentracker
     - trac
+
+  'I@environment:testing and I@role:shibboleth-idp':
+    - match: compound
+    - shib.idp
 
 ####
 #### STAGING ENVIRONMENT
@@ -774,5 +782,9 @@ production:
     - apache
     - opentracker
     - trac
+
+  'I@environment:production and I@role:shibboleth-idp':
+    - match: compound
+    - shib.idp
 
 #### TOP.SLS ends here.
