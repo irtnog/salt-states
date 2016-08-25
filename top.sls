@@ -158,6 +158,7 @@ development:
     - kerberos5
     - mosh
     - mounts
+    - net-tools
     - nfs.client
     - nis.client
     - nmap
@@ -403,6 +404,7 @@ testing:
     - kerberos5
     - mosh
     - mounts
+    - net-tools
     - nfs.client
     - nis.client
     - nmap
@@ -656,6 +658,7 @@ production:
     - kerberos5
     - mosh
     - mounts
+    - net-tools
     - nfs.client
     - nis.client
     - nmap
