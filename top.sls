@@ -302,7 +302,7 @@ development:
 
   'I@environment:development and I@role:shibboleth-idp':
     - match: compound
-    - shib.idp
+    - shibboleth.idp
 
 ####
 #### TESTING ENVIRONMENT
@@ -540,7 +540,7 @@ testing:
 
   'I@environment:testing and I@role:shibboleth-idp':
     - match: compound
-    - shib.idp
+    - shibboleth.idp
 
 ####
 #### STAGING ENVIRONMENT
@@ -797,6 +797,6 @@ production:
 
   'I@environment:production and I@role:shibboleth-idp':
     - match: compound
-    - shib.idp
+    - shibboleth.idp
 
 #### TOP.SLS ends here.
