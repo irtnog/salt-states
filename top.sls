@@ -100,6 +100,7 @@ development:
     - tcpdump
     - tcsh
     - users
+    - w3m
 
   'I@environment:development and G@os_family:FreeBSD':
     - match: compound
@@ -138,6 +139,7 @@ development:
     - syscons
     - sysctl
     - users
+    - w3m
 
   'I@environment:development and G@os_family:RedHat':
     - match: compound
@@ -181,6 +183,7 @@ development:
     - tcpdump
     - tcsh
     - users
+    - w3m
 
   'I@environment:development and G@os_family:Suse':
     - match: compound
@@ -346,6 +349,7 @@ testing:
     - tcpdump
     - tcsh
     - users
+    - w3m
 
   'I@environment:testing and G@os_family:FreeBSD':
     - match: compound
@@ -384,6 +388,7 @@ testing:
     - syscons
     - sysctl
     - users
+    - w3m
 
   'I@environment:testing and G@os_family:RedHat':
     - match: compound
@@ -427,6 +432,7 @@ testing:
     - tcpdump
     - tcsh
     - users
+    - w3m
 
   'I@environment:testing and G@os_family:Suse':
     - match: compound
@@ -600,6 +606,7 @@ production:
     - tcpdump
     - tcsh
     - users
+    - w3m
 
   'I@environment:production and G@os_family:FreeBSD':
     - match: compound
@@ -638,6 +645,7 @@ production:
     - syscons
     - sysctl
     - users
+    - w3m
 
   'I@environment:production and G@os_family:RedHat':
     - match: compound
@@ -681,6 +689,7 @@ production:
     - tcpdump
     - tcsh
     - users
+    - w3m
 
   'I@environment:production and G@os_family:Suse':
     - match: compound
