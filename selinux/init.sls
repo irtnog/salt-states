@@ -36,3 +36,11 @@ semodule -i local.pp:
     - cwd: /etc/selinux/targeted/local
     - watch:
         - cmd: semodule_package -o local.pp -m local.mod
+
+## By default SELinux will block sshd from reading users'
+## authorized_hosts files when their home directories reside on NFS
+## (http://stackoverflow.com/questions/29868288/selinux-prevents-ssh-with-rsa-key).
+use_nfs_home_dirs:
+  selinux.boolean:
+    - value: True
+    - persist: True
