@@ -302,7 +302,10 @@ development:
 
   'I@environment:development and I@role:shibboleth-idp':
     - match: compound
+    - apache
     - shibboleth.idp
+    - tomcat
+    - tomcat.shibboleth-idp     # glue SLS
 
 ####
 #### TESTING ENVIRONMENT
@@ -540,7 +543,10 @@ testing:
 
   'I@environment:testing and I@role:shibboleth-idp':
     - match: compound
+    - apache
     - shibboleth.idp
+    - tomcat
+    - tomcat.shibboleth-idp     # glue SLS
 
 ####
 #### STAGING ENVIRONMENT
@@ -797,6 +803,9 @@ production:
 
   'I@environment:production and I@role:shibboleth-idp':
     - match: compound
+    - apache
     - shibboleth.idp
+    - tomcat
+    - tomcat.shibboleth-idp     # glue SLS
 
 #### TOP.SLS ends here.
