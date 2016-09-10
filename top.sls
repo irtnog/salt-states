@@ -66,6 +66,8 @@ base:
 development:
   'I@environment:development and G@os_family:Debian':
     - match: compound
+    - salt.pkgrepo
+    - salt.minion
     - accounting
     - aliases
     - auditd
@@ -87,8 +89,6 @@ development:
     - postfix
     - tcpdump
     - tcsh
-    - salt.pkgrepo
-    - salt.minion
     - screen
     - snmp
     - snmp.conf
@@ -143,6 +143,8 @@ development:
 
   'I@environment:development and G@os_family:RedHat':
     - match: compound
+    - salt.pkgrepo
+    - salt.minion
     - hostname
     - yum
     - epel
@@ -168,8 +170,6 @@ development:
     - pam_mkhomedir
     - pki
     - postfix
-    - salt.pkgrepo
-    - salt.minion
     - screen
     - selinux
     - snmp
@@ -316,6 +316,8 @@ development:
 testing:
   'I@environment:testing and G@os_family:Debian':
     - match: compound
+    - salt.pkgrepo
+    - salt.minion
     - accounting
     - aliases
     - auditd
@@ -337,8 +339,6 @@ testing:
     - postfix
     - tcpdump
     - tcsh
-    - salt.pkgrepo
-    - salt.minion
     - screen
     - snmp
     - snmp.conf
@@ -393,6 +393,8 @@ testing:
 
   'I@environment:testing and G@os_family:RedHat':
     - match: compound
+    - salt.pkgrepo
+    - salt.minion
     - hostname
     - yum
     - epel
@@ -418,8 +420,6 @@ testing:
     - pam_mkhomedir
     - pki
     - postfix
-    - salt.pkgrepo
-    - salt.minion
     - screen
     - selinux
     - snmp
@@ -574,6 +574,8 @@ staging:
 production:
   'I@environment:production and G@os_family:Debian':
     - match: compound
+    - salt.pkgrepo
+    - salt.minion
     - accounting
     - aliases
     - auditd
@@ -595,8 +597,6 @@ production:
     - postfix
     - tcpdump
     - tcsh
-    - salt.pkgrepo
-    - salt.minion
     - screen
     - snmp
     - snmp.conf
@@ -651,6 +651,8 @@ production:
 
   'I@environment:production and G@os_family:RedHat':
     - match: compound
+    - salt.pkgrepo
+    - salt.minion
     - hostname
     - yum
     - epel
@@ -676,8 +678,6 @@ production:
     - pam_mkhomedir
     - pki
     - postfix
-    - salt.pkgrepo
-    - salt.minion
     - screen
     - selinux
     - snmp
