@@ -105,6 +105,7 @@ development:
   'I@environment:development and G@os_family:FreeBSD':
     - match: compound
     - poudriere.client
+    - salt.minion
     - rc
     - periodic
     - accounting
@@ -130,7 +131,6 @@ development:
     - pam_mkhomedir
     - pki
     - postfix
-    - salt.minion
     - screen
     - ssh
     - sshd
@@ -187,6 +187,7 @@ development:
 
   'I@environment:development and G@os_family:Suse':
     - match: compound
+    - salt.minion
     - accounting
     - aliases
     - auditd
@@ -204,7 +205,6 @@ development:
     - nis.client
     - nmap
     - ntp.ng
-    - salt.minion
     - screen
     - selinux
     - snmp
@@ -247,6 +247,7 @@ development:
 
   'I@environment:development and G@os_family:Windows':
     - match: compound
+    - salt.minion
     - csc
     - git
     - gpmc
@@ -254,7 +255,6 @@ development:
     - powershell
     - rdp
     - rsat
-    - salt.minion
     - users
     - web-mgmt-tools
 
@@ -355,6 +355,7 @@ testing:
   'I@environment:testing and G@os_family:FreeBSD':
     - match: compound
     - poudriere.client
+    - salt.minion
     - rc
     - periodic
     - accounting
@@ -380,7 +381,6 @@ testing:
     - pam_mkhomedir
     - pki
     - postfix
-    - salt.minion
     - screen
     - ssh
     - sshd
@@ -437,6 +437,7 @@ testing:
 
   'I@environment:testing and G@os_family:Suse':
     - match: compound
+    - salt.minion
     - accounting
     - aliases
     - auditd
@@ -454,7 +455,6 @@ testing:
     - nis.client
     - nmap
     - ntp.ng
-    - salt.minion
     - screen
     - selinux
     - snmp
@@ -497,6 +497,7 @@ testing:
 
   'I@environment:testing and G@os_family:Windows':
     - match: compound
+    - salt.minion
     - csc
     - git
     - gpmc
@@ -504,7 +505,6 @@ testing:
     - powershell
     - rdp
     - rsat
-    - salt.minion
     - users
     - web-mgmt-tools
 
@@ -613,6 +613,7 @@ production:
   'I@environment:production and G@os_family:FreeBSD':
     - match: compound
     - poudriere.client
+    - salt.minion
     - rc
     - periodic
     - accounting
@@ -638,7 +639,6 @@ production:
     - pam_mkhomedir
     - pki
     - postfix
-    - salt.minion
     - screen
     - ssh
     - sshd
@@ -695,6 +695,7 @@ production:
 
   'I@environment:production and G@os_family:Suse':
     - match: compound
+    - salt.minion
     - accounting
     - aliases
     - auditd
@@ -712,7 +713,6 @@ production:
     - nis.client
     - nmap
     - ntp.ng
-    - salt.minion
     - screen
     - selinux
     - snmp
@@ -755,6 +755,7 @@ production:
 
   'I@environment:production and G@os_family:Windows':
     - match: compound
+    - salt.minion
     - csc
     - git
     - gpmc
@@ -762,7 +763,6 @@ production:
     - powershell
     - rdp
     - rsat
-    - salt.minion
     - users
     - web-mgmt-tools
 
