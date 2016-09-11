@@ -1,7 +1,0 @@
-apache:
-  sites:
-    - www.example.com
-
-  www.example.com:
-    ServerAliases: web.example.com example.com
-    DocumentRoot: /var/www/vhosts/www.example.com
