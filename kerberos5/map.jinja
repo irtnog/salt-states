@@ -8,6 +8,6 @@
     'Solaris': {},
   }, merge=salt['pillar.get']('kerberos5:lookup')) %}
 
-{% do salt['irtnog.dictupdate'](default_settings.kerberos5, distro_map) %}
+{% do default_settings.kerberos5.update(distro_map) %}
 
 {% set kerberos5_settings = salt['pillar.get']('kerberos5', default=default_settings.kerberos5, merge=True) %}

@@ -1,13 +1,19 @@
 kerberos5:
   packages: []
 
-  config:
-    libdefaults:
-      ticket_lifetime: 24h
-      renew_lifetime: 7d
-      warn_pwexpire: 14d
-      forwardable: True
-    logging:
-      default: SYSLOG:INFO:USER
-      kdc: SYSLOG:INFO:AUTH
-      admin_server: SYSLOG:INFO:AUTH
+  ## If extending any of the following settings, make sure to copy the
+  ## entirety of each second-level mapping, as Salt's dictupdate
+  ## method does not perform deep copies; e.g., setting `kerberos5:
+  ## libdefaults: { default_realm: EXAMPLE.NET }` will replace the
+  ## default mapping that contains `ticket_lifetime` et seq.
+
+  libdefaults:
+    ticket_lifetime: 24h
+    renew_lifetime: 7d
+    warn_pwexpire: 14d
+    forwardable: True
+
+  logging:
+    default: SYSLOG:INFO:USER
+    kdc: SYSLOG:INFO:AUTH
+    admin_server: SYSLOG:INFO:AUTH
