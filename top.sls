@@ -298,6 +298,7 @@ development:
     - match: compound
     - apache
     - opentracker
+    - shibboleth.sp
     - trac
 
   'I@environment:development and I@role:shibboleth-idp':
@@ -537,6 +538,7 @@ testing:
     - match: compound
     - apache
     - opentracker
+    - shibboleth.sp
     - trac
 
   'I@environment:testing and I@role:shibboleth-idp':
@@ -795,6 +797,7 @@ production:
     - match: compound
     - apache
     - opentracker
+    - shibboleth.sp
     - trac
 
   'I@environment:production and I@role:shibboleth-idp':
