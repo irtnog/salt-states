@@ -1,6 +1,6 @@
 {% from "hyperv/map.jinja" import hyperv_settings with context %}
 
-hyperv:
+hyperv_ic:
   pkg.installed:
     - pkgs: {{ hyperv_settings.packages|yaml }}
 
@@ -9,7 +9,7 @@ hyperv:
 ## defaults to a screen resolution 1152x864 on Linux.  This change
 ## lowers it to 640x480, which better suits a text-only server
 ## console.
-hyperv_fb_modprobe_conf:
+hyperv_ic_fb_modprobe_conf:
   file.managed:
     - name: /etc/modprobe.d/hyperv_fb.conf
     - user: root
@@ -17,12 +17,12 @@ hyperv_fb_modprobe_conf:
     - mode: 444
     - source: salt://hyperv/files/hyperv_fb.conf
     - require:
-        - pkg: hyperv
+        - pkg: hyperv_ic
 
 ## The Hyper-V Dynamic Memory feature requres additional configuration
 ## on CentOS and Red Hat Enterprise Linux in order to enable Hot-Add
 ## support (http://technet.microsoft.com/en-us/library/dn531026.aspx).
-hyperv_memory_udev_balloon_rules:
+hyperv_ic_memory_udev_balloon_rules:
   file.managed:
     - name: /etc/udev/rules.d/100-balloon.rules
     - user: root
@@ -30,5 +30,5 @@ hyperv_memory_udev_balloon_rules:
     - mode: 444
     - source: salt://hyperv/files/100-balloon.rules
     - require:
-        - pkg: hyperv
+        - pkg: hyperv_ic
 {% endif %}
