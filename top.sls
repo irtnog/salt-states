@@ -262,6 +262,10 @@ development:
     - match: compound
     - hyperv.ic
 
+  'I@environment:development and G@virtual:VMware':
+    - match: compound
+    - vmware.tools
+
   'I@environment:development and I@role:salt-master':
     - match: compound
     - apache
@@ -512,6 +516,10 @@ testing:
   'I@environment:testing and G@virtual:VirtualPC':
     - match: compound
     - hyperv.ic
+
+  'I@environment:testing and G@virtual:VMware':
+    - match: compound
+    - vmware.tools
 
   'I@environment:testing and I@role:salt-master':
     - match: compound
@@ -771,6 +779,10 @@ production:
   'I@environment:production and G@virtual:VirtualPC':
     - match: compound
     - hyperv.ic
+
+  'I@environment:production and G@virtual:VMware':
+    - match: compound
+    - vmware.tools
 
   'I@environment:production and I@role:salt-master':
     - match: compound
