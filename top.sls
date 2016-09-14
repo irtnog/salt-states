@@ -260,7 +260,7 @@ development:
 
   'I@environment:development and G@virtual:VirtualPC':
     - match: compound
-    - hyperv.guest
+    - hyperv.ic
 
   'I@environment:development and I@role:salt-master':
     - match: compound
@@ -511,7 +511,7 @@ testing:
 
   'I@environment:testing and G@virtual:VirtualPC':
     - match: compound
-    - hyperv.guest
+    - hyperv.ic
 
   'I@environment:testing and I@role:salt-master':
     - match: compound
@@ -770,7 +770,7 @@ production:
 
   'I@environment:production and G@virtual:VirtualPC':
     - match: compound
-    - hyperv.guest
+    - hyperv.ic
 
   'I@environment:production and I@role:salt-master':
     - match: compound
