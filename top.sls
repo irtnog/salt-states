@@ -158,6 +158,7 @@ development:
     - emacs
     - fail2ban
     - fail2ban.config
+    - firewalld
     - git
     - kerberos5
     - mosh
@@ -413,6 +414,7 @@ testing:
     - emacs
     - fail2ban
     - fail2ban.config
+    - firewalld
     - git
     - kerberos5
     - mosh
@@ -676,6 +678,7 @@ production:
     - emacs
     - fail2ban
     - fail2ban.config
+    - firewalld
     - git
     - kerberos5
     - mosh
