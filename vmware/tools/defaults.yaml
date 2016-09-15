@@ -1,0 +1,16 @@
+vmware:
+  tools:
+    packages:
+      - open-vm-tools
+    confdir:
+      /etc/vmware-tools/
+    hookdir:
+      /usr/sbin/
+    hooksuffix:
+      ''
+    services:
+      - vmtoolsd
+    pre_freeze_script:
+      []
+    post_thaw_script:
+      []

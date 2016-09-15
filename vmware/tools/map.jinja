@@ -1,0 +1,13 @@
+{% import_yaml "vmware/tools/defaults.yaml" as default_settings %}
+
+{% set distro_map = salt['grains.filter_by']({
+    'Darwin':  { 'confdir': '/Library/Application Support/VMware Tools/', },
+    'FreeBSD': { 'confdir': '/usr/local/etc/vmware-tools/',
+                 'hookdir': '/usr/local/sbin/', },
+    'default':  {},
+  }, merge=salt['pillar.get']('vmware:tools:lookup')) %}
+
+{% do default_settings.vmware.tools.update(distro_map) %}
+
+{% set vmware_tools_settings = salt['pillar.get']('vmware:tools',
+  default=default_settings.vmware.tools, merge=True) %}
