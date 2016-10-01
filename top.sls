@@ -304,12 +304,8 @@ development:
     - apache
     - opentracker
     - shibboleth.sp
-    - trac
-
-  'I@environment:development and I@role:shibboleth-idp':
-    - match: compound
-    - apache
     - tomcat.shibboleth-idp
+    - trac
 
 ####
 #### TESTING ENVIRONMENT
@@ -549,12 +545,8 @@ testing:
     - apache
     - opentracker
     - shibboleth.sp
+    - tomcat.shibboleth-idp
     - trac
-
-  'I@environment:testing and I@role:shibboleth-idp':
-    - match: compound
-    - apache
-    - tomcat.shibboleth-idp     # glue SLS
 
 ####
 #### STAGING ENVIRONMENT
@@ -813,11 +805,7 @@ production:
     - apache
     - opentracker
     - shibboleth.sp
+    - tomcat.shibboleth-idp
     - trac
-
-  'I@environment:production and I@role:shibboleth-idp':
-    - match: compound
-    - apache
-    - tomcat.shibboleth-idp     # glue SLS
 
 #### TOP.SLS ends here.
