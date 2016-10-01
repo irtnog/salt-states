@@ -270,13 +270,14 @@ development:
   'I@environment:development and I@role:salt-master':
     - match: compound
     - apache
+    - poudriere
     - salt.cloud
     - salt.formulas
     - salt.gitfs.gitpython
-    - salt.reactors
     - salt.master
+    - salt.reactors
     - salt.ssh
-    - poudriere
+    - shibboleth.sp
 
   'I@environment:development and I@role:mail-relay':
     - match: compound
@@ -522,13 +523,14 @@ testing:
   'I@environment:testing and I@role:salt-master':
     - match: compound
     - apache
+    - poudriere
     - salt.cloud
     - salt.formulas
-    - salt.reactors
     - salt.gitfs.gitpython
     - salt.master
+    - salt.reactors
     - salt.ssh
-    - poudriere
+    - shibboleth.sp
 
   'I@environment:testing and I@role:mail-relay':
     - match: compound
@@ -782,13 +784,14 @@ production:
   'I@environment:production and I@role:salt-master':
     - match: compound
     - apache
+    - poudriere
+    - shibboleth.sp
     - salt.cloud
     - salt.formulas
-    - salt.reactors
     - salt.gitfs.gitpython
     - salt.master
+    - salt.reactors
     - salt.ssh
-    - poudriere
 
   'I@environment:production and I@role:mail-relay':
     - match: compound
