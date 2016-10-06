@@ -300,12 +300,17 @@ development:
     - match: compound
     - spigotmc
 
+  'I@environment:development and I@role:shibboleth-idp':
+    - match: compound
+    - apache
+    - shibboleth.repo
+    - tomcat.shibboleth-idp
+
   'I@environment:development and I@role:web-server':
     - match: compound
     - apache
     - opentracker
     - shibboleth.sp
-    - tomcat.shibboleth-idp
     - trac
 
 ####
@@ -542,12 +547,17 @@ testing:
     - match: compound
     - spigotmc
 
+  'I@environment:testing and I@role:shibboleth-idp':
+    - match: compound
+    - apache
+    - shibboleth.repo
+    - tomcat.shibboleth-idp
+
   'I@environment:testing and I@role:web-server':
     - match: compound
     - apache
     - opentracker
     - shibboleth.sp
-    - tomcat.shibboleth-idp
     - trac
 
 ####
@@ -803,12 +813,17 @@ production:
     - match: compound
     - spigotmc
 
+  'I@environment:production and I@role:shibboleth-idp':
+    - match: compound
+    - apache
+    - shibboleth.repo
+    - tomcat.shibboleth-idp
+
   'I@environment:production and I@role:web-server':
     - match: compound
     - apache
     - opentracker
     - shibboleth.sp
-    - tomcat.shibboleth-idp
     - trac
 
 #### TOP.SLS ends here.
