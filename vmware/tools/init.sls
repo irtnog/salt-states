@@ -18,7 +18,7 @@ vmware_tools:
         - pkg: vmware_tools
 
   service.running:
-    - name: {{ vmware_tools_settings.services|yaml }}
+    - names: {{ vmware_tools_settings.services|yaml }}
     - enable: True
     - watch:
         - pkg: vmware_tools
@@ -54,4 +54,46 @@ vmware_tools_pre_freeze_script:
     - mode: 755
     - require:
         - pkg: vmware_tools
+{% endif %}
+
+{% if grains['os_family'] == 'FreeBSD' %}
+vmware_tools_kmod_vmmemctl:
+  sysrc.managed:
+    - name: vmware_guest_vmmemctl_enable
+    - value: "YES"
+    - require:
+        - pkg: vmware_tools
+        - file: vmware_tools
+    - watch_in:
+        - service: vmware_tools
+
+vmware_tools_kmod_vmxnet:
+  sysrc.managed:
+    - name: vmware_guest_vmxnet_enable
+    - value: "YES"
+    - require:
+        - pkg: vmware_tools
+        - file: vmware_tools
+    - watch_in:
+        - service: vmware_tools
+
+vmware_tools_kmod_vmblock:
+  sysrc.managed:
+    - name: vmware_guest_vmblock_enable
+    - value: "YES"
+    - require:
+        - pkg: vmware_tools
+        - file: vmware_tools
+    - watch_in:
+        - service: vmware_tools
+
+vmware_tools_kmod_vmhgfs:
+  sysrc.managed:
+    - name: vmware_guest_vmhgfs_enable
+    - value: "YES"
+    - require:
+        - pkg: vmware_tools
+        - file: vmware_tools
+    - watch_in:
+        - service: vmware_tools
 {% endif %}

@@ -3,7 +3,8 @@
 {% set distro_map = salt['grains.filter_by']({
     'Darwin':  { 'confdir': '/Library/Application Support/VMware Tools/', },
     'FreeBSD': { 'confdir': '/usr/local/etc/vmware-tools/',
-                 'hookdir': '/usr/local/sbin/', },
+                 'hookdir': '/usr/local/sbin/',
+                 'services': [ 'vmware-guestd', 'vmware-kmod', ], },
     'default':  {},
   }, merge=salt['pillar.get']('vmware:tools:lookup')) %}
 
