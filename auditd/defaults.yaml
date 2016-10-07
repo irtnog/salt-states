@@ -1,3 +1,4 @@
 auditd:
   packages: []
-  service: auditd
+  services:
+    - auditd

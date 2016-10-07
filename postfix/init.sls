@@ -4,7 +4,7 @@ postfix:
   pkg.installed:
     - pkgs: {{ postfix_settings.packages|yaml }}
   service.running:
-    - name: {{ postfix_settings.service }}
+    - names: {{ postfix_settings.services|yaml }}
     - enable: True
     - watch:
         - pkg: postfix

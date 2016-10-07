@@ -5,7 +5,8 @@ jetty:
   prefix: /usr/local/jetty
   user: jetty
   group: jetty
-  service: jetty
+  services:
+    - jetty
   dist:
     url: http://eclipse.org/downloads/download.php?file=/jetty/stable-9/dist/jetty-distribution-9.3.1.v20150714.tar.gz&r=1
     hash: sha512=e7f53b7438c54d2f6df2280c3a284997f7a11db637aba15bad693996ec69dbf7723d138ab588bcb3b9f688b98dbd284edb3ef006475c7103721d01564b775065

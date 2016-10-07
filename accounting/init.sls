@@ -4,7 +4,7 @@ accounting:
   pkg.installed:
     - pkgs: {{ accounting_settings.packages|yaml }}
   service.running:
-    - name: {{ accounting_settings.service}}
+    - names: {{ accounting_settings.services|yaml }}
     - enable: True
     - watch:
         - pkg: accounting

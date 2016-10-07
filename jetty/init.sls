@@ -12,7 +12,7 @@ jetty:
     - require:
         - pkg: jetty
   service.running:
-    - name: {{ jetty_settings.service }}
+    - names: {{ jetty_settings.services|yaml }}
     - enable: True
     - watch:
         - pkg: jetty

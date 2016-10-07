@@ -16,7 +16,7 @@ sshd:
         - pkg: sshd
 
   service.running:
-    - name: {{ sshd_settings.services|yaml }}
+    - names: {{ sshd_settings.services|yaml }}
     - enable: True
     - watch:
         - pkg: sshd

@@ -1,3 +1,4 @@
 accounting:
   packages: []
-  service: accounting
+  services:
+    - accounting

@@ -3,8 +3,8 @@ postfix:
     - postfix
   prefix:
     ""
-  service:
-    postfix
+  services:
+    - postfix
   main: []
   master: []
   maps:

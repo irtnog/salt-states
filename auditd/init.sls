@@ -4,7 +4,7 @@ auditd:
   pkg.installed:
     - pkgs: {{ auditd_settings.packages|yaml }}
   service.running:
-    - name: {{ auditd_settings.service }}
+    - names: {{ auditd_settings.services|yaml }}
     - enable: True
     - watch:
         - pkg: auditd

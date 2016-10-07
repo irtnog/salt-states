@@ -2,13 +2,13 @@
 
 {% set distro_map = salt['grains.filter_by']({
     'Debian':  { 'packages': ['acct'],
-                 'service':  'acct', },
+                 'services': ['acct'], },
     'Gentoo':  { 'packages': ['sys-process/acct'], },
     'RedHat':  { 'packages': ['psacct'],
-                 'service':  'psacct', },
-    'Solaris': { 'service':  'svc:/system/extended-accounting:process', },
+                 'services': ['psacct'], },
+    'Solaris': { 'services': ['svc:/system/extended-accounting:process'], },
     'Suse':    { 'packages': ['acct'],
-                 'service':  'acct', },
+                 'services': ['acct'], },
     'default': {},
   }, merge=salt['pillar.get']('accounting:lookup')) %}
 
