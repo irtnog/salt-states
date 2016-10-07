@@ -118,6 +118,7 @@ development:
     - emacs
     - fail2ban
     - fail2ban.config
+    - freebsd-update
     - git
     - gnupg
     - kerberos5
@@ -376,6 +377,7 @@ testing:
     - emacs
     - fail2ban
     - fail2ban.config
+    - freebsd-update
     - git
     - gnupg
     - kerberos5
@@ -642,6 +644,7 @@ production:
     - emacs
     - fail2ban
     - fail2ban.config
+    - freebsd-update
     - git
     - gnupg
     - kerberos5
