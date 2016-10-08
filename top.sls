@@ -80,6 +80,7 @@ development:
     - kerberos5
     - mosh
     - mounts
+    - ncurses
     - nis.client
     - nfs.client
     - nmap
@@ -125,6 +126,7 @@ development:
     - mosh
     - mounts
     - moused
+    - ncurses
     - nfs.client
     - nis.client
     - nmap
@@ -164,6 +166,7 @@ development:
     - kerberos5
     - mosh
     - mounts
+    - ncurses
     - net-tools
     - nfs.client
     - nis.client
@@ -203,6 +206,7 @@ development:
     - man
     - mosh
     - mounts
+    - ncurses
     - nfs.client
     - nis.client
     - nmap
@@ -233,6 +237,7 @@ development:
     - kerberos5
     - mosh
     - mounts
+    - ncurses
     - nfs.client
     - nis.client
     - nmap
@@ -339,6 +344,7 @@ testing:
     - kerberos5
     - mosh
     - mounts
+    - ncurses
     - nis.client
     - nfs.client
     - nmap
@@ -384,6 +390,7 @@ testing:
     - mosh
     - mounts
     - moused
+    - ncurses
     - nfs.client
     - nis.client
     - nmap
@@ -423,6 +430,7 @@ testing:
     - kerberos5
     - mosh
     - mounts
+    - ncurses
     - net-tools
     - nfs.client
     - nis.client
@@ -462,6 +470,7 @@ testing:
     - man
     - mosh
     - mounts
+    - ncurses
     - nfs.client
     - nis.client
     - nmap
@@ -492,6 +501,7 @@ testing:
     - kerberos5
     - mosh
     - mounts
+    - ncurses
     - nfs.client
     - nis.client
     - nmap
@@ -606,6 +616,7 @@ production:
     - kerberos5
     - mosh
     - mounts
+    - ncurses
     - nis.client
     - nfs.client
     - nmap
@@ -651,6 +662,7 @@ production:
     - mosh
     - mounts
     - moused
+    - ncurses
     - nfs.client
     - nis.client
     - nmap
@@ -690,6 +702,7 @@ production:
     - kerberos5
     - mosh
     - mounts
+    - ncurses
     - net-tools
     - nfs.client
     - nis.client
@@ -729,6 +742,7 @@ production:
     - man
     - mosh
     - mounts
+    - ncurses
     - nfs.client
     - nis.client
     - nmap
@@ -759,6 +773,7 @@ production:
     - kerberos5
     - mosh
     - mounts
+    - ncurses
     - nfs.client
     - nis.client
     - nmap
