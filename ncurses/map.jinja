@@ -1,0 +1,10 @@
+{% import_yaml "ncurses/defaults.yaml" as default_settings %}
+
+{% set distro_map = salt['grains.filter_by']({
+    'default': {},
+  }) %}
+
+{% do default_settings.ncurses.update(distro_map) %}
+
+{% set ncurses_settings = salt['pillar.get']('ncurses',
+  default=default_settings.ncurses, merge=True) %}
