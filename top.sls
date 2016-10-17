@@ -306,9 +306,10 @@ development:
     - match: compound
     - spigotmc
 
-  'I@environment:development and I@role:shibboleth-idp':
+  'I@environment:development and I@role:identity-provider':
     - match: compound
     - apache
+    - openid-ldap
     - shibboleth.repo
     - tomcat.shibboleth-idp
 
@@ -559,9 +560,10 @@ testing:
     - match: compound
     - spigotmc
 
-  'I@environment:testing and I@role:shibboleth-idp':
+  'I@environment:testing and I@role:identity-provider':
     - match: compound
     - apache
+    - openid-ldap
     - shibboleth.repo
     - tomcat.shibboleth-idp
 
@@ -831,9 +833,10 @@ production:
     - match: compound
     - spigotmc
 
-  'I@environment:production and I@role:shibboleth-idp':
+  'I@environment:production and I@role:identity-provider':
     - match: compound
     - apache
+    - openid-ldap
     - shibboleth.repo
     - tomcat.shibboleth-idp
 
