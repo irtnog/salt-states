@@ -85,6 +85,7 @@ development:
     - nfs.client
     - nmap
     - ntp.ng
+    - p7zip
     - pam_mkhomedir
     - pki
     - postfix
@@ -131,6 +132,7 @@ development:
     - nis.client
     - nmap
     - ntp.ng
+    - p7zip
     - pam_mkhomedir
     - pki
     - postfix
@@ -172,6 +174,7 @@ development:
     - nis.client
     - nmap
     - ntp.ng
+    - p7zip
     - pam_mkhomedir
     - pki
     - postfix
@@ -211,6 +214,7 @@ development:
     - nis.client
     - nmap
     - ntp.ng
+    - p7zip
     - screen
     - selinux
     - snmp
@@ -242,6 +246,7 @@ development:
     - nis.client
     - nmap
     - ntp.ng
+    - p7zip
     - postfix
     - screen
     - ssh
@@ -258,6 +263,7 @@ development:
     - csc
     - git
     - gpmc
+    - p7zip
     - perfmon
     - powershell
     - rdp
@@ -350,6 +356,7 @@ testing:
     - nfs.client
     - nmap
     - ntp.ng
+    - p7zip
     - pam_mkhomedir
     - pki
     - postfix
@@ -396,6 +403,7 @@ testing:
     - nis.client
     - nmap
     - ntp.ng
+    - p7zip
     - pam_mkhomedir
     - pki
     - postfix
@@ -437,6 +445,7 @@ testing:
     - nis.client
     - nmap
     - ntp.ng
+    - p7zip
     - pam_mkhomedir
     - pki
     - postfix
@@ -507,6 +516,7 @@ testing:
     - nis.client
     - nmap
     - ntp.ng
+    - p7zip
     - postfix
     - screen
     - ssh
@@ -523,6 +533,7 @@ testing:
     - csc
     - git
     - gpmc
+    - p7zip
     - perfmon
     - powershell
     - rdp
@@ -623,6 +634,7 @@ production:
     - nfs.client
     - nmap
     - ntp.ng
+    - p7zip
     - pam_mkhomedir
     - pki
     - postfix
@@ -669,6 +681,7 @@ production:
     - nis.client
     - nmap
     - ntp.ng
+    - p7zip
     - pam_mkhomedir
     - pki
     - postfix
@@ -710,6 +723,7 @@ production:
     - nis.client
     - nmap
     - ntp.ng
+    - p7zip
     - pam_mkhomedir
     - pki
     - postfix
@@ -749,6 +763,7 @@ production:
     - nis.client
     - nmap
     - ntp.ng
+    - p7zip
     - screen
     - selinux
     - snmp
@@ -780,6 +795,7 @@ production:
     - nis.client
     - nmap
     - ntp.ng
+    - p7zip
     - postfix
     - screen
     - ssh
@@ -796,6 +812,7 @@ production:
     - csc
     - git
     - gpmc
+    - p7zip
     - perfmon
     - powershell
     - rdp
