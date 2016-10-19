@@ -1,0 +1,11 @@
+{% import_yaml "p7zip/defaults.yaml" as default_settings %}
+
+{% set distro_map = salt['grains.filter_by']({
+    'Windows': { 'packages': ['7zip'], },
+    'default': {},
+  }) %}
+
+{% do default_settings.p7zip.update(distro_map) %}
+
+{% set p7zip_settings = salt['pillar.get']('p7zip',
+  default=default_settings.p7zip, merge=True) %}
