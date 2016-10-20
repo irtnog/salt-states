@@ -43,6 +43,253 @@
 ###   $ git cherry-pick -x aaaa00
 
 ####
+#### COMMON STATE IDS
+####
+
+{% set debian = [
+    'salt.pkgrepo',
+    'salt.minion',
+    'accounting',
+    'aliases',
+    'auditd',
+    'banners',
+    'cron',
+    'emacs',
+    'fail2ban',
+    'fail2ban.config',
+    'git',
+    'kerberos5',
+    'mosh',
+    'mounts',
+    'ncurses',
+    'nis.client',
+    'nfs.client',
+    'nmap',
+    'ntp.ng',
+    'p7zip',
+    'pam_mkhomedir',
+    'pki',
+    'postfix',
+    'tcpdump',
+    'tcsh',
+    'screen',
+    'snmp',
+    'snmp.conf',
+    'ssh',
+    'sshd',
+    'sudoers',
+    'symlinks',
+    'sysctl',
+    'tcpdump',
+    'tcsh',
+    'users',
+    'w3m',
+  ] %}
+
+{% set freebsd = [
+    'poudriere.client',
+    'salt.minion',
+    'rc',
+    'periodic',
+    'accounting',
+    'aliases',
+    'auditd',
+    'banners',
+    'bash',
+    'bgfsck',
+    'cron',
+    'emacs',
+    'fail2ban',
+    'fail2ban.config',
+    'freebsd-update',
+    'git',
+    'gnupg',
+    'kerberos5',
+    'mosh',
+    'mounts',
+    'moused',
+    'ncurses',
+    'nfs.client',
+    'nis.client',
+    'nmap',
+    'ntp.ng',
+    'p7zip',
+    'pam_mkhomedir',
+    'pki',
+    'postfix',
+    'screen',
+    'ssh',
+    'sshd',
+    'sudoers',
+    'symlinks',
+    'syscons',
+    'sysctl',
+    'users',
+    'w3m',
+  ] %}
+
+{% set redhat = [
+    'salt.pkgrepo',
+    'salt.minion',
+    'hostname',
+    'yum',
+    'epel',
+    'nux.dextop',
+    'nux.misc',
+    'accounting',
+    'aliases',
+    'auditd',
+    'banners',
+    'cron',
+    'emacs',
+    'fail2ban',
+    'fail2ban.config',
+    'firewalld',
+    'git',
+    'kerberos5',
+    'mosh',
+    'mounts',
+    'ncurses',
+    'net-tools',
+    'nfs.client',
+    'nis.client',
+    'nmap',
+    'ntp.ng',
+    'p7zip',
+    'pam_mkhomedir',
+    'pki',
+    'postfix',
+    'screen',
+    'selinux',
+    'snmp',
+    'snmp.conf',
+    'snmp.options',
+    'ssh',
+    'sshd',
+    'sudoers',
+    'symlinks',
+    'sysctl',
+    'tcpdump',
+    'tcsh',
+    'users',
+    'w3m',
+  ] %}
+
+{% set suse = [
+    'salt.minion',
+    'accounting',
+    'aliases',
+    'auditd',
+    'banners',
+    'cron',
+    'emacs',
+    # 'fail2ban',
+    # 'fail2ban.config',
+    'git',
+    'kerberos5',
+    'man',
+    'mosh',
+    'mounts',
+    'ncurses',
+    'nfs.client',
+    'nis.client',
+    'nmap',
+    'ntp.ng',
+    'p7zip',
+    'screen',
+    'selinux',
+    'snmp',
+    'snmp.conf',
+    'snmp.options',
+    'ssh',
+    'sshd',
+    'sudoers',
+    'symlinks',
+    'sysctl',
+    'tcpdump',
+    'tcsh',
+    'users',
+  ] %}
+
+{% set solaris = [
+    'accounting',
+    'aliases',
+    'auditd',
+    'banners',
+    'cron',
+    'emacs',
+    'git',
+    'kerberos5',
+    'mosh',
+    'mounts',
+    'ncurses',
+    'nfs.client',
+    'nis.client',
+    'nmap',
+    'ntp.ng',
+    'p7zip',
+    'postfix',
+    'screen',
+    'ssh',
+    'sshd',
+    'sudoers',
+    'symlinks',
+    'tcpdump',
+    'tcsh',
+    'users',
+  ] %}
+
+{% set windows = [
+    'salt.minion',
+    'csc',
+    'git',
+    'gpmc',
+    'p7zip',
+    'perfmon',
+    'powershell',
+    'rdp',
+    'rsat',
+    'users',
+    'web-mgmt-tools',
+  ] %}
+
+{% set salt_master = [
+    'apache',
+    'poudriere',
+    'salt.cloud',
+    'salt.formulas',
+    'salt.gitfs.gitpython',
+    'salt.master',
+    'salt.reactors',
+    'salt.ssh',
+    'shibboleth.sp',
+  ] %}
+
+{% set mail_relay = [
+    'amavisd',
+    'clamav',
+    'clamav.amavisd',
+  ] %}
+
+{% set minecraft = [
+    'spigotmc',
+  ] %}
+
+{% set identity_provider = [
+    'apache',
+    'openid-ldap',
+    'shibboleth.repo',
+    'tomcat.shibboleth-idp',
+  ] %}
+
+{% set web_server = [
+    'apache',
+    'opentracker',
+    'shibboleth.sp',
+    'trac',
+  ] %}
+
+####
 #### BASE ENVIRONMENT
 ####
 
@@ -66,210 +313,39 @@ base:
 development:
   'I@environment:development and G@os_family:Debian':
     - match: compound
-    - salt.pkgrepo
-    - salt.minion
-    - accounting
-    - aliases
-    - auditd
-    - banners
-    - cron
-    - emacs
-    - fail2ban
-    - fail2ban.config
-    - git
-    - kerberos5
-    - mosh
-    - mounts
-    - ncurses
-    - nis.client
-    - nfs.client
-    - nmap
-    - ntp.ng
-    - p7zip
-    - pam_mkhomedir
-    - pki
-    - postfix
-    - tcpdump
-    - tcsh
-    - screen
-    - snmp
-    - snmp.conf
-    - ssh
-    - sshd
-    - sudoers
-    - symlinks
-    - sysctl
-    - tcpdump
-    - tcsh
-    - users
-    - w3m
+    {%- for sls_id in debian %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:development and G@os_family:FreeBSD':
     - match: compound
-    - poudriere.client
-    - salt.minion
-    - rc
-    - periodic
-    - accounting
-    - aliases
-    - auditd
-    - banners
-    - bash
-    - bgfsck
-    - cron
-    - emacs
-    - fail2ban
-    - fail2ban.config
-    - freebsd-update
-    - git
-    - gnupg
-    - kerberos5
-    - mosh
-    - mounts
-    - moused
-    - ncurses
-    - nfs.client
-    - nis.client
-    - nmap
-    - ntp.ng
-    - p7zip
-    - pam_mkhomedir
-    - pki
-    - postfix
-    - screen
-    - ssh
-    - sshd
-    - sudoers
-    - symlinks
-    - syscons
-    - sysctl
-    - users
-    - w3m
+    {%- for sls_id in freebsd %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:development and G@os_family:RedHat':
     - match: compound
-    - salt.pkgrepo
-    - salt.minion
-    - hostname
-    - yum
-    - epel
-    - nux.dextop
-    - nux.misc
-    - accounting
-    - aliases
-    - auditd
-    - banners
-    - cron
-    - emacs
-    - fail2ban
-    - fail2ban.config
-    - firewalld
-    - git
-    - kerberos5
-    - mosh
-    - mounts
-    - ncurses
-    - net-tools
-    - nfs.client
-    - nis.client
-    - nmap
-    - ntp.ng
-    - p7zip
-    - pam_mkhomedir
-    - pki
-    - postfix
-    - screen
-    - selinux
-    - snmp
-    - snmp.conf
-    - snmp.options
-    - ssh
-    - sshd
-    - sudoers
-    - symlinks
-    - sysctl
-    - tcpdump
-    - tcsh
-    - users
-    - w3m
+    {%- for sls_id in redhat %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:development and G@os_family:Suse':
     - match: compound
-    - salt.minion
-    - accounting
-    - aliases
-    - auditd
-    - banners
-    - cron
-    - emacs
-    # - fail2ban
-    # - fail2ban.config
-    - git
-    - kerberos5
-    - man
-    - mosh
-    - mounts
-    - ncurses
-    - nfs.client
-    - nis.client
-    - nmap
-    - ntp.ng
-    - p7zip
-    - screen
-    - selinux
-    - snmp
-    - snmp.conf
-    - snmp.options
-    - ssh
-    - sshd
-    - sudoers
-    - symlinks
-    - sysctl
-    - tcpdump
-    - tcsh
-    - users
+    {%- for sls_id in suse %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:development and G@os_family:Solaris':
     - match: compound
-    - accounting
-    - aliases
-    - auditd
-    - banners
-    - cron
-    - emacs
-    - git
-    - kerberos5
-    - mosh
-    - mounts
-    - ncurses
-    - nfs.client
-    - nis.client
-    - nmap
-    - ntp.ng
-    - p7zip
-    - postfix
-    - screen
-    - ssh
-    - sshd
-    - sudoers
-    - symlinks
-    - tcpdump
-    - tcsh
-    - users
+    {%- for sls_id in solaris %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:development and G@os_family:Windows':
     - match: compound
-    - salt.minion
-    - csc
-    - git
-    - gpmc
-    - p7zip
-    - perfmon
-    - powershell
-    - rdp
-    - rsat
-    - users
-    - web-mgmt-tools
+    {%- for sls_id in windows %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:development and G@virtual:VirtualPC':
     - match: compound
@@ -281,21 +357,15 @@ development:
 
   'I@environment:development and I@role:salt-master':
     - match: compound
-    - apache
-    - poudriere
-    - salt.cloud
-    - salt.formulas
-    - salt.gitfs.gitpython
-    - salt.master
-    - salt.reactors
-    - salt.ssh
-    - shibboleth.sp
+    {%- for sls_id in salt_master %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:development and I@role:mail-relay':
     - match: compound
-    - amavisd
-    - clamav
-    - clamav.amavisd
+    {%- for sls_id in mail_relay %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:development and I@role:devstack':
     - match: compound
@@ -310,21 +380,21 @@ development:
 
   'I@environment:development and I@role:minecraft':
     - match: compound
-    - spigotmc
+    {%- for sls_id in minecraft %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:development and I@role:identity-provider':
     - match: compound
-    - apache
-    - openid-ldap
-    - shibboleth.repo
-    - tomcat.shibboleth-idp
+    {%- for sls_id in identity_provider %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:development and I@role:web-server':
     - match: compound
-    - apache
-    - opentracker
-    - shibboleth.sp
-    - trac
+    {%- for sls_id in web_server %}
+    - {{ sls_id }}
+    {%- endfor %}
 
 ####
 #### TESTING ENVIRONMENT
@@ -337,209 +407,39 @@ development:
 testing:
   'I@environment:testing and G@os_family:Debian':
     - match: compound
-    - salt.pkgrepo
-    - salt.minion
-    - accounting
-    - aliases
-    - auditd
-    - banners
-    - cron
-    - emacs
-    - fail2ban
-    - fail2ban.config
-    - git
-    - kerberos5
-    - mosh
-    - mounts
-    - ncurses
-    - nis.client
-    - nfs.client
-    - nmap
-    - ntp.ng
-    - p7zip
-    - pam_mkhomedir
-    - pki
-    - postfix
-    - tcpdump
-    - tcsh
-    - screen
-    - snmp
-    - snmp.conf
-    - ssh
-    - sshd
-    - sudoers
-    - symlinks
-    - sysctl
-    - tcpdump
-    - tcsh
-    - users
-    - w3m
+    {%- for sls_id in debian %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:testing and G@os_family:FreeBSD':
     - match: compound
-    - poudriere.client
-    - salt.minion
-    - rc
-    - periodic
-    - accounting
-    - aliases
-    - auditd
-    - banners
-    - bash
-    - bgfsck
-    - cron
-    - emacs
-    - fail2ban
-    - fail2ban.config
-    - freebsd-update
-    - git
-    - gnupg
-    - kerberos5
-    - mosh
-    - mounts
-    - moused
-    - ncurses
-    - nfs.client
-    - nis.client
-    - nmap
-    - ntp.ng
-    - p7zip
-    - pam_mkhomedir
-    - pki
-    - postfix
-    - screen
-    - ssh
-    - sshd
-    - sudoers
-    - symlinks
-    - syscons
-    - sysctl
-    - users
-    - w3m
+    {%- for sls_id in freebsd %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:testing and G@os_family:RedHat':
     - match: compound
-    - salt.pkgrepo
-    - salt.minion
-    - hostname
-    - yum
-    - epel
-    - nux.dextop
-    - nux.misc
-    - accounting
-    - aliases
-    - auditd
-    - banners
-    - cron
-    - emacs
-    - fail2ban
-    - fail2ban.config
-    - firewalld
-    - git
-    - kerberos5
-    - mosh
-    - mounts
-    - ncurses
-    - net-tools
-    - nfs.client
-    - nis.client
-    - nmap
-    - ntp.ng
-    - p7zip
-    - pam_mkhomedir
-    - pki
-    - postfix
-    - screen
-    - selinux
-    - snmp
-    - snmp.conf
-    - snmp.options
-    - ssh
-    - sshd
-    - sudoers
-    - symlinks
-    - sysctl
-    - tcpdump
-    - tcsh
-    - users
-    - w3m
+    {%- for sls_id in redhat %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:testing and G@os_family:Suse':
     - match: compound
-    - salt.minion
-    - accounting
-    - aliases
-    - auditd
-    - banners
-    - cron
-    - emacs
-    # - fail2ban
-    # - fail2ban.config
-    - git
-    - kerberos5
-    - man
-    - mosh
-    - mounts
-    - ncurses
-    - nfs.client
-    - nis.client
-    - nmap
-    - ntp.ng
-    - screen
-    - selinux
-    - snmp
-    - snmp.conf
-    - snmp.options
-    - ssh
-    - sshd
-    - sudoers
-    - symlinks
-    - sysctl
-    - tcpdump
-    - tcsh
-    - users
+    {%- for sls_id in suse %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:testing and G@os_family:Solaris':
     - match: compound
-    - accounting
-    - aliases
-    - auditd
-    - banners
-    - cron
-    - emacs
-    - git
-    - kerberos5
-    - mosh
-    - mounts
-    - ncurses
-    - nfs.client
-    - nis.client
-    - nmap
-    - ntp.ng
-    - p7zip
-    - postfix
-    - screen
-    - ssh
-    - sshd
-    - sudoers
-    - symlinks
-    - tcpdump
-    - tcsh
-    - users
+    {%- for sls_id in solaris %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:testing and G@os_family:Windows':
     - match: compound
-    - salt.minion
-    - csc
-    - git
-    - gpmc
-    - p7zip
-    - perfmon
-    - powershell
-    - rdp
-    - rsat
-    - users
-    - web-mgmt-tools
+    {%- for sls_id in windows %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:testing and G@virtual:VirtualPC':
     - match: compound
@@ -551,39 +451,33 @@ testing:
 
   'I@environment:testing and I@role:salt-master':
     - match: compound
-    - apache
-    - poudriere
-    - salt.cloud
-    - salt.formulas
-    - salt.gitfs.gitpython
-    - salt.master
-    - salt.reactors
-    - salt.ssh
-    - shibboleth.sp
+    {%- for sls_id in salt_master %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:testing and I@role:mail-relay':
     - match: compound
-    - amavisd
-    - clamav
-    - clamav.amavisd
+    {%- for sls_id in mail_relay %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:testing and I@role:minecraft':
     - match: compound
-    - spigotmc
+    {%- for sls_id in minecraft %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:testing and I@role:identity-provider':
     - match: compound
-    - apache
-    - openid-ldap
-    - shibboleth.repo
-    - tomcat.shibboleth-idp
+    {%- for sls_id in identity_provider %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:testing and I@role:web-server':
     - match: compound
-    - apache
-    - opentracker
-    - shibboleth.sp
-    - trac
+    {%- for sls_id in web_server %}
+    - {{ sls_id }}
+    {%- endfor %}
 
 ####
 #### STAGING ENVIRONMENT
@@ -615,210 +509,39 @@ staging:
 production:
   'I@environment:production and G@os_family:Debian':
     - match: compound
-    - salt.pkgrepo
-    - salt.minion
-    - accounting
-    - aliases
-    - auditd
-    - banners
-    - cron
-    - emacs
-    - fail2ban
-    - fail2ban.config
-    - git
-    - kerberos5
-    - mosh
-    - mounts
-    - ncurses
-    - nis.client
-    - nfs.client
-    - nmap
-    - ntp.ng
-    - p7zip
-    - pam_mkhomedir
-    - pki
-    - postfix
-    - tcpdump
-    - tcsh
-    - screen
-    - snmp
-    - snmp.conf
-    - ssh
-    - sshd
-    - sudoers
-    - symlinks
-    - sysctl
-    - tcpdump
-    - tcsh
-    - users
-    - w3m
+    {%- for sls_id in debian %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:production and G@os_family:FreeBSD':
     - match: compound
-    - poudriere.client
-    - salt.minion
-    - rc
-    - periodic
-    - accounting
-    - aliases
-    - auditd
-    - banners
-    - bash
-    - bgfsck
-    - cron
-    - emacs
-    - fail2ban
-    - fail2ban.config
-    - freebsd-update
-    - git
-    - gnupg
-    - kerberos5
-    - mosh
-    - mounts
-    - moused
-    - ncurses
-    - nfs.client
-    - nis.client
-    - nmap
-    - ntp.ng
-    - p7zip
-    - pam_mkhomedir
-    - pki
-    - postfix
-    - screen
-    - ssh
-    - sshd
-    - sudoers
-    - symlinks
-    - syscons
-    - sysctl
-    - users
-    - w3m
+    {%- for sls_id in freebsd %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:production and G@os_family:RedHat':
     - match: compound
-    - salt.pkgrepo
-    - salt.minion
-    - hostname
-    - yum
-    - epel
-    - nux.dextop
-    - nux.misc
-    - accounting
-    - aliases
-    - auditd
-    - banners
-    - cron
-    - emacs
-    - fail2ban
-    - fail2ban.config
-    - firewalld
-    - git
-    - kerberos5
-    - mosh
-    - mounts
-    - ncurses
-    - net-tools
-    - nfs.client
-    - nis.client
-    - nmap
-    - ntp.ng
-    - p7zip
-    - pam_mkhomedir
-    - pki
-    - postfix
-    - screen
-    - selinux
-    - snmp
-    - snmp.conf
-    - snmp.options
-    - ssh
-    - sshd
-    - sudoers
-    - symlinks
-    - sysctl
-    - tcpdump
-    - tcsh
-    - users
-    - w3m
+    {%- for sls_id in redhat %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:production and G@os_family:Suse':
     - match: compound
-    - salt.minion
-    - accounting
-    - aliases
-    - auditd
-    - banners
-    - cron
-    - emacs
-    # - fail2ban
-    # - fail2ban.config
-    - git
-    - kerberos5
-    - man
-    - mosh
-    - mounts
-    - ncurses
-    - nfs.client
-    - nis.client
-    - nmap
-    - ntp.ng
-    - p7zip
-    - screen
-    - selinux
-    - snmp
-    - snmp.conf
-    - snmp.options
-    - ssh
-    - sshd
-    - sudoers
-    - symlinks
-    - sysctl
-    - tcpdump
-    - tcsh
-    - users
+    {%- for sls_id in suse %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:production and G@os_family:Solaris':
     - match: compound
-    - accounting
-    - aliases
-    - auditd
-    - banners
-    - cron
-    - emacs
-    - git
-    - kerberos5
-    - mosh
-    - mounts
-    - ncurses
-    - nfs.client
-    - nis.client
-    - nmap
-    - ntp.ng
-    - p7zip
-    - postfix
-    - screen
-    - ssh
-    - sshd
-    - sudoers
-    - symlinks
-    - tcpdump
-    - tcsh
-    - users
+    {%- for sls_id in solaris %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:production and G@os_family:Windows':
     - match: compound
-    - salt.minion
-    - csc
-    - git
-    - gpmc
-    - p7zip
-    - perfmon
-    - powershell
-    - rdp
-    - rsat
-    - users
-    - web-mgmt-tools
+    {%- for sls_id in windows %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:production and G@virtual:VirtualPC':
     - match: compound
@@ -830,38 +553,32 @@ production:
 
   'I@environment:production and I@role:salt-master':
     - match: compound
-    - apache
-    - poudriere
-    - shibboleth.sp
-    - salt.cloud
-    - salt.formulas
-    - salt.gitfs.gitpython
-    - salt.master
-    - salt.reactors
-    - salt.ssh
+    {%- for sls_id in salt_master %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:production and I@role:mail-relay':
     - match: compound
-    - amavisd
-    - clamav
-    - clamav.amavisd
+    {%- for sls_id in mail_relay %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:production and I@role:minecraft':
     - match: compound
-    - spigotmc
+    {%- for sls_id in minecraft %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:production and I@role:identity-provider':
     - match: compound
-    - apache
-    - openid-ldap
-    - shibboleth.repo
-    - tomcat.shibboleth-idp
+    {%- for sls_id in identity_provider %}
+    - {{ sls_id }}
+    {%- endfor %}
 
   'I@environment:production and I@role:web-server':
     - match: compound
-    - apache
-    - opentracker
-    - shibboleth.sp
-    - trac
+    {%- for sls_id in web_server %}
+    - {{ sls_id }}
+    {%- endfor %}
 
 #### TOP.SLS ends here.
