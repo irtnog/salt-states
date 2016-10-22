@@ -278,6 +278,7 @@
     'openid-ldap',
     'shibboleth.repo',
     'tomcat.shibboleth-idp',
+    'xmlsectool',
   ] %}
 
 {% set web_server = [
