@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="_9dee7155-897a-11e6-b09e-00155d013d02" entityID="https://login.irtnog.org/idp/shibboleth">
+  <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <Extensions>
+      <shibmd:Scope regexp="false">irtnog.org</shibmd:Scope>
+      <mdui:UIInfo xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui">
+        <mdui:DisplayName xml:lang="en">IRTNOG</mdui:DisplayName>
+        <mdui:InformationURL xml:lang="en">https://login.irtnog.org/</mdui:InformationURL>
+        <mdui:PrivacyStatementURL xml:lang="en">https://login.irtnog.org/privacy</mdui:PrivacyStatementURL>
+        <mdui:Logo height="86" width="86" xml:lang="en">https://login.irtnog.org/microscope.png</mdui:Logo>
+      </mdui:UIInfo>
+    </Extensions>
+    <KeyDescriptor>
+      <ds:KeyInfo>
+        <ds:X509Data>
+          <!-- Serial No. 17356140252323707051, expires Oct 19 17:55:37 2026 GMT -->
+          <ds:X509Certificate>
+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
+          </ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </KeyDescriptor>
+    <ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://login.irtnog.org:8443/idp/profile/SAML2/SOAP/ArtifactResolution" index="1"/>
+    <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://login.irtnog.org/idp/profile/SAML2/POST/SSO"/>
+    <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://login.irtnog.org/idp/profile/SAML2/POST-SimpleSign/SSO"/>
+    <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://login.irtnog.org/idp/profile/SAML2/Redirect/SSO"/>
+    <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://login.irtnog.org/idp/profile/SAML2/SOAP/ECP"/>
+  </IDPSSODescriptor>
+  <AttributeAuthorityDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <Extensions>
+      <shibmd:Scope xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" regexp="false">irtnog.org</shibmd:Scope>
+    </Extensions>
+    <KeyDescriptor>
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <!-- Serial No. 17356140252323707051, expires Oct 19 17:55:37 2026 GMT -->
+          <ds:X509Certificate>
+MIIGKTCCBBGgAwIBAgIJAPDdZZpLnPirMA0GCSqGSIb3DQEBDQUAMIGqMSIwIAYJ
+KoZIhvcNAQkBFhNzZWN1cml0eUBpcnRub2cub3JnMQswCQYDVQQGEwJVUzENMAsG
+A1UECAwET2hpbzEOMAwGA1UEBwwFTWFzb24xDzANBgNVBAoMBklSVE5PRzELMAkG
+A1UECwwCSVQxETAPBgNVBAsMCFNlY3VyaXR5MQwwCgYDVQQLDANJQU0xGTAXBgNV
+BAMMEGxvZ2luLmlydG5vZy5vcmcwHhcNMTYxMDIxMTc1NTM3WhcNMjYxMDE5MTc1
+NTM3WjCBqjEiMCAGCSqGSIb3DQEJARYTc2VjdXJpdHlAaXJ0bm9nLm9yZzELMAkG
+A1UEBhMCVVMxDTALBgNVBAgMBE9oaW8xDjAMBgNVBAcMBU1hc29uMQ8wDQYDVQQK
+DAZJUlROT0cxCzAJBgNVBAsMAklUMREwDwYDVQQLDAhTZWN1cml0eTEMMAoGA1UE
+CwwDSUFNMRkwFwYDVQQDDBBsb2dpbi5pcnRub2cub3JnMIICIjANBgkqhkiG9w0B
+AQEFAAOCAg8AMIICCgKCAgEA0zsEOQA5xmxj1eeBt1NVuuz/km2hUnwVtPOnHxLX
+q3mH61bLk/He5zEtqS3NSHGcZErLn6/4NtYv7S0RnGS/90jodSk6G7WRd0HTKlXT
+8ILHQtZwe+O52L9rPHY60eaYE+l8y2lrDXImZWusQWVLVogeMjtAMvaf5XfoRAEX
+sL9spiarpveiaVdZym2nCoNxJrTevrtJG0SaCcQGdZV8WkC5SPf0Li8uPloelD7k
+VWIIUlfOGZJgsQcjSh3eHiurssK2tjlLhr6whfDiwBm3Lgq3kg3pA8v+OoqgemiH
+lgmhU04ebTTFbDgqge8A7t28IciUlFkxmQi9z7OxDegP8eMqkHRbg57lY8Lu7/mF
+kn4AeyY0AZ/xoly1kqkPeY3C8AXxFg7YIQvZ0a58i58ZJ7XgvNlK3rLYkcJYYerO
+hYPUNJStZ2ZUVPzYreTzWw78yAfpM/W/8e1bbIk3a34/aDXdP0guJYeiZ1y5OQUc
+g9Nb6u3dbxKbqBcPJQkmmi9B1aZBM09deKoT8F+2coc3ncs8zwlKx/JnB/Xmlui8
+kuoHXKRiU2/0e+ZZ2An3ff2iLpmhxOuCEtxIO5kOjkGCN3didjOYDSqak/8KOOvN
+OILVPCm5S8hLdG1YweWKKmXr2KjKNJdcVMp3n1bfzpeo3VoNFk3GxxlJMKape7VW
+84cCAwEAAaNQME4wHQYDVR0OBBYEFJVdfNK5tCojYjgQxWw+c/xTvcmyMB8GA1Ud
+IwQYMBaAFJVdfNK5tCojYjgQxWw+c/xTvcmyMAwGA1UdEwQFMAMBAf8wDQYJKoZI
+hvcNAQENBQADggIBAKSufuEosKuByR+7jBkxuo8RD9Mqh2aViSvC7DMDzqZ2YKoU
+nFCTGpCF4JH3NDZhAYS+glwLrRzB9lK1Vr1vkT/BzkuCtZhyUq6wo629njO8cFZG
+g/uqRhHEPzaZDtkyta7+1Sne9npHu+vl2AlUfe1zaeWbLqrAyDLA8VtPxYpBPLHt
+YlaPrn5ZQmmt8TUC2jUQLLPWGTCD5TwmqxAdj5eCUXfkLEkHxLxPLMso5yU23AWC
+b2migSJ+5mEl61jJXCt1UiW7inO8FwtPYhThZGO/PJgp2OD4Uuv1OQAIXsrGuZiJ
+gJAYOIytjgaW6A+O8beWVhas8a6Pd3ISyqI0kA51ZnTqsdNqFFxoDGUMHek4J7+w
+cgMKB9wVC4BBz9ToC9wbYIYKV9wKtFVv1SFmNUdVfSV37OTqDsP+nLrF07Sn/OUr
+MmlTsWsATkZ6uBW7ZEx5MlEIDW+KLANivEsLqsUuIYNuWYLUcS2jtGOsfqrqPIz7
+W+9xvkZ2+AsjtoCC2QUnjHM1Z19tiDV+Zfx5qOlIh4tMpipOT3F1Hx/V0HCsSBKe
+dfRxynMyiM16J+6Wvv1a8wqfyT/yR2bcHWl4WmtumOqgYeGooo+dISunAy0V2tlt
+Nu/mFOOXqwh/uTxOtiTVLEFo7xsILqBFEeC+RoTcezhtJbsNjrUNZVUTOzVe
+                  </ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </KeyDescriptor>
+    <AttributeService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://login.irtnog.org:8443/idp/profile/SAML2/SOAP/AttributeQuery"/>
+  </AttributeAuthorityDescriptor>
+  <Organization>
+    <OrganizationName xml:lang="en">IRTNOG</OrganizationName>
+    <OrganizationDisplayName xml:lang="en">IRTNOG</OrganizationDisplayName>
+    <OrganizationURL xml:lang="en">https://www.irtnog.org/</OrganizationURL>
+  </Organization>
+  <ContactPerson contactType="technical">
+    <GivenName>IRTNOG Information Security Team</GivenName>
+    <EmailAddress>mailto:security@irtnog.org</EmailAddress>
+  </ContactPerson>
+  <ContactPerson contactType="administrative">
+    <GivenName>IRTNOG Information Security Team</GivenName>
+    <EmailAddress>mailto:security@irtnog.org</EmailAddress>
+  </ContactPerson>
+  <ContactPerson contactType="support">
+    <GivenName>IRTNOG Information Security Team</GivenName>
+    <EmailAddress>mailto:security@irtnog.org</EmailAddress>
+  </ContactPerson>
+  <ContactPerson xmlns:icmd="http://id.incommon.org/metadata" contactType="other" icmd:contactType="http://id.incommon.org/metadata/contactType/security">
+    <GivenName>IRTNOG Information Security Team</GivenName>
+    <EmailAddress>mailto:security@irtnog.org</EmailAddress>
+  </ContactPerson>
+</EntityDescriptor>

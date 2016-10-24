@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" ID="_a90009839c87b1e8e1e8f7c84fa3eb9c33b1a9a6" entityID="https://salt.irtnog.org/shibboleth">
+  <md:Extensions xmlns:alg="urn:oasis:names:tc:SAML:metadata:algsupport">
+    <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/>
+    <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#sha384"/>
+    <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+    <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#sha224"/>
+    <alg:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha512"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha384"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha224"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha384"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2009/xmldsig11#dsa-sha256"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha1"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/>
+  </md:Extensions>
+  <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <md:Extensions>
+      <init:RequestInitiator xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Location="https://salt.irtnog.org/Shibboleth.sso/Login"/>
+    </md:Extensions>
+    <md:KeyDescriptor use="signing">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:KeyName>salt.irtnog.org</ds:KeyName>
+        <ds:X509Data>
+          <ds:X509SubjectName>CN=salt.irtnog.org,OU=IAM,OU=Security,OU=IT,O=IRTNOG,L=Mason,ST=Ohio,C=US,emailAddress=security@irtnog.org</ds:X509SubjectName>
+          <ds:X509Certificate>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
+</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </md:KeyDescriptor>
+    <md:KeyDescriptor use="encryption">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:KeyName>salt.irtnog.org</ds:KeyName>
+        <ds:X509Data>
+          <ds:X509SubjectName>CN=salt.irtnog.org,OU=IAM,OU=Security,OU=IT,O=IRTNOG,L=Mason,ST=Ohio,C=US,emailAddress=security@irtnog.org</ds:X509SubjectName>
+          <ds:X509Certificate>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
+</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+      <md:EncryptionMethod Algorithm="http://www.w3.org/2009/xmlenc11#aes128-gcm"/>
+      <md:EncryptionMethod Algorithm="http://www.w3.org/2009/xmlenc11#aes192-gcm"/>
+      <md:EncryptionMethod Algorithm="http://www.w3.org/2009/xmlenc11#aes256-gcm"/>
+      <md:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes128-cbc"/>
+      <md:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes192-cbc"/>
+      <md:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc"/>
+      <md:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc"/>
+      <md:EncryptionMethod Algorithm="http://www.w3.org/2009/xmlenc11#rsa-oaep"/>
+      <md:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p"/>
+    </md:KeyDescriptor>
+    <md:ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://salt.irtnog.org/Shibboleth.sso/Artifact/SOAP" index="1"/>
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://salt.irtnog.org/Shibboleth.sso/SLO/SOAP"/>
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://salt.irtnog.org/Shibboleth.sso/SLO/Redirect"/>
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://salt.irtnog.org/Shibboleth.sso/SLO/POST"/>
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://salt.irtnog.org/Shibboleth.sso/SLO/Artifact"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://salt.irtnog.org/Shibboleth.sso/SAML2/POST" index="1"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://salt.irtnog.org/Shibboleth.sso/SAML2/POST-SimpleSign" index="2"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://salt.irtnog.org/Shibboleth.sso/SAML2/Artifact" index="3"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://salt.irtnog.org/Shibboleth.sso/SAML2/ECP" index="4"/>
+  </md:SPSSODescriptor>
+</md:EntityDescriptor>
