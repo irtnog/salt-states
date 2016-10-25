@@ -261,6 +261,7 @@
     'salt.reactors',
     'salt.ssh',
     'shibboleth.sp',
+    'vault',
   ] %}
 
 {% set mail_relay = [
