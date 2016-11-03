@@ -27,6 +27,7 @@ vault_backend_file:
     - mode: 751
 
 {% if grains['kernel'] == 'FreeBSD' %}
+## FIXME: pertains to old version of vault
 vault_allow_unprivileged_mlock:
   sysctl.present:
     - name: security.bsd.unprivileged_mlock
