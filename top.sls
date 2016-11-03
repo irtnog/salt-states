@@ -77,6 +77,7 @@
     'snmp.conf',
     'ssh',
     'sshd',
+    'subversion',
     'sudoers',
     'symlinks',
     'sysctl',
@@ -120,6 +121,7 @@
     'screen',
     'ssh',
     'sshd',
+    'subversion',
     'sudoers',
     'symlinks',
     'syscons',
@@ -166,6 +168,7 @@
     'snmp.options',
     'ssh',
     'sshd',
+    'subversion',
     'sudoers',
     'symlinks',
     'sysctl',
@@ -201,6 +204,7 @@
     'snmp.options',
     'ssh',
     'sshd',
+    'subversion',
     'sudoers',
     'symlinks',
     'sysctl',
@@ -230,6 +234,7 @@
     'screen',
     'ssh',
     'sshd',
+    'subversion',
     'sudoers',
     'symlinks',
     'tcpdump',
@@ -247,6 +252,7 @@
     'powershell',
     'rdp',
     'rsat',
+    'subversion',
     'users',
     'web-mgmt-tools',
   ] %}
@@ -278,8 +284,8 @@
     'apache',
     'openid-ldap',
     'shibboleth.repo',
+    'shibboleth.mda',
     'tomcat.shibboleth-idp',
-    'xmlsectool',
   ] %}
 
 {% set web_server = [
