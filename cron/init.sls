@@ -1,5 +1,4 @@
 {% from "cron/map.jinja" import cron with context %}
-{% if cron %}
 
 cron:
   pkg.installed:
@@ -26,6 +25,4 @@ crontab_enable_local_path:
     - user: root
     - minute: random
     - hour: random
-{% endif %}
-
 {% endif %}
