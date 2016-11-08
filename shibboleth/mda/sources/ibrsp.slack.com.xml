@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" ID="_eb70e525-9cbd-11e6-97be-00155d013d02" entityID="https://ibrsp.slack.com/">
+  <md:SPSSODescriptor AuthnRequestsSigned="true" WantAssertionsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <md:NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</md:NameIDFormat>
+    <md:KeyDescriptor use="signing">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:KeyName>slack.com</ds:KeyName>
+        <ds:X509Data>
+          <ds:X509SubjectName>C=us, ST=California, O=Slack Technologies, Inc., CN=slack.com, L=San Francisco</ds:X509SubjectName>
+          <ds:X509Certificate>MIIDrzCCApagAwIBAgIBADANBgkqhkiG9w0BAQ0FADBxMQswCQYDVQQGEwJ1czET
+MBEGA1UECAwKQ2FsaWZvcm5pYTEhMB8GA1UECgwYU2xhY2sgVGVjaG5vbG9naWVz
+LCBJbmMuMRIwEAYDVQQDDAlzbGFjay5jb20xFjAUBgNVBAcMDVNhbiBGcmFuY2lz
+Y28wHhcNMTUwMzE3MDEyMzMyWhcNMjUwMzE0MDEyMzMyWjBxMQswCQYDVQQGEwJ1
+czETMBEGA1UECAwKQ2FsaWZvcm5pYTEhMB8GA1UECgwYU2xhY2sgVGVjaG5vbG9n
+aWVzLCBJbmMuMRIwEAYDVQQDDAlzbGFjay5jb20xFjAUBgNVBAcMDVNhbiBGcmFu
+Y2lzY28wggEjMA0GCSqGSIb3DQEBAQUAA4IBEAAwggELAoIBAgDB0y4ruySosz1G
+X/3KI1jp4oivxtnXLeMwKELrBgG+rZ8pl+UMhLG2iCp0nbnwSxXVU0ONJVI3SSzJ
+5VQtBHHCA4UAzse0HRaSZfBs+6urKoMLf8iusBYk62f2g/RAPjsMVcjC8B3FHyha
+D9OnWSdJ7uGopmwwEhDiwf/gdS9Uw8FojYDuVprODfmj7+fgWPkGTf8TRGaHjudj
+uP1LMDRAz2cI0ym09jbnW8BVynSjjUrE+K9ri1uWzT2tp49OHqSgjaXkWWY6prFa
+9MT8jsibe02Id2i5+h0c4F892O7MybNWgF139dMGapmW4rf3GT7brLZEO4sZPwov
+hlj3b6U+8wIDAQABo1AwTjAdBgNVHQ4EFgQUa2YVk5yi+WMxLT/q7rokAfzyvU0w
+HwYDVR0jBBgwFoAUa2YVk5yi+WMxLT/q7rokAfzyvU0wDAYDVR0TBAUwAwEB/zAN
+BgkqhkiG9w0BAQ0FAAOCAQIAUwv53vh2LkgbJbBGyRlSkjAZyybwM7pO6TtQ4SHy
+n366SG1lZXkc9S9u8m4kMETDquOujC/fZLiAe4f8rZ8+ZXV0f17FL/RhMDzVBv6D
+gDabfpXAkt+Yn+ZIThFi2D7L4jyJzZPbaf7soCu1e/Dx0CBhm/Lz2nsny6Il7rkE
+bDB7gBpjZODMMi/PEJ5I462JUrj+9aSZBtx2/NXIoFkLZ1B4j3UG+WJhcYMlMBim
+/GTimKS7yzkvfqdADmIAaO0RPYduNPds6Dyjyjbqj3XR3WwdsmTorO95UKitRGu1
+0ImwByXo2xzQCwGNP8WuRAmWVIlisLLNEDKTnZDb38085gY=
+</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </md:KeyDescriptor>
+    <md:KeyDescriptor use="encryption">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:KeyName>slack.com</ds:KeyName>
+        <ds:X509Data>
+          <ds:X509SubjectName>C=us, ST=California, O=Slack Technologies, Inc., CN=slack.com, L=San Francisco</ds:X509SubjectName>
+          <ds:X509Certificate>MIIDrzCCApagAwIBAgIBADANBgkqhkiG9w0BAQ0FADBxMQswCQYDVQQGEwJ1czET
+MBEGA1UECAwKQ2FsaWZvcm5pYTEhMB8GA1UECgwYU2xhY2sgVGVjaG5vbG9naWVz
+LCBJbmMuMRIwEAYDVQQDDAlzbGFjay5jb20xFjAUBgNVBAcMDVNhbiBGcmFuY2lz
+Y28wHhcNMTUwMzE3MDEyMzMyWhcNMjUwMzE0MDEyMzMyWjBxMQswCQYDVQQGEwJ1
+czETMBEGA1UECAwKQ2FsaWZvcm5pYTEhMB8GA1UECgwYU2xhY2sgVGVjaG5vbG9n
+aWVzLCBJbmMuMRIwEAYDVQQDDAlzbGFjay5jb20xFjAUBgNVBAcMDVNhbiBGcmFu
+Y2lzY28wggEjMA0GCSqGSIb3DQEBAQUAA4IBEAAwggELAoIBAgDB0y4ruySosz1G
+X/3KI1jp4oivxtnXLeMwKELrBgG+rZ8pl+UMhLG2iCp0nbnwSxXVU0ONJVI3SSzJ
+5VQtBHHCA4UAzse0HRaSZfBs+6urKoMLf8iusBYk62f2g/RAPjsMVcjC8B3FHyha
+D9OnWSdJ7uGopmwwEhDiwf/gdS9Uw8FojYDuVprODfmj7+fgWPkGTf8TRGaHjudj
+uP1LMDRAz2cI0ym09jbnW8BVynSjjUrE+K9ri1uWzT2tp49OHqSgjaXkWWY6prFa
+9MT8jsibe02Id2i5+h0c4F892O7MybNWgF139dMGapmW4rf3GT7brLZEO4sZPwov
+hlj3b6U+8wIDAQABo1AwTjAdBgNVHQ4EFgQUa2YVk5yi+WMxLT/q7rokAfzyvU0w
+HwYDVR0jBBgwFoAUa2YVk5yi+WMxLT/q7rokAfzyvU0wDAYDVR0TBAUwAwEB/zAN
+BgkqhkiG9w0BAQ0FAAOCAQIAUwv53vh2LkgbJbBGyRlSkjAZyybwM7pO6TtQ4SHy
+n366SG1lZXkc9S9u8m4kMETDquOujC/fZLiAe4f8rZ8+ZXV0f17FL/RhMDzVBv6D
+gDabfpXAkt+Yn+ZIThFi2D7L4jyJzZPbaf7soCu1e/Dx0CBhm/Lz2nsny6Il7rkE
+bDB7gBpjZODMMi/PEJ5I462JUrj+9aSZBtx2/NXIoFkLZ1B4j3UG+WJhcYMlMBim
+/GTimKS7yzkvfqdADmIAaO0RPYduNPds6Dyjyjbqj3XR3WwdsmTorO95UKitRGu1
+0ImwByXo2xzQCwGNP8WuRAmWVIlisLLNEDKTnZDb38085gY=
+</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </md:KeyDescriptor>
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://ibrsp.slack.com/sso/saml/logout"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://ibrsp.slack.com/sso/saml" index="1"/>
+  </md:SPSSODescriptor>
+</md:EntityDescriptor>
