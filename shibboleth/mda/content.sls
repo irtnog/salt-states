@@ -5,7 +5,5 @@ shibboleth_mda_content:
     - template: jinja
     - include_empty: yes
     - exclude_pat: E@\.gitignore
-    - user: www
-    - group: www
     - dir_mode: 755
     - file_mode: 644
