@@ -1,8 +1,14 @@
-{% from "cron/map.jinja" import cron with context %}
+{% from "cron/map.jinja" import cron_settings with context %}
 
 cron:
   pkg.installed:
-    - pkgs: {{ cron.packages|yaml }}
+    - pkgs: {{ cron_settings.packages|yaml }}
+
+  service.running:
+    - names: {{ cron_settings.services|yaml }}
+    - enable: True
+    - watch:
+        - pkg: cron
 
 {% if grains['os_family'] == 'FreeBSD' %}
 crontab_enable_local_path:

@@ -1,3 +1,15 @@
-{% set cron = salt['grains.filter_by']({
-    'default': {},
-  }, merge=salt['pillar.get']('cron:lookup')) %}
+{% import_yaml "cron/defaults.yaml" as default_settings %}
+
+{% set os_family_map = salt['grains.filter_by']({
+    'Debian':  { 'packages': [ 'cron', 'moreutils', ],
+                 'services': [ 'cron', ], },
+    'FreeBSD': { 'packages': [ 'moreutils', ],
+                 'services': [ 'cron', ], },
+    'RedHat':  { 'packages': [ 'cronie',  'moreutils', ],
+                 'services': [ 'crond', ], },
+  }) %}
+
+{% do default_settings.cron.update(os_family_map) %}
+
+{% set cron_settings = salt['pillar.get']('cron',
+  default=default_settings.cron, merge=True) %}
