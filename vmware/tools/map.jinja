@@ -1,6 +1,11 @@
 {% import_yaml "vmware/tools/defaults.yaml" as default_settings %}
 
 {% set distro_map = salt['grains.filter_by']({
+    'Debian': {
+      'services': [
+        'open-vm-tools',
+      ],
+    },
     'Darwin': {
       'confdir':
         '/Library/Application Support/VMware Tools/',
