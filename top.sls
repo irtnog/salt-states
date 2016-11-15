@@ -247,6 +247,7 @@
     'csc',
     'git',
     'gpmc',
+    'npp',
     'p7zip',
     'perfmon',
     'powershell',
