@@ -37,6 +37,14 @@ ypbind:
     - watch_in:
         - service: ypbind
   {% endif %}
+  {% if grains['os_family'] == 'Debian' %}
+  cmd.run:
+    - name: systemctl enable rpcbind.service && systemctl start rpcbind
+    - require:
+        - pkg: ypbind
+    - watch_in:
+        - service: ypbind
+  {% endif %}
   service.running:
     - names: {{ nis_settings.client_services|yaml }}
     - enable: True
