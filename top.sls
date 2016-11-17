@@ -290,9 +290,7 @@
     'apache',
     'openid-ldap',
     'shibboleth.repo',
-    'shibboleth.idp.content',
     'shibboleth.mda',
-    'shibboleth.mda.content',
     'tomcat.shibboleth-idp',
   ] %}
 
