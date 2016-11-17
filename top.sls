@@ -150,7 +150,6 @@
     'emacs',
     'fail2ban',
     'fail2ban.config',
-    'firewalld',
     'git',
     'kerberos5',
     'man',
@@ -182,6 +181,11 @@
     'users',
     'w3m',
   ] %}
+
+{% if not grains['biosversion'].endswith('amazon') %}
+## Enable the firewalld SLS on RHEL/CentOS minions not running in AWS.
+{% do redhat.append('firewalld') %}
+{% endif %}
 
 {% set suse = [
     'salt.minion',
