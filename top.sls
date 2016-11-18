@@ -46,7 +46,7 @@
 #### COMMON STATE IDS
 ####
 
-{% set debian = [
+{%- set debian = [
     'salt.pkgrepo',
     'salt.minion',
     'accounting',
@@ -89,7 +89,7 @@
     'w3m',
   ] %}
 
-{% set freebsd = [
+{%- set freebsd = [
     'poudriere.client',
     'salt.minion',
     'rc',
@@ -133,7 +133,7 @@
     'w3m',
   ] %}
 
-{% set redhat = [
+{%- set redhat = [
     'salt.pkgrepo',
     'salt.minion',
     'hostname',
@@ -182,12 +182,12 @@
     'w3m',
   ] %}
 
-{% if not grains['biosversion'].endswith('amazon') %}
-## Enable the firewalld SLS on RHEL/CentOS minions not running in AWS.
-{% do redhat.append('firewalld') %}
-{% endif %}
+{%- if not grains['biosversion'].endswith('amazon') %}
+{#- Enable the firewalld SLS on RHEL/CentOS minions not running in AWS. #}
+{%- do redhat.append('firewalld') %}
+{%- endif %}
 
-{% set suse = [
+{%- set suse = [
     'salt.minion',
     'accounting',
     'aliases',
@@ -222,7 +222,7 @@
     'users',
   ] %}
 
-{% set solaris = [
+{%- set solaris = [
     'accounting',
     'aliases',
     'auditd',
@@ -251,7 +251,7 @@
     'users',
   ] %}
 
-{% set windows = [
+{%- set windows = [
     'salt.minion',
     'csc',
     'git',
@@ -267,7 +267,7 @@
     'web-mgmt-tools',
   ] %}
 
-{% set salt_master = [
+{%- set salt_master = [
     'apache',
     'poudriere',
     'salt.cloud',
@@ -280,17 +280,17 @@
     'vault',
   ] %}
 
-{% set mail_relay = [
+{%- set mail_relay = [
     'amavisd',
     'clamav',
     'clamav.amavisd',
   ] %}
 
-{% set minecraft = [
+{%- set minecraft = [
     'spigotmc',
   ] %}
 
-{% set identity_provider = [
+{%- set identity_provider = [
     'apache',
     'openid-ldap',
     'shibboleth.repo',
@@ -298,7 +298,7 @@
     'tomcat.shibboleth-idp',
   ] %}
 
-{% set web_server = [
+{%- set web_server = [
     'apache',
     'opentracker',
     'shibboleth.sp',
