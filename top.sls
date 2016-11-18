@@ -25,11 +25,11 @@
 ###     clone the formula on the master via the salt.formulas SLS, and
 ###     again to ensure that the master is configured properly.
 
-### NOTE: Use the "git merge", "git checkout", or "git cherry-pick"
-### command to merge approved changes from the development branch into
-### the testing, staging, or production branches.  For example, if
-### changes to the files in sshd/ are ready for deployment, the
-### following will merge them into the staging branch:
+### Use the "git merge", "git checkout", or "git cherry-pick" command
+### to merge approved changes from the development branch into the
+### testing, staging, or production branches.  For example, if changes
+### to the files in sshd/ are ready for deployment, the following will
+### merge them into the staging branch:
 ###
 ###   $ git checkout staging
 ###   $ git checkout testing sshd/init.sls sshd/defaults.yaml sshd/map.jinja
