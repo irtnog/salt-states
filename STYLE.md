@@ -24,24 +24,24 @@ documentation.
 
 ## Comments
 
-(This has been adapted in part from the
-[GNU Emacs Lisp Reference Manual, Section D.7 ("Tips on Writing Comments")](https://www.gnu.org/software/emacs/manual/html_node/elisp/Comment-Tips.html#Comment-Tips).)
-
-### "FIXME", "TODO", and Other Comment Annotations
+### Jinja
 
 TODO
 
 ### YAML
 
-Comments in YAML files (i.e., files ending in `.yaml` or `.sls`)
-should take the following forms.
+(This has been adapted in part from the
+[GNU Emacs Lisp Reference Manual, Section D.7 ("Tips on Writing Comments")](https://www.gnu.org/software/emacs/manual/html_node/elisp/Comment-Tips.html#Comment-Tips).)
+
+Comments in YAML files (e.g., files ending in `.yml`, `.yaml`, or
+`.sls`) should take the following forms.
 
 **Single Number Sign**
 
 Comments that start with a single number sign, `#`, should all be
-aligned to the same column on the right of the YAML file.  Such
-comments explain the meaning of the marked line of code or data and
-may not form complete sentences.  For example:
+aligned to the same column on the right of the YAML file, starting at
+column 32.  Such comments explain the meaning of the marked line of
+code or data and may not form complete sentences.  For example:
 
 ```yaml
 development:
@@ -96,6 +96,36 @@ base:
   '*':
     []                          # no-op
 ```
+
+### Comment Annotations
+
+Comments may be annotated in order to indicate active or potential
+work tasks within a code base.  Each annotated comment must follow a
+special format that includes an annotation plus a one-line message,
+with a comment prefix and suffix suited to the code base (see above):
+
+```
+<prefix><annotation>: <message><suffix>
+```
+
+The annotation should be one of the following:
+
+  - **TODO**: marks places requiring additional work, e.g., to handle
+    additional cases or to provide additional functionality
+
+  - **HACK**: tags the following as needing rework, e.g., to simplify
+    it, to increase performance, or to improve correctness
+
+  - **FIXME**: indicates that the following code must be revised,
+    e.g., it's a temporary workaround, or it introduces a bug.
+
+  - **NOTE**: synonymous with TODO
+
+  - **OPTIMIZE**: synonymous with HACK
+
+  - **BUG**: synonymous with FIXME
+
+  - **XXX***: synonymous with FIXME
 
 ## Git Commit Messages
 
