@@ -182,7 +182,7 @@
     'w3m',
   ] %}
 
-{%- if not grains['biosversion'].endswith('amazon') %}
+{%- if not salt['grains.get']('biosversion', '').endswith('amazon') %}
 {#- Enable the firewalld SLS on RHEL/CentOS minions not running in AWS. #}
 {%- do redhat.append('firewalld') %}
 {%- endif %}
