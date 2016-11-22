@@ -4,13 +4,13 @@ vault:
         - vault
         - vim                   # for `xxd -r`
 
-  file.managed:
-    - name: /usr/local/etc/vault.hcl
-    - source: salt://vault/files/vault.hcl
+  file.recurse:
+    - name: /usr/local/etc/
+    - source: salt://vault/files/
     - template: jinja
     - user: root
     - group: vault
-    - mode: 640
+    - file_mode: 640
 
   service.running:
     - enable: True
