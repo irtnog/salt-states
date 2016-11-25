@@ -1,4 +1,7 @@
 {% set hyperv_settings = salt['grains.filter_by']({
+    'Debian': {
+      'packages': ['hyperv-daemons'],
+    },
     'default': {
       'packages': [],
     },
