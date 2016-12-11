@@ -1,0 +1,2 @@
+awscli:
+  pkg.installed
