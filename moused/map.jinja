@@ -1,0 +1,13 @@
+{% import_yaml "moused/defaults.yaml" as default_settings %}
+
+{% set distro_map = salt['grains.filter_by']({
+    'FreeBSD': {},
+  }) %}
+
+{% do default_settings.moused.update(distro_map) %}
+
+{% set moused_settings = salt['pillar.get'](
+    'moused',
+    default=default_settings.moused,
+    merge=True
+  ) %}

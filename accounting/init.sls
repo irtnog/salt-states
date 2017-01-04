@@ -10,15 +10,10 @@ accounting:
         - pkg: accounting
 
 {% if grains.os_family == 'FreeBSD' %}
-periodic_conf_accounting_settings:
-  file.accumulated:
-    - name: periodic_conf_accumulator
-    - filename: /etc/periodic.conf
-    - text: 'daily_accounting_compress="YES"'
-    - require:
-        - service: accounting
-    - require_in:
-        - file: periodic_conf
+daily_accounting_compress:
+  sysrc.managed:
+    - value: "YES"
+    - file: /etc/periodic.conf
 
 {% elif grains.os_family == 'Solaris' %}
 flow_accounting:

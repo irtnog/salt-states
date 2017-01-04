@@ -63,30 +63,22 @@ ypbind_group:
     - text: '+:*::'
 
 {% elif grains['os_family'] == 'FreeBSD' %}
-rc_conf_nisdomainname:
-  file.accumulated:
-    - name: rc_conf_accumulator
-    - filename: /etc/rc.conf
-    - text: nisdomainname="{{ nis_settings.ypdomain }}"
-    - require_in:
-        - file: rc_conf
+nisdomainname:
+  sysrc.managed:
+    - value: {{ nis_settings.ypdomain }}
     - watch_in:
         - service: ypbind
 
 nisdomain:
   service.running:
     - watch:
-      - file: rc_conf_nisdomainname
-    - require_in:
+      - sysrc: nisdomainname
+    - watch_in:
       - service: ypbind
 
-rc_conf_nis_client_flags:
-  file.accumulated:
-    - name: rc_conf_accumulator
-    - filename: /etc/rc.conf
-    - text: nis_client_flags="-m -S {{ nis_settings.ypdomain }}{%- for server in nis_settings.ypservers -%},{{ server }}{%- endfor -%}"
-    - require_in:
-        - file: rc_conf
+nis_client_flags:
+  sysrc.managed:
+    - value: "-m -S {{ nis_settings.ypdomain }}{%- for server in nis_settings.ypservers -%},{{ server }}{%- endfor -%}"
     - watch_in:
         - service: ypbind
 

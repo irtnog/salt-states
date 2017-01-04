@@ -2,7 +2,6 @@
 ## options can be overridden in Pillar.  Moused is controlled
 ## separately.
 
-{% if grains['os_family'] == 'FreeBSD' %}
 {% set syscons = salt['pillar.get']('syscons', {
     'keybell': 'off',
     'saver': 'green',
@@ -16,13 +15,9 @@
                    'allscreens_flags', 'allscreens_kbdflags' ] %}
   {% if setting in syscons %}
     {% set value = syscons[setting] %}
-rc_conf_syscons_{{ setting }}:
-  file.accumulated:
-    - name: rc_conf_accumulator
-    - filename: /etc/rc.conf
-    - text: '{{ setting }}="{{ value }}"'
-    - require_in:
-        - file: rc_conf
+syscons_{{ setting }}:
+  sysrc.managed:
+    - name: {{ setting|yaml_encode }}
+    - value: {{ value|yaml_encode }}
   {% endif %}
 {% endfor %}
-{% endif %}

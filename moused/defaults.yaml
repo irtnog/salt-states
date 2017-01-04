@@ -1,0 +1,11 @@
+moused:
+  nondefault_enable:
+    ~
+  type:
+    ~
+  port:
+    ~
+  flags:
+    ~
+  mousechar_start:
+    ~
