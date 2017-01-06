@@ -260,6 +260,7 @@
 
 {%- set windows = [
     'salt.minion',
+    'adobe',
     'csc',
     'git',
     'gpmc',
