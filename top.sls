@@ -264,6 +264,7 @@
     'csc',
     'git',
     'gpmc',
+    'merakism.agent',
     'npp',
     'p7zip',
     'perfmon',
