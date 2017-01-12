@@ -279,6 +279,8 @@
     'web-mgmt-tools',
   ] %}
 
+{%- set nas01 = [] %}
+
 {%- set salt_master = [
     'apache',
     'poudriere',
@@ -389,6 +391,15 @@ development:
     - {{ sls_id }}
     {%- endfor %}
 
+  'I@environment:development and I@role:nas01':
+    - match: compound
+    {%- for sls_id in nas01 %}
+    - {{ sls_id }}
+    {%- endfor %}
+    {%- for sls_id in salt_master %}
+    - {{ sls_id }}
+    {%- endfor %}
+
   'I@environment:development and I@role:mail-relay':
     - match: compound
     {%- for sls_id in mail_relay %}
@@ -479,6 +490,15 @@ testing:
 
   'I@environment:testing and I@role:salt-master':
     - match: compound
+    {%- for sls_id in salt_master %}
+    - {{ sls_id }}
+    {%- endfor %}
+
+  'I@environment:testing and I@role:nas01':
+    - match: compound
+    {%- for sls_id in nas01 %}
+    - {{ sls_id }}
+    {%- endfor %}
     {%- for sls_id in salt_master %}
     - {{ sls_id }}
     {%- endfor %}
@@ -581,6 +601,15 @@ production:
 
   'I@environment:production and I@role:salt-master':
     - match: compound
+    {%- for sls_id in salt_master %}
+    - {{ sls_id }}
+    {%- endfor %}
+
+  'I@environment:production and I@role:nas01':
+    - match: compound
+    {%- for sls_id in nas01 %}
+    - {{ sls_id }}
+    {%- endfor %}
     {%- for sls_id in salt_master %}
     - {{ sls_id }}
     {%- endfor %}
