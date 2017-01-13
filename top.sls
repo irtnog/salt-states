@@ -125,6 +125,7 @@
     'p7zip',
     'pam_mkhomedir',
     'pki',
+    'portsnap',
     'postfix',
     'screen',
     'ssh',
