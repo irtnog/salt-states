@@ -8,14 +8,27 @@
 # You need at least 7GB of free space in this pool to have a working
 # poudriere.
 #
+{%- set zpool = salt['pillar.get']('poudriere:zpool', None) %}
+{%- if zpool %}
+ZPOOL={{ zpool }}
+{%- else %}
 #ZPOOL=tank
+{%- endif %}
 
 ### NO ZFS
 # To not use ZFS, define NO_ZFS=yes
+{%- if zpool %}
+#NO_ZFS=yes
+{%- else %}
 NO_ZFS=yes
+{%- endif %}
 
 # root of the poudriere zfs filesystem, by default /poudriere
+{%- if zpool %}
+ZROOTFS=/var/poudriere
+{%- else %}
 # ZROOTFS=/poudriere
+{%- endif %}
 
 # the host where to download sets  for the jails setup
 # You can specify here a host or an IP
@@ -101,7 +114,7 @@ PKG_REPO_SIGNING_KEY={{ salt['pillar.get']('poudriere:pkg_repo_signing_key', '/e
 
 # ccache support. Supply the path to your ccache cache directory.
 # It will be mounted into the jail and be shared among all jails.
-CCACHE_DIR=/var/cache/ccache
+#CCACHE_DIR=/var/cache/ccache
 #
 
 # parallel build support.
