@@ -114,7 +114,7 @@ PKG_REPO_SIGNING_KEY={{ salt['pillar.get']('poudriere:pkg_repo_signing_key', '/e
 
 # ccache support. Supply the path to your ccache cache directory.
 # It will be mounted into the jail and be shared among all jails.
-#CCACHE_DIR=/var/cache/ccache
+CCACHE_DIR=/var/cache/ccache
 #
 
 # parallel build support.
