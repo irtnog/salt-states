@@ -147,6 +147,7 @@
     'epel',
     'nux.dextop',
     'nux.misc',
+    'scl',
     'accounting',
     'aliases',
     'auditd',
