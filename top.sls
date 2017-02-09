@@ -49,6 +49,7 @@
 {%- set debian = [
     'salt.pkgrepo',
     'salt.minion',
+    'shibboleth.repo',
     'accounting',
     'aliases',
     'auditd',
@@ -148,6 +149,7 @@
     'nux.dextop',
     'nux.misc',
     'scl',
+    'shibboleth.repo',
     'accounting',
     'aliases',
     'auditd',
@@ -199,6 +201,7 @@
 
 {%- set suse = [
     'salt.minion',
+    'shibboleth.repo',
     'accounting',
     'aliases',
     'auditd',
@@ -307,7 +310,6 @@
 {%- set identity_provider = [
     'apache',
     'openid-ldap',
-    'shibboleth.repo',
     'shibboleth.mda',
     'tomcat.shibboleth-idp',
   ] %}
