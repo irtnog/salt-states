@@ -1,19 +1,34 @@
-glass_tty_vt220:
+{% from "fonts/map.jinja" import font_settings with context %}
+{% set packages = font_settings.packages %}
+{% set install_cmd = font_settings.install_cmd %}
+{% set ttf_fonts = font_settings.ttf %}
+{% set ttf_prefix = font_settings.ttf_prefix %}
+{% set dirsep = '\\' if grains['os_family'] == 'Windows' else '/' %}
+
+fonts:
   pkg.installed:
-    - pkgs:
-        - xorg-fonts-truetype
-        - fontconfig
+    - pkgs: {{ packages|yaml }}
+
+  cmd.run:
+    - name: {{ install_cmd|yaml_encode }}
+    {%- if grains['os_family'] == 'Windows' %}
+    - shell: powershell
+    {%- endif %}
+    - onchanges:
+        - pkg: fonts
+
+{% for font_name, settings in ttf_fonts|dictsort %}
+ttf_font_{{ loop.index0 }}:
+{% if settings is none %}
+  file.absent:
+{% else %}
   file.managed:
-    - name: /usr/local/share/fonts/TTF/Glass_TTY_VT220.ttf
-    - source: http://sensi.org/%7Esvo/glasstty/Glass_TTY_VT220.ttf
-    - source_hash: sha512=0b3b598bbdcc8f1177b48a7cedd2ad035a8a95d17d162d868e7c988a9d918f2756a8fe674bef3f30357225a87ea4e3adde01889502540d6920210161edc37023
-    - user: root
-    - group: 0
-    - mode: 555
+    - source: {{ settings.source|yaml_encode }}
+    - source_hash: {{ settings.source_hash|yaml_encode }}
+{% endif %}
+    - name: {{ '%s%s%s.ttf'|format(ttf_prefix, dirsep, font_name)|yaml_encode }}
     - require:
-        - pkg: glass_tty_vt220
-  cmd.wait:
-    - name: fc-cache -s -v
-    - watch:
-        - pkg: glass_tty_vt220
-        - file: glass_tty_vt220
+        - pkg: fonts
+    - onchanges_in:
+        - cmd: fonts
+{% endfor %}

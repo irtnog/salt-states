@@ -1,0 +1,20 @@
+{% import_yaml "fonts/defaults.yaml" as default_settings %}
+
+{% set distro_map = salt['grains.filter_by']({
+    'FreeBSD': {
+      'packages': [
+        'xorg-fonts-truetype',
+        'fontconfig',
+      ],
+      'ttf_prefix':
+        '/usr/local/share/fonts/TTF',
+    },
+  }) %}
+
+{% do default_settings.fonts.update(distro_map) %}
+
+{% set font_settings = salt['pillar.get'](
+    'fonts',
+    default=default_settings.fonts,
+    merge=True
+  ) %}
