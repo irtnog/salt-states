@@ -404,17 +404,6 @@ development:
     - {{ sls_id }}
     {%- endfor %}
 
-  'I@environment:development and I@role:devstack':
-    - match: compound
-    - apache
-    - mysql
-    - mysql.python
-    - mysql.remove_test_database
-    - rabbitmq
-    - rabbitmq.config
-    - openstack.repo
-    - openstack.keystone
-
   'I@environment:development and I@role:minecraft':
     - match: compound
     {%- for sls_id in minecraft %}
@@ -438,6 +427,25 @@ development:
     {%- for sls_id in comanage_registry %}
     - {{ sls_id }}
     {%- endfor %}
+
+  'I@environment:development and I@role:devstack':
+    - match: compound
+    - apache
+    - mysql
+    - mysql.python
+    - mysql.remove_test_database
+    - rabbitmq
+    - rabbitmq.config
+    - openstack.repo
+    - openstack.keystone
+
+  '(?i)uxedev...?svr0[1-4]\.irtnog\.net':
+    - match: pcre
+    - apache
+    - shibboleth.mda
+    - shibboleth.sp
+    - comanage.registry
+    - tomcat.shibboleth-idp
 
 ####
 #### TESTING ENVIRONMENT
@@ -633,12 +641,6 @@ production:
   'I@environment:production and I@role:comanage-registry':
     - match: compound
     {%- for sls_id in comanage_registry %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'uxeprdbsdsvr01.irtnog.net':
-    - match: compound
-    {%- for sls_id in salt_master %}
     - {{ sls_id }}
     {%- endfor %}
 
