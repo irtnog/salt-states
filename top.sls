@@ -314,6 +314,12 @@
     'tomcat.shibboleth-idp',
   ] %}
 
+{%- set comanage_registry = [
+    'apache',
+    'comanage.registry',
+    'shibboleth.sp',
+  ] %}
+
 {%- set web_server = [
     'apache',
     'opentracker',
@@ -427,6 +433,12 @@ development:
     - {{ sls_id }}
     {%- endfor %}
 
+  'I@environment:development and I@role:comanage-registry':
+    - match: compound
+    {%- for sls_id in comanage_registry %}
+    - {{ sls_id }}
+    {%- endfor %}
+
 ####
 #### TESTING ENVIRONMENT
 ####
@@ -507,6 +519,12 @@ testing:
   'I@environment:testing and I@role:web-server':
     - match: compound
     {%- for sls_id in web_server %}
+    - {{ sls_id }}
+    {%- endfor %}
+
+  'I@environment:testing and I@role:comanage-registry':
+    - match: compound
+    {%- for sls_id in comanage_registry %}
     - {{ sls_id }}
     {%- endfor %}
 
@@ -609,6 +627,12 @@ production:
   'I@environment:production and I@role:web-server':
     - match: compound
     {%- for sls_id in web_server %}
+    - {{ sls_id }}
+    {%- endfor %}
+
+  'I@environment:production and I@role:comanage-registry':
+    - match: compound
+    {%- for sls_id in comanage_registry %}
     - {{ sls_id }}
     {%- endfor %}
 
