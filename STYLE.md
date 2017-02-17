@@ -125,7 +125,7 @@ The annotation should be one of the following:
 
   - **BUG**: synonymous with FIXME
 
-  - **XXX***: synonymous with FIXME
+  - **XXX**: synonymous with FIXME
 
 ## Git Commit Messages
 
