@@ -1,0 +1,2 @@
+elinks:
+  pkg.installed
