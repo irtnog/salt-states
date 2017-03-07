@@ -288,6 +288,7 @@
     'apache',
     'poudriere',
     'salt.cloud',
+    'salt.cloud.dependencies',
     'salt.formulas',
     'salt.gitfs.gitpython',
     'salt.master',
