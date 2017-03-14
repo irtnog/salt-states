@@ -9,15 +9,16 @@ set_hostname:
   file.managed:
     - name: /etc/hostname
     - contents: {{ fqdn }}
-  cmd.wait:
-    - name: hostnamectl set-hostname {{ fqdn }} && systemctl restart systemd-hostnamed
-    - watch:
+  cmd.run:
+    - name: hostnamectl set-hostname "{{ fqdn }}"
+    - onchanges:
         - file: set_hostname
   service.running:
     - name: systemd-hostnamed
     - enable: True
     - watch:
         - file: set_hostname
+    - require:
         - cmd: set_hostname
   {% endif %}
 {% endif %}
