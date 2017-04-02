@@ -448,6 +448,7 @@ development:
     - shibboleth.sp
     - comanage.registry
     - tomcat.shibboleth-idp
+    - docker
 
 ####
 #### TESTING ENVIRONMENT
