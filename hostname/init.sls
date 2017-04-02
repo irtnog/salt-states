@@ -19,17 +19,8 @@ set_hostname:
     - onchanges:
         - file: set_hostname
 
-{%-   elif grains.os_family == 'Windows' %}
-
-set_hostname:
-  cmd.run:
-    - name: rename-computer {{ hostname }}; shutdown /r
-    - shell: powershell
-
 {%-   endif %}
-{%- endif %}
-
-{%- if grains.biosversion.find('amazon') > -1 %}
+{%-   if grains.biosversion.find('amazon') > -1 %}
 
 ## Prevent cloud-init from overriding the hostname set above.
 /etc/cloud/cloud.cfg.d/99_hostname.cfg:
@@ -38,6 +29,7 @@ set_hostname:
         hostname: {{ hostname }}
         fqdn: {{ fqdn }}
 
+{%-   endif %}
 {%- endif %}
 
 #### HOSTNAME/INIT.SLS ends here.
