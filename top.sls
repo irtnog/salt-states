@@ -449,6 +449,7 @@ development:
     - comanage.registry
     - tomcat.shibboleth-idp
     - docker
+    - maven
 
 ####
 #### TESTING ENVIRONMENT
