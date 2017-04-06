@@ -1,2 +1,2 @@
 npp:
-  pkg.installed
+  pkg.installed: []

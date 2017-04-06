@@ -1,5 +1,5 @@
 policycoreutils-python:
-  pkg.installed
+  pkg.installed: []
 
 /etc/selinux/targeted/local:
   file.directory:

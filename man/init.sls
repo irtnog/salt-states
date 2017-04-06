@@ -2,4 +2,4 @@
 ## the minimal install
 
 man-db:
-  pkg.installed
+  pkg.installed: []

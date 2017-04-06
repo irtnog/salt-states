@@ -1,2 +1,2 @@
 gnupg:
-  pkg.installed
+  pkg.installed: []

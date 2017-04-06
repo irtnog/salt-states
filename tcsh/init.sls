@@ -1,2 +1,2 @@
 tcsh:
-  pkg.installed
+  pkg.installed: []

@@ -1,2 +1,2 @@
 maven:
-  pkg.installed
+  pkg.installed: []

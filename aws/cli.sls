@@ -1,2 +1,2 @@
 awscli:
-  pkg.installed
+  pkg.installed: []

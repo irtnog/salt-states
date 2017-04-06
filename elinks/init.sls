@@ -1,2 +1,2 @@
 elinks:
-  pkg.installed
+  pkg.installed: []

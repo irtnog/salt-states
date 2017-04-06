@@ -1,2 +1,2 @@
 nmap:
-  pkg.installed
+  pkg.installed: []

@@ -1,7 +1,7 @@
 {% if grains['os_family'] == 'FreeBSD' %}
 unix2dos:
-  pkg.installed
+  pkg.installed: []
 {% else %}
 dos2unix:
-  pkg.installed
+  pkg.installed: []
 {% endif %}

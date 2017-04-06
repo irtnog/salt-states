@@ -2,6 +2,6 @@
 
 ## for netstat, arp, et al on RHEL/CentOS
 net-tools:
-  pkg.installed
+  pkg.installed: []
 
 {% endif %}

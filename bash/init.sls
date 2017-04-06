@@ -1,2 +1,2 @@
 bash:
-  pkg.installed
+  pkg.installed: []

@@ -1,2 +1,2 @@
 screen:
-  pkg.installed
+  pkg.installed: []

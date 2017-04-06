@@ -1,2 +1,2 @@
 subversion:
-  pkg.installed
+  pkg.installed: []

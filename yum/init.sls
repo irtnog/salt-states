@@ -1,9 +1,9 @@
 {% if salt['grains.get']('os_family') == 'RedHat' %}
 
-deltarpm:
-  pkg.installed
-
-yum-cron:
-  pkg.installed
+yum:
+  pkg.installed:
+    - pkgs:
+        - deltarpm
+        - yum-cron
 
 {% endif %}
