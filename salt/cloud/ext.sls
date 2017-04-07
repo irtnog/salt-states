@@ -4,6 +4,8 @@
 salt_cloud_deps:
   pkg.installed:
     - pkgs:
+        - py27-boto             # devel/py-boto
+        - py27-boto3            # www/py-boto3
         - py27-pip              # devel/py-pip
         - py27-openssl          # security/py-openssl
         - py27-ordereddict      # devel/py-ordereddict
