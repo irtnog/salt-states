@@ -1,4 +1,4 @@
-#### AWS/LAMBDA/INIT.SLS --- Salt states managing AWS Lambda functions
+#### AWS/LAMBDA.SLS --- Salt states managing AWS Lambda functions
 
 ### Copyright (c) 2017, Matthew X. Economou <xenophon@irtnog.org>
 ###
@@ -50,4 +50,4 @@
 {%-   endcall %}
 {%- endfor %}
 
-#### AWS/LAMBDA/INIT.SLS ends here.
+#### AWS/LAMBDA.SLS ends here.
