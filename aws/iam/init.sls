@@ -31,49 +31,24 @@
 ### described in OSHA 1910.145,
 ### https://www.osha.gov/pls/oshaweb/owadisp.show_document?p_table=standards&p_id=9794.
 
+{%- from "aws/lib.jinja" import generate_boto_states with context %}
+
 ####
 #### IAM POLICIES
 ####
 
-{%- for policy in salt.pillar.get('aws:iam:policies') %}
-{%-   if policy.policy_document is mapping %}
+{{ generate_boto_states('boto_iam', salt.pillar.get('aws:iam:policies', {}),
+     state_id_prefix='aws_iam_policies_',
+     present_function='policy_present',
+     absent_function='policy_absent',
+     no_op_comment='No IAM policies were specified.') }}
 
-aws_iam_policy_{{ policy.name }}:
-  boto_iam.policy_present:
-    - name: {{ policy.name }}
-    - description:
-        {{ policy.description|yaml_encode }}
-    - policy_document:
-        {{ policy.policy_document|yaml }}
+####
+#### IAM ROLES/INSTANCE PROFILES
+####
 
-{%-   else %}
-
-aws_iam_policy_{{ policy.name }}:
-  boto_iam.policy_absent:
-    - name: {{ policy.name }}
-
-{%-   endif %}
-
-{%-   if 'region' in policy %}
-    - region:
-        {{ policy.region|yaml_encode }}
-{%-   endif %}
-{%-   if 'keyid' in policy %}
-    - keyid:
-        {{ policy.keyid|yaml_encode }}
-{%-   endif %}
-{%-   if 'key' in policy %}
-    - key:
-        {{ policy.key|yaml_encode }}
-{%-   endif %}
-{%-   if 'profile' in policy %}
-    - profile:
-        {{ policy.profile|yaml if policy.profile is mapping else
-           salt.pillar.get(policy.profile)|yaml }}
-{%-   endif %}
-
-{%- else %}
-## NB: No IAM policies were specified.
-{%- endfor %}
+{{ generate_boto_states('boto_iam_role', salt.pillar.get('aws:iam:roles', {}),
+     state_id_prefix='aws_iam_role_',
+     no_op_comment='No IAM roles or instance profiles were specified.') }}
 
 #### AWS/IAM/INIT.SLS ends here.
