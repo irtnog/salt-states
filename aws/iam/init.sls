@@ -38,7 +38,7 @@
 ####
 
 {{ generate_boto_states('boto_iam', salt.pillar.get('aws:iam:policies', {}),
-     state_id_prefix='aws_iam_policies_',
+     state_id_prefix='aws_iam_policy_',
      present_function='policy_present',
      absent_function='policy_absent',
      no_op_comment='No IAM policies were specified.') }}
