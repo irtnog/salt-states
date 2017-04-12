@@ -20,6 +20,7 @@
                              or value is sameas None else
            value|yaml }}
 {%-       endfor %}
+{{ caller(name, settings) if caller is defined else '' }}
 {%-     else %}
   {{ state_module }}.{{ absent_function }}:
     - name:
