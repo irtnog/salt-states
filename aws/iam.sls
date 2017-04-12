@@ -1,4 +1,4 @@
-#### AWS/IAM/INIT.SLS --- Salt states managing AWS IAM objects
+#### AWS/IAM.SLS --- Salt states managing AWS IAM objects
 
 ### Copyright (c) 2017, Matthew X. Economou <xenophon@irtnog.org>
 ###
@@ -51,4 +51,4 @@
      state_id_prefix='aws_iam_role_',
      no_op_comment='No IAM roles or instance profiles were specified.') }}
 
-#### AWS/IAM/INIT.SLS ends here.
+#### AWS/IAM.SLS ends here.
