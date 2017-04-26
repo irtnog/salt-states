@@ -51,4 +51,14 @@
      state_id_prefix='aws_iam_role_',
      no_op_comment='No IAM roles or instance profiles were specified.') }}
 
+####
+#### IAM USERS
+####
+
+{{ generate_boto_states('boto_iam', salt.pillar.get('aws:iam:users', {}),
+     state_id_prefix='aws_iam_user_',
+     present_function='user_present',
+     absent_function='user_absent',
+     no_op_comment='No IAM users were specified.') }}
+
 #### AWS/IAM.SLS ends here.
