@@ -52,6 +52,16 @@
      no_op_comment='No IAM roles or instance profiles were specified.') }}
 
 ####
+#### IAM GROUPS
+####
+
+{{ generate_boto_states('boto.iam', salt.pillar.get('aws:iam:groups', {}),
+     state_id_prefix='aws_iam_group_',
+     present_function='group_present',
+     absent_function='group_absent',
+     no_op_comment='No IAM groups were specified.') }}
+
+####
 #### IAM USERS
 ####
 
