@@ -1,15 +1,18 @@
-orch_patch_linux_install:
-  salt.function:
-    - name: pkg.upgrade
-    - tgt: 'I@environment:{{ saltenv }} and G@kernel:Linux'
+## Patch all computers running Linux in the current environment.
+orch_patch_linux:
+  salt.state:
+    - tgt: 'G@kernel:Linux and I@environment:{{ saltenv }} and not I@role:salt-master'
     - tgt_type: compound
+    - sls:
+        - patch-linux
 
-orch_patch_linux_reboot:
-  salt.function:
-    - name: system.reboot
-    - tgt: 'I@environment:{{ saltenv }} and G@kernel:Linux'
+## Do the Salt master last so as to not interrupt the orchestrate
+## runner.
+orch_patch_linux_salt_master:
+  salt.state:
+    - tgt: 'G@kernel:Linux and I@environment:{{ saltenv }} and I@role:salt-master'
     - tgt_type: compound
-    - kwarg:
-        at_time: 1
+    - sls:
+        - patch-linux
     - require:
-        - salt: orch_patch_linux_install
+        - salt: orch_patch_linux
