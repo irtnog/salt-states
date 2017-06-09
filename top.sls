@@ -445,6 +445,7 @@ development:
 
   '(?i)uxedev...?svr0[1-4]\.irtnog\.net':
     - match: pcre
+    - slapd
     - mysql
     - apache
     - shibboleth.mda
