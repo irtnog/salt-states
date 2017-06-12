@@ -1,2 +1,2 @@
 merakism-agent-irtnog:
-  pkg.installed
+  pkg.installed: []
