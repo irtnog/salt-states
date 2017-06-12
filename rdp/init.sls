@@ -1,2 +1,2 @@
 remote-desktop:
-  rdp.enabled
+  rdp.enabled: []
