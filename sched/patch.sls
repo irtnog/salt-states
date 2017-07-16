@@ -11,6 +11,8 @@ auto-update:
     - function: state.apply
     - job_args:
         - patch-{{ salt.grains.get('kernel')|lower }}
+    - job_kwargs:
+        saltenv: {{ saltenv }}
     - when:
 {%- if salt.pillar.get('role') == 'salt-master' %}
         - Saturday 1:00am
