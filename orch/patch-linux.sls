@@ -3,6 +3,7 @@ orch_patch_linux:
   salt.state:
     - tgt: 'G@kernel:Linux and I@environment:{{ saltenv }} and not I@role:salt-master'
     - tgt_type: compound
+    - saltenv: {{ saltenv }}
     - sls:
         - patch-linux
 
@@ -12,6 +13,7 @@ orch_patch_linux_salt_master:
   salt.state:
     - tgt: 'G@kernel:Linux and I@environment:{{ saltenv }} and I@role:salt-master'
     - tgt_type: compound
+    - saltenv: {{ saltenv }}
     - sls:
         - patch-linux
     - require:
