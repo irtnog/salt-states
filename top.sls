@@ -655,4 +655,9 @@ production:
     - {{ sls_id }}
     {%- endfor %}
 
+  l00000006.irtnog.net:
+    ## build prereqs for Synergy
+    - bonjour-sdk
+    - cmake
+
 #### TOP.SLS ends here.
