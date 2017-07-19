@@ -1,0 +1,2 @@
+terminals:
+  pkg.installed: []
