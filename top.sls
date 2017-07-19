@@ -283,6 +283,7 @@
     'rdp',
     'rsat',
     'subversion',
+    'terminals',
     'users',
     'web-mgmt-tools',
   ] %}
