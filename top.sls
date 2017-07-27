@@ -324,6 +324,7 @@
 
 {%- set comanage_registry = [
     'apache',
+    'letsencrypt',
     'comanage.registry',
     'shibboleth.sp',
   ] %}
