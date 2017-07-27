@@ -317,6 +317,7 @@
 
 {%- set identity_provider = [
     'apache',
+    'letsencrypt',
     'openid-ldap',
     'shibboleth.mda',
     'tomcat.shibboleth-idp',
