@@ -330,6 +330,7 @@
 
 {%- set web_server = [
     'apache',
+    'letsencrypt',
     'opentracker',
     'shibboleth.sp',
     'trac',
