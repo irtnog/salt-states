@@ -1,0 +1,25 @@
+{%- import_yaml "gnupg/defaults.yaml" as default_settings %}
+
+{%- set distro_map = salt['grains.filter_by']({
+  'FreeBSD': {
+    'packages': [
+      'gnupg',
+    ],
+  },
+
+  'Windows': {
+    'packages': [
+      'gpg4win',
+    ],
+  },
+
+  'default': {}
+}) %}
+
+{%- do default_settings.gnupg.update(distro_map) %}
+
+{%- set gnupg_settings = salt['pillar.get'](
+  'gnupg',
+  default=default_settings.gnupg,
+  merge=True,
+) %}
