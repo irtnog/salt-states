@@ -1,0 +1,2 @@
+moria:
+  pkg.installed: []
