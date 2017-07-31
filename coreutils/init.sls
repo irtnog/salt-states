@@ -1,0 +1,2 @@
+coreutils:
+  pkg.installed: []
