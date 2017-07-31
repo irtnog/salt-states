@@ -105,6 +105,7 @@
     'banners',
     'bash',
     'bgfsck',
+    'coreutils',
     'cron',
     'cvs',
     'dig',
