@@ -1,5 +1,7 @@
 {% for mount in salt['pillar.get']('mounts', []) %}
 {{ mount.get('path') }}:
+  file.directory: []
+
   mount.mounted:
     - device:   {{ mount.get('device') }}
     - fstype:   {{ mount.get('fstype') }}
