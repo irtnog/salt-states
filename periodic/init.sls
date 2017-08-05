@@ -10,7 +10,18 @@ daily_clean_tmps_enable:
 
 daily_clean_tmps_ignore:
   sysrc.managed:
-    - value: "${daily_clean_tmps_ignore} screens"
+    - value: {{ [
+        '.X*-lock'
+        '.X11-unix'
+        '.ICE-unix'
+        '.font-unix'
+        '.XIM-unix'
+        'quota.user'
+        'quota.group'
+        '.snap'
+        '.sujournal',
+        'screens',
+      ]|join(' ')|yaml_encode }}
     - file: /etc/periodic.conf
 
 daily_scrub_zfs_enable:
