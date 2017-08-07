@@ -2,6 +2,10 @@
 ## can access the mail spool directories.  (The amavisd packages will
 ## create the group.)  Note that this might be FreeBSD-specific.
 
+include:
+  - amavisd
+  - clamav
+
 vscan:
   group.present:
     - addusers:
