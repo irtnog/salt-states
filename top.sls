@@ -307,8 +307,6 @@
   ] %}
 
 {%- set mail_relay = [
-    'amavisd',
-    'clamav',
     'clamav.amavisd',
   ] %}
 
