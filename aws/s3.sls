@@ -40,7 +40,7 @@
         state_id_prefix='aws_s3_bucket_',
         no_op_comment='No S3 buckets were specified.') %}
     - Bucket:
-        {{ name }}
+        {{ name|yaml_encode }}
 {%-   if settings is not mapping %}
     - Force:
         True
