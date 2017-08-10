@@ -44,9 +44,9 @@
           absent_function='function_absent',
           no_op_comment='No Lambda functions were specified.') %}
     - FunctionName:
-        {{ name }}
+        {{ name|yaml_encode }}
     - region:
-        {{ region }}
+        {{ region|yaml_encode }}
 {%-   endcall %}
 {%- endfor %}
 
