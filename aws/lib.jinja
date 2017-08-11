@@ -1,12 +1,14 @@
 {%- macro generate_boto_states(state_module,
                                source_dict,
+                               region='',
                                state_id_prefix='',
                                state_id_suffix='',
                                present_function='present',
                                absent_function='absent',
                                no_op_comment='') %}
+{%-   set region_prefix = '%s_'|format(region) if region else '' %}
 {%-   for name, settings in source_dict|default({})|dictsort %}
-{{ '%s%s%s'|format(state_id_prefix, name, state_id_suffix)|yaml_encode }}:
+{{ '%s%s%s%s'|format(state_id_prefix, region_prefix, name, state_id_suffix)|yaml_encode }}:
 {%-     if settings is mapping %}
   {{ state_module }}.{{ present_function }}:
     - name:
