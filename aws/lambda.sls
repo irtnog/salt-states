@@ -38,7 +38,7 @@
 
 {%- for region, functions in salt.pillar.get('aws:lambda:functions', {})|dictsort %}
 {%-   call(name, settings)
-        generate_boto_states('boto_lambda', functions,
+        generate_boto_states('boto_lambda', functions, region=region,
           state_id_prefix='aws_lambda_function_',
           present_function='function_present',
           absent_function='function_absent',
