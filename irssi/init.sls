@@ -1,0 +1,2 @@
+irssi:
+  pkg.installed: []
