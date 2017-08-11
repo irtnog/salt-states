@@ -75,8 +75,6 @@
     'pam_mkhomedir',
     'pki',
     'postfix',
-    'tcpdump',
-    'tcsh',
     'screen',
     'sched.patch',
     'snmp',
