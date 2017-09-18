@@ -1,0 +1,2 @@
+fiddler:
+  pkg.installed: []
