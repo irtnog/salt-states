@@ -51,7 +51,7 @@ shibidp_tomcat:
 
   selinux.fcontext_policy_present:
     - names:
-        - {{ shibidp_settings.prefix }}/conf(/.*)?
+        - {{ shibidp_settings.prefix }}/metadata(/.*)?
         - {{ shibidp_settings.prefix }}/logs(/.*)?
     - sel_type: tomcat_cache_t
     - require:
