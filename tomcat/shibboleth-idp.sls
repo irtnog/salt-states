@@ -65,6 +65,7 @@ shibidp_tomcat_restorecon:
     - names:
         - {{ shibidp_settings.prefix }}/metadata
         - {{ shibidp_settings.prefix }}/logs
+    - recursive: True
     - require:
         - selinux: shibidp_tomcat_semanage_fcontext_add
     - require_in:
