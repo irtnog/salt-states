@@ -49,6 +49,7 @@ shibidp_tomcat:
     - watch_in:
         - service: tomcat
 
+shibidp_tomcat_semanage_fcontext_add:
   selinux.fcontext_policy_present:
     - names:
         - {{ shibidp_settings.prefix }}/metadata(/.*)?
@@ -57,6 +58,16 @@ shibidp_tomcat:
     - require:
         - pkg: tomcat
     - watch_in:
+        - service: tomcat
+
+shibidp_tomcat_restorecon:
+  selinux.fcontext_policy_applied:
+    - names:
+        - {{ shibidp_settings.prefix }}/metadata
+        - {{ shibidp_settings.prefix }}/logs
+    - require:
+        - selinux: shibidp_tomcat_semanage_fcontext_add
+    - require_in:
         - service: tomcat
 
 ## Tomcat does not provide the Java Server Tag Library, which is
