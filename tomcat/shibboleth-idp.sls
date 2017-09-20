@@ -67,6 +67,13 @@ shibidp_tomcat_restorecon:
         - {{ shibidp_settings.prefix }}/logs
     - recursive: True
     - require:
+        - file: shibidp
+        - archive: shibidp
+        - file: shibidp_keymat
+{%- for mp in shibidp_settings.metadata_providers
+    if mp is string and not mp.startswith('http') %}
+        - file: shibidp_inline_metadata_{{ loop.index0 }}
+{%- endfor %}
         - selinux: shibidp_tomcat_semanage_fcontext_add
     - require_in:
         - service: tomcat
