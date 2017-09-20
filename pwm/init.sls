@@ -1,4 +1,8 @@
 pwm:
+  pkg.installed:
+    - pkgs:
+        - mysql-connector-java
+
   file.directory:
     - name: /opt/pwm/data
     - user: tomcat
