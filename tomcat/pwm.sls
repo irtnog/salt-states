@@ -12,6 +12,7 @@ extend:
           - file: pwm
     service:
       - watch:
+          - pkg: pwm
           - file: pwm
           - archive: pwm
 
