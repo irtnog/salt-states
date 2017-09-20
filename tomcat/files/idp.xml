@@ -1,5 +1,1 @@
-<Context
-    antiResourceLocking="false"
-    docBase="/opt/shibboleth-idp/war/idp.war"
-    privileged="true"
-    swallowOutput="true" />
+<Context docBase="/opt/shibboleth-idp/war/idp.war" antiResourceLocking="false" privileged="true" swallowOutput="true"/>
