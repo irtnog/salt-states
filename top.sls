@@ -96,6 +96,7 @@
 
 {%- set freebsd = [
     'poudriere.client',
+    'ca_root_nss',
     'salt.minion',
     'rc',
     'periodic',
