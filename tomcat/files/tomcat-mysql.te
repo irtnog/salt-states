@@ -1,0 +1,2 @@
+#============= tomcat_t ==============
+allow tomcat_t mysqld_port_t:tcp_socket name_connect;

@@ -25,6 +25,12 @@ pwm_tomcat:
     - watch_in:
         - service: tomcat
 
+  selinux.module:
+    - install: True
+    - source: salt://tomcat/files/tomcat-mysql.te
+    - watch_in:
+        - service: tomcat
+
 pwm_tomcat_semanage_fcontext_add:
   selinux.fcontext_policy_present:
     - name: /opt/pwm/data(/.*)?
