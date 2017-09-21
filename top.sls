@@ -281,6 +281,7 @@
 {%- set windows = [
     'salt.minion',
     'csc',
+    'fiddler',
     'git',
     'gpmc',
     'merakism.agent',
