@@ -297,7 +297,10 @@
 
 {%- set windows_gui = [
     'adobe',
+    'chrome',
+    'firefox',
     'fonts',
+    'itunes',
   ] %}
 
 {%- set salt_master = [
