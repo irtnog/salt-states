@@ -279,9 +279,7 @@
 
 {%- set windows = [
     'salt.minion',
-    'adobe',
     'csc',
-    'fonts',
     'git',
     'gpmc',
     'merakism.agent',
@@ -295,6 +293,11 @@
     'terminals',
     'users',
     'web-mgmt-tools',
+  ] %}
+
+{%- set windows_gui = [
+    'adobe',
+    'fonts',
   ] %}
 
 {%- set salt_master = [
