@@ -351,10 +351,19 @@
   ] %}
 
 {%- set web_server = [
+    'shibboleth.sp',
     'apache',
+    'apache.config',
+    'apache.mod_proxy',
+    'apache.mod_proxy_http',
+    'apache.mod_rewrite',
+    'apache.mod_shib',
+    'apache.mod_socache_shmcb',
+    'apache.mod_ssl',
+    'apache.mod_wsgi',
+    'apache.vhosts.standard',
     'letsencrypt',
     'opentracker',
-    'shibboleth.sp',
     'trac',
   ] %}
 
