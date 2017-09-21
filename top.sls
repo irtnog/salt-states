@@ -329,10 +329,17 @@
   ] %}
 
 {%- set identity_provider = [
+    'php.ng',
+    'php.ng.ldap',
+    'mysql',
     'apache',
+    'apache.config',
+    'apache.mod_ssl',
+    'apache.vhosts.standard',
     'letsencrypt',
     'openid-ldap',
     'shibboleth.mda',
+    'tomcat.pwm',
     'tomcat.shibboleth-idp',
   ] %}
 
