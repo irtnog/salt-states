@@ -1,2 +1,11 @@
+
+module tomcat-mysql 1.0;
+
+require {
+        type mysqld_port_t;
+        type tomcat_t;
+        class tcp_socket name_connect;
+}
+
 #============= tomcat_t ==============
 allow tomcat_t mysqld_port_t:tcp_socket name_connect;
