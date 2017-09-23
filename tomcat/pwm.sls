@@ -7,14 +7,12 @@ include:
 
 extend:
   tomcat:
-    pkg:
-      - require_in:
-          - file: pwm
     service:
       - watch:
           - pkg: pwm
           - file: pwm
           - archive: pwm
+          - file: pwm_config
 
 pwm_tomcat:
   file.managed:
@@ -45,6 +43,7 @@ pwm_tomcat_restorecon:
     - recursive: True
     - require:
         - archive: pwm
+        - file: pwm_config
         - selinux: pwm_tomcat_semanage_fcontext_add
     - watch_in:
         - service: tomcat
