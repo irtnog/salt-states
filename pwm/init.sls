@@ -19,3 +19,12 @@ pwm:
     - enforce_toplevel: False
     - require:
         - file: pwm
+
+pwm_config:
+  file.managed:
+    - name: /opt/pwm/data/PwmConfiguration.xml
+    - source: salt://pwm/files/PwmConfiguration.xml
+    - template: jinja
+    - user: tomcat
+    - group: tomcat
+    - mode: 640
