@@ -1,45 +1,48 @@
-{% import_yaml "vmware/tools/defaults.yaml" as default_settings %}
+{%- import_yaml "vmware/tools/defaults.yaml" as default_settings %}
 
-{% set distro_map = salt['grains.filter_by']({
-    'Debian': {
-      'services': [
-        'open-vm-tools',
-      ],
-    },
+{%- set distro_map = salt['grains.filter_by']({
+  'Debian': {
+    'services': [
+      'open-vm-tools',
+    ],
+  },
 
-    'Darwin': {
-      'confdir':
-        '/Library/Application Support/VMware Tools/',
-    },
+  'Darwin': {
+    'confdir':
+      '/Library/Application Support/VMware Tools/',
+  },
 
-    'FreeBSD': {
-      'confdir':
-        '/usr/local/etc/vmware-tools/',
-      'hookdir':
-        '/usr/local/sbin/',
-      'services': [
-        'vmware-guestd',
-        'vmware-kmod',
-      ],
-    },
+  'FreeBSD': {
+    'confdir':
+      '/usr/local/etc/vmware-tools/',
+    'hookdir':
+      '/usr/local/sbin/',
+    'services': [
+      'vmware-guestd',
+      'vmware-kmod',
+    ],
+  },
 
-    'Windows': {
-      'packages': [],
-      'confdir':
-        salt.environ.get('ProgramFiles') ~ '\VMware\VMware Tools\',
-      'hookdir':
-        salt.environ.get('SystemRoot') ~ '\',
-      'hooksuffix':
-        '.bat',
-      'services': [
-        'VMware Tools'
-      ],
-    },
+  'Windows': {
+    'packages': [],
+    'confdir':
+      salt.environ.get('ProgramFiles') ~ '\VMware\VMware Tools\',
+    'hookdir':
+      salt.environ.get('SystemRoot') ~ '\',
+    'hooksuffix':
+      '.bat',
+    'services': [
+      'VMware Tools'
+    ],
+  },
 
-    'default': {},
-  }, merge=salt['pillar.get']('vmware:tools:lookup')) %}
+  'default': {},
+}) %}
 
-{% do default_settings.vmware.tools.update(distro_map) %}
+{%- do default_settings.vmware.tools.update(distro_map) %}
 
-{% set vmware_tools_settings = salt['pillar.get']('vmware:tools',
-  default=default_settings.vmware.tools, merge=True) %}
+{%- set vmware_tools_settings = salt.pillar.get(
+  'vmware:tools',
+  default=default_settings.vmware.tools,
+  merge=True,
+) %}

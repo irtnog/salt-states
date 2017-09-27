@@ -1,4 +1,4 @@
-{% from "vmware/tools/map.jinja" import vmware_tools_settings with context %}
+{%- from "vmware/tools/map.jinja" import vmware_tools_settings with context %}
 
 vmware_tools:
   pkg.installed:
@@ -24,7 +24,8 @@ vmware_tools:
         - pkg: vmware_tools
         - file: vmware_tools
 
-{% if vmware_tools_settings.post_thaw_script != [] %}
+{%- if vmware_tools_settings.post_thaw_script %}
+
 vmware_tools_post_thaw_script:
   file.managed:
     - name: {{ '%spost-thaw-script%s'|format(
@@ -38,9 +39,11 @@ vmware_tools_post_thaw_script:
     - mode: 755
     - require:
         - pkg: vmware-tools
-{% endif %}
 
-{% if vmware_tools_settings.pre_freeze_script != [] %}
+{%- endif %}
+
+{%- if vmware_tools_settings.pre_freeze_script %}
+
 vmware_tools_pre_freeze_script:
   file.managed:
     - name: {{ '%spre-freeze-script%s'|format(
@@ -54,9 +57,11 @@ vmware_tools_pre_freeze_script:
     - mode: 755
     - require:
         - pkg: vmware_tools
-{% endif %}
 
-{% if grains['os_family'] == 'FreeBSD' %}
+{%- endif %}
+
+{%- if grains['os_family'] == 'FreeBSD' %}
+
 vmware_tools_kmod_vmmemctl:
   sysrc.managed:
     - name: vmware_guest_vmmemctl_enable
@@ -96,4 +101,5 @@ vmware_tools_kmod_vmhgfs:
         - file: vmware_tools
     - watch_in:
         - service: vmware_tools
-{% endif %}
+
+{%- endif %}
