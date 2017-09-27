@@ -60,7 +60,7 @@ vmware_tools_pre_freeze_script:
 
 {%- endif %}
 
-{%- if grains['os_family'] == 'FreeBSD' %}
+{%- if salt.grains.get('os_family') == 'FreeBSD' %}
 
 vmware_tools_kmod_vmmemctl:
   sysrc.managed:
