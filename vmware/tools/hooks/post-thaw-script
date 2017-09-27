@@ -1,10 +1,2 @@
-{#- TODO: Better logging, error handling. #}
 {%- from "vmware/tools/map.jinja" import vmware_tools_settings with context %}
-{%- if grains['os_family'] == 'Windows' %}
-@ECHO OFF
-{%- else %}
-#!/bin/sh
-{%- endif %}
-{%- for command in vmware_tools_settings.post_thaw_script %}
-{{ command }}
-{%- endfor %}
+{{ vmware_tools_settings.post_thaw_script }}

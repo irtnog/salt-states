@@ -11,6 +11,6 @@ vmware:
     services:
       - vmtoolsd
     pre_freeze_script:
-      []
+      ''
     post_thaw_script:
-      []
+      ''
