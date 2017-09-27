@@ -6,10 +6,12 @@
         'open-vm-tools',
       ],
     },
+
     'Darwin': {
       'confdir':
         '/Library/Application Support/VMware Tools/',
     },
+
     'FreeBSD': {
       'confdir':
         '/usr/local/etc/vmware-tools/',
@@ -20,6 +22,20 @@
         'vmware-kmod',
       ],
     },
+
+    'Windows': {
+      'packages': [],
+      'confdir':
+        salt.environ.get('ProgramFiles') ~ '\VMware\VMware Tools\',
+      'hookdir':
+        salt.environ.get('SystemRoot') ~ '\',
+      'hooksuffix':
+        '.bat',
+      'services': [
+        'VMware Tools'
+      ],
+    },
+
     'default': {},
   }, merge=salt['pillar.get']('vmware:tools:lookup')) %}
 
