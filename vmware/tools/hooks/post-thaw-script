@@ -1,2 +1,0 @@
-{%- from "vmware/tools/map.jinja" import vmware_tools_settings with context %}
-{{ vmware_tools_settings.post_thaw_script }}

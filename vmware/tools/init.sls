@@ -32,8 +32,7 @@ vmware_tools_post_thaw_script:
                  vmware_tools_settings.hookdir,
                  vmware_tools_settings.hooksuffix
                )|yaml_encode }}
-    - source: salt://vmware/tools/hooks/post-thaw-script
-    - template: jinja
+    - contents: {{ vmware_tools_settings.post_thaw_script|yaml_encode }}
     - user: root
     - group: 0
     - mode: 755
@@ -50,8 +49,7 @@ vmware_tools_pre_freeze_script:
                  vmware_tools_settings.hookdir,
                  vmware_tools_settings.hooksuffix
                )|yaml_encode }}
-    - source: salt://vmware/tools/hooks/pre-freeze-script
-    - template: jinja
+    - contents: {{ vmware_tools_settings.pre_freeze_script|yaml_encode }}
     - user: root
     - group: 0
     - mode: 755
