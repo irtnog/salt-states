@@ -1,0 +1,50 @@
+# Managed by saltstack
+
+<IfModule mod_ssl.c>
+
+SSLCACertificateFile /etc/pki/tls/certs/ca-bundle.crt
+
+AddType application/x-x509-ca-cert .crt
+AddType application/x-pkcs7-crl    .crl
+
+SSLRandomSeed startup file:/dev/urandom  256
+SSLRandomSeed connect file:/dev/urandom 512
+
+SSLPassPhraseDialog builtin
+#SSLPassPhraseDialog exec:/usr/libexec/httpd-ssl-pass-dialog
+
+SSLSessionCache shmcb:/run/httpd/sslcache(512000)
+SSLSessionCacheTimeout 300
+
+SSLUseStapling on
+SSLStaplingCache shmcb:/run/httpd/ocsp_gcache_data(51200)
+SSLStaplingReturnResponderErrors off
+
+SSLCryptoDevice builtin
+#SSLCryptoDevice ubsec
+
+<IfVersion < 2.4>
+SSLMutex file:/run/httpd/ssl_mutex
+</IfVersion>
+
+SSLProtocol all -SSLv2 -SSLv3
+SSLCipherSuite ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!3DES:!MD5:!PSK
+SSLHonorCipherOrder on
+SSLCompression off
+
+Header add Strict-Transport-Security "max-age=15768000"
+
+#SSLOptions +FakeBasicAuth +ExportCertData +StrictRequire
+<Files ~ "\.(cgi|shtml|phtml|php3?)$">
+    SSLOptions +StdEnvVars
+</Files>
+<Directory "/var/www/cgi-bin">
+    SSLOptions +StdEnvVars
+</Directory>
+
+BrowserMatch "MSIE [2-6]" \
+    nokeepalive ssl-unclean-shutdown \
+    downgrade-1.0 force-response-1.0
+BrowserMatch "MSIE [17-9]" ssl-unclean-shutdown
+
+</IfModule>
