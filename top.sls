@@ -340,6 +340,7 @@
 
 {%- set identity_provider = [
     'php.ng',
+    'php.ng.cli',
     'php.ng.ldap',
     'mysql',
     'apache',
