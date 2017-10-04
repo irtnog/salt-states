@@ -306,19 +306,27 @@
   ] %}
 
 {%- set salt_master = [
-    'apache',
-    'poudriere',
     'salt.formulas',
     'salt.gitfs.gitpython',
     'salt.master',
     'salt.cloud.ext',
+    'saltpad',
+    'shibboleth.sp',
+    'apache',
+    'apache.config',
+    'apache.mod_shib',
+    'apache.mod_socache_shmcb',
+    'apache.mod_ssl',
+    'apache.mod_wsgi',
+    'apache.vhosts.standard',
+    'letsencrypt',
+    'poudriere',
     'aws.iam',
     'aws.s3',
     'aws.vpc',
     'aws.lambda',
     'salt.cloud',
     'salt.ssh',
-    'shibboleth.sp',
     'vault',
   ] %}
 
