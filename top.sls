@@ -314,6 +314,7 @@
     'shibboleth.sp',
     'apache',
     'apache.config',
+    'apache.mod_rewrite',
     'apache.mod_shib',
     'apache.mod_socache_shmcb',
     'apache.mod_ssl',
