@@ -41,7 +41,7 @@ def __virtual__():
         __utils__['boto.assign_funcs'](__name__, 'ec2', pack=__salt__)
         return True
 
-def find_images(filters={}, region=None, key=None, keyid=None, profile=None, return_objs=False}:
+def find_images(filters={}, region=None, key=None, keyid=None, profile=None, return_objs=False):
     conn = _get_conn(region=region, key=key, keyid=keyid, profile=profile)
     try:
         images = conn.get_all_images(filters=filters)
