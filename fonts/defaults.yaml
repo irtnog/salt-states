@@ -1,6 +1,8 @@
 fonts:
   packages:
-    []
+    - fontconfig
+  ttf_prefix:
+    /usr/share/fonts/irtnog
   install_cmd:
     fc-cache -s -v
   ttf:

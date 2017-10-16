@@ -2,13 +2,10 @@
 
 {% set distro_map = salt['grains.filter_by']({
     'FreeBSD': {
-      'packages': [
-        'xorg-fonts-truetype',
-        'fontconfig',
-      ],
       'ttf_prefix':
-        '/usr/local/share/fonts/TTF',
+        '/usr/local/share/fonts/irtnog',
     },
+    'default': {}
   }) %}
 
 {% do default_settings.fonts.update(distro_map) %}
