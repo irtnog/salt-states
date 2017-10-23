@@ -22,6 +22,7 @@ include:
 
 mod_ssl:
   pkg.installed:
+    - name: {{ apache.mod_ssl }}
     - require:
       - pkg: apache
     - watch_in:
