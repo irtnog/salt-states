@@ -26,7 +26,7 @@ pwm_tomcat:
   selinux.module:
     - name: tomcat-mysql
     - install: True
-    - source: salt://tomcat/files/tomcat-mysql.pp
+    - source: salt://tomcat/files/tomcat-mysql.pp?saltenv={{ saltenv }}
     - watch_in:
         - service: tomcat
 
