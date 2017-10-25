@@ -1,5 +1,6 @@
 policycoreutils-python:
-  pkg.installed: []
+  pkg.installed:
+    - reload_modules: True
 
 /etc/selinux/targeted/local:
   file.directory:
