@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    xmlns:wayf="http://sdss.ac.uk/2006/06/WAYF"
+    targetNamespace="http://sdss.ac.uk/2006/06/WAYF"
+    version="2015-04-16"
+    elementFormDefault="qualified">
+    
+    <annotation>
+        <documentation>
+            This schema describes the WAYF namespace, used internally by the
+            UK federation for the "HideFromWAYF" label.
+            
+            For additional information, see the Federation Technical Specification.
+        </documentation>
+    </annotation>
+    
+    <complexType name="basicLabel">
+        <annotation>
+            <documentation>
+                Basic labels are empty elements whose presence or absence
+                is all that is important.
+            </documentation>
+        </annotation>
+        <!--
+            No content elements are defined, so a basicLabel may contain
+            neither text nor nested elements.
+        -->
+    </complexType>
+    
+    <element name="HideFromWAYF" type="wayf:basicLabel">
+        <annotation>
+            <documentation>
+                Indicates an entity which should be hidden from the
+                Central Discovery Service.
+            </documentation>
+        </annotation>
+    </element>
+
+</schema>

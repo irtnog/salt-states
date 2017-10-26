@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://id.incommon.org/metadata"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified"
+  blockDefault="substitution"
+  version="2.0">
+  
+  <xs:annotation>
+    <xs:documentation>
+      Document title: Schema for InCommon Federation metadata extensions
+      Document identifier: Metadata Extension Schema
+      Location: https://spaces.internet2.edu/x/iIuVAQ
+      Revision history: 
+      V1.2 (3 May 2013):
+      Make schema itself schema-valid.
+      V1.1 (2 May 2013):
+      Initial version. Added documentation.
+      V1.0 (2 December 2011):
+      Initial version. Added contactType attribute.
+    </xs:documentation>
+  </xs:annotation>
+  
+  <xs:attribute name="contactType" type="xs:anyURI"/>
+  
+</xs:schema>

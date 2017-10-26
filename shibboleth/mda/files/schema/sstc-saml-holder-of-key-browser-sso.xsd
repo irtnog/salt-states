@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema
+  targetNamespace="urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified"
+  blockDefault="substitution"
+  version="2.0">
+
+  <xs:annotation>
+    <xs:documentation>
+      Document title: Schema for SAML V2.0 Holder-of-Key Web Browser SSO Profile
+      Document identifier: sstc-saml-holder-of-key-browser-sso.xsd
+      Location: http://www.oasis-open.org/committees/documents.php?wg_abbrev=security
+      Revision history:
+	V1.2 (2 November 2008):
+	  Renamed attribute from protocol to ProtocolBinding; targetNamespace changed in accordance with new conventions
+	V1.1 (6 August 2008):
+	  string type changed to anyURI to match original SAML2Meta schema
+        V1.0 (4 August 2008):
+          Initial version.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:attribute name="ProtocolBinding" type="xs:anyURI"/>
+
+</xs:schema>

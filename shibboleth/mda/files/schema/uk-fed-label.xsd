@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    xmlns:ukfedlabel="http://ukfederation.org.uk/2006/11/label"
+    targetNamespace="http://ukfederation.org.uk/2006/11/label"
+    version="2014-07-22"
+    elementFormDefault="qualified">
+    
+    <annotation>
+        <documentation>
+            This schema describes the UK federation label namespace.
+            
+            For additional information, see the Federation Technical Specification.
+            
+            This version of the schema follows FTS edition 1.1 of 1-June-2007.
+        </documentation>
+    </annotation>
+    
+    <complexType name="basicLabel">
+        <annotation>
+            <documentation>
+                Most elements defined in the UK federation label namespace
+                are basic labels: empty elements whose presence or absence
+                is all that is important.
+            </documentation>
+        </annotation>
+        <!--
+            No content elements are defined, so a basicLabel may contain
+            neither text nor nested elements.
+        -->
+    </complexType>
+    
+    <complexType name="datedLabel">
+        <annotation>
+            <documentation>
+                A datedLabel is like a basicLabel, but with a single
+                additional mandatory date attribute.
+            </documentation>
+        </annotation>
+        <complexContent>
+            <extension base="ukfedlabel:basicLabel">
+                <attribute name="date" type="date" use="required"/>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <element name="UKFederationMember" type="ukfedlabel:basicLabel">
+        <annotation>
+            <documentation>
+                Indicates an entity whose owner is a member in good standing
+                of the UK federation.
+            </documentation>
+        </annotation>
+    </element>
+    
+    <element name="AccountableUsers" type="ukfedlabel:basicLabel">
+        <annotation>
+            <documentation>
+                Indicates an identity provider entity whose owner has
+                asserted to the UK federation that the entity provides
+                user accountability in terms of the definition given
+                in section 6 of the federation's Rules of Membership.
+            </documentation>
+        </annotation>
+    </element>
+    
+    <element name="Software">
+        <annotation>
+            <documentation>
+                Indicates the software used to implement the entity, and
+                optionally both general and specific indications of the
+                version of software used.  This information is added to
+                an entity only if it has been received from the deployer
+                of the entity on the indicated date.
+                
+                This information is used in entity fragment files only,
+                and is not included in the metadata published by the
+                UK federation.  Its principal use is in classifying
+                entities for statistical purposes.
+            </documentation>
+        </annotation>
+        <complexType>
+            <complexContent>
+                <extension base="ukfedlabel:datedLabel">
+                    <attribute name="name" use="required" type="token">
+                        <annotation>
+                            <documentation>
+                                The name of the software used to implement the entity.
+                                Although not described as such in this schema, the name
+                                should be picked from the controlled vocabulary understood
+                                by the federation statistics scripts.
+                            </documentation>
+                        </annotation>
+                    </attribute>
+                    
+                    <attribute name="version" use="optional" type="token">
+                        <annotation>
+                            <documentation>
+                                The general version of the software in use.  This should
+                                only be specific enough to identify the broad functionality
+                                of the entity, for example "1.3" vs. "2.0" would be sufficient
+                                for Shibboleth entities.
+                            </documentation>
+                        </annotation>
+                    </attribute>
+                    
+                    <attribute name="fullVersion" use="optional" type="token">
+                        <annotation>
+                            <documentation>
+                                The specific version of the software in use, if known.
+                            </documentation>
+                        </annotation>
+                    </attribute>
+                </extension>
+            </complexContent>
+        </complexType>
+    </element>
+    
+    <element name="ExportOptIn" type="ukfedlabel:datedLabel">
+        <annotation>
+            <documentation>
+                Indicates that the entity has been opted-in to inclusion in
+                the UK federation export aggregate.
+            </documentation>
+        </annotation>
+    </element>
+    
+    <element name="ExportOptOut" type="ukfedlabel:datedLabel">
+        <annotation>
+            <documentation>
+                Indicates that the entity has been opted-out from inclusion in
+                the UK federation export aggregate.
+            </documentation>
+        </annotation>
+    </element>
+    
+</schema>
