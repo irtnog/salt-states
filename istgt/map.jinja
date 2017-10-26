@@ -1,0 +1,18 @@
+{%- import_yaml "istgt/defaults.yaml" as default_settings %}
+
+{%- set distro_map = salt.grains.filter_by({
+  'FreeBSD': {
+    'prefix':
+      '/usr/local',
+  },
+
+  'default': {},
+}) %}
+
+{%- do default_settings.istgt.update(distro_map) %}
+
+{%- set istgt_settings = salt.pillar.get(
+  'istgt',
+  default=default_settings.istgt,
+  merge=True,
+) %}

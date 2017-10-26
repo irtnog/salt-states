@@ -1,0 +1,7 @@
+istgt:
+  prefix:
+    '/'
+  packages:
+    - istgt
+  services:
+    - istgt
