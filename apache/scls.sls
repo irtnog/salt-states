@@ -9,9 +9,9 @@ apache_scls:
   file.replace:
     - name: /opt/rh/httpd24/service-environment
     - pattern:
-        'HTTPD24_HTTPD_SCLS_ENABLED="[^"]+"'
+        'HTTPD24_HTTPD_SCLS_ENABLED="httpd24[^"]*"'
     - repl:
-        'HTTPD24_HTTPD_SCLS_ENABLED="{{ apache.scls|join(' ') }}"'
+        'HTTPD24_HTTPD_SCLS_ENABLED="httpd24{{ ([''] + apache.scls)|join(' ') }}"'
     - require:
         - pkg: apache
     - watch_in:
