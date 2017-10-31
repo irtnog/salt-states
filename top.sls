@@ -363,6 +363,7 @@
     'apache.mod_socache_shmcb',
     'apache.mod_ssl',
     'apache.vhosts.standard',
+    'apache.content.idp_branding',
     'letsencrypt',
     'comanage.registry',
     'openid-ldap',
