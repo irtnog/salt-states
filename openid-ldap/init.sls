@@ -29,6 +29,7 @@ openid_ldap:
         - git: openid_ldap
 
   ## label the web app directory properly
+  ## FIXME: fcontext/restorecon
   cmd.wait:
     - name:
         chcon -R -t httpd_sys_content_t {{ prefix }}
