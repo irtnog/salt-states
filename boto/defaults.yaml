@@ -1,0 +1,4 @@
+boto:
+  packages:
+    - python-boto
+    - python-boto3
