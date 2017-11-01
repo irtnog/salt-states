@@ -355,6 +355,7 @@
     'php.ng.mysql',
     'php.ng.xml',
     'mysql',
+    'shibboleth.sp',
     'apache',
     'apache.config',
     'apache.mod_proxy',
