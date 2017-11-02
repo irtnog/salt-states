@@ -361,7 +361,7 @@
     'apache.mod_proxy',
     'apache.mod_proxy_http',
     'apache.mod_rewrite',
-    'apache.mod_socache_shmcb',
+    'apache.mod_shib',
     'apache.mod_ssl',
     'apache.vhosts.standard',
     'apache.content.idp_branding',
