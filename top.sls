@@ -455,6 +455,12 @@ development:
     - {{ sls_id }}
     {%- endfor %}
 
+  'I@environment:development and G@os_family:Windows and J@role:^(desktop|laptop)$':
+    - match: compound
+    {%- for sls_id in windows_gui %}
+    - {{ sls_id }}
+    {%- endfor %}
+
   'I@environment:development and G@virtual:VirtualPC':
     - match: compound
     - hyperv.ic
@@ -566,6 +572,12 @@ testing:
     - {{ sls_id }}
     {%- endfor %}
 
+  'I@environment:testing and G@os_family:Windows and J@role:^(desktop|laptop)$':
+    - match: compound
+    {%- for sls_id in windows_gui %}
+    - {{ sls_id }}
+    {%- endfor %}
+
   'I@environment:testing and G@virtual:VirtualPC':
     - match: compound
     - hyperv.ic
@@ -671,6 +683,12 @@ production:
   'I@environment:production and G@os_family:Windows':
     - match: compound
     {%- for sls_id in windows %}
+    - {{ sls_id }}
+    {%- endfor %}
+
+  'I@environment:production and G@os_family:Windows and J@role:^(desktop|laptop)$':
+    - match: compound
+    {%- for sls_id in windows_gui %}
     - {{ sls_id }}
     {%- endfor %}
 
