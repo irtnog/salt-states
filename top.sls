@@ -288,29 +288,29 @@
 
 {%- set windows = [
     'salt.minion',
-    'csc',
-    'fiddler',
-    'git',
-    'gpmc',
     'merakism.agent',
     'npp',
     'p7zip',
     'perfmon',
     'powershell',
     'rdp',
-    'rsat',
-    'subversion',
-    'terminals',
     'users',
-    'web-mgmt-tools',
   ] %}
 
 {%- set windows_gui = [
     'adobe',
     'chrome',
+    'csc',
+    'fiddler',
+    'git',
+    'gpmc',
     'firefox',
     'fonts',
     'itunes',
+    'rsat',
+    'subversion',
+    'terminals',
+    'web-mgmt-tools',
   ] %}
 
 {%- set salt_master = [
