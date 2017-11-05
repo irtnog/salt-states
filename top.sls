@@ -426,6 +426,10 @@ development:
     - comanage.registry
     - shibboleth.sp
 
+  'I@environment:development and I@role:perfsonar': &perfsonar
+    - match: compound
+    - perfsonar
+
   'I@environment:development and I@role:devstack':
     - match: compound
     - apache
@@ -473,6 +477,7 @@ testing:
   'I@environment:testing and I@role:identity-provider': *identityprovider
   'I@environment:testing and I@role:web-server': *webserver
   'I@environment:testing and I@role:comanage-registry': *comanageregistry
+  'I@environment:testing and I@role:perfsonar': *perfsonar
 
 ####
 #### STAGING ENVIRONMENT
@@ -517,6 +522,7 @@ production:
   'I@environment:production and I@role:identity-provider': *identityprovider
   'I@environment:production and I@role:web-server': *webserver
   'I@environment:production and I@role:comanage-registry': *comanageregistry
+  'I@environment:production and I@role:perfsonar': *perfsonar
 
   l00000006.irtnog.net:
     ## build prereqs for Synergy
