@@ -43,361 +43,6 @@
 ###   $ git cherry-pick -x aaaa00
 
 ####
-#### COMMON STATE IDS
-####
-
-{%- set debian = [
-    'salt.pkgrepo',
-    'salt.minion',
-    'shibboleth.repo',
-    'accounting',
-    'aliases',
-    'auditd',
-    'aws.cli',
-    'banners',
-    'boto',
-    'cron',
-    'cvs',
-    'dig',
-    'dos2unix',
-    'emacs',
-    'fail2ban',
-    'fail2ban.config',
-    'fonts',
-    'git',
-    'irssi',
-    'kerberos5',
-    'man',
-    'mosh',
-    'mounts',
-    'ncurses',
-    'nis.client',
-    'nfs.client',
-    'nmap',
-    'ntp.ng',
-    'p7zip',
-    'pam_mkhomedir',
-    'pki',
-    'postfix',
-    'screen',
-    'sched.patch',
-    'snmp',
-    'snmp.conf',
-    'ssh',
-    'sshd',
-    'subversion',
-    'sudoers',
-    'symlinks',
-    'sysctl',
-    'systemd',
-    'tcpdump',
-    'tcsh',
-    'users',
-    'w3m',
-  ] %}
-
-{%- set freebsd = [
-    'poudriere.client',
-    'ca_root_nss',
-    'salt.minion',
-    'rc',
-    'periodic',
-    'accounting',
-    'aliases',
-    'auditd',
-    'aws.cli',
-    'banners',
-    'bash',
-    'bgfsck',
-    'boto',
-    'coreutils',
-    'cron',
-    'cvs',
-    'dig',
-    'dos2unix',
-    'emacs',
-    'fail2ban',
-    'fail2ban.config',
-    'fonts',
-    'freebsd-update',
-    'git',
-    'gnupg',
-    'irssi',
-    'kerberos5',
-    'mosh',
-    'mounts',
-    'moused',
-    'ncurses',
-    'nfs.client',
-    'nis.client',
-    'nmap',
-    'ntp.ng',
-    'p7zip',
-    'pam_mkhomedir',
-    'pki',
-    'portsnap',
-    'postfix',
-    'sched.patch',
-    'screen',
-    'ssh',
-    'sshd',
-    'subversion',
-    'sudoers',
-    'symlinks',
-    'syscons',
-    'sysctl',
-    'users',
-    'w3m',
-  ] %}
-
-{%- set redhat = [
-    'salt.pkgrepo',
-    'salt.minion',
-    'hostname',
-    'yum',
-    'epel',
-    'nux.dextop',
-    'nux.misc',
-    'scl',
-    'shibboleth.repo',
-    'accounting',
-    'aliases',
-    'auditd',
-    'aws.cli',
-    'banners',
-    'boto',
-    'cron',
-    'cvs',
-    'dig',
-    'dos2unix',
-    'emacs',
-    'fail2ban',
-    'fail2ban.config',
-    'fonts',
-    'git',
-    'irssi',
-    'kerberos5',
-    'man',
-    'mosh',
-    'mounts',
-    'ncurses',
-    'net-tools',
-    'nfs.client',
-    'nis.client',
-    'nmap',
-    'ntp.ng',
-    'p7zip',
-    'pam_mkhomedir',
-    'pki',
-    'postfix',
-    'sched.patch',
-    'screen',
-    'selinux',
-    'snmp',
-    'snmp.conf',
-    'snmp.options',
-    'ssh',
-    'sshd',
-    'subversion',
-    'sudoers',
-    'symlinks',
-    'sysctl',
-    'systemd',
-    'tcpdump',
-    'tcsh',
-    'users',
-    'w3m',
-  ] %}
-
-{%- if not salt['grains.get']('biosversion', '').endswith('amazon') %}
-{#- Enable the firewalld SLS on RHEL/CentOS minions not running in AWS. #}
-{%- do redhat.append('firewalld') %}
-{%- endif %}
-
-{%- set suse = [
-    'salt.minion',
-    'shibboleth.repo',
-    'accounting',
-    'aliases',
-    'auditd',
-    'aws.cli',
-    'banners',
-    'boto',
-    'cron',
-    'cvs',
-    'emacs',
-    'fonts',
-    'git',
-    'irssi',
-    'kerberos5',
-    'man',
-    'mosh',
-    'mounts',
-    'ncurses',
-    'nfs.client',
-    'nis.client',
-    'nmap',
-    'ntp.ng',
-    'p7zip',
-    'screen',
-    'selinux',
-    'snmp',
-    'snmp.conf',
-    'snmp.options',
-    'ssh',
-    'sshd',
-    'subversion',
-    'sudoers',
-    'symlinks',
-    'sysctl',
-    'systemd',
-    'tcpdump',
-    'tcsh',
-    'users',
-  ] %}
-
-{%- set solaris = [
-    'accounting',
-    'aliases',
-    'auditd',
-    'banners',
-    'cron',
-    'emacs',
-    'git',
-    'irssi',
-    'kerberos5',
-    'mosh',
-    'mounts',
-    'ncurses',
-    'nfs.client',
-    'nis.client',
-    'nmap',
-    'ntp.ng',
-    'p7zip',
-    'postfix',
-    'screen',
-    'ssh',
-    'sshd',
-    'subversion',
-    'sudoers',
-    'symlinks',
-    'tcpdump',
-    'tcsh',
-    'users',
-  ] %}
-
-{%- set windows = [
-    'salt.minion',
-    'merakism.agent',
-    'npp',
-    'p7zip',
-    'perfmon',
-    'powershell',
-    'rdp',
-    'users',
-  ] %}
-
-{%- set windows_gui = [
-    'adobe',
-    'chrome',
-    'csc',
-    'fiddler',
-    'git',
-    'gpmc',
-    'firefox',
-    'fonts',
-    'itunes',
-    'rsat',
-    'subversion',
-    'terminals',
-    'web-mgmt-tools',
-  ] %}
-
-{%- set salt_master = [
-    'salt.formulas',
-    'salt.gitfs.gitpython',
-    'salt.master',
-    'salt.cloud.ext',
-    'saltpad',
-    'shibboleth.sp',
-    'apache',
-    'apache.config',
-    'apache.mod_rewrite',
-    'apache.mod_shib',
-    'apache.mod_socache_shmcb',
-    'apache.mod_ssl',
-    'apache.mod_wsgi',
-    'apache.vhosts.standard',
-    'letsencrypt',
-    'poudriere',
-    'aws.iam',
-    'aws.s3',
-    'aws.vpc',
-    'aws.lambda',
-    'salt.cloud',
-    'salt.ssh',
-    'vault',
-  ] %}
-
-{%- set mail_relay = [
-    'clamav.amavisd',
-  ] %}
-
-{%- set minecraft = [
-    'spigotmc',
-  ] %}
-
-{%- set identity_provider = [
-    'php.ng',
-    'php.ng.cli',
-    'php.ng.ldap',
-    'php.ng.mbstring',
-    'php.ng.mysql',
-    'php.ng.xml',
-    'mysql',
-    'shibboleth.sp',
-    'apache',
-    'apache.config',
-    'apache.mod_proxy',
-    'apache.mod_proxy_http',
-    'apache.mod_rewrite',
-    'apache.mod_shib',
-    'apache.mod_ssl',
-    'apache.vhosts.standard',
-    'apache.content.idp_branding',
-    'letsencrypt',
-    'comanage.registry',
-    'openid-ldap',
-    'shibboleth.mda',
-    'tomcat.pwm',
-    'tomcat.shibboleth-idp',
-  ] %}
-
-{%- set comanage_registry = [
-    'apache',
-    'letsencrypt',
-    'comanage.registry',
-    'shibboleth.sp',
-  ] %}
-
-{%- set web_server = [
-    'shibboleth.sp',
-    'apache',
-    'apache.config',
-    'apache.mod_proxy',
-    'apache.mod_proxy_http',
-    'apache.mod_rewrite',
-    'apache.mod_shib',
-    'apache.mod_socache_shmcb',
-    'apache.mod_ssl',
-    'apache.mod_wsgi',
-    'apache.vhosts.standard',
-    'letsencrypt',
-    'opentracker',
-    'trac',
-  ] %}
-
-####
 #### BASE ENVIRONMENT
 ####
 
@@ -419,90 +64,367 @@ base:
 ### production environment.
 
 development:
-  'I@environment:development and G@os_family:Debian':
+  'I@environment:development and G@os_family:Debian': &debian
     - match: compound
-    {%- for sls_id in debian %}
-    - {{ sls_id }}
-    {%- endfor %}
+    - salt.pkgrepo
+    - salt.minion
+    - shibboleth.repo
+    - accounting
+    - aliases
+    - auditd
+    - aws.cli
+    - banners
+    - boto
+    - cron
+    - cvs
+    - dig
+    - dos2unix
+    - emacs
+    - fail2ban
+    - fail2ban.config
+    - fonts
+    - git
+    - irssi
+    - kerberos5
+    - man
+    - mosh
+    - mounts
+    - ncurses
+    - nis.client
+    - nfs.client
+    - nmap
+    - ntp.ng
+    - p7zip
+    - pam_mkhomedir
+    - pki
+    - postfix
+    - screen
+    - sched.patch
+    - snmp
+    - snmp.conf
+    - ssh
+    - sshd
+    - subversion
+    - sudoers
+    - symlinks
+    - sysctl
+    - systemd
+    - tcpdump
+    - tcsh
+    - users
+    - w3m
 
-  'I@environment:development and G@os_family:FreeBSD':
+  'I@environment:development and G@os_family:FreeBSD': &freebsd
     - match: compound
-    {%- for sls_id in freebsd %}
-    - {{ sls_id }}
-    {%- endfor %}
+    - poudriere.client
+    - ca_root_nss
+    - salt.minion
+    - rc
+    - periodic
+    - accounting
+    - aliases
+    - auditd
+    - aws.cli
+    - banners
+    - bash
+    - bgfsck
+    - boto
+    - coreutils
+    - cron
+    - cvs
+    - dig
+    - dos2unix
+    - emacs
+    - fail2ban
+    - fail2ban.config
+    - fonts
+    - freebsd-update
+    - git
+    - gnupg
+    - irssi
+    - kerberos5
+    - mosh
+    - mounts
+    - moused
+    - ncurses
+    - nfs.client
+    - nis.client
+    - nmap
+    - ntp.ng
+    - p7zip
+    - pam_mkhomedir
+    - pki
+    - portsnap
+    - postfix
+    - sched.patch
+    - screen
+    - ssh
+    - sshd
+    - subversion
+    - sudoers
+    - symlinks
+    - syscons
+    - sysctl
+{#- Enable the ufw SLS on minions not running in AWS. #}
+{%- if not salt.grains.get('biosversion', '').endswith('amazon') %}
+    - ufw
+{%- endif %}
+    - users
+    - w3m
 
-  'I@environment:development and G@os_family:RedHat':
+  'I@environment:development and G@os_family:RedHat': &redhat
     - match: compound
-    {%- for sls_id in redhat %}
-    - {{ sls_id }}
-    {%- endfor %}
+    - salt.pkgrepo
+    - salt.minion
+    - hostname
+    - yum
+    - epel
+    - nux.dextop
+    - nux.misc
+    - scl
+    - shibboleth.repo
+    - accounting
+    - aliases
+    - auditd
+    - aws.cli
+    - banners
+    - boto
+    - cron
+    - cvs
+    - dig
+    - dos2unix
+    - emacs
+    - fail2ban
+    - fail2ban.config
+{#- Enable the firewalld SLS on minions not running in AWS. #}
+{%- if not salt.grains.get('biosversion', '').endswith('amazon') %}
+    - firewalld
+{%- endif %}
+    - fonts
+    - git
+    - irssi
+    - kerberos5
+    - man
+    - mosh
+    - mounts
+    - ncurses
+    - net-tools
+    - nfs.client
+    - nis.client
+    - nmap
+    - ntp.ng
+    - p7zip
+    - pam_mkhomedir
+    - pki
+    - postfix
+    - sched.patch
+    - screen
+    - selinux
+    - snmp
+    - snmp.conf
+    - snmp.options
+    - ssh
+    - sshd
+    - subversion
+    - sudoers
+    - symlinks
+    - sysctl
+    - systemd
+    - tcpdump
+    - tcsh
+    - users
+    - w3m
 
-  'I@environment:development and G@os_family:Suse':
+  'I@environment:development and G@os_family:Suse': &suse
     - match: compound
-    {%- for sls_id in suse %}
-    - {{ sls_id }}
-    {%- endfor %}
+    - salt.minion
+    - shibboleth.repo
+    - accounting
+    - aliases
+    - auditd
+    - aws.cli
+    - banners
+    - boto
+    - cron
+    - cvs
+    - emacs
+    - fonts
+    - git
+    - irssi
+    - kerberos5
+    - man
+    - mosh
+    - mounts
+    - ncurses
+    - nfs.client
+    - nis.client
+    - nmap
+    - ntp.ng
+    - p7zip
+    - screen
+    - selinux
+    - snmp
+    - snmp.conf
+    - snmp.options
+    - ssh
+    - sshd
+    - subversion
+    - sudoers
+    - symlinks
+    - sysctl
+    - systemd
+    - tcpdump
+    - tcsh
+    - users
 
-  'I@environment:development and G@os_family:Solaris':
+  'I@environment:development and G@os_family:Solaris': &solaris
     - match: compound
-    {%- for sls_id in solaris %}
-    - {{ sls_id }}
-    {%- endfor %}
+    - accounting
+    - aliases
+    - auditd
+    - banners
+    - cron
+    - emacs
+    - git
+    - irssi
+    - kerberos5
+    - mosh
+    - mounts
+    - ncurses
+    - nfs.client
+    - nis.client
+    - nmap
+    - ntp.ng
+    - p7zip
+    - postfix
+    - screen
+    - ssh
+    - sshd
+    - subversion
+    - sudoers
+    - symlinks
+    - tcpdump
+    - tcsh
+    - users
 
-  'I@environment:development and G@os_family:Windows':
+  'I@environment:development and G@os_family:Windows': &windows
     - match: compound
-    {%- for sls_id in windows %}
-    - {{ sls_id }}
-    {%- endfor %}
+    - salt.minion
+    - merakism.agent
+    - npp
+    - p7zip
+    - perfmon
+    - powershell
+    - rdp
+    - users
 
-  'I@environment:development and G@os_family:Windows and J@role:^(desktop|laptop)$':
+  'I@environment:development and G@os_family:Windows and J@role:^(desktop|laptop)$': &windowsgui
     - match: compound
-    {%- for sls_id in windows_gui %}
-    - {{ sls_id }}
-    {%- endfor %}
+    - adobe
+    - chrome
+    - csc
+    - fiddler
+    - git
+    - gpmc
+    - firefox
+    - fonts
+    - itunes
+    - rsat
+    - subversion
+    - terminals
+    - web-mgmt-tools
 
-  'I@environment:development and G@virtual:VirtualPC':
+  'I@environment:development and G@virtual:VirtualPC': &virtualpc
     - match: compound
     - hyperv.ic
 
-  'I@environment:development and G@virtual:VMware':
+  'I@environment:development and G@virtual:VMware': &vmwareguest
     - match: compound
     - vmware.tools
 
-  'I@environment:development and I@role:salt-master':
+  'I@environment:development and I@role:salt-master': &saltmaster
     - match: compound
-    {%- for sls_id in salt_master %}
-    - {{ sls_id }}
-    {%- endfor %}
-  'I@environment:development and I@role:mail-relay':
-    - match: compound
-    {%- for sls_id in mail_relay %}
-    - {{ sls_id }}
-    {%- endfor %}
+    - salt.formulas
+    - salt.gitfs.gitpython
+    - salt.master
+    - salt.cloud.ext
+    - saltpad
+    - shibboleth.sp
+    - apache
+    - apache.config
+    - apache.mod_rewrite
+    - apache.mod_shib
+    - apache.mod_socache_shmcb
+    - apache.mod_ssl
+    - apache.mod_wsgi
+    - apache.vhosts.standard
+    - letsencrypt
+    - poudriere
+    - aws.iam
+    - aws.s3
+    - aws.vpc
+    - aws.lambda
+    - salt.cloud
+    - salt.ssh
+    - vault
 
-  'I@environment:development and I@role:minecraft':
+  'I@environment:development and I@role:mail-relay': &mailrelay
     - match: compound
-    {%- for sls_id in minecraft %}
-    - {{ sls_id }}
-    {%- endfor %}
+    - clamav.amavisd
 
-  'I@environment:development and I@role:identity-provider':
+  'I@environment:development and I@role:minecraft': &minecraft
     - match: compound
-    {%- for sls_id in identity_provider %}
-    - {{ sls_id }}
-    {%- endfor %}
+    - spigotmc
 
-  'I@environment:development and I@role:web-server':
+  'I@environment:development and I@role:identity-provider': &identityprovider
     - match: compound
-    {%- for sls_id in web_server %}
-    - {{ sls_id }}
-    {%- endfor %}
+    - php.ng
+    - php.ng.cli
+    - php.ng.ldap
+    - php.ng.mbstring
+    - php.ng.mysql
+    - php.ng.xml
+    - mysql
+    - shibboleth.sp
+    - apache
+    - apache.config
+    - apache.mod_proxy
+    - apache.mod_proxy_http
+    - apache.mod_rewrite
+    - apache.mod_shib
+    - apache.mod_ssl
+    - apache.vhosts.standard
+    - apache.content.idp_branding
+    - letsencrypt
+    - comanage.registry
+    - openid-ldap
+    - shibboleth.mda
+    - tomcat.pwm
+    - tomcat.shibboleth-idp
 
-  'I@environment:development and I@role:comanage-registry':
+  'I@environment:development and I@role:web-server': &webserver
     - match: compound
-    {%- for sls_id in comanage_registry %}
-    - {{ sls_id }}
-    {%- endfor %}
+    - shibboleth.sp
+    - apache
+    - apache.config
+    - apache.mod_proxy
+    - apache.mod_proxy_http
+    - apache.mod_rewrite
+    - apache.mod_shib
+    - apache.mod_socache_shmcb
+    - apache.mod_ssl
+    - apache.mod_wsgi
+    - apache.vhosts.standard
+    - letsencrypt
+    - opentracker
+    - trac
+
+  'I@environment:development and I@role:comanage-registry': &comanageregistry
+    - match: compound
+    - apache
+    - letsencrypt
+    - comanage.registry
+    - shibboleth.sp
 
   'I@environment:development and I@role:devstack':
     - match: compound
@@ -536,91 +458,21 @@ development:
 ### usability testing, stress testing, and so on).
 
 testing:
-  'I@environment:testing and G@os_family:Debian':
-    - match: compound
-    {%- for sls_id in debian %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:testing and G@os_family:FreeBSD':
-    - match: compound
-    {%- for sls_id in freebsd %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:testing and G@os_family:RedHat':
-    - match: compound
-    {%- for sls_id in redhat %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:testing and G@os_family:Suse':
-    - match: compound
-    {%- for sls_id in suse %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:testing and G@os_family:Solaris':
-    - match: compound
-    {%- for sls_id in solaris %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:testing and G@os_family:Windows':
-    - match: compound
-    {%- for sls_id in windows %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:testing and G@os_family:Windows and J@role:^(desktop|laptop)$':
-    - match: compound
-    {%- for sls_id in windows_gui %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:testing and G@virtual:VirtualPC':
-    - match: compound
-    - hyperv.ic
-
-  'I@environment:testing and G@virtual:VMware':
-    - match: compound
-    - vmware.tools
-
-  'I@environment:testing and I@role:salt-master':
-    - match: compound
-    {%- for sls_id in salt_master %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:testing and I@role:mail-relay':
-    - match: compound
-    {%- for sls_id in mail_relay %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:testing and I@role:minecraft':
-    - match: compound
-    {%- for sls_id in minecraft %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:testing and I@role:identity-provider':
-    - match: compound
-    {%- for sls_id in identity_provider %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:testing and I@role:web-server':
-    - match: compound
-    {%- for sls_id in web_server %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:testing and I@role:comanage-registry':
-    - match: compound
-    {%- for sls_id in comanage_registry %}
-    - {{ sls_id }}
-    {%- endfor %}
+  'I@environment:testing and G@os_family:Debian': *debian
+  'I@environment:testing and G@os_family:FreeBSD': *freebsd
+  'I@environment:testing and G@os_family:RedHat': *redhat
+  'I@environment:testing and G@os_family:Suse': *suse
+  'I@environment:testing and G@os_family:Solaris': *solaris
+  'I@environment:testing and G@os_family:Windows': *windows
+  'I@environment:testing and G@os_family:Windows and J@role:^(desktop|laptop)$': *windowsgui
+  'I@environment:testing and G@virtual:VirtualPC': *virtualpc
+  'I@environment:testing and G@virtual:VMware': *vmwareguest
+  'I@environment:testing and I@role:salt-master': *saltmaster
+  'I@environment:testing and I@role:mail-relay': *mailrelay
+  'I@environment:testing and I@role:minecraft': *minecraft
+  'I@environment:testing and I@role:identity-provider': *identityprovider
+  'I@environment:testing and I@role:web-server': *webserver
+  'I@environment:testing and I@role:comanage-registry': *comanageregistry
 
 ####
 #### STAGING ENVIRONMENT
@@ -650,91 +502,21 @@ staging:
 ### job.
 
 production:
-  'I@environment:production and G@os_family:Debian':
-    - match: compound
-    {%- for sls_id in debian %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:production and G@os_family:FreeBSD':
-    - match: compound
-    {%- for sls_id in freebsd %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:production and G@os_family:RedHat':
-    - match: compound
-    {%- for sls_id in redhat %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:production and G@os_family:Suse':
-    - match: compound
-    {%- for sls_id in suse %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:production and G@os_family:Solaris':
-    - match: compound
-    {%- for sls_id in solaris %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:production and G@os_family:Windows':
-    - match: compound
-    {%- for sls_id in windows %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:production and G@os_family:Windows and J@role:^(desktop|laptop)$':
-    - match: compound
-    {%- for sls_id in windows_gui %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:production and G@virtual:VirtualPC':
-    - match: compound
-    - hyperv.ic
-
-  'I@environment:production and G@virtual:VMware':
-    - match: compound
-    - vmware.tools
-
-  'I@environment:production and I@role:salt-master':
-    - match: compound
-    {%- for sls_id in salt_master %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:production and I@role:mail-relay':
-    - match: compound
-    {%- for sls_id in mail_relay %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:production and I@role:minecraft':
-    - match: compound
-    {%- for sls_id in minecraft %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:production and I@role:identity-provider':
-    - match: compound
-    {%- for sls_id in identity_provider %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:production and I@role:web-server':
-    - match: compound
-    {%- for sls_id in web_server %}
-    - {{ sls_id }}
-    {%- endfor %}
-
-  'I@environment:production and I@role:comanage-registry':
-    - match: compound
-    {%- for sls_id in comanage_registry %}
-    - {{ sls_id }}
-    {%- endfor %}
+  'I@environment:production and G@os_family:Debian': *debian
+  'I@environment:production and G@os_family:FreeBSD': *freebsd
+  'I@environment:production and G@os_family:RedHat': *redhat
+  'I@environment:production and G@os_family:Suse': *suse
+  'I@environment:production and G@os_family:Solaris': *solaris
+  'I@environment:production and G@os_family:Windows': *windows
+  'I@environment:production and G@os_family:Windows and J@role:^(desktop|laptop)$': *windowsgui
+  'I@environment:production and G@virtual:VirtualPC': *virtualpc
+  'I@environment:production and G@virtual:VMware': *vmwareguest
+  'I@environment:production and I@role:salt-master': *saltmaster
+  'I@environment:production and I@role:mail-relay': *mailrelay
+  'I@environment:production and I@role:minecraft': *minecraft
+  'I@environment:production and I@role:identity-provider': *identityprovider
+  'I@environment:production and I@role:web-server': *webserver
+  'I@environment:production and I@role:comanage-registry': *comanageregistry
 
   l00000006.irtnog.net:
     ## build prereqs for Synergy
