@@ -1,4 +1,5 @@
 {%- set username = salt.pillar.get('irtnog_co:ldap_admin:username') %}
+{%- set password = salt.pillar.get('irtnog_co:ldap_admin:password') %}
 {%- set pwhash = salt.pillar.get('irtnog_co:ldap_admin:password_hash') %}
 
 openldap_provider:
@@ -80,7 +81,7 @@ openldap_provider_irtnog:
         bind:
           method: simple
           dn: {{ 'cn=%s,o=IRTNOG'|format(username)|yaml_encode }}
-          password: {{ pwhash|yaml_encode }}
+          password: {{ password|yaml_encode }}
     - entries:
         - o=IRTNOG:
             - add:
