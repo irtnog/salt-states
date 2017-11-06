@@ -396,6 +396,7 @@ development:
     - apache.vhosts.standard
     - apache.content.idp_branding
     - letsencrypt
+    - slapd
     - comanage.registry
     - openid-ldap
     - shibboleth.mda
