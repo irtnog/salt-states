@@ -397,6 +397,7 @@ development:
     - apache.content.idp_branding
     - letsencrypt
     - slapd
+    - irtnog-co.openldap-provider
     - comanage.registry
     - openid-ldap
     - shibboleth.mda
