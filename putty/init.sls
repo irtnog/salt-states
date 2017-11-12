@@ -1,0 +1,3 @@
+putty:
+  pkg.installed:
+    []
