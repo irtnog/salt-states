@@ -315,6 +315,7 @@ development:
     - p7zip
     - perfmon
     - powershell
+    - putty
     - rdp
     - users
 
