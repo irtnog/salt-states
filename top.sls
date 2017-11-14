@@ -317,6 +317,7 @@ development:
     - powershell
     - putty
     - rdp
+    - tightvnc
     - users
 
   'I@environment:development and G@os_family:Windows and J@role:^(desktop|laptop)$': &windowsgui
