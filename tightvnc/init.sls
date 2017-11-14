@@ -1,0 +1,3 @@
+tightvnc:
+  pkg.installed:
+    []
