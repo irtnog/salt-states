@@ -26,9 +26,9 @@
   'Windows': {
     'packages': [],
     'confdir':
-      salt.environ.get('ProgramFiles') ~ '\VMware\VMware Tools\',
+      [salt.environ.get('ProgramFiles'), 'VMware', 'VMware Tools']|join('\\') ~ '\\',
     'hookdir':
-      salt.environ.get('SystemRoot') ~ '\',
+      salt.environ.get('SystemRoot') ~ '\\',
     'hooksuffix':
       '.bat',
     'services': [
