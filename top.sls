@@ -332,6 +332,7 @@ development:
     - fonts
     - itunes
     - rsat
+    - steam
     - subversion
     - terminals
     - web-mgmt-tools
