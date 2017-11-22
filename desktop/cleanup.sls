@@ -5,3 +5,4 @@ remove_allusers_desktop_shortcuts:
              salt.environ.get('PUBLIC') ~ '\\Desktop',
              name='*.lnk'
            )|yaml }}
+    - order: last
