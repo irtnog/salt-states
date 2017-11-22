@@ -310,6 +310,7 @@ development:
   'I@environment:development and G@os_family:Windows': &windows
     - match: compound
     - salt.minion
+    - desktop.cleanup
     - merakism.agent
     - npp
     - p7zip
