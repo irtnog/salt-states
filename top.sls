@@ -320,6 +320,7 @@ development:
     - rdp
     - tightvnc
     - users
+    - winsnmp
 
   'I@environment:development and G@os_family:Windows and J@role:^(desktop|laptop)$': &windowsgui
     - match: compound
