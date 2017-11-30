@@ -310,6 +310,7 @@ development:
   'I@environment:development and G@os_family:Windows': &windows
     - match: compound
     - salt.minion
+    - aws.cli
     - desktop.cleanup
     - merakism.agent
     - npp
