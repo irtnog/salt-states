@@ -533,8 +533,9 @@ production:
   'I@environment:production and I@role:perfsonar': *perfsonar
 
   l00000006.irtnog.net:
-    ## build prereqs for Synergy
+    ## dev tools
     - bonjour-sdk
     - cmake
+    - virtualbox
 
 #### TOP.SLS ends here.
