@@ -111,6 +111,10 @@ development:
     - systemd
     - tcpdump
     - tcsh
+{#- Enable the ufw SLS on minions not running in AWS. #}
+{%- if not salt.grains.get('biosversion', '').endswith('amazon') %}
+    - ufw
+{%- endif %}
     - users
     - w3m
 
@@ -165,10 +169,6 @@ development:
     - symlinks
     - syscons
     - sysctl
-{#- Enable the ufw SLS on minions not running in AWS. #}
-{%- if not salt.grains.get('biosversion', '').endswith('amazon') %}
-    - ufw
-{%- endif %}
     - users
     - w3m
 
