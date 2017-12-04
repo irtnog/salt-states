@@ -1,0 +1,3 @@
+vs-community:
+  pkg.installed:
+    []
