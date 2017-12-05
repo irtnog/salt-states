@@ -1,0 +1,3 @@
+cheat-engine:
+  pkg.installed:
+    []
