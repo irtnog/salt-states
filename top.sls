@@ -538,5 +538,6 @@ production:
     - bonjour-sdk
     - cmake
     - virtualbox
+    - vs-community
 
 #### TOP.SLS ends here.
