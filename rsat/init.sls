@@ -1,3 +1,6 @@
+{%- from "rsat/map.jinja" import rsat_settings with context %}
+
 rsat:
-  win_servermanager.installed:
-    - recurse: True
+  dism.package_installed:
+    - names:
+        {{ rsat_settings.dism_packages|yaml_encode }}
