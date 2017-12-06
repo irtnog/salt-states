@@ -13,6 +13,17 @@
           ],
         }, grain='cpuarch'),
       },
+
+      'Windows-8.1': {
+        'dism_packages': salt.grains.filter_by({
+          'AMD64: [
+            'https://download.microsoft.com/download/1/8/E/18EA4843-C596-4542-9236-DE46F780806E/Windows8.1-KB2693643-x64.msu',
+          ],
+          'x86': [
+            'https://download.microsoft.com/download/1/8/E/18EA4843-C596-4542-9236-DE46F780806E/Windows8.1-KB2693643-x86.msu',
+          ],
+        }, grains='cpuarch'),
+      },
     }) %}
 
 {%- do default_settings.rsat.update(os_map) %}
