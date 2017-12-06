@@ -30,6 +30,6 @@
 
 {%- set rsat_settings = salt.pillar.get(
       'rsat',
-      default_default_settings.rsat,
+      default=default_settings.rsat,
       merge=True
     ) %}
