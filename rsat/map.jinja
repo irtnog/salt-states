@@ -29,7 +29,7 @@
       'Windows-Server2012': {},
       'Windows-Server2012R2': {},
       'Windows-Server2016': {},
-    }) %}
+    }, grain='osfinger') %}
 
 {%- do default_settings.rsat.update(os_map) %}
 
