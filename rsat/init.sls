@@ -3,4 +3,4 @@
 rsat:
   dism.package_installed:
     - names:
-        {{ rsat_settings.dism_packages|yaml_encode }}
+        {{ rsat_settings.dism_packages|yaml }}
