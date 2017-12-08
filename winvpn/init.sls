@@ -12,7 +12,8 @@ winvpn_restore_orig_nat_behavior:
 {%- for name, settings in salt.pillar.get('winvpn_profiles')|dictsort %}
 
 winvpn_profile_{{ loop.index }}:
-  cmd.powershell:
+  cmd.run:
+    - shell: powershell
     - name:
         ("{{ name }}" -in (Get-VpnConnection -AllUserConnection | foreach {$_.Name})) -or
         Add-VpnConnection -Name {{ name }} -Force
