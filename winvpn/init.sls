@@ -15,7 +15,6 @@ winvpn_profile_{{ loop.index }}:
   cmd.run:
     - shell: powershell
     - name:
-        ("{{ name }}" -in (Get-VpnConnection -AllUserConnection | foreach {$_.Name})) -or
         Add-VpnConnection -Name {{ name }} -Force
 {%-   for kwarg, val in settings|dictsort %}
 {%-     if val is sameas True or val is sameas False %}
@@ -28,5 +27,7 @@ winvpn_profile_{{ loop.index }}:
           -{{ kwarg }} "{{ val }}"
 {%-     endif %}
 {%-   endfor %}
+    - unless: "{{ name }}" -in (Get-VpnConnection -AllUserConnection | foreach {$_.Name})
+
 
 {%- endfor %}
