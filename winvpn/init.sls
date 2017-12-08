@@ -14,6 +14,8 @@ winvpn_restore_orig_nat_behavior:
 winvpn_profile_{{ loop.index }}:
   cmd.run:
     - shell: powershell
+    - unless:
+        (Get-VpnConnection -AllUserConnection | foreach {$_.Name}) -contains "{{ name }}"
     - name:
         Add-VpnConnection -Name {{ name }} -AllUserConnection -Force
 {%-   for kwarg, val in settings|dictsort %}
@@ -27,6 +29,5 @@ winvpn_profile_{{ loop.index }}:
           -{{ kwarg }} "{{ val }}"
 {%-     endif %}
 {%-   endfor %}
-    - unless: "{{ name }}" -in (Get-VpnConnection -AllUserConnection | foreach {$_.Name})
 
 {%- endfor %}
