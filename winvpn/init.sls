@@ -26,5 +26,6 @@ winvpn_profile_{{ loop.index }}:
 {%-     else %}
           -{{ kwarg }} "{{ val }}"
 {%-     endif %}
+{%-   endfor %}
 
 {%- endfor %}
