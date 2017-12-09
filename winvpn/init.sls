@@ -9,7 +9,10 @@ winvpn_restore_orig_nat_behavior:
     - vdata: 2                  # both endpoints may be behind NAT
     - vtype: REG_DWORD
 
-{%- for name, settings in salt.pillar.get('winvpn_profiles')|dictsort %}
+{%- set osversion_major = salt.grains.get('osversion').split('.')[0] %}
+{%- set osversion_minor = salt.grains.get('osversion').split('.')[1] %}
+{%- if osversion_major > 6 or (osversion_major == 6 and osversion_minor == 3) %}
+{%-   for name, settings in salt.pillar.get('winvpn_profiles')|dictsort %}
 
 winvpn_profile_{{ loop.index }}:
   cmd.run:
@@ -18,18 +21,19 @@ winvpn_profile_{{ loop.index }}:
         (Get-VpnConnection -AllUserConnection | foreach {$_.Name}) -contains "{{ name }}"
     - name:
         Add-VpnConnection -Name {{ name }} -AllUserConnection -Force
-{%-   for kwarg, val in settings|dictsort %}
-{%-     if val is sameas True or val is sameas False %}
+{%-     for kwarg, val in settings|dictsort %}
+{%-       if val is sameas True or val is sameas False %}
           -{{ kwarg }}:${{ "true" if val else "false"}}
-{%-     elif kwarg|lower in ['eapconfigxmlstream', 'cimsession', 'machinecertificateekufilter', 'machinecertificateissuerfilter', 'serverlist'] %}
+{%-       elif kwarg|lower in ['eapconfigxmlstream', 'cimsession', 'machinecertificateekufilter', 'machinecertificateissuerfilter', 'serverlist'] %}
 {#- TODO #}
-{%-     elif kwarg|lower in ['tunneltype', 'encryptionlevel', 'authenticationmethod'] %}
+{%-       elif kwarg|lower in ['tunneltype', 'encryptionlevel', 'authenticationmethod'] %}
           -{{ kwarg }} {{ val }}
-{%-     elif val is string %}
+{%-       elif val is string %}
           -{{ kwarg }} '{{ val }}'
-{%-     else %}
+{%-       else %}
           -{{ kwarg }} {{ val }}
-{%-     endif %}
-{%-   endfor %}
+{%-       endif %}
+{%-     endfor %}
 
-{%- endfor %}
+{%-   endfor %}
+{%- endif %}
