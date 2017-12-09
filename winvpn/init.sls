@@ -26,7 +26,7 @@ winvpn_profile_{{ loop.index }}:
 {%-     elif kwarg|lower in ['tunneltype', 'encryptionlevel', 'authenticationmethod'] %}
           -{{ kwarg }} {{ val }}
 {%-     else %}
-          -{{ kwarg }} "{{ val }}"
+          -{{ kwarg }} '{{ val }}'
 {%-     endif %}
 {%-   endfor %}
 
