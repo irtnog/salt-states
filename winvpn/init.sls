@@ -18,7 +18,8 @@ winvpn_profile_{{ loop.index }}:
   cmd.run:
     - shell: powershell
     - unless:
-        (Get-VpnConnection -AllUserConnection | foreach {$_.Name}) -contains "{{ name }}"
+        ((Get-VpnConnection -AllUserConnection | foreach {$_.Name}) -contains "{{ name }}")
+        -or [Environment]::Exit(1)
     - name:
         Add-VpnConnection -Name {{ name }} -AllUserConnection -Force
 {%-     for kwarg, val in settings|dictsort %}
