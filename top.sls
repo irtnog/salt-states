@@ -326,6 +326,7 @@ development:
   'I@environment:development and G@os_family:Windows and J@role:^(desktop|laptop)$': &windowsgui
     - match: compound
     - adobe
+    - armagetronad
     - cheat-engine
     - chrome
     - csc
