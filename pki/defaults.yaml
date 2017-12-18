@@ -3,3 +3,7 @@ pki:
     []
   ca_file:
     ~
+  anchor_dir:
+    ~
+  update_cmd:
+    ~

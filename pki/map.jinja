@@ -30,6 +30,13 @@
           'ca-certificates',
         'ca_file':
           '/etc/pki/tls/certs/ca-bundle.crt',
+        'anchor_dir':
+          '/etc/pki/ca-trust/source/anchors',
+        'update_cmd':
+          salt.grains.filter_by({
+            '6': 'update-ca-trust enable',
+            '7': 'update-ca-trust'
+          }, grain='osmajorrelease'),
       },
     }) %}
 
