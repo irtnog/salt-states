@@ -121,7 +121,7 @@ development:
   'I@environment:development and G@os_family:FreeBSD': &freebsd
     - match: compound
     - poudriere.client
-    - ca_root_nss
+    - pki
     - salt.minion
     - rc
     - periodic
@@ -157,7 +157,6 @@ development:
     - ntp.ng
     - p7zip
     - pam_mkhomedir
-    - pki
     - portsnap
     - postfix
     - sched.patch
