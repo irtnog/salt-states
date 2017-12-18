@@ -1,18 +1,42 @@
-{% import_yaml "pki/defaults.yaml" as default_settings %}
+{%- import_yaml "pki/defaults.yaml" as defaults %}
 
-{% set distro_map = salt['grains.filter_by']({
-    'Debian':  { 'packages': [ 'ca-certificates', ],
-                 'ca_file':  '/etc/ssl/certs/ca-certificates.crt', },
-    'FreeBSD': { 'packages': [ 'ca_root_nss', ],
-                 'ca_file':  '/usr/local/share/certs/ca-root-nss.crt', },
-    'MacOSX':  { 'ca_file':  '/System/Library/OpenSSL/certs/cert.pem', },
-    'OpenBSD': { 'ca_file':  '/etc/ssl/cert.pem', },
-    'RedHat':  { 'packages': [ 'ca-certificates', ],
-                 'ca_file':  '/etc/pki/tls/certs/ca-bundle.crt', },
-    'default': {},
-  }, merge=salt['pillar.get']('pki:lookup')) %}
+{%- set os_family_map = salt.grains.filter_by({
+      'Debian': {
+        'packages':
+          'ca-certificates',
+        'ca_file':
+          '/etc/ssl/certs/ca-certificates.crt',
+      },
 
-{% do default_settings.pki.update(distro_map) %}
+      'FreeBSD': {
+        'packages':
+          'ca_root_nss',
+        'ca_file':
+          '/usr/local/share/certs/ca-root-nss.crt',
+      },
 
-{% set pki_settings = salt['pillar.get']('pki',
-  default=default_settings.pki, merge=True) %}
+      'MacOSX': {
+        'ca_file':
+          '/System/Library/OpenSSL/certs/cert.pem',
+      },
+
+      'OpenBSD': {
+        'ca_file':
+          '/etc/ssl/cert.pem',
+      },
+
+      'RedHat': {
+        'packages':
+          'ca-certificates',
+        'ca_file':
+          '/etc/pki/tls/certs/ca-bundle.crt',
+      },
+    }) %}
+
+{%- do defaults.pki.update(os_family_map) %}
+
+{%- set pki = salt.pillar.get(
+      'pki',
+      default=defaults.pki,
+      merge=True
+    ) %}
