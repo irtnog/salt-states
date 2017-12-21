@@ -44,6 +44,16 @@
      no_op_comment='No IAM policies were specified.') }}
 
 ####
+#### SAML PROVIDERS
+####
+
+{{ generate_boto_states('boto_iam', salt.pillar.get('aws:iam:saml_providers', {}),
+    state_id_prefix='aws_iam_saml_provider_',
+    present_function='saml_provider_present',
+    absent_function='saml_provider_absent',
+    no_op_comment='No SAML identity providers were specified.') }}
+
+####
 #### IAM ROLES/INSTANCE PROFILES
 ####
 
