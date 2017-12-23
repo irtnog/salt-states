@@ -50,9 +50,9 @@
 ### (i.e., this file).  This environment corresponds with the master
 ### branch of this repository.
 
-base:
-  '*':
-    []                          # no-op
+# base:
+#   '*':
+#     []                          # no-op
 
 ####
 #### DEVELOPMENT ENVIRONMENT
@@ -65,7 +65,6 @@ base:
 
 development:
   'I@environment:development and G@os_family:Debian': &debian
-    - match: compound
     - salt.pkgrepo
     - salt.minion
     - shibboleth.repo
@@ -119,7 +118,6 @@ development:
     - w3m
 
   'I@environment:development and G@os_family:FreeBSD': &freebsd
-    - match: compound
     - poudriere.client
     - pki
     - salt.minion
@@ -172,7 +170,6 @@ development:
     - w3m
 
   'I@environment:development and G@os_family:RedHat': &redhat
-    - match: compound
     - salt.pkgrepo
     - salt.minion
     - hostname
@@ -235,7 +232,6 @@ development:
     - w3m
 
   'I@environment:development and G@os_family:Suse': &suse
-    - match: compound
     - salt.minion
     - shibboleth.repo
     - accounting
@@ -277,7 +273,6 @@ development:
     - users
 
   'I@environment:development and G@os_family:Solaris': &solaris
-    - match: compound
     - accounting
     - aliases
     - auditd
@@ -307,7 +302,6 @@ development:
     - users
 
   'I@environment:development and G@os_family:Windows': &windows
-    - match: compound
     - salt.minion
     - aws.cli
     - desktop.cleanup
@@ -323,7 +317,6 @@ development:
     - winsnmp
 
   'I@environment:development and G@os_family:Windows and J@role:^(desktop|laptop)$': &windowsgui
-    - match: compound
     - adobe
     - armagetronad
     - cheat-engine
@@ -345,15 +338,12 @@ development:
     - winvpn
 
   'I@environment:development and G@virtual:VirtualPC': &virtualpc
-    - match: compound
     - hyperv.ic
 
   'I@environment:development and G@virtual:VMware': &vmwareguest
-    - match: compound
     - vmware.tools
 
   'I@environment:development and I@role:salt-master': &saltmaster
-    - match: compound
     - salt.formulas
     - salt.gitfs.gitpython
     - salt.master
@@ -379,15 +369,12 @@ development:
     - vault
 
   'I@environment:development and I@role:mail-relay': &mailrelay
-    - match: compound
     - clamav.amavisd
 
   'I@environment:development and I@role:minecraft': &minecraft
-    - match: compound
     - spigotmc
 
   'I@environment:development and I@role:identity-provider': &identityprovider
-    - match: compound
     - php.ng
     - php.ng.cli
     - php.ng.ldap
@@ -415,7 +402,6 @@ development:
     - tomcat.shibboleth-idp
 
   'I@environment:development and I@role:web-server': &webserver
-    - match: compound
     - shibboleth.sp
     - apache
     - apache.config
@@ -432,18 +418,15 @@ development:
     - trac
 
   'I@environment:development and I@role:comanage-registry': &comanageregistry
-    - match: compound
     - apache
     - letsencrypt
     - comanage.registry
     - shibboleth.sp
 
   'I@environment:development and I@role:perfsonar': &perfsonar
-    - match: compound
     - perfsonar
 
   'I@environment:development and I@role:devstack':
-    - match: compound
     - apache
     - mysql
     - mysql.python
@@ -505,9 +488,9 @@ testing:
 ### `staging`).  Only accepted changes may then be merged into the
 ### production environment.
 
-staging:
-  '*':
-    []                          # no-op
+# staging:
+#   '*':
+#     []                          # no-op
 
 ####
 #### PRODUCTION ENVIRONMENT
