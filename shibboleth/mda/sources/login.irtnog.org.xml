@@ -7,7 +7,7 @@
         <mdui:DisplayName xml:lang="en">IRTNOG</mdui:DisplayName>
         <mdui:InformationURL xml:lang="en">https://login.irtnog.org/</mdui:InformationURL>
         <mdui:PrivacyStatementURL xml:lang="en">https://login.irtnog.org/privacy</mdui:PrivacyStatementURL>
-        <mdui:Logo height="86" width="86" xml:lang="en">https://login.irtnog.org/microscope.png</mdui:Logo>
+        <mdui:Logo height="86" width="86" xml:lang="en">https://login.irtnog.org/img/logo.png</mdui:Logo>
       </mdui:UIInfo>
     </Extensions>
     <KeyDescriptor>
