@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" ID="_371adda5-9cfc-11e6-97be-00155d013d02" entityID="https://dashboard.meraki.com/">
   <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
-    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="{{ salt['pillar.get']('meraki:dashboard:acs') }}" index="1"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="{{ salt.pillar.get('meraki:dashboard:acs') }}" index="1"/>
   </md:SPSSODescriptor>
 </md:EntityDescriptor>
