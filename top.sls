@@ -392,6 +392,7 @@ development:
     - apache.mod_ssl
     - apache.vhosts.standard
     - apache.content.idp_branding
+    - apache.content.md_branding
     - letsencrypt
     - slapd
     - irtnog-co.openldap-provider
