@@ -1,0 +1,23 @@
+{%- import_yaml "augeas/defauls.yaml" as default_settings %}
+
+{%- set distro_map = salt.grains.filter_by({
+      'FreeBSD': {
+        'packages':
+          'py27-python-augeas',
+      },
+
+      'Windows': {
+        'packages':
+          [],
+      },
+
+      'default': {},
+    }) %}
+
+{%- do default_settings.augeas.update(distro_map) %}
+
+{%- set augeas = salt.pillar.get(
+      'augeas',
+      default=default_settings.augeas,
+      merge=True
+    ) %}
