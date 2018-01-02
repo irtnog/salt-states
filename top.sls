@@ -68,6 +68,7 @@ development:
     - salt.pkgrepo
     - salt.minion
     - shibboleth.repo
+    - augeas
     - accounting
     - aliases
     - auditd
@@ -123,6 +124,7 @@ development:
     - salt.minion
     - rc
     - periodic
+    - augeas
     - accounting
     - aliases
     - auditd
@@ -179,6 +181,7 @@ development:
     - nux.misc
     - scl
     - shibboleth.repo
+    - augeas
     - accounting
     - aliases
     - auditd
@@ -234,6 +237,7 @@ development:
   'I@environment:development and G@os_family:Suse': &suse
     - salt.minion
     - shibboleth.repo
+    - augeas
     - accounting
     - aliases
     - auditd
