@@ -6,3 +6,7 @@ skype:
 {%- else %}
         []
 {%- endif %}
+
+  host.present:
+    - name: apps.skype.com
+    - ip: 127.0.0.1
