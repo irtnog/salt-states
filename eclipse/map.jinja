@@ -1,0 +1,24 @@
+{%- import_yaml "eclipse/defaults.yaml" as default_settings %}
+
+{%- set distro_map = salt.grains.filter_by({
+  'Windows': {
+    'prefix':
+      [ salt.environ.get('ProgramFiles')
+      , 'Eclipse Foundation'
+      , default_settings.eclipse.version ~ '.' ~ default_settings.eclipse.point
+      ]|join('\\'),
+    'bdist': salt.grains.filter_by({
+      'AMD64': 'win32-x86_64',
+      'x86': 'win32',
+    }, grain='cputype'),
+    'suffix': 'zip',
+  },
+}) %}
+
+{%- do default_settings.eclipse.update(distro_map) %}
+
+{%- set eclipse = salt.pillar.get(
+  'eclipse',
+  default=default_settings.eclipse,
+  merge=True
+) %}

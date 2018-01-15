@@ -1,0 +1,13 @@
+eclipse:
+  packages: []
+  prefix: /opt/eclipse
+  version: 4.7
+  codename: oxygen
+  point: 2
+  tasksel: jee
+  bdist: ''
+  suffix: tar.gz
+  checksum: sha512
+  source_template:
+    ## codename, point, tasksel, codename, point, bdist, suffix
+    'https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/%s/%s/eclipse-%s-%s-%s-%s.%s&r=1'
