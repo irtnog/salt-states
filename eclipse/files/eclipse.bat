@@ -1,6 +1,6 @@
 @echo off
 
-set ECLIPSEDIR="%LOCALAPPDATA%\{{ version ~ '.' ~ point }}"
+set ECLIPSEDIR="%LOCALAPPDATA%\{{ 'Eclipse.' ~ version ~ '.' ~ point }}"
 
 if not exist %ECLIPSEDIR% (
   mkdir %ECLIPSEDIR%
