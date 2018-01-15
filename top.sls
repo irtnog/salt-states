@@ -530,6 +530,7 @@ production:
     ## dev tools
     - bonjour-sdk
     - cmake
+    - eclipse
     - virtualbox
     - vs-community
 
