@@ -38,7 +38,7 @@ eclipse:
 eclipse_bat:
   file.managed:
     - name: &eclipse-bat {{
-        [ eclipse.prefix,
+        [ eclipse.prefix
         , 'eclipse.bat'
         ]|join('\\')|yaml_encode
       }}
