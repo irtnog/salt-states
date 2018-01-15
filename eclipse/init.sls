@@ -26,7 +26,10 @@ eclipse:
         eclipse.suffix ~ '.' ~ eclipse.checksum
       )|yaml_encode }}
 {%- if eclipse.suffix == 'zip' %}
+    - archive_format: zip
     - extract_perms: False
+{%- else %}
+    - archive_format: tar
 {%- endif %}
     - require:
         - file: eclipse
