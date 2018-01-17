@@ -331,6 +331,7 @@ development:
     - gpmc
     - firefox
     - fonts
+    - icloud
     - itunes
     - rsat
     - steam
