@@ -75,7 +75,7 @@
 #### IAM GROUPS
 ####
 
-{{ generate_boto_states('boto.iam', salt.pillar.get('aws:iam:groups', {}),
+{{ generate_boto_states('boto_iam', salt.pillar.get('aws:iam:groups', {}),
      state_id_prefix='aws_iam_group_',
      present_function='group_present',
      absent_function='group_absent',
