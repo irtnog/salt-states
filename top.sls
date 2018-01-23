@@ -329,6 +329,7 @@ development:
     - csc
     - fiddler
     - git
+    - gnupg
     - gpmc
     - firefox
     - fonts
