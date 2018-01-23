@@ -338,6 +338,7 @@ development:
     - steam
     - subversion
     - terminals
+    - vlc
     - web-mgmt-tools
 
   'I@environment:development and G@os_family:Windows and I@role:laptop': &windowsvpn
