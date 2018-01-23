@@ -311,6 +311,7 @@ development:
     - desktop.cleanup
     - merakism.agent
     - npp
+    - opensc
     - p7zip
     - perfmon
     - powershell
