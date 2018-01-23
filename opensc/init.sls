@@ -1,7 +1,7 @@
 opensc:
   pkg.installed:
     - pkgs:
-        - opensc                # install the 32-bit package
+        - opensc-win32          # install the 32-bit package
 {%- if salt.grains.get('cpuarch') == 'AMD64' %}
-        - opensc64              # also install the 64-bit package
+        - opensc-win64          # also install the 64-bit package
 {%- endif %}
