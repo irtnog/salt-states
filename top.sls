@@ -66,8 +66,8 @@
 development:
   'I@environment:development and G@os_family:Debian': &debian
     - salt.pkgrepo
-    - salt.minion
     - shibboleth.repo
+    - salt.minion
     - augeas
     - accounting
     - aliases
@@ -173,14 +173,14 @@ development:
 
   'I@environment:development and G@os_family:RedHat': &redhat
     - salt.pkgrepo
-    - salt.minion
-    - hostname
-    - yum
     - epel
     - nux.dextop
     - nux.misc
     - scl
     - shibboleth.repo
+    - salt.minion
+    - hostname
+    - yum
     - augeas
     - accounting
     - aliases
@@ -235,8 +235,8 @@ development:
     - w3m
 
   'I@environment:development and G@os_family:Suse': &suse
-    - salt.minion
     - shibboleth.repo
+    - salt.minion
     - augeas
     - accounting
     - aliases
