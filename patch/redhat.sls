@@ -1,5 +1,6 @@
 patch_linux:
-  pkg.uptodate: []
+  pkg.uptodate:
+    []
 
   ## only reboot if patches were installed
   module.run:

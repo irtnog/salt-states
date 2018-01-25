@@ -5,12 +5,14 @@ auto-update:
         - py27-dateutil
 {%- elif salt.grains.get('os_family') in ['Debian', 'RedHat'] %}
         - python-dateutil       # FIXME
+{%- else %}
+        []
 {%- endif %}
 
   schedule.present:
     - function: state.apply
     - job_args:
-        - patch-{{ salt.grains.get('kernel')|lower }}
+        - patch
     - job_kwargs:
         saltenv: {{ saltenv }}
     - when:
