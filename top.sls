@@ -65,7 +65,7 @@
 
 development:
   'I@environment:development and G@os_family:Debian': &debian
-{%- if salt.grains.get('os') != 'Raspbian' %}
+{%- if salt['grains.get']('os') != 'Raspbian' %}
     - salt.pkgrepo
     - shibboleth.repo
     - salt.minion
@@ -114,7 +114,7 @@ development:
     - tcpdump
     - tcsh
 {#- Enable the ufw SLS on minions not running in AWS. #}
-{%- if not salt.grains.get('biosversion', '').endswith('amazon') %}
+{%- if not salt['grains.get']('biosversion', '').endswith('amazon') %}
     - ufw
 {%- endif %}
     - users
@@ -198,7 +198,7 @@ development:
     - fail2ban
     - fail2ban.config
 {#- Enable the firewalld SLS on minions not running in AWS. #}
-{%- if not salt.grains.get('biosversion', '').endswith('amazon') %}
+{%- if not salt['grains.get']('biosversion', '').endswith('amazon') %}
     - firewalld
 {%- endif %}
     - fonts
