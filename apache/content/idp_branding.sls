@@ -1,7 +1,7 @@
 #### APACHE/CONTENT/IDP_BRANDING.SLS --- Deploy IdP UI customizations
 
-{%- set idp_hostname = salt.pillar.get('shibboleth:idp:hostname') %}
-{%- set deploy_keyfile = salt.pillar.get('apache:content:idp_branding:deploy_keyfile') %}
+{%- set idp_hostname = salt['pillar.get']('shibboleth:idp:hostname') %}
+{%- set deploy_keyfile = salt['pillar.get']('apache:content:idp_branding:deploy_keyfile') %}
 
 idp_branding:
   git.latest:

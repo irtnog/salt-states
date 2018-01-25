@@ -1,6 +1,6 @@
 {%- import_yaml "vmware/tools/defaults.yaml" as default_settings %}
 
-{%- set distro_map = salt.grains.filter_by({
+{%- set distro_map = salt['grains.filter_by']({
       'Debian': {
         'services': [
           'open-vm-tools',
@@ -26,9 +26,9 @@
       'Windows': {
         'packages': [],
         'confdir':
-          [salt.environ.get('ProgramFiles'), 'VMware', 'VMware Tools']|join('\\') ~ '\\',
+          [salt['environ.get']('ProgramFiles'), 'VMware', 'VMware Tools']|join('\\') ~ '\\',
         'hookdir':
-          salt.environ.get('SystemRoot') ~ '\\',
+          salt['environ.get']('SystemRoot') ~ '\\',
         'hooksuffix':
           '.bat',
         'services': [
@@ -41,7 +41,7 @@
 
 {%- do default_settings.vmware.tools.update(distro_map) %}
 
-{%- set vmware_tools_settings = salt.pillar.get(
+{%- set vmware_tools_settings = salt['pillar.get'](
       'vmware:tools',
       default=default_settings.vmware.tools,
       merge=True,

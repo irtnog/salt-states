@@ -1,6 +1,6 @@
 {%- import_yaml "emacs/defaults.yaml" as default_settings %}
 
-{%- set distro_map = salt.grains.filter_by({
+{%- set distro_map = salt['grains.filter_by']({
       'FreeBSD': {
         'packages': [
           'emacs25',
@@ -18,7 +18,7 @@
 
 {%- do default_settings.emacs.update(distro_map) %}
 
-{%- set emacs_settings = salt.pillar.get(
+{%- set emacs_settings = salt['pillar.get'](
       'emacs',
       default=default_settings.emacs,
       merge=True

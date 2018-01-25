@@ -7,9 +7,9 @@ vmware_guest_redhat_textmode_console:
 
   cmd.run:
     - name:
-{%- if salt.file.file_exists('/boot/grub2/grub.cfg') %}
+{%- if salt['file.file_exists']('/boot/grub2/grub.cfg') %}
         grub2-mkconfig -o /boot/grub2/grub.cfg
-{%- elif salt.file.file_exists('/boot/efi/EFI/redhat/grub.conf') %}
+{%- elif salt['file.file_exists']('/boot/efi/EFI/redhat/grub.conf') %}
         grub2-mkconfig -o /boot/efi/EFI/redhat/grub.conf
 {%- else %}
         'true'

@@ -1,8 +1,8 @@
 {%- import_yaml "rsat/defaults.yaml" as default_settings %}
 
-{%- set os_map = salt.grains.filter_by({
+{%- set os_map = salt['grains.filter_by']({
       'Windows-10': {
-        'dism_packages': salt.grains.filter_by({
+        'dism_packages': salt['grains.filter_by']({
           'AMD64': [
             'https://download.microsoft.com/download/1/D/8/1D8B5022-5477-4B9A-8104-6A71FF9D98AB/WindowsTH-RSAT_WS_1709-x64.msu',
             'https://download.microsoft.com/download/1/D/8/1D8B5022-5477-4B9A-8104-6A71FF9D98AB/WindowsTH-RSAT_WS2016-x64.msu',
@@ -15,7 +15,7 @@
       },
 
       'Windows-8.1': {
-        'dism_packages': salt.grains.filter_by({
+        'dism_packages': salt['grains.filter_by']({
           'AMD64': [
             'https://download.microsoft.com/download/1/8/E/18EA4843-C596-4542-9236-DE46F780806E/Windows8.1-KB2693643-x64.msu',
           ],
@@ -33,7 +33,7 @@
 
 {%- do default_settings.rsat.update(os_map) %}
 
-{%- set rsat_settings = salt.pillar.get(
+{%- set rsat_settings = salt['pillar.get'](
       'rsat',
       default=default_settings.rsat,
       merge=True

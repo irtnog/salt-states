@@ -1,6 +1,6 @@
 {%- import_yaml "pki/defaults.yaml" as defaults %}
 
-{%- set os_family_map = salt.grains.filter_by({
+{%- set os_family_map = salt['grains.filter_by']({
       'Debian': {
         'packages':
           'ca-certificates',
@@ -33,7 +33,7 @@
         'anchor_dir':
           '/etc/pki/ca-trust/source/anchors',
         'update_cmd':
-          salt.grains.filter_by({
+          salt['grains.filter_by']({
             '6': 'update-ca-trust enable',
             '7': 'update-ca-trust'
           }, grain='osmajorrelease'),
@@ -42,7 +42,7 @@
 
 {%- do defaults.pki.update(os_family_map) %}
 
-{%- set pki = salt.pillar.get(
+{%- set pki = salt['pillar.get'](
       'pki',
       default=defaults.pki,
       merge=True

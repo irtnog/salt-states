@@ -20,7 +20,7 @@ pki:
         - pkg: pki
 
   cmd.run:
-{%-   if salt.grains.get('osfamily') == 'Windows' %}
+{%-   if salt['grains.get']('osfamily') == 'Windows' %}
     - shell: powershell
 {%-   endif %}
     - name: {{ pki.update_cmd|yaml_encode }}

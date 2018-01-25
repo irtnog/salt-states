@@ -37,7 +37,7 @@
 #### IAM POLICIES
 ####
 
-{{ generate_boto_states('boto_iam', salt.pillar.get('aws:iam:policies', {}),
+{{ generate_boto_states('boto_iam', salt['pillar.get']('aws:iam:policies', {}),
      state_id_prefix='aws_iam_policy_',
      present_function='policy_present',
      absent_function='policy_absent',
@@ -47,7 +47,7 @@
 #### SAML PROVIDERS
 ####
 
-{{ generate_boto_states('boto_iam', salt.pillar.get('aws:iam:saml_providers', {}),
+{{ generate_boto_states('boto_iam', salt['pillar.get']('aws:iam:saml_providers', {}),
     state_id_prefix='aws_iam_saml_provider_',
     present_function='saml_provider_present',
     absent_function='saml_provider_absent',
@@ -57,7 +57,7 @@
 #### IAM ROLES/INSTANCE PROFILES
 ####
 
-{{ generate_boto_states('boto_iam_role', salt.pillar.get('aws:iam:roles', {}),
+{{ generate_boto_states('boto_iam_role', salt['pillar.get']('aws:iam:roles', {}),
      state_id_prefix='aws_iam_role_',
      no_op_comment='No IAM roles or instance profiles were specified.') }}
 
@@ -65,7 +65,7 @@
 #### IAM USERS
 ####
 
-{{ generate_boto_states('boto_iam', salt.pillar.get('aws:iam:users', {}),
+{{ generate_boto_states('boto_iam', salt['pillar.get']('aws:iam:users', {}),
      state_id_prefix='aws_iam_user_',
      present_function='user_present',
      absent_function='user_absent',
@@ -75,7 +75,7 @@
 #### IAM GROUPS
 ####
 
-{{ generate_boto_states('boto_iam', salt.pillar.get('aws:iam:groups', {}),
+{{ generate_boto_states('boto_iam', salt['pillar.get']('aws:iam:groups', {}),
      state_id_prefix='aws_iam_group_',
      present_function='group_present',
      absent_function='group_absent',

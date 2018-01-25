@@ -1,4 +1,4 @@
-{%- for fs, options in salt.pillar.get('zfs:file_systems', {})|dictsort %}
+{%- for fs, options in salt['pillar.get']('zfs:file_systems', {})|dictsort %}
 {{ 'zfs_file_system_%s'|format(fs)|yaml_encode }}:
   zfs.filesystem_present:
     - name: {{ fs|yaml_encode }}

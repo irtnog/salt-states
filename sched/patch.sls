@@ -1,9 +1,9 @@
 auto-update:
   pkg.installed:
     - pkgs:
-{%- if salt.grains.get('os_family') == 'FreeBSD' %}
+{%- if salt['grains.get']('os_family') == 'FreeBSD' %}
         - py27-dateutil
-{%- elif salt.grains.get('os_family') in ['Debian', 'RedHat'] %}
+{%- elif salt['grains.get']('os_family') in ['Debian', 'RedHat'] %}
         - python-dateutil       # FIXME
 {%- else %}
         []
@@ -16,7 +16,7 @@ auto-update:
     - job_kwargs:
         saltenv: {{ saltenv }}
     - when:
-{%- if salt.pillar.get('role') == 'salt-master' %}
+{%- if salt['pillar.get']('role') == 'salt-master' %}
         - Saturday 1:00am
 {%- else %}
         - Saturday 3:00am

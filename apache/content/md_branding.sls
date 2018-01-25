@@ -1,7 +1,7 @@
 #### APACHE/CONTENT/MD_BRANDING.SLS --- Deploy MD UI customizations
 
-{%- set md_hostname = salt.pillar.get('apache:content:md_branding:hostname') %}
-{%- set deploy_keyfile = salt.pillar.get('apache:content:md_branding:deploy_keyfile') %}
+{%- set md_hostname = salt['pillar.get']('apache:content:md_branding:hostname') %}
+{%- set deploy_keyfile = salt['pillar.get']('apache:content:md_branding:deploy_keyfile') %}
 
 md_branding:
   git.latest:

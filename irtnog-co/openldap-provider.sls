@@ -1,6 +1,6 @@
-{%- set username = salt.pillar.get('irtnog_co:ldap_admin:username') %}
-{%- set password = salt.pillar.get('irtnog_co:ldap_admin:password') %}
-{%- set pwhash = salt.pillar.get('irtnog_co:ldap_admin:password_hash') %}
+{%- set username = salt['pillar.get']('irtnog_co:ldap_admin:username') %}
+{%- set password = salt['pillar.get']('irtnog_co:ldap_admin:password') %}
+{%- set pwhash = salt['pillar.get']('irtnog_co:ldap_admin:password_hash') %}
 
 openldap_provider:
   pkg.installed:

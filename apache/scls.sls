@@ -1,6 +1,6 @@
 {%- from "apache/map.jinja" import apache with context %}
 
-{%- if salt.grains.get('os_family') == 'RedHat' %}
+{%- if salt['grains.get']('os_family') == 'RedHat' %}
 
 include:
   - apache

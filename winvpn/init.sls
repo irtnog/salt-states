@@ -9,10 +9,10 @@ winvpn_restore_orig_nat_behavior:
     - vdata: 2                  # both endpoints may be behind NAT
     - vtype: REG_DWORD
 
-{%- set osversion_major = salt.grains.get('osversion').split('.')[0] %}
-{%- set osversion_minor = salt.grains.get('osversion').split('.')[1] %}
+{%- set osversion_major = salt['grains.get']('osversion').split('.')[0] %}
+{%- set osversion_minor = salt['grains.get']('osversion').split('.')[1] %}
 {%- if osversion_major > 6 or (osversion_major == 6 and osversion_minor == 3) %}
-{%-   for name, settings in salt.pillar.get('winvpn_profiles')|dictsort %}
+{%-   for name, settings in salt['pillar.get']('winvpn_profiles')|dictsort %}
 
 winvpn_profile_{{ loop.index }}:
   cmd.run:

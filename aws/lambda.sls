@@ -36,7 +36,7 @@
 #### LAMBDA FUNCTIONS
 ####
 
-{%- for region, functions in salt.pillar.get('aws:lambda:functions', {})|dictsort %}
+{%- for region, functions in salt['pillar.get']('aws:lambda:functions', {})|dictsort %}
 {%-   call(name, settings)
         generate_boto_states('boto_lambda', functions, region=region,
           state_id_prefix='aws_lambda_function_',

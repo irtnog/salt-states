@@ -1,4 +1,4 @@
-{%- if salt.cmd.which('dbus-uuidgen') %}
+{%- if salt['cmd.which']('dbus-uuidgen') %}
 
 dbus_uuidgen_ensure:
   cmd.run:

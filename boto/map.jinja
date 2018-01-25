@@ -1,6 +1,6 @@
 {%- import_yaml "boto/defaults.yaml" as default_settings %}
 
-{%- set distro_map = salt.grains.filter_by({
+{%- set distro_map = salt['grains.filter_by']({
       'FreeBSD': {
         'packages': [
           'py27-boto',
@@ -13,7 +13,7 @@
 
 {%- do default_settings.boto.update(distro_map) %}
 
-{%- set boto_settings = salt.pillar.get(
+{%- set boto_settings = salt['pillar.get'](
       'boto',
       default=default_settings.boto,
       merge=True,

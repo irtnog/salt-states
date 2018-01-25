@@ -23,7 +23,7 @@ wds_tftp_open_timeout_fix:
 {% set wdslinux_version = 'syslinux-6.04-pre1' %}
 {% set wdslinux_download = 'https://www.kernel.org/pub/linux/utils/boot/syslinux/Testing/6.04/syslinux-6.04-pre1.zip' %}
 {% set wdslinux_hash = 'sha512=5b868f5ec1fecce1209c6a69196ee969997d44e95fd8741c1e7c72df3be1f4727c9f85ad1dceb2d00a9f69729a6fcd3e96cb1f5fabe9c44ecca61524a2aa2066' %}
-{% set wdslinux_prefix = salt.environ.get('ProgramFiles') + '\\' + wdslinux_version %}
+{% set wdslinux_prefix = salt['environ.get']('ProgramFiles') + '\\' + wdslinux_version %}
 wdslinux:
   file.directory:
     - name: {{ wdslinux_prefix|yaml_encode }}

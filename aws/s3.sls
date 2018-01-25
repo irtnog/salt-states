@@ -36,7 +36,7 @@
 {%- from "aws/lib.jinja" import generate_boto_states with context %}
 
 {%- call(name, settings)
-      generate_boto_states('boto_s3_bucket', salt.pillar.get('aws:s3', {}),
+      generate_boto_states('boto_s3_bucket', salt['pillar.get']('aws:s3', {}),
         state_id_prefix='aws_s3_bucket_',
         no_op_comment='No S3 buckets were specified.') %}
     - Bucket:

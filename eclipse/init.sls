@@ -34,7 +34,7 @@ eclipse:
     - require:
         - file: eclipse
 
-{%- if salt.grains.get('os_family') == 'Windows' %}
+{%- if salt['grains.get']('os_family') == 'Windows' %}
 
 ## Launch Eclipse from %ProgramFiles% while pointing %ECLIPSEDIR% to
 ## the user's local (non-roaming) application data folder.
@@ -58,7 +58,7 @@ eclipse_bat:
 eclipse_shortcut:
   file.shortcut:
     - name: {{
-        [ salt.environ.get('ALLUSERSPROFILE')
+        [ salt['environ.get']('ALLUSERSPROFILE')
         , 'Start Menu'
         , 'Programs'
         , 'Eclipse ' ~ eclipse.version ~ '.' ~ eclipse.point ~ '.lnk'

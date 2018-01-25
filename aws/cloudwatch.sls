@@ -38,7 +38,7 @@
 #### CLOUDWATCH ALARMS
 ####
 
-{%- for region, alarms in salt.pillar.get('aws:cloudwatch:alarms', {})|dictsort %}
+{%- for region, alarms in salt['pillar.get']('aws:cloudwatch:alarms', {})|dictsort %}
 {%-   call(name, settings)
         generate_boto_states('boto_cloudwatch_alarm', alarms, region=region,
           state_id_prefix='aws_cloudwatch_alarm_',
@@ -52,7 +52,7 @@
 #### CLOUDWATCH EVENT RULES
 ####
 
-{%- for region, events in salt.pillar.get('aws:cloudwatch:events', {})|dictsort %}
+{%- for region, events in salt['pillar.get']('aws:cloudwatch:events', {})|dictsort %}
 {%-   call(name, settings)
         generate_boto_states('boto_cloudwatch_event', events, region=region,
           state_id_prefix='aws_cloudwatch_event_',

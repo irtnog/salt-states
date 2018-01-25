@@ -1,4 +1,4 @@
-{%- set prefix = salt.pillar.get('openid-ldap:prefix', '{{ prefix }}') %}
+{%- set prefix = salt['pillar.get']('openid-ldap:prefix', '{{ prefix }}') %}
 
 openid_ldap:
   ## package install handled by apache-formula in order to ensure that
