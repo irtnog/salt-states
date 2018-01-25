@@ -65,8 +65,10 @@
 
 development:
   'I@environment:development and G@os_family:Debian': &debian
+{%- if salt.grains.get('os') != 'Raspbian' %}
     - salt.pkgrepo
     - shibboleth.repo
+{%- endif %}
     - salt.minion
     - augeas
     - accounting
