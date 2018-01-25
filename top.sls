@@ -68,8 +68,8 @@ development:
 {%- if salt.grains.get('os') != 'Raspbian' %}
     - salt.pkgrepo
     - shibboleth.repo
-{%- endif %}
     - salt.minion
+{%- endif %}
     - augeas
     - accounting
     - aliases
