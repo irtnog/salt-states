@@ -463,41 +463,27 @@ development:
 #### TESTING ENVIRONMENT
 ####
 
-### The testing environment is for semi-automated, semi-permanent,
-### non-production system testing (e.g., performance testing,
-### usability testing, stress testing, and so on).
+### The testing environment is not used for SLS module targeting;
+### instead, it holds changes from the development environment that
+### have passed functional, system, or integration testing and are
+### ready to be staged for deployment in production.  Only merge
+### tested changes into the staging environment after approval by the
+### change advisory board (CAB).
 
-testing:
-  'I@environment:testing and G@os_family:Debian': *debian
-  'I@environment:testing and G@os_family:FreeBSD': *freebsd
-  'I@environment:testing and G@os_family:RedHat': *redhat
-  'I@environment:testing and G@os_family:Suse': *suse
-  'I@environment:testing and G@os_family:Solaris': *solaris
-  'I@environment:testing and G@os_family:Windows': *windows
-  'I@environment:testing and G@os_family:Windows and J@role:^(desktop|laptop)$': *windowsgui
-  'I@environment:testing and G@os_family:Windows and I@role:laptop': *windowsvpn
-  'I@environment:testing and G@virtual:VirtualPC': *virtualpc
-  'I@environment:testing and G@virtual:VMware': *vmwareguest
-  'I@environment:testing and I@role:salt-master': *saltmaster
-  'I@environment:testing and I@role:mail-relay': *mailrelay
-  'I@environment:testing and I@role:minecraft': *minecraft
-  'I@environment:testing and I@role:identity-provider': *identityprovider
-  'I@environment:testing and I@role:web-server': *webserver
-  'I@environment:testing and I@role:comanage-registry': *comanageregistry
-  'I@environment:testing and I@role:perfsonar': *perfsonar
+# testing:
+#   '*':
+#     []                          # no-op
 
 ####
 #### STAGING ENVIRONMENT
 ####
 
 ### The staging environment is not used for SLS module targeting;
-### instead, it holds any proposed changes to the production
-### environment.  After SLS module changes pass system testing, they
-### must be merged into the staging environment.  Once merged, these
-### changes may be deployed to production servers for final user
-### acceptance testing via `state.sls` (with `saltenv` set to
-### `staging`).  Only accepted changes may then be merged into the
-### production environment.
+### instead, it holds approved changes to the production environment.
+### These changes may be deployed to production servers for final
+### critical functionality and user acceptance testing via
+### `state.apply` (with `saltenv` set to `staging`).  Only accepted
+### changes may then be merged into the production environment.
 
 # staging:
 #   '*':
@@ -508,10 +494,10 @@ testing:
 ####
 
 ### The production environment reflects the current configuration of
-### all user-facing services and related resources.  Should user
-### acceptance testing of staged changes fail, production servers may
-### be returned to their original configuration by running a highstate
-### job.
+### all user-facing services and related resources.  Should critical
+### functionality or user acceptance testing of staged changes fail,
+### production servers may be returned to their original configuration
+### by running a highstate job.
 
 production:
   'I@environment:production and G@os_family:Debian': *debian
