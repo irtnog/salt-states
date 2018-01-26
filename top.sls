@@ -447,18 +447,6 @@ development:
     - openstack.repo
     - openstack.keystone
 
-  '(?i)uxedev...?svr0[1-4]\.irtnog\.net':
-    - match: pcre
-    - slapd
-    - mysql
-    - apache
-    - shibboleth.mda
-    - shibboleth.sp
-    - comanage.registry
-    - tomcat.shibboleth-idp
-    - docker
-    - maven
-
 ####
 #### TESTING ENVIRONMENT
 ####
