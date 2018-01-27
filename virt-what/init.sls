@@ -1,0 +1,3 @@
+virt-what:
+  pkg.installed:
+    []
