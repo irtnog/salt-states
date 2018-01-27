@@ -342,6 +342,7 @@ development:
     - rsat
     - steam
     - subversion
+    - teamviewer
     - terminals
     - vlc
     - web-mgmt-tools
