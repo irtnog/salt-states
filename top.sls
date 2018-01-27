@@ -118,6 +118,7 @@ development:
     - ufw
 {%- endif %}
     - users
+    - virt-what
     - w3m
 
   'I@environment:development and G@os_family:FreeBSD': &freebsd
@@ -234,6 +235,7 @@ development:
     - tcpdump
     - tcsh
     - users
+    - virt-what
     - w3m
 
   'I@environment:development and G@os_family:Suse': &suse
