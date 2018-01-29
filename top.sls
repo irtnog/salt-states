@@ -450,6 +450,24 @@ development:
     - openstack.repo
     - openstack.keystone
 
+  'I@environment:development and I@role:devmoodle':
+    - php.ng
+    - php.ng.cli
+    - php.ng.gd
+    - php.ng.intl
+    - php.ng.json
+    - php.ng.mbstring
+    - php.ng.mysqlnd
+    - php.ng.xml
+    - php.ng.xmlrpc
+    - php.ng.zip
+    - mysql
+    - shibboleth.sp
+    - apache
+    - apache.config
+    - letsencrypt
+    - moodle
+
 ####
 #### TESTING ENVIRONMENT
 ####
