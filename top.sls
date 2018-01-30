@@ -465,6 +465,9 @@ development:
     - shibboleth.sp
     - apache
     - apache.config
+    - apache.mod_shib
+    - apache.mod_ssl
+    - apache.vhosts.standard
     - letsencrypt
     - moodle
 
