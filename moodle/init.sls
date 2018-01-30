@@ -1,10 +1,10 @@
-{%- set install_path = salt['pillar.get']('moodle:install_path') %}
+{%- set install_dir = salt['pillar.get']('moodle:install_dir') %}
 
 moodle:
   git.latest:
     - name: git://git.moodle.org/moodle.git
     - branch: MOODLE_34_STABLE
-    - target: {{ install_path }}
+    - target: {{ install_dir|yaml }}
 
 moodle_selinux_booleans:
   selinux.boolean:
