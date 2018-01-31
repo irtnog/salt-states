@@ -6,6 +6,13 @@ moodle:
     - branch: MOODLE_34_STABLE
     - target: {{ install_dir|yaml }}
 
+  file.recurse:
+    - name: {{ install_dir|yaml }}
+    - source: salt://moodle/files
+    - template: jinja
+    - require:
+        - git: moodle
+
 moodle_selinux_booleans:
   selinux.boolean:
     - names:
