@@ -13,21 +13,21 @@ moodle_selinux_booleans:
     - value: True
     - persist: True
 
-moodle_cache:
+moodle_data:
   file.directory:
-    - name: /var/cache/moodle
+    - name: /var/lib/moodle
     - user: apache
 
-moodle_cache_selinux_fcontext_policy:
+moodle_data_selinux_fcontext_policy:
   selinux.fcontext_policy_present:
-    - name: '/var/cache/moodle(/.)?'
+    - name: '/var/lib/moodle(/.)?'
     - sel_type: httpd_sys_rw_content_t
 
-moodle_cache_selinux_fcontext_policy_applied:
+moodle_data_selinux_fcontext_policy_applied:
   selinux.fcontext_policy_applied:
-    - name: /var/cache/moodle
+    - name: /var/lib/moodle
     - recursive: True
     - onchanges:
-        - file: moodle_cache
+        - file: moodle_data
     - require:
-        - selinux: moodle_cache_selinux_fcontext_policy
+        - selinux: moodle_data_selinux_fcontext_policy
