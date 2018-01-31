@@ -450,7 +450,7 @@ development:
     - openstack.repo
     - openstack.keystone
 
-  'I@environment:development and I@role:devmoodle':
+  'I@environment:development and I@role:moodle':
     - php.ng
     - php.ng.cli
     - php.ng.gd
