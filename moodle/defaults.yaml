@@ -1,0 +1,412 @@
+moodle:
+  config:
+    dbtype:
+      pgsql
+    dblibrary:
+      native
+    dbhost:
+      localhost
+    dbname:
+      moodle
+    dbuser:
+      username
+    dbpass:
+      password
+    prefix:
+      mdl_
+    dboptions:
+      dbpersist:
+        False
+      dbsocket:
+        False
+      dbport:
+        ''
+      dbhandlesoptions:
+        False
+      dbcollation:
+        utf8mb4_general_ci
+      # fetchbuffersize:
+      #   100000
+    wwwroot:
+      http://example.com/moodle
+    dataroot:
+      /home/example/moodledata
+    directorypermissions:
+      literal: '02777'
+    admin:
+      admin
+    # mnetkeylifetime:
+    #   28
+    # includeuserpasswordsinbackup:
+    #   True
+    # disableusercreationonrestore:
+    #   True
+    # keeptempdirectoriesonbackup:
+    #   True
+    # forcedifferentsitecheckingusersonrestore:
+    #   True
+    # usezipbackups:
+    #   True
+    # disablestatsprocessing:
+    #   True
+    # admineditalways:
+    #   True
+    # defaultblocks_override:
+    #   participants,activity_modules,search_forums,course_list:news_items,calendar_upcoming,recent_activity
+    # defaultblocks_site:
+    #   site_main_menu,course_list:course_summary,calendar_month
+    # defaultblocks_social:
+    #   participants,search_forums,calendar_month,calendar_upcoming,social_activities,recent_activity,course_list
+    # defaultblocks_topics:
+    #   participants,activity_modules,search_forums,course_list:news_items,calendar_upcoming,recent_activity
+    # defaultblocks_weeks:
+    #   participants,activity_modules,search_forums,course_list:news_items,calendar_upcoming,recent_activity
+    # defaultblocks:
+    #   participants,activity_modules,search_forums,course_list:news_items,calendar_upcoming,recent_activity
+    # moodlepageclass:
+    #   moodle_page
+    # moodlepageclassfile:
+    #   $CFG->dirroot/local/myplugin/mypageclass.php
+    # blockmanagerclass:
+    #   block_manager
+    # blockmanagerclassfile:
+    #   $CFG->dirroot/local/myplugin/myblockamanagerclass.php
+    # filelifetime:
+    #   21600                     # 60*60*6
+    # xsendfile:
+    #   X-Sendfile                  # or 'X-LIGHTTPD-send-file' or 'X-Accel-Redirect'
+    # xsendfilealiases:
+    #   '/dataroot/':
+    #     literal: $CFG->dataroot
+    #   '/cachedir/':
+    #     /var/www/moodle/cache
+    #   '/localcachedir/':
+    #     /var/local/cache
+    #   '/tempdir/':
+    #     /var/www/moodle/temp
+    #   '/filedir':
+    #     /var/www/moodle/filedir
+    # yuislasharguments:
+    #   1
+    # session_handler_class:
+    #   \core\session\database
+    # session_database_acquire_lock_timeout:
+    #   120
+    # ## alternatively:
+    # session_handler_class:
+    #   \core\session\file
+    # session_file_save_path:
+    #   literal: "$CFG->dataroot.'/sessions'"
+    # ## memcached:
+    # session_handler_class:
+    #   \core\session\memcached
+    # session_memcached_save_path:
+    #   127.0.0.1:11211
+    # session_memcached_prefix:
+    #   memc.sess.key.
+    # session_memcached_acquire_lock_timeout:
+    #   120
+    # session_memcached_lock_expire:
+    #   7200
+    # session_memcached_lock_retry_sleep:
+    #   150
+    # ## redis:
+    # session_handler_class:
+    #   \core\session\redis
+    # session_redis_host:
+    #   127.0.0.1
+    # session_redis_port:
+    #   6379
+    # session_redis_database:
+    #   0
+    # session_redis_auth:
+    #   ''
+    # session_redis_prefix:
+    #   ''
+    # session_redis_acquire_lock_timeout:
+    #   120
+    # session_redis_lock_expire:
+    #   7200
+    # session_redis_serializer_use_igbinary:
+    #   False
+    # ## memcache (not memcached!):
+    # session_handler_class:
+    #   \core\session\memcache
+    # session_memcache_save_path:
+    #   127.0.0.1:11211
+    # session_memcache_acquire_lock_timeout:
+    #   120
+    # session_update_timemodified_frequency:
+    #   20
+    # tracksessionip:
+    #   True
+    # handlebounces:
+    #   True
+    # minbounces:
+    #   10
+    # bounceratio:
+    #   .20
+    # mailprefix:
+    #   mdl+                      # or 'mdl-'
+    # maildomain:
+    #   youremaildomain.com
+    # reverseproxy:
+    #   True
+    # sslproxy:
+    #   True
+    # nofixday:
+    #   True
+    # preferlinegraphs:
+    #   True
+    # urlrewriteclass:
+    #   \local_cleanurls\url_rewriter
+    # customscripts:
+    #   /home/example/customscripts
+    # ## TODO: define('MDL_PERF', true);
+    # ## TODO: define('MDL_PERFDB', true);
+    # ## TODO: define('MDL_PERFTOLOG', true);
+    # ## TODO: define('MDL_PERFTOFOOT', true);
+    # earlyprofilingenabled:
+    #   True
+    # apacheloguser:
+    #   0                         # 0=off, 1=log user ID, 2=log full name, 3=log username
+    # headerloguser:
+    #   0                         # same as above
+    # emailconnectionerrorsto:
+    #   your@emailaddress.com
+    # themeorder:
+    #   - course
+    #   - category
+    #   - session
+    #   - user
+    #   - site
+    # themedir:
+    #   /location/of/extra/themes
+    # tempdir:
+    #   /var/www/moodle/temp
+    # cachedir:
+    #   /var/www/moodle/cache
+    # localcachedir:
+    #   /var/local/cache
+    # preventfilelocking:
+    #   False
+    # lang:
+    #   yourlangcode              # e.g., 'cs'
+    # extramemorylimit:
+    #   '1024M'
+    # altcacheconfigpath:
+    #   /var/www/shared/moodle.cache.config.php
+    # disableupdatenotifications:
+    #   True
+    # disableupdateautodeploy:
+    #   True
+    # disabledevlibdirscheck:
+    #   True
+    # preventscheduledtaskchanges:
+    #   True
+    # svgicons:
+    #   True
+    # preventexecpath:
+    #   True
+    # noreplyuserid:
+    #   -10
+    # supportuserid:
+    #   -20
+    # lock_factory:
+    #   auto
+    # lock_file_root:
+    #   literal: "$CFG->dataroot . '/lock'"
+    # customfiletypes:
+    #   - extension:
+    #       frog
+    #     icon:
+    #       archive
+    #     type:
+    #       application/frog
+    #     customdescription:
+    #       Amphibian-related file archive
+    # upgradekey:
+    #   put_some_password-like_value_here
+    # ## TODO: @error_reporting(E_ALL | E_STRICT);
+    # ## TODO?: @ini_set('display_errors', '1');
+    # debug:
+    #   literal: '(E_ALL | E_STRICT)'
+    # debugdisplay:
+    #   1
+    # debugusers:
+    #   2
+    # themedesignermode:
+    #   True
+    # debugimap:
+    #   True
+    # cachejs:
+    #   False
+    # yuiloginclude:
+    #   moodle-core-dock-loader:
+    #     True
+    #   moodle-course-categoryexpander:
+    #     True
+    # yuilogexclude:
+    #   moodle-core-dock:
+    #     True
+    #   moodle-core-notification:
+    #     True
+    # yuiloglevel:
+    #   debug
+    # langstringcache:
+    #   False
+    # noemailever:
+    #   True
+    # divertallemailsto:
+    #   root@localhost.local
+    # divertallemailsexcept:
+    #   'tester@dev.com, fred(\+.*)?@example.com'
+    # xmldbdisablecommentchecking:
+    #   True
+    # upgradeshowsql:
+    #   True
+    # showcronsql:
+    #   True
+    # showcrondebugging:
+    #   True
+    # somecoresetting:
+    #   value
+    # forced_plugin_settings:
+    #   pluginname:
+    #     settingname:
+    #       value
+    #     settingname_locked:
+    #       True
+    #     settingname_adv:
+    #       True
+    #     secondsetting:
+    #       othervalue
+    #   otherplugin:
+    #     mysetting:
+    #       myvalue
+    #     thesetting:
+    #       thevalue
+    # phpunit_prefix:
+    #   phpu_
+    # phpunit_dataroot:
+    #   /home/example/phpu_moodledata
+    # phpunit_directorypermissions:
+    #   literal: '02777'
+    # phpunit_profilingenabled:
+    #   True
+    # passwordsaltmain:
+    #   'a_very_long_random_string_of_characters#@6&*1'
+    # passwordsaltalt1:
+    #   ''
+    # passwordsaltalt2:
+    #   ''
+    # passwordsaltalt3:
+    #   ''
+    # ## ...
+    # passwordsaltalt19:
+    #   ''
+    # passwordsaltalt20:
+    #   ''
+    # behat_wwwroot:
+    #   http://127.0.0.1/moodle
+    # behat_prefix:
+    #   bht_
+    # behat_dataroot:
+    #   /home/example/bht_moodledata
+    # behat_config:
+    #   Mac-Firefox:
+    #     suites:
+    #       default:
+    #         filters:
+    #           tags:
+    #             ~@_file_upload
+    #     extensions:
+    #       'Behat\MinkExtension':
+    #         selenium2:
+    #           browser:
+    #             firefox
+    #           capabilities:
+    #             platform:
+    #               OS X 10.6
+    #             version:
+    #               20
+    #   Mac-Safari:
+    #     extensions:
+    #       'Behat\MinkExtension':
+    #         selenium2:
+    #           browser:
+    #             safari
+    #           capabilities:
+    #             platform:
+    #               OS X 10.8
+    #             version:
+    #               6
+    # behat_profiles:
+    #   phantomjs:
+    #     browser:
+    #       phantomjs
+    #     tags:
+    #       ~@_file_upload&&~@_alert&&~@_bug_phantomjs
+    #     wd_host:
+    #       http://127.0.0.1:4443/wd/hub
+    #     capabilities:
+    #       platform:
+    #         Linux
+    #       version:
+    #         2.1
+    # behat_restart_browser_after:
+    #   7200
+    # behat_extraallowedsettings:
+    #   - somecoresetting
+    # behat_usedeprecated:
+    #   True
+    # behat_additionalfeatures:
+    #   - /home/developer/code/wipfeatures
+    # behat_faildump_path:
+    #   /my/path/to/save/failure/dumps
+    # behat_parallel_run:
+    #   - dbtype:
+    #       mysqli
+    #     dblibrary:
+    #       native
+    #     dbhost:
+    #       localhost
+    #     dbname:
+    #       moodletest
+    #     dbuser:
+    #       moodle
+    #     dbpass:
+    #       moodle
+    #     behat_prefix:
+    #       mdl_
+    #     wd_host:
+    #       http://127.0.0.1:4444/wd/hub
+    #     behat_wwwroot:
+    #       http://127.0.0.1/moodle
+    #     behat_dataroot:
+    #       /home/example/bht_moodledata
+    # ## TODO: define('BEHAT_PARALLEL_SITE_NAME', 'behatparallelsite');
+    # ## TODO: define('BEHAT_MAX_CMD_LINE_OUTPUT', 120);
+    # ## TODO: define('BEHAT_FEATURE_TIMING_FILE', '/PATH_TO_TIMING_FILE/timing.json');
+    # ## TODO: define('BEHAT_FEATURE_STEP_FILE', '/PATH_TO_FEATURE_STEP_COUNT_FILE/stepcount.json');
+    # ## TODO: define('BEHAT_DISABLE_HISTOGRAM', true);
+    # tool_generator_users_password:
+    #   examplepassword
+    # pathtogs:
+    #   /usr/bin/gs
+    # pathtodu:
+    #   /usr/bin/du
+    # aspellpath:
+    #   /usr/bin/aspell
+    # pathtodot:
+    #   /usr/bin/dot
+    # pathtounoconv:
+    #   /usr/bin/unoconv
+    # alternative_file_system_class:
+    #   \\local_myfilestorage\\file_system
+
+  defaults:
+    {}
+
+  plugins:
+    []

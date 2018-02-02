@@ -1,0 +1,18 @@
+{%- import_yaml "moodle/defaults.yaml" as default_settings %}
+
+{%- set distro_map = salt['grains.filter_by']({
+  'RedHat': {
+    'config': {
+      'dataroot':
+        '/var/lib/moodle',
+    },
+  },
+}) %}
+
+{%- do default_settings.moodle.update(distro_map) %}
+
+{%- set moodle = salt['pillar.get'](
+  'moodle',
+  default=default_settings.moodle,
+  merge=True,
+) %}
