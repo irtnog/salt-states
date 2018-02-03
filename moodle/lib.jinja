@@ -7,7 +7,7 @@
 {#-     Use double-quoted strings to allow for interpolation. -#}
 {{      '"' ~ value ~ '"' }}
 {%-   elif value is string -%}
-{{      "'" ~ value "'" }}
+{{      "'" ~ value ~ "'" }}
 {%-   elif value is sequence -%}
 {%-     set l = [] -%}
 {%-     for i in value -%}
