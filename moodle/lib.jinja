@@ -13,7 +13,7 @@
 {%-     for i in value -%}
 {%-       do l.append(to_php(i)) -%}
 {%-     endfor -%}
-{{      "array('" ~ l|join("', '") ~ "')" }}
+{{      "array(" ~ l|join(", ") ~ ")" }}
 {%-   elif value is mapping and mapping|length == 1 and 'literal' in mapping %}
 {#-     Write out the key value verbatim. -#}
 {{        value['literal'] }}
