@@ -5,7 +5,7 @@
 {{      value }}
 {%-   elif value is string and '$' in value -%}
 {#-     Use double-quoted strings to allow for interpolation. -#}
-{{      '"' ~ value '"' }}
+{{      '"' ~ value ~ '"' }}
 {%-   elif value is string -%}
 {{      "'" ~ value "'" }}
 {%-   elif value is sequence -%}
