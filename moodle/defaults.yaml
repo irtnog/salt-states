@@ -1,4 +1,11 @@
 moodle:
+  prefix:
+    /var/www/html
+  dirsep:
+    /
+  php_cmd:
+    php
+
   config:
     dbtype:
       pgsql
