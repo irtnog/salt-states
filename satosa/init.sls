@@ -11,8 +11,8 @@ satosa:
   virtualenv.managed:
     - name:
         /opt/satosa
-    - python:
-        /opt/rh/rh-python36/root/usr/bin/python
+    - venv_bin:
+        /opt/rh/rh-python36/root/usr/bin/virtualenv
     - env_vars:                 # reverse engineered from scl
         MANPATH:
           '/opt/rh/rh-python36/root/usr/share/man:'
@@ -24,9 +24,9 @@ satosa:
           /opt/rh/rh-python36/root/usr/lib64/pkgconfig
         XDG_DATA_DIRS:
           /opt/rh/rh-python36/root/usr/share:/usr/local/share:/usr/share
-    - pip_upgrade:
-        True
     - system_site_packages:
+        True
+    - pip_upgrade:
         True
     - pip_pkgs:
         - ldap3
