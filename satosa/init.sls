@@ -34,3 +34,11 @@ satosa:
         - git+https://github.com/irtnog/pysaml2.git#egg=SATOSA
     - require:
         - pkg: satosa
+
+  selinux.boolean:
+    - names:
+        - httpd_can_connect_ldap
+    - value:
+        True
+    - persist:
+        True
