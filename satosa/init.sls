@@ -32,3 +32,5 @@ satosa:
         - ldap3
         - git+https://github.com/irtnog/SATOSA.git#egg=SATOSA
         - git+https://github.com/irtnog/pysaml2.git#egg=SATOSA
+    - require:
+        - pkg: satosa
