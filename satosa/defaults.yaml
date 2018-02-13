@@ -156,7 +156,7 @@ pysaml2_aa_idp_args:
 
 satosa_saml2_backend:
   ## TODO: idp_blacklist
-  cert: ~
+  certificate: ~
   key: ~
   organization:
     Example Identities
@@ -195,7 +195,7 @@ satosa_saml2_backend:
     http://disco.example.com
 
 satosa_saml2_frontend:
-  cert: ~
+  certificate: ~
   key: ~
   organization:
     Example Identities
