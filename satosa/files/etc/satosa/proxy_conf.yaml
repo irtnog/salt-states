@@ -12,7 +12,7 @@ BACKEND_MODULES:
   - /opt/satosa/etc/satosa/plugins/backends/{{ module }}.yaml
 {%- endfor %}
 FRONTEND_MODULES:
-{%- for module in satosa_proxy.frontend_modules
+{%- for module in satosa_proxy.frontend_modules %}
   - /opt/satosa/etc/satosa/plugins/frontends/{{ module }}.yaml
 {%- endfor %}
 MICRO_SERVICES:
