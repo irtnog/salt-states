@@ -51,6 +51,8 @@ satosa:
     - template:
         jinja
     - user:
+        root
+    - group:
         apache
     - dir_mode:
         751
