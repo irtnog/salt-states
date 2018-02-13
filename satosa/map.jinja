@@ -34,3 +34,9 @@
   default=default_settings.satosa_saml2_frontend,
   merge=True,
 ) %}
+
+{%- set satosa_ldap_attribute_store = salt['pillar.get'](
+  'satosa_ldap_attribute_store',
+  default=default_settings.satosa_ldap_attribute_store,
+  merge=True,
+) %}

@@ -1,0 +1,60 @@
+{%- from "satosa/map.jinja" import satosa_ldap_attribute_store -%}
+module: LdapAttributeStore      # NOTE: from the satosa_microservices distribution
+name: LdapAttributeStore
+config:
+  ## default configuration, maybe overridden on a per-SP/RP basis
+  default:
+    ## if True, skip LDAP lookups for this SP/RP (e.g., to send the
+    ## unaltered set of claims from the IdP/OP to COmanage Registry)
+    ignore:
+      {{ satosa_ldap_attribute_store.default.ignore|yaml_encode }}
+
+    ## connection params (cf. ldap3.Connection)
+    ldap_url:
+      {{ satosa_ldap_attribute_store.default.ldap_url|yaml_encode }}
+    bind_dn:
+      {{ satosa_ldap_attribute_store.default.bind_dn|yaml_encode }}
+    bind_password:
+      {{ satosa_ldap_attribute_store.default.bind_password|yaml_encode }}
+    search_base:
+      {{ satosa_ldap_attribute_store.default.search_base|yaml_encode }}
+    pool_size:
+      {{ satosa_ldap_attribute_store.default.pool_size|yaml_encode }}
+    pool_keepalive:
+      {{ satosa_ldap_attribute_store.default.pool_keepalive|yaml_encode }}
+
+    ## search for records with this LDAP attribute...
+    ldap_identifier_attribute:
+      {{ satosa_ldap_attribute_store.default.ldap_identifier_attribute|yaml_encode }}
+
+    ## ...set to values from these SATOSA internal attributes in the
+    ## specified order
+    ordered_identifier_candidates:
+      {{ satosa_ldap_attribute_store.default.ordered_identifier_candidates|yaml(False)|indent(width=6) }}
+
+    ## map the returned record's LDAP attributes to these SATOSA
+    ## internal attributes
+    search_return_attributes:
+      {{ satosa_ldap_attribute_store.default.search_return_attributes|yaml(False)|indent(width=6) }}
+
+    ## generate a Name ID from these LDAP attributes
+    user_id_from_attrs:
+      {{ satosa_ldap_attribute_store.default.user_id_from_attrs|yaml(False)|indent(width=6) }}
+
+    ## whether to remove all pre-existing claims from the response (if
+    ## True, this completely overrides whatever the IdP/OP sent)
+    clear_input_attributes:
+      {{ satosa_ldap_attribute_store.default.clear_input_attributes|yaml_encode }}
+
+    ## redirect here if the directory lookup fails
+    on_ldap_search_result_empty:
+      {{ satosa_ldap_attribute_store.default.on_ldap_search_result_empty|yaml_encode }}
+
+{#- This outputs uncommented YAML with a vertical flow-style. #}
+{%- do satosa_ldap_attribute_store.pop('default') %}
+{%- for entity_id, settings in satosa_ldap_attribute_store|dictsort %}
+
+  {{ entity_id|yaml_encode }}:
+    {{ settings|yaml(False)|indent }}
+
+{%- endfor %}

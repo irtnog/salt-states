@@ -239,3 +239,45 @@ satosa_saml2_frontend:
         sso/post
       'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect':
         sso/redirect
+
+satosa_ldap_attribute_store:
+  default:
+    ignore:
+      no
+    ldap_url:                   # required
+      ''
+    bind_dn:                    # required
+      ''
+    bind_password:              # required
+      ''
+    search_base:
+      ~
+    pool_size:
+      10
+    pool_keepalive:
+      10
+    ldap_identifier_attribute:
+      uid
+    ordered_identifier_candidates:
+      - attribute_names: [epuid]
+      - attribute_names: [eppn, name_id]
+        name_id_format: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+      - attribute_names: [eppn, edupersontargetedid]
+      - attribute_names: [eppn]
+      - attribute_names: [name_id]
+        name_id_format: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+        add_scope: issuer_entityid
+      - attribute_names: [edupersontargetedid]
+        add_scope: issuer_entityid
+    search_return_attributes:
+      sn: surname
+      givenName: givenname
+      mail: mail
+      employeeNumber: employeenumber
+      isMemberOf: ismemberof
+    user_id_from_attrs:
+      - employeeNumber
+    clear_input_attributes:
+      no
+    on_ldap_search_result_empty:
+      ~
