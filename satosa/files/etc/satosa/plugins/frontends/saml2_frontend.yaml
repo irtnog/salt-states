@@ -1,0 +1,56 @@
+{%- from "satosa/map.jinja" import pysaml2_idp_args, satosa_saml2_frontend -%}
+module: satosa.frontends.saml2.SAMLFrontend
+name: Saml2IDP
+config:
+  idp_config:
+    key_file: /opt/satosa/etc/satosa/keymat/saml2_frontend.key
+    cert_file: /opt/satosa/etc/satosa/keymat/saml2_frontend.crt
+    organization:
+      name:
+        {{ satosa_saml2_frontend.organization|yaml_encode }}
+      display_name:
+        {{ (satosa_saml2_frontend.organization_display_name
+            or satosa_saml2_frontend.organization)|yaml_encode }}
+      url:
+        {{ satosa_saml2_frontend.organization_url|yaml_encode }}
+    contact_person:
+    - contact_type: support
+      given_name:
+        {{ satosa_saml2_frontend.support_contact|yaml_encode }}
+      email_address:
+        {{ satosa_saml2_frontend.support_email|yaml_encode }}
+    - contact_type:
+        technical
+      given_name:
+        {{ (satosa_saml2_frontend.technical_contact
+            or satosa_saml2_frontend.support_contact)|yaml_encode }}
+      email_address:
+        {{ (satosa_saml2_frontend.technical_email
+            or satosa_saml2_frontend.support_email)|yaml_encode }}
+
+    metadata:
+      local: {{ satosa_saml2_frontend.metadata.local|yaml }}
+      remote: {{ satosa_saml2_frontend.metadata.remote|yaml }}
+
+    entityid: {{ satosa_saml2_frontend.entityid|yaml_encode }}
+    accepted_time_diff: {{ satosa_saml2_frontend.accepted_time_diff|yaml_encode }}
+    service:
+      idp:
+        endpoints:
+          single_sign_on_service: []
+{%- for arg in pysaml2_idp_args %}
+{%-   set val = satosa_saml2_frontend[arg]|default(None) %}
+{%-   if val is not sameas none %}
+        {{ arg|yaml_encode }}: {{
+          val|yaml if (val is sequence and val is not string) or val is mapping else
+          val|yaml_encode
+        }}
+{%-   endif %}
+{%- endfor %}
+{%- if satosa_saml2_frontend.acr_mapping %}
+  acr_mapping:
+    {{ satosa_saml2_frontend.acr_mapping|yaml }}
+{%- endif %}
+
+  endpoints:
+    {{ satosa_saml2_frontend.endpoints|yaml }}

@@ -1,0 +1,13 @@
+{%- from "satosa/map.jinja" import satosa_internal_attributes with context -%}
+attributes:
+{%- for attr, mappings in satosa_internal_attributes.attributes|dictsort %}
+  {{ attr|yaml_encode }}:
+{%-   for plugin, attrs in mappings|dictsort %}
+    {{ plugin|yaml_encode }}: {{ attrs|yaml }}
+{%-   else %}
+    {}
+{%-   endfor %}
+{%- endfor %}
+hash: {{ satosa_internal_attributes.hash|yaml }}
+user_id_from_attrs: {{ satosa_internal_attributes.user_id_from_attrs|yaml }}
+user_id_to_attr: {{ satosa_internal_attributes.user_id_to_attr|yaml_encode }}

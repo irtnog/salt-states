@@ -42,3 +42,17 @@ satosa:
         True
     - persist:
         True
+
+  file.recurse:
+    - name:
+        /opt/satosa
+    - source:
+        salt://satosa/files
+    - template:
+        jinja
+    - user:
+        apache
+    - dir_mode:
+        751
+    - file_mode:
+        640

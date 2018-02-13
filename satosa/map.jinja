@@ -1,0 +1,36 @@
+{%- import_yaml "satosa/defaults.yaml" as default_settings %}
+
+{#- NOTE: skip this for now #}
+{%- set distro_map = salt['grains.filter_by']({
+  'default': {},
+}) %}
+
+{%- do default_settings.update(distro_map) %}
+
+{%- set satosa_proxy = salt['pillar.get'](
+  'satosa_proxy',
+  default=default_settings.satosa_proxy,
+  merge=True,
+) %}
+
+{%- set satosa_internal_attributes = salt['pillar.get'](
+  'satosa_internal_attributes',
+  default=default_settings.satosa_internal_attributes,
+  merge=True,
+) %}
+
+{%- set pysaml2_sp_args = default_settings.pysaml2_common_args + default_settings.pysaml2_sp_args %}
+
+{%- set pysaml2_idp_args = default_settings.pysaml2_common_args + default_settings.pysaml2_aa_idp_args %}
+
+{%- set satosa_saml2_backend = salt['pillar.get'](
+  'satosa_saml2_backend',
+  default=default_settings.satosa_saml2_backend,
+  merge=True,
+) %}
+
+{%- set satosa_saml2_frontend = salt['pillar.get'](
+  'satosa_saml2_frontend',
+  default=default_settings.satosa_saml2_frontend,
+  merge=True,
+) %}

@@ -1,0 +1,50 @@
+{%- from "satosa/map.jinja" import pysaml2_sp_args, satosa_saml2_backend %}
+module: satosa.backends.saml2.SAMLBackend
+name: Saml2
+config:
+  # idp_blacklist_file: /path/to/blacklist.json
+  sp_config:
+    key_file: /opt/satosa/etc/satosa/keymat/saml2_backend.key
+    cert_file: /opt/satosa/etc/satosa/keymat/saml2_backend.crt
+    organization:
+      name:
+        {{ satosa_saml2_backend.organization|yaml_encode }}
+      display_name:
+        {{ (satosa_saml2_backend.organization_display_name
+            or satosa_saml2_backend.organization)|yaml_encode }}
+      url:
+        {{ satosa_saml2_backend.organization_url|yaml_encode }}
+    contact_person:
+    - contact_type: support
+      given_name:
+        {{ satosa_saml2_backend.support_contact|yaml_encode }}
+      email_address:
+        {{ satosa_saml2_backend.support_email|yaml_encode }}
+    - contact_type:
+        technical
+      given_name:
+        {{ (satosa_saml2_backend.technical_contact
+            or satosa_saml2_backend.support_contact)|yaml_encode }}
+      email_address:
+        {{ (satosa_saml2_backend.technical_email
+            or satosa_saml2_backend.support_email)|yaml_encode }}
+
+    metadata:
+      local: {{ satosa_saml2_backend.metadata.local|yaml }}
+      remote: {{ satosa_saml2_backend.metadata.remote|yaml }}
+
+    entityid: {{ satosa_saml2_backend.entityid|yaml_encode }}
+    accepted_time_diff: {{ satosa_saml2_backend.accepted_time_diff|yaml_encode }}
+    service:
+      sp:
+{%- for arg in pysaml2_sp_args %}
+{%-   set val = satosa_saml2_backend[arg]|default(None) %}
+{%-   if val is not sameas none %}
+        {{ arg|yaml_encode }}: {{
+          val|yaml if (val is sequence and val is not string) or val is mapping else
+          val|yaml_encode
+        }}
+{%-   endif %}
+{%- endfor %}
+  # disco_srv must be defined if there is more than one IdP in the metadata specified above
+  disco_srv: {{ satosa_saml2_backend.disco_srv|yaml_encode }}

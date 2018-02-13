@@ -1,0 +1,51 @@
+{%- from "satosa/map.jinja" import satosa_proxy with context -%}
+BASE: {{ satosa_proxy.base_url|yaml_encode }}
+INTERNAL_ATTRIBUTES: "/opt/satosa/etc/satosa/internal_attributes.yaml"
+COOKIE_STATE_NAME: {{ satosa_proxy.cookie_state_name|yaml_encode }}
+STATE_ENCRYPTION_KEY: {{ satosa_proxy.state_encryption_key|yaml_encode }}
+CUSTOM_PLUGIN_MODULE_PATHS:
+  - "/opt/satosa/etc/satosa/plugins/backends"
+  - "/opt/satosa/etc/satosa/plugins/frontends"
+  - "/opt/satosa/etc/satosa/plugins/microservices"
+BACKEND_MODULES:
+{%- for module in satosa_proxy.backend_modules %}
+  - /opt/satosa/etc/satosa/plugins/backends/{{ module }}.yaml
+{%- endfor %}
+FRONTEND_MODULES:
+{%- for module in satosa_proxy.frontend_modules
+  - /opt/satosa/etc/satosa/plugins/frontends/{{ module }}.yaml
+{%- endfor %}
+MICRO_SERVICES:
+{%- for microservice in satosa_proxy.microservices %}
+  - /opt/satosa/etc/satosa/plugins/microservices/{{ microservice }}.yaml
+{%- endfor %}
+USER_ID_HASH_SALT: {{ satosa_proxy.user_id_hash_salt|yaml_encode }}
+LOGGING:
+  version: 1
+  formatters:
+    simple:
+      format: {{ satosa_proxy.log_formatter|yaml_encode }}
+  handlers:
+    console:
+      class: logging.StreamHandler
+      level: DEBUG
+      formatter: simple
+      stream: ext://sys.stderr
+    info_file_handler:
+      class: logging.handlers.RotatingFileHandler
+      level: INFO
+      formatter: simple
+      filename: /var/log/httpd24-httpd/satosa.log
+      maxBytes: 10485760 # 10MB
+      backupCount: 20
+      encoding: utf8
+  loggers:
+{%- for component, log_level in satosa_proxy.log_levels|dictsort %}
+    {{ component|yaml_encode }}:
+      level: {{ log_level|yaml_encode }}
+      handlers: [console]
+      propagate: no
+{%- endfor %}
+  root:
+    level: {{ satosa_proxy.root_log_level|yaml_encode }}
+    handlers: [info_file_handler]
