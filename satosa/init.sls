@@ -58,3 +58,9 @@ satosa:
         751
     - file_mode:
         640
+
+  git.latest:
+    - name: https://github.com/irtnog/satosa_microservices
+    - branch: master
+    - target: /opt/satosa_microservices
+    - force_reset: True
