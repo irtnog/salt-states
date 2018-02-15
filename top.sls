@@ -408,8 +408,8 @@ development:
     - apache.content.md_branding
     - letsencrypt
     - slapd
-    - irtnog-co.openldap-provider
     - comanage.registry
+    - comanage.attribute-authority
     - openid-ldap
     - shibboleth.mda
     - tomcat.pwm
