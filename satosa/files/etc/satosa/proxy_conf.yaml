@@ -4,9 +4,9 @@ INTERNAL_ATTRIBUTES: "/opt/satosa/etc/satosa/internal_attributes.yaml"
 COOKIE_STATE_NAME: {{ satosa_proxy.cookie_state_name|yaml_encode }}
 STATE_ENCRYPTION_KEY: {{ satosa_proxy.state_encryption_key|yaml_encode }}
 CUSTOM_PLUGIN_MODULE_PATHS:
-  - "/opt/satosa/etc/satosa/plugins/backends"
-  - "/opt/satosa/etc/satosa/plugins/frontends"
-  - "/opt/satosa/etc/satosa/plugins/microservices"
+  - "/opt/satosa/lib/satosa/plugins/backends"
+  - "/opt/satosa/lib/satosa/plugins/frontends"
+  - "/opt/satosa/lib/satosa/plugins/microservices"
 BACKEND_MODULES:
 {%- for module in satosa_proxy.backend_modules %}
   - /opt/satosa/etc/satosa/plugins/backends/{{ module }}.yaml
