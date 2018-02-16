@@ -50,6 +50,10 @@ satosa:
         salt://satosa/files
     - template:
         jinja
+    - include_empty:
+        yes
+    - exclude_pat:
+        E@\.gitignore
     - user:
         root
     - group:
