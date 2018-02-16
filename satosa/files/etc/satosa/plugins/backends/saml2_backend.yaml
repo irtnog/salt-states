@@ -1,4 +1,4 @@
-{%- from "satosa/map.jinja" import pysaml2_sp_args, satosa_saml2_backend %}
+{%- from "satosa/map.jinja" import pysaml2_sp_args, satosa_saml2_backend with context %}
 module: satosa.backends.saml2.SAMLBackend
 name: Saml2
 config:

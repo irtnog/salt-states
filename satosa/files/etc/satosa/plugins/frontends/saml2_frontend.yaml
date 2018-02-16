@@ -1,4 +1,4 @@
-{%- from "satosa/map.jinja" import pysaml2_idp_args, satosa_saml2_frontend -%}
+{%- from "satosa/map.jinja" import pysaml2_idp_args, satosa_saml2_frontend with context -%}
 module: satosa.frontends.saml2.SAMLFrontend
 name: Saml2IDP
 config:

@@ -1,4 +1,4 @@
-{%- from "satosa/map.jinja" import satosa_ldap_attribute_store -%}
+{%- from "satosa/map.jinja" import satosa_ldap_attribute_store with context -%}
 module: LdapAttributeStore      # NOTE: from the satosa_microservices distribution
 name: LdapAttributeStore
 config:
