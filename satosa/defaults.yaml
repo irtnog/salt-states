@@ -9,7 +9,7 @@ satosa_proxy:
     - saml2_backend
   frontend_modules:
     - saml2_frontend
-  microservices:
+  micro_services:
     - static_attributes
   user_id_hash_salt:
     ''

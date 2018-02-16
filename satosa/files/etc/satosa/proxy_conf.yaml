@@ -6,7 +6,7 @@ STATE_ENCRYPTION_KEY: {{ satosa_proxy.state_encryption_key|yaml_encode }}
 CUSTOM_PLUGIN_MODULE_PATHS:
   - "/opt/satosa/lib/satosa/plugins/backends"
   - "/opt/satosa/lib/satosa/plugins/frontends"
-  - "/opt/satosa/lib/satosa/plugins/microservices"
+  - "/opt/satosa/lib/satosa/plugins/micro_services"
 BACKEND_MODULES:
 {%- for module in satosa_proxy.backend_modules %}
   - /opt/satosa/etc/satosa/plugins/backends/{{ module }}.yaml
@@ -16,8 +16,8 @@ FRONTEND_MODULES:
   - /opt/satosa/etc/satosa/plugins/frontends/{{ module }}.yaml
 {%- endfor %}
 MICRO_SERVICES:
-{%- for microservice in satosa_proxy.microservices %}
-  - /opt/satosa/etc/satosa/plugins/microservices/{{ microservice }}.yaml
+{%- for micro_service in satosa_proxy.micro_services %}
+  - /opt/satosa/etc/satosa/plugins/micro_services/{{ micro_service }}.yaml
 {%- endfor %}
 USER_ID_HASH_SALT: {{ satosa_proxy.user_id_hash_salt|yaml_encode }}
 LOGGING:
