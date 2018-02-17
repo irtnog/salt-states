@@ -1,3 +1,5 @@
+#### DEFAULTS.YAML --- Default settings for the SATOSA proxy states
+
 satosa_proxy:
   base_url:
     http://localhost
@@ -154,6 +156,10 @@ pysaml2_aa_idp_args:
   - name_qualifier
   - edu_person_targeted_id
 
+####
+#### SATOSA BACKENDS
+####
+
 satosa_saml2_backend:
   ## TODO: idp_blacklist
   certificate: ~
@@ -193,6 +199,10 @@ satosa_saml2_backend:
     urn:oasis:names:tc:SAML:2.0:nameid-format:transient
   disco_srv:
     http://disco.example.com
+
+####
+#### SATOSA FRONTENDS
+####
 
 satosa_saml2_frontend:
   certificate: ~
@@ -240,6 +250,10 @@ satosa_saml2_frontend:
       'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect':
         sso/redirect
 
+####
+#### SATOSA MICRO SERVICES
+####
+
 satosa_ldap_attribute_store:
   default:
     ignore:
@@ -281,3 +295,5 @@ satosa_ldap_attribute_store:
       no
     on_ldap_search_result_empty:
       ~
+
+#### DEFAULTS.YAML ends here.
