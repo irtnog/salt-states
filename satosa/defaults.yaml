@@ -335,4 +335,30 @@ satosa_ldap_attribute_store:
     on_ldap_search_result_empty:
       ~
 
+satosa_primary_identifier:
+  ordered_identifier_candidates:
+    - attribute_names: [epuid]
+    - attribute_names: [eppn, name_id]
+      name_id_format: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+    - attribute_names: [eppn, edupersontargetedid]
+    - attribute_names: [eppn]
+    - attribute_names: [name_id]
+      name_id_format: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+      add_scope: issuer_entityid
+    - attribute_names: [edupersontargetedid]
+      add_scope: issuer_entityid
+  primary_identifier:
+    uid
+  on_error:
+    ~
+  clear_input_attributes:
+    no
+  ## additional keys describe per-IdP overrides, e.g., for IdPs that
+  ## erroneously signal identifier re-use but don't actually re-use
+  ## identifiers, such as NIH or UW-Milwaukee
+  # 'urn:mace:incommon:nih.gov': &satosa-micro-primaryid-only-eppn
+  #   ordered_identifier_candidates:
+  #     - attribute_names: [eppn]
+  # 'https://idp.uwm.edu/idp/shibboleth': *satosa-micro-primaryid-only-eppn
+
 #### DEFAULTS.YAML ends here.
