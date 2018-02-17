@@ -35,7 +35,7 @@ LOGGING:
       class: logging.handlers.RotatingFileHandler
       level: INFO
       formatter: simple
-      filename: /var/log/httpd24-httpd/satosa.log
+      filename: /opt/satosa/var/log/satosa.log
       maxBytes: 10485760 # 10MB
       backupCount: 20
       encoding: utf8
