@@ -254,6 +254,45 @@ satosa_saml2_frontend:
 #### SATOSA MICRO SERVICES
 ####
 
+satosa_aws_attribute_release:
+  aws_entity_ids:
+    - urn:amazon:webservices
+    - urn:amazon:webservices:govcloud
+  role_session_name_source:
+    name
+  session_duration:
+    ~
+  ## additional keys describe AWS accounts, e.g.:
+  # 123456789012:                 # the AWS account ID (required)
+  #   default:                    # this account's defaults (optional)
+  #     ## Obtain values for the AWS Role attribute from this SATOSA
+  #     ## internal attribute (defaults to "ismemberof").
+  #     role_source:
+  #       ismemberof
+  #     ## This regexp limits which role values get emitted (defaults to
+  #     ## ".*").
+  #     role_source_filter:
+  #       '.*'
+  #     ## Specify the ID of this account's IAM identity provider
+  #     ## corresponding to this service (defaults to "SATOSA").
+  #     saml_provider_name:
+  #       SATOSA
+  #   ## override the above defaults for this audience
+  #   urn:amazon:webservices:govcloud:
+  #     role_source_filter:
+  #       'GovCloud-.*'
+  # 234567890123:                 # another AWS account, using all defaults
+  #   {}
+  # 345678901234: &my-common-settings
+  #   default:
+  #     saml_provider_name:
+  #       My-IdP-Proxy
+  # 456789012345:                 # shares its config with the above account
+  #   <<: *my-common-settings
+  #   urn:amazon:webservices:
+  #     role_source_filter:
+  #       'OnlyThisGroup'         # overrides just this bit of the shared config
+
 satosa_ldap_attribute_store:
   default:
     ignore:
