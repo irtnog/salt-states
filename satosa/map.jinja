@@ -35,8 +35,20 @@
   merge=True,
 ) %}
 
+{%- set satosa_aws_attribute_release = salt['pillar.get'](
+  'satosa_aws_attribute_release',
+  default=default_settings.satosa_aws_attribute_release,
+  merge=True,
+) %}
+
 {%- set satosa_ldap_attribute_store = salt['pillar.get'](
   'satosa_ldap_attribute_store',
   default=default_settings.satosa_ldap_attribute_store,
+  merge=True,
+) %}
+
+{%- set satosa_primary_identifier = salt['pillar.get'](
+  'satosa_primary_identifier',
+  default=default_settings.satosa_primary_identifier,
   merge=True,
 ) %}
