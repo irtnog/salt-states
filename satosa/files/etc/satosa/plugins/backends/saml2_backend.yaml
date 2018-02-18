@@ -1,50 +1,68 @@
 {%- from "satosa/map.jinja" import pysaml2_sp_args, satosa_saml2_backend with context %}
+{%- set entityid = satosa_saml2_backend.pop('entityid') %}
+{%- set org_name = satosa_saml2_backend.pop('organization') %}
+{%- set org_display_name = satosa_saml2_backend.pop('organization_display_name') or org_name %}
+{%- set org_url = satosa_saml2_backend.pop('organization_url') %}
+{%- set support_contact = satosa_saml2_backend.pop('support_contact') %}
+{%- set support_email = satosa_saml2_backend.pop('support_email') %}
+{%- set tech_contact = satosa_saml2_backend.pop('technical_contact') or support_contact %}
+{%- set tech_email = satosa_saml2_backend.pop('technical_email') or support_email %}
+{%- set metadata = satosa_saml2_backend.pop('metadata') %}
+{%- set accepted_time_diff = satosa_saml2_backend.pop('accepted_time_diff') %}
+{%- set disco_srv = satosa_saml2_backend.pop('disco_srv') %}
 module: satosa.backends.saml2.SAMLBackend
 name: Saml2
 config:
   # idp_blacklist_file: /path/to/blacklist.json
   sp_config:
-    key_file: /opt/satosa/etc/satosa/keymat/saml2_backend.key
-    cert_file: /opt/satosa/etc/satosa/keymat/saml2_backend.crt
+    entityid:
+      {{ entityid|yaml_encode }}
+    key_file:
+      /opt/satosa/etc/satosa/keymat/saml2_backend.key
+    cert_file:
+      /opt/satosa/etc/satosa/keymat/saml2_backend.crt
+
     organization:
       name:
-        {{ satosa_saml2_backend.organization|yaml_encode }}
+        {{ org_name|yaml_encode }}
       display_name:
-        {{ (satosa_saml2_backend.organization_display_name
-            or satosa_saml2_backend.organization)|yaml_encode }}
+        {{ org_display_name|yaml_encode }}
       url:
-        {{ satosa_saml2_backend.organization_url|yaml_encode }}
+        {{ org_url|yaml_encode }}
+
     contact_person:
-    - contact_type: support
-      given_name:
-        {{ satosa_saml2_backend.support_contact|yaml_encode }}
-      email_address:
-        {{ satosa_saml2_backend.support_email|yaml_encode }}
-    - contact_type:
-        technical
-      given_name:
-        {{ (satosa_saml2_backend.technical_contact
-            or satosa_saml2_backend.support_contact)|yaml_encode }}
-      email_address:
-        {{ (satosa_saml2_backend.technical_email
-            or satosa_saml2_backend.support_email)|yaml_encode }}
+      - contact_type:
+          support
+        given_name:
+          {{ support_contact|yaml_encode }}
+        email_address:
+          {{ support_email|yaml_encode }}
+      - contact_type:
+          technical
+        given_name:
+          {{ tech_contact|yaml_encode }}
+        email_address:
+          {{ tech_email|yaml_encode }}
 
     metadata:
-      local: {{ satosa_saml2_backend.metadata.local|yaml }}
-      remote: {{ satosa_saml2_backend.metadata.remote|yaml }}
+      local:
+        {{ metadata.local|yaml(False)|indent(width=8) }}
+      remote:
+        {{ metadata.remote|yaml(False)|indent(width=8) }}
 
-    entityid: {{ satosa_saml2_backend.entityid|yaml_encode }}
-    accepted_time_diff: {{ satosa_saml2_backend.accepted_time_diff|yaml_encode }}
+    accepted_time_diff:
+      {{ accepted_time_diff|yaml_encode }}
     service:
       sp:
+{#- NOTE: Remaining keys in satosa_saml2_backend get emitted here. #}
 {%- for arg in pysaml2_sp_args %}
 {%-   set val = satosa_saml2_backend[arg]|default(None) %}
+{%-   set val_scalar_p = (val is sequence and val is not string) or val is mapping %}
 {%-   if val is not sameas none %}
-        {{ arg|yaml_encode }}: {{
-          val|yaml if (val is sequence and val is not string) or val is mapping else
-          val|yaml_encode
-        }}
+        {{ arg|yaml_encode }}:
+          {{ val|yaml_encode if val_scalar_p else val|yaml(False)|indent(width=10) }}
 {%-   endif %}
 {%- endfor %}
+
   # disco_srv must be defined if there is more than one IdP in the metadata specified above
-  disco_srv: {{ satosa_saml2_backend.disco_srv|yaml_encode }}
+  disco_srv: {{ disco_srv|yaml_encode }}
