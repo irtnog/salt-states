@@ -60,10 +60,9 @@ config:
 {#- NOTE: Remaining keys in satosa_saml2_frontend get emitted here. #}
 {%- for arg in pysaml2_idp_args %}
 {%-   set val = satosa_saml2_frontend[arg]|default(None) %}
-{%-   set val_scalar_p = (val is sequence and val is not string) or val is mapping %}
 {%-   if val is not sameas none %}
         {{ arg|yaml_encode }}:
-          {{ val|yaml_encode if val_scalar_p else val|yaml(False)|indent(width=10) }}
+          {{ val|yaml(False)|indent(width=10) }}
 {%-   endif %}
 {%- endfor %}
 
