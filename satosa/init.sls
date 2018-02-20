@@ -38,6 +38,7 @@ satosa:
   selinux.boolean:
     - names:
         - httpd_can_connect_ldap
+        - httpd_execmem
     - value:
         True
     - persist:
