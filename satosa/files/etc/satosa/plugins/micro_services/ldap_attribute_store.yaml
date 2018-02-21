@@ -1,6 +1,6 @@
 {%- from "satosa/map.jinja" import satosa_ldap_attribute_store with context -%}
-## NOTE: from the satosa_microservices distribution
-module: ldap_attribute_store.LdapAttributeStore
+## NOTE: from the SATOSA distribution
+module: satosa.micro_services.ldap_attribute_store.LdapAttributeStore
 name: LdapAttributeStore
 config:
   ## default configuration, maybe overridden on a per-SP/RP basis
