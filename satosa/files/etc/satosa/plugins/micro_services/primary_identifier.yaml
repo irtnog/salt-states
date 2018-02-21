@@ -1,4 +1,5 @@
 {%- from "satosa/map.jinja" import satosa_primary_identifier with context -%}
+## NOTE: from the satosa_microservices distribution
 module: primary_identifier.PrimaryIdentifier
 name: PrimaryIdentifier
 config:

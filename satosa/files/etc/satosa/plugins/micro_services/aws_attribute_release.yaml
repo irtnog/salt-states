@@ -1,5 +1,6 @@
 {%- from "satosa/map.jinja" import satosa_aws_attribute_release with context -%}
-module: AwsAttributeRelease     # NOTE: from the satosa_microservices distribution
+## NOTE: from the satosa_microservices distribution
+module: aws_attribute_release.AwsAttributeRelease
 name: AwsAttributeRelease
 config:
   ## Only activate this plugin for the following SPs (optional).
