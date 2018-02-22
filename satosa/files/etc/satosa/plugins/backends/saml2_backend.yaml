@@ -1,4 +1,4 @@
-{%- from "satosa/map.jinja" import pysaml2_sp_args, satosa_saml2_backend with context %}
+{%- from "satosa/map.jinja" import pysaml2_sp_args, satosa_saml2_backend with context -%}
 {%- set entityid = satosa_saml2_backend.pop('entityid') %}
 {%- set org_name = satosa_saml2_backend.pop('organization') %}
 {%- set org_display_name = satosa_saml2_backend.pop('organization_display_name') or org_name %}
