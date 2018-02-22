@@ -11,6 +11,3 @@ extend:
     selinux: *satosa-apache-restart
     file: *satosa-apache-restart
     git: *satosa-apache-restart
-
-  satosa_logs:
-    file: *satosa-apache-restart
