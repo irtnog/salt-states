@@ -73,14 +73,3 @@ satosa:
         /opt/satosa_microservices
     - force_reset:
         True
-
-satosa_logs:
-  file.directory:
-    - name:
-        /var/log/satosa
-    - user:
-        apache
-    - group:
-        apache
-    - dir_mode:
-        751

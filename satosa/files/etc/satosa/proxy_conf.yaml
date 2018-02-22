@@ -31,14 +31,6 @@ LOGGING:
       level: DEBUG
       formatter: simple
       stream: ext://sys.stderr
-    info_file_handler:
-      class: logging.handlers.RotatingFileHandler
-      level: INFO
-      formatter: simple
-      filename: /var/log/satosa/satosa.log
-      maxBytes: 10485760 # 10MB
-      backupCount: 20
-      encoding: utf8
   loggers:
 {%- for component, log_level in satosa_proxy.log_levels|dictsort %}
     {{ component|yaml_encode }}:
