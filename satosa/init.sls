@@ -37,8 +37,8 @@ satosa:
 
   selinux.boolean:
     - names:
-        - httpd_can_connect_ldap
-        - httpd_execmem
+        - httpd_can_connect_ldap # allow attribute authority queries
+        - httpd_execmem          # required to load proxy keymat
     - value:
         True
     - persist:
