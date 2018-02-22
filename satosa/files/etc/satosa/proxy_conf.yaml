@@ -40,4 +40,4 @@ LOGGING:
 {%- endfor %}
   root:
     level: {{ satosa_proxy.root_log_level|yaml_encode }}
-    handlers: [info_file_handler]
+    handlers: [console]
