@@ -331,6 +331,7 @@ development:
     - cheat-engine
     - chrome
     - csc
+    - echo-desktop
     - fiddler
     - git
     - gnupg
