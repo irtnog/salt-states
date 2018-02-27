@@ -333,11 +333,11 @@ development:
     - csc
     - echo-desktop
     - fiddler
+    - firefox
+    - fonts
     - git
     - gnupg
     - gpmc
-    - firefox
-    - fonts
     - icloud
     - itunes
     - rsat
