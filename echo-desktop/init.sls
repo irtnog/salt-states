@@ -1,0 +1,3 @@
+echo-desktop:
+  pkg.installed:
+    []
