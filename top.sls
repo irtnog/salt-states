@@ -347,8 +347,6 @@ development:
     - terminals
     - vlc
     - web-mgmt-tools
-
-  'I@environment:development and G@os_family:Windows and I@role:laptop': &windowsvpn
     - winvpn
 
   'I@environment:development and G@virtual:VirtualPC': &virtualpc
@@ -520,7 +518,6 @@ production:
   'I@environment:production and G@os_family:Solaris': *solaris
   'I@environment:production and G@os_family:Windows': *windows
   'I@environment:production and G@os_family:Windows and J@role:^(desktop|laptop)$': *windowsgui
-  'I@environment:production and G@os_family:Windows and I@role:laptop': *windowsvpn
   'I@environment:production and G@virtual:VirtualPC': *virtualpc
   'I@environment:production and G@virtual:VMware': *vmwareguest
   'I@environment:production and I@role:salt-master': *saltmaster
