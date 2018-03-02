@@ -41,6 +41,10 @@ satosa_internal_attributes:
       github: [id]
       openid: [sub]
       saml: [eduPersonTargetedID]
+    eppn:
+      saml: [eduPersonPrincipalName]
+    epuid:
+      saml: [eduPersonUniqueId]
     givenname:
       facebook: [first_name]
       linkedin: [email-address]
