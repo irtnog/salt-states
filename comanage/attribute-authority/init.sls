@@ -27,7 +27,7 @@
         bind:
           method: sasl
     - entries:
-        - {{ 'olcDatabase={%s}mdb,cn=config'|format(co_id)|yaml_encode }}:
+        - 'olcDatabase={}mdb,cn=config':
             - add:
                 objectClass:
                   [olcDatabaseConfig, olcMdbConfig]
@@ -96,6 +96,7 @@
 
 {%- endfor %}
 
+{#- FIXME: may not be necessary
 comanage_co_ldap_provisioner_monitor_acl:
   ldap.managed:
     - name: ldapi:///
@@ -110,3 +111,4 @@ comanage_co_ldap_provisioner_monitor_acl:
                        , provisioner_monitor_acls|join(' ')
                        , 'by * none'
                        ]|join(' ')|yaml_encode }}
+#}
