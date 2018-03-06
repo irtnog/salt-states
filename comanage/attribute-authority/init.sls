@@ -2,7 +2,7 @@
 ## and running on this minion, and that no conflicting database are
 ## configured.
 
-{%- set collaborative_organizations = salt.pillar.get['collaborative_organizations', {}] %}
+{%- set collaborative_organizations = salt['pillar.get']('collaborative_organizations', {}) %}
 {%- set provisioner_monitor_acls = [] %}
 {%- for co, settings in collaborative_organizations|dictsort %}
 {%-   set db_create_state_id = 'comanage_co_ldap_db_%s'|format(co|lower) %}
