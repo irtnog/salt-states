@@ -10,7 +10,7 @@
 {%-   set co_id = settings['co_id'] %}
 {%-   set username = settings['username'] %}
 {%-   set password = settings['password'] %}
-{%-   set pwhash = settings['pwhash'] %}
+{%-   set pwhash = settings['password_hash'] %}
 {%-   do provisioner_monitor_acls.append('by dn.base="cn=%s,o=%s" read'|format(username, co)) %}
 
 ## Create a memory database (MDB) for the {{ co }} CO.
