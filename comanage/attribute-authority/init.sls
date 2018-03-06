@@ -28,12 +28,12 @@
         bind:
           method: sasl
     - entries:
-        - 'olcDatabase={}mdb,cn=config':
+        - olcDatabase=mdb,cn=config:
             - add:
                 objectClass:
                   [olcDatabaseConfig, olcMdbConfig]
                 olcDatabase:
-                  {{ '{%s}mdb'|format(co_id)|yaml_encode }}
+                  mdb
                 olcDbDirectory:
                   {{ '/var/lib/ldap/%s'|format(co|lower)|yaml_encode }}
                 olcDbIndex:
