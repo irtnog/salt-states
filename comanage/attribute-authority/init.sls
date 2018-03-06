@@ -61,7 +61,9 @@
                        , 'by * read'
                        ]|join(' ')|yaml_encode }}
     - require:
+{#- FIXME: also disable the state below
         - ldap: comanage_co_ldap_provisioner_monitor_acl
+#}
         - file: {{ db_create_state_id|yaml_encode }}
 
 {{ o_create_state_id|yaml_encode }}:
@@ -97,7 +99,7 @@
 
 {%- endfor %}
 
-{#- FIXME: may not be necessary
+{#- FIXME: may not be necessary (see above)
 comanage_co_ldap_provisioner_monitor_acl:
   ldap.managed:
     - name: ldapi:///
