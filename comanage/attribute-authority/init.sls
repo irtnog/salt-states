@@ -5,6 +5,7 @@
 {%- set collaborative_organizations = salt['pillar.get']('collaborative_organizations', {}) %}
 {%- set provisioner_monitor_acls = [] %}
 {%- for co, settings in collaborative_organizations|dictsort %}
+{%-   set db_pathname = '/var/lib/ldap/%s'|format(co|lower|replace(' ', '-')) %}
 {%-   set db_create_state_id = 'comanage_co_ldap_db_%s'|format(co|lower) %}
 {%-   set o_create_state_id = 'comanage_co_ldap_org_%s'|format(co|lower) %}
 {%-   set co_id = settings['co_id'] %}
@@ -16,8 +17,7 @@
 ## Create a memory database (MDB) for the {{ co }} CO.
 {{ db_create_state_id|yaml_encode }}:
   file.directory:
-    - name:
-        {{ '/var/lib/ldap/%s'|format(co|lower)|yaml_encode }}
+    - name: {{ db_pathname|yaml_encode }}
     - user: ldap
     - group: ldap
     - dir_mode: 700
@@ -35,7 +35,7 @@
                 olcDatabase:
                   mdb
                 olcDbDirectory:
-                  {{ '/var/lib/ldap/%s'|format(co|lower)|yaml_encode }}
+                  {{ db_pathname|yaml_encode }}
                 olcDbIndex:
                   - objectClass eq,pres
                   - ou,cn,mail,surname,givenname eq,pres,sub
