@@ -85,7 +85,7 @@
         ## create the admin account at the root
         - {{ 'cn=%s,o=%s'|format(username, co)|yaml_encode }}:
             - add:
-                objectClass: [organizationRole]
+                objectClass: [organizationalRole]
                 cn: {{ username|yaml_encode }}
 {%-   for ou in ['People', 'Groups'] %}
         ## create the {{ ou }} OU (provisioned by COmanage)
