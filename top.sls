@@ -394,6 +394,7 @@ development:
     - php.ng.mysql
     - php.ng.xml
     - mysql
+    - slapd
     - shibboleth.sp
     - apache
     - apache.config
@@ -405,8 +406,8 @@ development:
     - apache.vhosts.standard
     - apache.content.idp_branding
     - apache.content.md_branding
+    - apache.satosa
     - letsencrypt
-    - slapd
     - comanage.registry
     - comanage.attribute-authority
     - openid-ldap
