@@ -19,9 +19,9 @@
   merge=True,
 ) %}
 
-{%- set pysaml2_sp_args = default_settings.pysaml2_common_args + default_settings.pysaml2_sp_args %}
+{%- set pysaml2_sp_args = default_settings.pysaml2_common_args + default_settings.pysaml2_complex_args + default_settings.pysaml2_sp_args %}
 
-{%- set pysaml2_idp_args = default_settings.pysaml2_common_args + default_settings.pysaml2_aa_idp_args %}
+{%- set pysaml2_idp_args = default_settings.pysaml2_common_args + default_settings.pysaml2_complex_args + default_settings.pysaml2_aa_idp_args %}
 
 {%- set satosa_saml2_backend = salt['pillar.get'](
   'satosa_saml2_backend',

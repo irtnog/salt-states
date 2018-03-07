@@ -74,7 +74,11 @@ satosa_internal_attributes:
   user_id_from_attrs: [edupersontargetedid]
   user_id_to_attr: edupersontargetedid
 
-pysaml2_common_args:
+####
+#### PYSAML2 KNOBS
+####
+
+pysaml2_common_args:            # COMMON_ARGS in pysaml2/config.py
   - entityid
   - xmlsec_binary
   - debug
@@ -114,7 +118,7 @@ pysaml2_common_args:
   - allow_unknown_attributes
   - crypto_backend
 
-pysaml2_sp_args:
+pysaml2_sp_args:                # SP_ARGS in pysaml2/config.py
   - required_attributes
   - optional_attributes
   - idp
@@ -140,7 +144,7 @@ pysaml2_sp_args:
   - sp_type_in_metadata
   - requested_attributes
 
-pysaml2_aa_idp_args:
+pysaml2_aa_idp_args:            # AA_IDP_ARGS in pysaml2/config.py
   - sign_assertion
   - sign_response
   - encrypt_assertion
@@ -159,6 +163,23 @@ pysaml2_aa_idp_args:
   - domain
   - name_qualifier
   - edu_person_targeted_id
+
+pysaml2_pdp_args:               # PDP_ARGS in pysaml2/config.py
+  - endpoints
+  - name_form
+  - name_id_format
+
+pysaml2_aq_args:                # AQ_ARGS in pysaml2/config.py
+  - endpoints
+
+pysaml2_aa_args:                # AA_ARGS in pysaml2/config.py
+  - attribute
+  - attribute_profile
+
+pysaml2_complex_args:           # COMPLEX_ARGS in pysaml2/config.py
+  - attribute_converters
+  - metadata
+  - policy
 
 ####
 #### SATOSA BACKENDS
