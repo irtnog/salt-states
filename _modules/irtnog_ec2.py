@@ -51,7 +51,7 @@ def find_images(region=None, key=None, keyid=None, profile=None, return_objs=Fal
               '{0}.'.format(resp))
     if return_objs:
         return resp['Images']
-    return [image.id for image in resp['Images']]
+    return [image['ImageId'] for image in resp['Images']]
 
 
 def find_latest_image(region=None, key=None, keyid=None, profile=None, return_obj=False,
@@ -64,8 +64,8 @@ def find_latest_image(region=None, key=None, keyid=None, profile=None, return_ob
         images.sort(reverse=True, key=lambda image: image['CreationDate'])
         image = images[0]
         log.debug('Image {0} has a creation date of '
-                  '{1}.'.format(image.id, image.creation_date))
+                  '{1}.'.format(image['ImageId'], image['CreationDate']))
         if return_obj:
             return image
-        return image.id
+        return image['ImageId']
     return False
