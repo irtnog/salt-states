@@ -46,7 +46,7 @@ def find_images(filters={}, region=None, key=None, keyid=None, profile=None, ret
     try:
         images = conn.get_all_images(filters=filters)
         log.debug('The filters criteria {0} matched the following '
-                  'images:{1}'.format(filters, images))
+                  'images: {1}.'.format(filters, images))
         if images:
             if return_objs:
                 return images
@@ -56,3 +56,16 @@ def find_images(filters={}, region=None, key=None, keyid=None, profile=None, ret
     except boto.exception.BotoServerError as e:
         log.error(e)
         return False
+
+def find_latest_image(filters={}, region=None, key=None, keyid=None, profile=None, return_obj=False):
+    images = find_images(filters=filters, region=region, key=key, keyid=keyid, profile=profile, return_objs=True)
+    if images:
+        images.sort(reverse=True, key=lambda image: image.creation_date)
+        image = images[0]
+        log.debug('This identified {0} with a creation date of {1} '
+                  'as the latest image matching the filter criteria '
+                  '{2}.'.format(image.id, image.creation_date, filters))
+        if return_obj:
+            return image
+        return image.id
+    return False
