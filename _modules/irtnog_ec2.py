@@ -42,7 +42,7 @@ def __init__(opts):
 
 
 def find_images(region=None, key=None, keyid=None, profile=None, return_objs=False,
-                ExecutableUsers=None, Filters=None, ImageIds=None, Owners=None,
+                ExecutableUsers=[], Filters=[], ImageIds=[], Owners=[],
                 **kwargs):
     conn = _get_conn(region=region, key=key, keyid=keyid, profile=profile)
     resp = conn.describe_images(ExecutableUsers=ExecutableUsers, Filters=Filters, ImageIds=ImageIds, Owners=Owners)
@@ -54,7 +54,7 @@ def find_images(region=None, key=None, keyid=None, profile=None, return_objs=Fal
 
 
 def find_latest_image(region=None, key=None, keyid=None, profile=None, return_obj=False,
-                      ExecutableUsers=None, Filters=None, ImageIds=None, Owners=None,
+                      ExecutableUsers=[], Filters=[], ImageIds=[], Owners=[],
                       **kwargs):
     images = find_images(region=region, key=key, keyid=keyid, profile=profile,
                          return_objs=True, ExecutableUsers=ExecutableUsers,
