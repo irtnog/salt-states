@@ -26,7 +26,7 @@ def __virtual__():
     '''
     has_boto_reqs = salt.utils.versions.check_boto_reqs()
     if has_boto_reqs is True:
-        __ utils__['boto3.assign_funcs'](__name__, 'ec2')
+        __utils__['boto3.assign_funcs'](__name__, 'ec2')
     return has_boto_reqs
 
 
