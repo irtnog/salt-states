@@ -61,7 +61,7 @@ def find_latest_image(region=None, key=None, keyid=None, profile=None, return_ob
                          return_objs=True, ExecutableUsers=ExecutableUsers,
                          Filters=Filters, ImageIds=ImageIds, Owners=Owners)
     if images:
-        images.sort(reverse=True, key=lambda image: image.creation_date)
+        images.sort(reverse=True, key=lambda image: image['CreationDate'])
         image = images[0]
         log.debug('Image {0} has a creation date of '
                   '{1}.'.format(image.id, image.creation_date))
