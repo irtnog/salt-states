@@ -38,7 +38,7 @@ def __virtual__():
 def __init__(opts):
     salt.utils.compat.pack_dunder(__name__)
     if HAS_BOTO3:
-        __utils__['boto.assign_funcs'](__name__, 'ec2')
+        __utils__['boto3.assign_funcs'](__name__, 'ec2')
 
 
 def find_images(region=None, key=None, keyid=None, profile=None, return_objs=False, **kwargs):
