@@ -1,33 +1,44 @@
+# keep lint from choking on _get_conn and _cache_id
+#pylint: disable=E0602,W0106
+
 # Import Python libs
-from __future__ import absolute_import, print_function, unicode_literals
+from __future__ import absolute_import
 import logging
+import time
 
 # Import Salt libs
-import salt.utils.versions
-
-log = logging.getLogger(__name__)
+import salt.utils.boto3
+import salt.utils.compat
+from salt.exceptions import SaltInvocationError
+log = logging.getLogger(__name__)  # pylint: disable=W1699
 
 # Import third party libs
-#pylint: disable=unused-import
 try:
-    import botocore
+    #pylint: disable=unused-import
     import boto3
-    import jmespath
+    #pylint: enable=unused-import
+    from botocore.exceptions import ClientError
     logging.getLogger('boto3').setLevel(logging.CRITICAL)
-    HAS_BOTO = True
+    HAS_BOTO3 = True
 except ImportError:
-    HAS_BOTO = False
-#pylint: enable=unused-import
+    HAS_BOTO3 = False
 
 
 def __virtual__():
     '''
-    Only load if boto libraries exist.
+    Only load if boto libraries exist and if boto libraries are
+    greater than a given version.
     '''
-    has_boto_reqs = salt.utils.versions.check_boto_reqs()
-    if has_boto_reqs is True:
-        __utils__['boto3.assign_funcs'](__name__, 'ec2')
-    return has_boto_reqs
+    if not HAS_BOTO3:
+        return (False, 'The irtnog_ec2 module could not be loaded: '
+                'boto3 libraries not found')
+    return True
+
+
+def __init__(opts):
+    salt.utils.compat.pack_dunder(__name__)
+    if HAS_BOTO3:
+        __utils__['boto.assign_funcs'](__name__, 'ec2')
 
 
 def find_images(region=None, key=None, keyid=None, profile=None, return_objs=False, **kwargs):
