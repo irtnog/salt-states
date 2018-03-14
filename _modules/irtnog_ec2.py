@@ -45,9 +45,10 @@ def find_images(region=None, key=None, keyid=None, profile=None, return_objs=Fal
                 ExecutableUsers=[], Filters=[], ImageIds=[], Owners=[],
                 **kwargs):
     conn = _get_conn(region=region, key=key, keyid=keyid, profile=profile)
-    resp = conn.describe_images(ExecutableUsers=ExecutableUsers, Filters=Filters, ImageIds=ImageIds, Owners=Owners)
-    log.debug('The filters criteria {0} matched the following '
-              'images: {1}.'.format(kwargs, resp))
+    resp = conn.describe_images(ExecutableUsers=ExecutableUsers, Filters=Filters,
+                                ImageIds=ImageIds, Owners=Owners)
+    log.debug('The search criteria matched the following images: '
+              '{1}.'.format(resp))
     if return_objs:
         return resp['Images']
     return [image.id for image in resp['Images']]
