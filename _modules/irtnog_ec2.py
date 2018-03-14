@@ -41,9 +41,11 @@ def __init__(opts):
         __utils__['boto3.assign_funcs'](__name__, 'ec2')
 
 
-def find_images(region=None, key=None, keyid=None, profile=None, return_objs=False, **kwargs):
+def find_images(region=None, key=None, keyid=None, profile=None, return_objs=False,
+                ExecutableUsers=None, Filters=None, ImageIds=None, Owners=None,
+                **kwargs):
     conn = _get_conn(region=region, key=key, keyid=keyid, profile=profile)
-    resp = conn.describe_images(**kwargs)
+    resp = conn.describe_images(ExecutableUsers=ExecutableUsers, Filters=Filters, ImageIds=ImageIds, Owners=Owners)
     log.debug('The filters criteria {0} matched the following '
               'images: {1}.'.format(kwargs, resp))
     if return_objs:
@@ -51,14 +53,17 @@ def find_images(region=None, key=None, keyid=None, profile=None, return_objs=Fal
     return [image.id for image in resp['Images']]
 
 
-def find_latest_image(region=None, key=None, keyid=None, profile=None, return_obj=False, **kwargs):
-    images = find_images(region=region, key=key, keyid=keyid, profile=profile, return_objs=True, **kwargs)
+def find_latest_image(region=None, key=None, keyid=None, profile=None, return_obj=False,
+                      ExecutableUsers=None, Filters=None, ImageIds=None, Owners=None,
+                      **kwargs):
+    images = find_images(region=region, key=key, keyid=keyid, profile=profile,
+                         return_objs=True, ExecutableUsers=ExecutableUsers,
+                         Filters=Filters, ImageIds=ImageIds, Owners=Owners)
     if images:
         images.sort(reverse=True, key=lambda image: image.creation_date)
         image = images[0]
-        log.debug('This identified {0} with a creation date of {1} '
-                  'as the latest image matching the filter criteria '
-                  '{2}.'.format(image.id, image.creation_date, kwargs))
+        log.debug('Image {0} has a creation date of '
+                  '{1}.'.format(image.id, image.creation_date))
         if return_obj:
             return image
         return image.id
