@@ -1,0 +1,34 @@
+dn: cn=voperson,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: voperson
+olcAttributeTypes: {0}( 1.3.6.1.4.1.34998.3.3.1.1 NAME 'voPersonApplicationUID
+ ' DESC 'voPerson Application-Specific User Identifier' EQUALITY caseIgnoreMat
+ ch SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )
+olcAttributeTypes: {1}( 1.3.6.1.4.1.34998.3.3.1.2 NAME 'voPersonAuthorName' DE
+ SC 'voPerson Author Name' EQUALITY caseIgnoreMatch SYNTAX '1.3.6.1.4.1.1466.1
+ 15.121.1.15' )
+olcAttributeTypes: {2}( 1.3.6.1.4.1.34998.3.3.1.3 NAME 'voPersonCertificateDN'
+  DESC 'voPerson Certificate Distinguished Name' EQUALITY distinguishedNameMat
+ ch SYNTAX '1.3.6.1.4.1.1466.115.121.1.12' )
+olcAttributeTypes: {3}( 1.3.6.1.4.1.34998.3.3.1.4 NAME 'voPersonCertificateIss
+ uerDN' DESC 'voPerson Certificate Issuer DN' EQUALITY distinguishedNameMatch 
+ SYNTAX '1.3.6.1.4.1.1466.115.121.1.12' )
+olcAttributeTypes: {4}( 1.3.6.1.4.1.34998.3.3.1.5 NAME 'voPersonExternalID' DE
+ SC 'voPerson Scoped External Identifier' EQUALITY caseIgnoreMatch SYNTAX '1.3
+ .6.1.4.1.1466.115.121.1.15' )
+olcAttributeTypes: {5}( 1.3.6.1.4.1.34998.3.3.1.6 NAME 'voPersonID' DESC 'voPe
+ rson Unique Identifier' EQUALITY caseIgnoreMatch SYNTAX '1.3.6.1.4.1.1466.115
+ .121.1.15' )
+olcAttributeTypes: {6}( 1.3.6.1.4.1.34998.3.3.1.7 NAME 'voPersonPolicyAgreemen
+ t' DESC 'voPerson Policy Agreement Indicator' EQUALITY caseIgnoreMatch SYNTAX
+ '1.3.6.1.4.1.1466.115.121.1.15' )
+olcAttributeTypes: {7}( 1.3.6.1.4.1.34998.3.3.1.8 NAME 'voPersonSoRID' DESC 'v
+ oPerson External Identifier' EQUALITY caseIgnoreMatch SYNTAX '1.3.6.1.4.1.146
+ 6.115.121.1.15' )
+olcAttributeTypes: {8}( 1.3.6.1.4.1.34998.3.3.1.9 NAME 'voPersonStatus' DESC '
+ voPerson Status' EQUALITY caseIgnoreMatch SYNTAX '1.3.6.1.4.1.1466.115.121.1.
+ 15' )
+olcObjectClasses: {0}( 1.3.6.1.4.1.34998.3.3.1 NAME 'voPerson' AUXILIARY MAY (
+  voPersonApplicationUID $ voPersonAuthorName $ voPersonCertificateDN $ voPers
+ onCertificateIssuerDN $ voPersonExternalID $ voPersonID $ voPersonPolicyAgree
+ ment $ voPersonSoRID $ voPersonStatus ) )
