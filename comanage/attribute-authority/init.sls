@@ -61,9 +61,6 @@
                        , 'by * read'
                        ]|join(' ')|yaml_encode }}
     - require:
-{#- FIXME: also disable the state below
-        - ldap: comanage_co_ldap_provisioner_monitor_acl
-#}
         - file: {{ db_create_state_id|yaml_encode }}
 
 {{ o_create_state_id|yaml_encode }}:
@@ -98,20 +95,3 @@
         - ldap: {{ db_create_state_id|yaml_encode }}
 
 {%- endfor %}
-
-{#- FIXME: may not be necessary (see above)
-comanage_co_ldap_provisioner_monitor_acl:
-  ldap.managed:
-    - name: ldapi:///
-    - connect_spec:
-        bind:
-          method: sasl
-    - entries:
-        - 'olcDatabase={1}monitor,cn=config':
-            - replace:
-                olcAccess:
-                  - {{ [ '{0} to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth" read'
-                       , provisioner_monitor_acls|join(' ')
-                       , 'by * none'
-                       ]|join(' ')|yaml_encode }}
-#}
