@@ -6,3 +6,5 @@ pf:
 
   service.running:
     - enable: True
+    - watch:
+        - file: pf
