@@ -55,16 +55,17 @@
 #     []                          # no-op
 
 ####
-#### DEVELOPMENT ENVIRONMENT
+#### PRODUCTION ENVIRONMENT
 ####
 
-### The development environment is a sandbox which requires no prior
-### change authorization.  Instead, this environment is where system
-### administrators must prototype any proposed changes to the
-### production environment.
+### The production environment reflects the current configuration of
+### all user-facing services and related resources.  Should critical
+### functionality or user acceptance testing of staged changes fail,
+### production servers may be returned to their original configuration
+### by running a highstate job.
 
-development:
-  'I@environment:development and G@os_family:Debian': &debian
+production:
+  'I@environment:production and G@os_family:Debian': &debian
 {%- if salt['grains.get']('os') != 'Raspbian' %}
     - salt.pkgrepo
     - shibboleth.repo
@@ -121,7 +122,7 @@ development:
     - virt-what
     - w3m
 
-  'I@environment:development and G@os_family:FreeBSD': &freebsd
+  'I@environment:production and G@os_family:FreeBSD': &freebsd
     - poudriere.client
     - pki
     - salt.minion
@@ -174,7 +175,7 @@ development:
     - users
     - w3m
 
-  'I@environment:development and G@os_family:RedHat': &redhat
+  'I@environment:production and G@os_family:RedHat': &redhat
     - salt.pkgrepo
     - epel
     - nux.dextop
@@ -238,7 +239,7 @@ development:
     - virt-what
     - w3m
 
-  'I@environment:development and G@os_family:Suse': &suse
+  'I@environment:production and G@os_family:Suse': &suse
     - shibboleth.repo
     - salt.minion
     - augeas
@@ -280,7 +281,7 @@ development:
     - tcsh
     - users
 
-  'I@environment:development and G@os_family:Solaris': &solaris
+  'I@environment:production and G@os_family:Solaris': &solaris
     - accounting
     - aliases
     - auditd
@@ -309,7 +310,7 @@ development:
     - tcsh
     - users
 
-  'I@environment:development and G@os_family:Windows': &windows
+  'I@environment:production and G@os_family:Windows': &windows
     - salt.minion
     - aws.cli
     - desktop.cleanup
@@ -325,7 +326,7 @@ development:
     - users
     - winsnmp
 
-  'I@environment:development and G@os_family:Windows and J@role:^(desktop|laptop)$': &windowsgui
+  'I@environment:production and G@os_family:Windows and J@role:^(desktop|laptop)$': &windowsgui
     - adobe
     - armagetronad
     - cheat-engine
@@ -349,13 +350,13 @@ development:
     - web-mgmt-tools
     - winvpn
 
-  'I@environment:development and G@virtual:VirtualPC': &virtualpc
+  'I@environment:production and G@virtual:VirtualPC': &virtualpc
     - hyperv.ic
 
-  'I@environment:development and G@virtual:VMware': &vmwareguest
+  'I@environment:production and G@virtual:VMware': &vmwareguest
     - vmware.tools
 
-  'I@environment:development and I@role:salt-master': &saltmaster
+  'I@environment:production and I@role:salt-master': &saltmaster
     - salt.formulas
     - salt.gitfs.gitpython
     - salt.master
@@ -380,13 +381,13 @@ development:
     - salt.ssh
     - vault
 
-  'I@environment:development and I@role:mail-relay': &mailrelay
+  'I@environment:production and I@role:mail-relay': &mailrelay
     - clamav.amavisd
 
-  'I@environment:development and I@role:minecraft': &minecraft
+  'I@environment:production and I@role:minecraft': &minecraft
     - spigotmc
 
-  'I@environment:development and I@role:identity-provider': &identityprovider
+  'I@environment:production and I@role:identity-provider': &identityprovider
     - php.ng
     - php.ng.cli
     - php.ng.ldap
@@ -415,7 +416,7 @@ development:
     - tomcat.pwm
     - tomcat.shibboleth-idp
 
-  'I@environment:development and I@role:web-server': &webserver
+  'I@environment:production and I@role:web-server': &webserver
     - shibboleth.sp
     - apache
     - apache.config
@@ -431,16 +432,16 @@ development:
     - opentracker
     - trac
 
-  'I@environment:development and I@role:comanage-registry': &comanageregistry
+  'I@environment:production and I@role:comanage-registry': &comanageregistry
     - apache
     - letsencrypt
     - comanage.registry
     - shibboleth.sp
 
-  'I@environment:development and I@role:perfsonar': &perfsonar
+  'I@environment:production and I@role:perfsonar': &perfsonar
     - perfsonar
 
-  'I@environment:development and I@role:devstack':
+  'I@environment:production and I@role:devstack':
     - apache
     - mysql
     - mysql.python
@@ -450,7 +451,7 @@ development:
     - openstack.repo
     - openstack.keystone
 
-  'I@environment:development and I@role:moodle':
+  'I@environment:production and I@role:moodle':
     - php.ng
     - php.ng.cli
     - php.ng.gd
@@ -471,20 +472,13 @@ development:
     - letsencrypt
     - moodle
 
-####
-#### TESTING ENVIRONMENT
-####
-
-### The testing environment is not used for SLS module targeting;
-### instead, it holds changes from the development environment that
-### have passed functional, system, or integration testing and are
-### ready to be staged for deployment in production.  Only merge
-### tested changes into the staging environment after approval by the
-### change advisory board (CAB).
-
-# testing:
-#   '*':
-#     []                          # no-op
+  l00000006.irtnog.net:
+    ## dev tools
+    - bonjour-sdk
+    - cmake
+    - eclipse
+    - virtualbox
+    - vs-community
 
 ####
 #### STAGING ENVIRONMENT
@@ -502,39 +496,45 @@ development:
 #     []                          # no-op
 
 ####
-#### PRODUCTION ENVIRONMENT
+#### TESTING ENVIRONMENT
 ####
 
-### The production environment reflects the current configuration of
-### all user-facing services and related resources.  Should critical
-### functionality or user acceptance testing of staged changes fail,
-### production servers may be returned to their original configuration
-### by running a highstate job.
+### The testing environment is not used for SLS module targeting;
+### instead, it holds changes from the development environment that
+### have passed functional, system, or integration testing and are
+### ready to be staged for deployment in production.  Only merge
+### tested changes into the staging environment after approval by the
+### change advisory board (CAB).
 
-production:
-  'I@environment:production and G@os_family:Debian': *debian
-  'I@environment:production and G@os_family:FreeBSD': *freebsd
-  'I@environment:production and G@os_family:RedHat': *redhat
-  'I@environment:production and G@os_family:Suse': *suse
-  'I@environment:production and G@os_family:Solaris': *solaris
-  'I@environment:production and G@os_family:Windows': *windows
-  'I@environment:production and G@os_family:Windows and J@role:^(desktop|laptop)$': *windowsgui
-  'I@environment:production and G@virtual:VirtualPC': *virtualpc
-  'I@environment:production and G@virtual:VMware': *vmwareguest
-  'I@environment:production and I@role:salt-master': *saltmaster
-  'I@environment:production and I@role:mail-relay': *mailrelay
-  'I@environment:production and I@role:minecraft': *minecraft
-  'I@environment:production and I@role:identity-provider': *identityprovider
-  'I@environment:production and I@role:web-server': *webserver
-  'I@environment:production and I@role:comanage-registry': *comanageregistry
-  'I@environment:production and I@role:perfsonar': *perfsonar
+# testing:
+#   '*':
+#     []                          # no-op
 
-  l00000006.irtnog.net:
-    ## dev tools
-    - bonjour-sdk
-    - cmake
-    - eclipse
-    - virtualbox
-    - vs-community
+####
+#### DEVELOPMENT ENVIRONMENT
+####
+
+### The development environment is a sandbox which requires no prior
+### change authorization.  Instead, this environment is where system
+### administrators must prototype any proposed changes to the
+### production environment.
+
+development:
+  'I@environment:development and G@os_family:Debian': *debian
+  'I@environment:development and G@os_family:FreeBSD': *freebsd
+  'I@environment:development and G@os_family:RedHat': *redhat
+  'I@environment:development and G@os_family:Suse': *suse
+  'I@environment:development and G@os_family:Solaris': *solaris
+  'I@environment:development and G@os_family:Windows': *windows
+  'I@environment:development and G@os_family:Windows and J@role:^(desktop|laptop)$': *windowsgui
+  'I@environment:development and G@virtual:VirtualPC': *virtualpc
+  'I@environment:development and G@virtual:VMware': *vmwareguest
+  'I@environment:development and I@role:salt-master': *saltmaster
+  'I@environment:development and I@role:mail-relay': *mailrelay
+  'I@environment:development and I@role:minecraft': *minecraft
+  'I@environment:development and I@role:identity-provider': *identityprovider
+  'I@environment:development and I@role:web-server': *webserver
+  'I@environment:development and I@role:comanage-registry': *comanageregistry
+  'I@environment:development and I@role:perfsonar': *perfsonar
 
 #### TOP.SLS ends here.
