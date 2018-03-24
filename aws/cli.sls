@@ -1,2 +1,0 @@
-awscli:
-  pkg.installed: []
