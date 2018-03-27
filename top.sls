@@ -87,6 +87,7 @@ production:
     - fail2ban.config
     - fonts
     - git
+    - htop
     - irssi
     - kerberos5
     - man
@@ -149,6 +150,7 @@ production:
     - freebsd-update
     - git
     - gnupg
+    - htop
     - irssi
     - kerberos5
     - mosh
@@ -205,6 +207,7 @@ production:
 {%- endif %}
     - fonts
     - git
+    - htop
     - irssi
     - kerberos5
     - man
@@ -254,6 +257,7 @@ production:
     - emacs
     - fonts
     - git
+    - htop
     - irssi
     - kerberos5
     - man
