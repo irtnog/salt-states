@@ -1,2 +1,0 @@
-{%- from "satosa/map.jinja" import satosa_saml2_backend -%}
-{{ satosa_saml2_backend.certificate }}
