@@ -52,3 +52,9 @@
   default=default_settings.satosa_primary_identifier,
   merge=True,
 ) %}
+
+{%- set satosa_static_attributes = salt['pillar.get'](
+  'satosa_static_attributes',
+  default=default_settings.satosa_static_attributes,
+  merge=True,
+) %}

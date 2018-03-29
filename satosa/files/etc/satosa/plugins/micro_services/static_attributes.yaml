@@ -1,0 +1,6 @@
+{%- from "satosa/map.jinja" import satosa_static_attributes with context -%}
+module: satosa.micro_services.attribute_modifications.AddStaticAttributes
+name: AddAttributes
+config:
+  static_attributes:
+    {{ satosa_static_attributes|yaml(False)|indent }}

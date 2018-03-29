@@ -386,4 +386,7 @@ satosa_primary_identifier:
   #     - attribute_names: [eppn]
   # 'https://idp.uwm.edu/idp/shibboleth': *satosa-micro-primaryid-only-eppn
 
+satosa_static_attributes:
+  {}
+
 #### DEFAULTS.YAML ends here.
