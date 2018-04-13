@@ -326,6 +326,7 @@ production:
     - powershell
     - putty
     - rdp
+    - sysinternals-suite
     - tightvnc
     - users
     - winsnmp
