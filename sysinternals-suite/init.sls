@@ -10,6 +10,8 @@ sysinternals-suite:
     - name: *sysinternals-suite
     - source:
         https://download.sysinternals.com/files/SysinternalsSuite.zip
+    - skip_verify:
+        True
     - require:
         - file: sysinternals-suite
 
