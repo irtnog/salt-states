@@ -1,5 +1,5 @@
 ## This assumes that the OpenLDAP server (slapd) is already installed
-## and running on this minion, and that no conflicting database are
+## and running on this minion, and that no conflicting database is
 ## configured.
 
 {%- set collaborative_organizations = salt['pillar.get']('collaborative_organizations', {}) %}
