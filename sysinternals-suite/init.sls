@@ -12,6 +12,8 @@ sysinternals-suite:
         https://download.sysinternals.com/files/SysinternalsSuite.zip
     - skip_verify:
         True
+    - enforce_toplevel:
+        False
     - require:
         - file: sysinternals-suite
 
