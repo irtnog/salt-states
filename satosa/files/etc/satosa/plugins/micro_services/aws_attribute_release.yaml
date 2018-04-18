@@ -1,0 +1,10 @@
+{%- from "satosa/map.jinja" import satosa with context -%}
+## NOTE: from the satosa_microservices distribution
+module: aws_attribute_release.AwsAttributeRelease
+name: AwsAttributeRelease
+config:
+{#- TODO: prettier-print the YAML #}
+{%- for aws_account_id, aws_account_settings in satosa.aws_attribute_release|dictsort %}
+  {{ aws_account_id|yaml_encode }}:
+    {{ aws_account_settings|yaml(False)|indent }}
+{%- endfor %}
