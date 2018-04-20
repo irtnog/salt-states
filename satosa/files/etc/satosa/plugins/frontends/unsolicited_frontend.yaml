@@ -1,0 +1,5 @@
+module: satosa.frontends.unsolicited.UnsolicitedFrontend
+name: Unsolicited
+config:
+  proxy_sso_redirect_url:
+    <base_url>/Saml2/sso/redirect

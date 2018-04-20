@@ -1,6 +1,5 @@
 {%- from "satosa/map.jinja" import satosa with context -%}
-## NOTE: from the satosa_microservices distribution
-module: aws_attribute_release.AwsAttributeRelease
+module: satosa.micro_services.aws_attribute_release.AwsAttributeRelease
 name: AwsAttributeRelease
 config:
 {#- TODO: prettier-print the YAML #}
