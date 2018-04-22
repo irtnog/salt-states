@@ -1,5 +1,5 @@
 {%- from "tomcat/map.jinja" import tomcat with context %}
-{%- from "shibboleth/idp/map.jinja" import shibidp_settings with context %}
+{%- from "shibboleth/idp/map.jinja" import shibidp with context %}
 
 include:
   - shibboleth.idp
@@ -19,7 +19,7 @@ extend:
           - cron: shibidp
           - file: shibidp_keymat
           - cmd: shibidp_keymat
-          {%- for mp in shibidp_settings.metadata_providers
+          {%- for mp in shibidp.metadata_providers
               if mp is string and not mp.startswith('http') %}
           - file: shibidp_inline_metadata_{{ loop.index0 }}
           {%- endfor %}
@@ -35,7 +35,7 @@ extend:
           - cmd: shibidp_keymat
           - file: shibidp_tomcat_jstl
           - cmd: shibidp_tomcat_jstl
-          {%- for mp in shibidp_settings.metadata_providers
+          {%- for mp in shibidp.metadata_providers
               if mp is string and not mp.startswith('http') %}
           - file: shibidp_inline_metadata_{{ loop.index0 }}
           {%- endfor %}
@@ -52,8 +52,8 @@ shibidp_tomcat:
 shibidp_tomcat_semanage_fcontext_add:
   selinux.fcontext_policy_present:
     - names:
-        - {{ shibidp_settings.prefix }}/metadata(/.*)?
-        - {{ shibidp_settings.prefix }}/logs(/.*)?
+        - {{ shibidp.prefix }}/metadata(/.*)?
+        - {{ shibidp.prefix }}/logs(/.*)?
     - sel_type: tomcat_cache_t
     - require:
         - pkg: tomcat
@@ -61,14 +61,14 @@ shibidp_tomcat_semanage_fcontext_add:
 shibidp_tomcat_restorecon:
   selinux.fcontext_policy_applied:
     - names:
-        - {{ shibidp_settings.prefix }}/metadata
-        - {{ shibidp_settings.prefix }}/logs
+        - {{ shibidp.prefix }}/metadata
+        - {{ shibidp.prefix }}/logs
     - recursive: True
     - require:
         - file: shibidp
         - archive: shibidp
         - file: shibidp_keymat
-{%- for mp in shibidp_settings.metadata_providers
+{%- for mp in shibidp.metadata_providers
     if mp is string and not mp.startswith('http') %}
         - file: shibidp_inline_metadata_{{ loop.index0 }}
 {%- endfor %}
@@ -82,18 +82,18 @@ shibidp_tomcat_restorecon:
 ## library.
 shibidp_tomcat_jstl:
   file.managed:
-    - name: {{ shibidp_settings.prefix }}/edit-webapp/WEB-INF/lib/jstl-{{ shibidp_settings.jstl_version }}.jar
-    - source: {{ shibidp_settings.jstl_source_template|format(shibidp_settings.jstl_version, shibidp_settings.jstl_version) }}
-    - source_hash: {{ shibidp_settings.jstl_source_hash }}
-    - user: {{ shibidp_settings.user }}
-    - group: {{ shibidp_settings.group }}
+    - name: {{ shibidp.prefix }}/edit-webapp/WEB-INF/lib/jstl-{{ shibidp.jstl_version }}.jar
+    - source: {{ shibidp.jstl_source_template|format(shibidp.jstl_version, shibidp.jstl_version) }}
+    - source_hash: {{ shibidp.jstl_source_hash }}
+    - user: {{ shibidp.user }}
+    - group: {{ shibidp.group }}
     - mode: 644
     - require:
         - cmd: shibidp
   cmd.wait_script:
     - source: salt://shibboleth/idp/scripts/build.sh
     - template: jinja
-    - user: {{ shibidp_settings.user }}
-    - group: {{ shibidp_settings.group }}
+    - user: {{ shibidp.user }}
+    - group: {{ shibidp.group }}
     - watch:
         - file: shibidp_tomcat_jstl
