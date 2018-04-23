@@ -14,8 +14,10 @@ def get_default_vpc_id(region=None, key=None, keyid=None, profile=None, **kwargs
     '''
     Return the default VPC for the specified region.
     '''
-    return [vpc for vpc in __salt__['boto_vpc.describe_vpcs'](
+    vpcs_in_region = __salt__['boto_vpc.describe_vpcs'](
         region=region, key=key, keyid=keyid, profile=profile)['vpcs']
-            if vpc['is_default']][0]['id']
+    default_vpc = [ vpc for vpc in vpcs_in_region
+                    if vpc['is_default'] ][0]
+    return default_vpc['id']
 
 #### SALT/MODULES/IRTNOG_UTILS.PY ends here.
