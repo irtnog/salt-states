@@ -1,4 +1,4 @@
-module: satosa.frontends.unsolicited.UnsolicitedFrontend
+module: unsolicited.UnsolicitedFrontend
 name: Unsolicited
 config:
   proxy_sso_redirect_url:
