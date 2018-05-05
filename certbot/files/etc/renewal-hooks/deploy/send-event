@@ -1,0 +1,5 @@
+#!/bin/sh
+
+### Signal the Salt Master after getting a certificate.
+
+sudo salt-call event.send certbot/deploy/$(basename ${RENEWED_LINEAGE})
