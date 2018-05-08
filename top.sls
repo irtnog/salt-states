@@ -437,12 +437,6 @@ production:
     - opentracker
     - trac
 
-  'I@environment:production and I@role:comanage-registry': &comanageregistry
-    - apache
-    - letsencrypt
-    - comanage.registry
-    - shibboleth.sp
-
   'I@environment:production and I@role:perfsonar': &perfsonar
     - perfsonar
 
@@ -539,7 +533,6 @@ development:
   'I@environment:development and I@role:minecraft': *minecraft
   'I@environment:development and I@role:identity-provider': *identityprovider
   'I@environment:development and I@role:web-server': *webserver
-  'I@environment:development and I@role:comanage-registry': *comanageregistry
   'I@environment:development and I@role:perfsonar': *perfsonar
 
 #### TOP.SLS ends here.
