@@ -369,6 +369,7 @@ production:
     - saltpad
     - shibboleth.sp
     - apache
+    - apache.certificates
     - apache.config
     - apache.mod_rewrite
     - apache.mod_shib
@@ -376,7 +377,6 @@ production:
     - apache.mod_ssl
     - apache.mod_wsgi
     - apache.vhosts.standard
-    - letsencrypt
     - poudriere
     - aws.iam
     - aws.s3
