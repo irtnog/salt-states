@@ -464,11 +464,11 @@ production:
     - mysql
     - shibboleth.sp
     - apache
+    - apache.certificates
     - apache.config
     - apache.mod_shib
     - apache.mod_ssl
     - apache.vhosts.standard
-    - letsencrypt
     - moodle
 
   l00000006.irtnog.net:
