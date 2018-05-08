@@ -403,6 +403,7 @@ production:
     - slapd
     - shibboleth.sp
     - apache
+    - apache.certificates
     - apache.config
     - apache.mod_proxy
     - apache.mod_proxy_http
@@ -413,7 +414,6 @@ production:
     - apache.content.idp_branding
     - apache.content.md_branding
     - apache.satosa
-    - letsencrypt
     - comanage.registry
     - comanage.attribute-authority
     - openid-ldap
