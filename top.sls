@@ -424,6 +424,7 @@ production:
   'I@environment:production and I@role:web-server': &webserver
     - shibboleth.sp
     - apache
+    - apache.certificates
     - apache.config
     - apache.mod_proxy
     - apache.mod_proxy_http
@@ -433,7 +434,6 @@ production:
     - apache.mod_ssl
     - apache.mod_wsgi
     - apache.vhosts.standard
-    - letsencrypt
     - opentracker
     - trac
 
