@@ -4,10 +4,7 @@
 {{ state_id|yaml_encode }}:
   file.managed:
     - name: {{ 'c:\\salt\\var\\win-certstore\\%s.pfx'|format(name)|yaml_encode }}
-    - source: salt://wincert/files/wincert.pfx
-    - template: jinja
-    - context:
-        pfx: {{ pfx|yaml_encode }}
+    - contents_pillar: {{ 'wincert:%s'|format(name)|yaml_encode }}
     - makedirs: True
     - win_owner: Administrators
     - win_perms:
