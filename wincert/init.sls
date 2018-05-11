@@ -13,7 +13,7 @@
 
   cmd.run:
     - names:
-        - {{ 'certutil -decode c:\\salt\\var\\win-certstore\\%s.pfx.b64 c:\\salt\\var\\win-certstore\\%s.pfx'|format(name, name)|yaml_encode }}
+        - {{ 'certutil -decode -f c:\\salt\\var\\win-certstore\\%s.pfx.b64 c:\\salt\\var\\win-certstore\\%s.pfx'|format(name, name)|yaml_encode }}
         - {{ 'certutil -csp "Microsoft Enhanced RSA and AES Cryptographic Provider" -p %s -importpfx c:\\salt\\var\\win-certstore\\%s.pfx'|format(pfx_password, name)|yaml_encode }}
     - onchanges:
         - file: {{ state_id|yaml_encode }}
