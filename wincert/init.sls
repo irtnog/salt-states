@@ -1,3 +1,7 @@
+{%- set csp = '' %}
+{%- if salt['grains.get']('osrelease') not in ['2003Server'] %}
+{%- set csp = '-csp "Microsoft Enhanced RSA and AES Cryptographic Provider"' %}
+{%- endif %}
 {%- set pfx_password = salt['pillar.get']('wincert_pfx_password', '') %}
 {%- for name, pfx in salt['pillar.get']('wincert', {})|dictsort %}
 {%- set state_id = 'windows_import_cert_%s'|format(name) %}
@@ -14,7 +18,7 @@
   cmd.run:
     - names:
         - {{ 'certutil -decode -f c:\\salt\\var\\win-certstore\\%s.pfx.b64 c:\\salt\\var\\win-certstore\\%s.pfx'|format(name, name)|yaml_encode }}
-        - {{ 'certutil -csp "Microsoft Enhanced RSA and AES Cryptographic Provider" -p %s -importpfx c:\\salt\\var\\win-certstore\\%s.pfx'|format(pfx_password, name)|yaml_encode }}
+        - {{ 'certutil %s -p %s -importpfx c:\\salt\\var\\win-certstore\\%s.pfx'|format(csp, pfx_password, name)|yaml_encode }}
     - onchanges:
         - file: {{ state_id|yaml_encode }}
 {%- endfor %}
