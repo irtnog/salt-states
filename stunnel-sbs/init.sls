@@ -3,7 +3,7 @@ stunnel_sbs:
     - name: stunnel
     - enable: True
 
-{%- for name, keymat in salt['pillar.get']('stunnel-sbs:certificates', {}) %}
+{%- for name, keymat in salt['pillar.get']('stunnel-sbs:certificates', {})|dictsort %}
 
 stunnel_sbs_{{ name }}:
   file.managed:
