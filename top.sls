@@ -473,6 +473,9 @@ production:
     - apache.vhosts.standard
     - moodle
 
+  'I@environment:production and I@role:sbs':
+    - stunnel-sbs
+
   l00000006.irtnog.net:
     ## dev tools
     - bonjour-sdk
