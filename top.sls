@@ -368,7 +368,6 @@ production:
     - salt.cloud.ext
     - saltpad
     - certbot
-    - certbot.sched
     - shibboleth.sp
     - apache
     - apache.certificates
