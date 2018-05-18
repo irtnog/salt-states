@@ -329,6 +329,7 @@ production:
     - sysinternals-suite
     - tightvnc
     - users
+    - wincert
     - winsnmp
 
   'I@environment:production and G@os_family:Windows and J@role:^(desktop|laptop)$': &windowsgui
