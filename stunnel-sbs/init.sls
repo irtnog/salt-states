@@ -11,6 +11,7 @@ stunnel_sbs_{{ name }}:
         salt['environ.get']('ProgramFiles(x86)') if salt['grains.get']('cpuarch') == 'AMD64' else
         salt['environ.get']('ProgramFiles'),
         'stunnel',
+        'config',
         name ~ '.pem'
       ]|join('\\')|yaml_encode }}
     - contents: {{ keymat|yaml_encode }}
