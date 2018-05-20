@@ -179,7 +179,6 @@ production:
 
   'I@environment:production and G@os_family:RedHat': &redhat
     - salt.pkgrepo
-    - epel
     - nux.dextop
     - nux.misc
     - scl
