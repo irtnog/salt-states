@@ -11,7 +11,6 @@ extend:
       - watch:
           - pkg: pwm
           - file: pwm
-          - archive: pwm
           - file: pwm_config
 
 pwm_tomcat:
@@ -42,7 +41,7 @@ pwm_tomcat_restorecon:
     - name: /opt/pwm/data
     - recursive: True
     - require:
-        - archive: pwm
+        - file: pwm
         - file: pwm_config
         - selinux: pwm_tomcat_semanage_fcontext_add
     - watch_in:
