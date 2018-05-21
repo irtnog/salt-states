@@ -4,22 +4,15 @@ pwm:
         - mysql-connector-java
         - tomcat
 
-  file.directory:
-    - name: /opt/pwm/data
+  file.managed:
+    - name: /opt/pwm/pwm.jar
+    - source: https://www.pwm-project.org/artifacts/pwm/2018-05-16T18_58_17Z/pwm-1.8.0-SNAPSHOT.war
+    - source_hash: sha256=639390da4e70f7730157675f459aae1e09ead28fcade2541166555d2d065bdf6
     - user: tomcat
     - group: tomcat
-    - dir_mode: 700
-    - file_mode: 600
+    - dir_mode: 751
+    - file_mode: 640
     - makedirs: True
-
-  archive.extracted:
-    - name: /opt/pwm
-    - source: https://www.pwm-project.org/artifacts/pwm/pwm-1.8.0-SNAPSHOT-2017-09-13T17:23:36Z-release-bundle.zip
-    - source_hash: sha512=634189404cdb1c57f2911fb4cb9531abf8ca3e58f8a673a4bd926d11520cca0dffbc158b208801b43d7ab1d592cd3b24bef5375b46ee646c4417b0652c501aa1
-    - extract_perms: False
-    - enforce_toplevel: False
-    - require:
-        - file: pwm
 
 pwm_config:
   file.managed:
