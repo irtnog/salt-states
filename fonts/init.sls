@@ -25,6 +25,7 @@ ttf_font_{{ loop.index0 }}:
   file.managed:
     - source: {{ settings.source|yaml_encode }}
     - source_hash: {{ settings.source_hash|yaml_encode }}
+    - makedirs: True
 {% endif %}
     - name: {{ '%s%s%s.ttf'|format(ttf_prefix, dirsep, font_name)|yaml_encode }}
     - require:
