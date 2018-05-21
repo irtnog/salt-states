@@ -22,3 +22,5 @@ pwm_config:
     - user: tomcat
     - group: tomcat
     - mode: 640
+    - require:
+        - file: pwm
