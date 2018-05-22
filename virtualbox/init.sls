@@ -9,8 +9,8 @@ virtualbox:
 
   archive.extracted:
     - name: 'C:\\Program Files\\Oracle\\VirtualBox\\ExtensionPacks\\Oracle_VM_VirtualBox_Extension_Pack'
-    - source: http://download.virtualbox.org/virtualbox/5.2.2/Oracle_VM_VirtualBox_Extension_Pack-5.2.2.vbox-extpack
-    - source_hash: sha256=9328548ca8cbc526232c0631cb5a17618c771b07665b362c1e3d89a2425bf799
+    - source: https://download.virtualbox.org/virtualbox/5.2.12/Oracle_VM_VirtualBox_Extension_Pack-5.2.12.vbox-extpack
+    - source_hash: sha256=4c36d129f17dcab2bb37292022f1b1adfefa5f32a3161b0d5d40784bc8acf4d0
     - archive_format: tar
     - enforce_toplevel: False
     - overwrite: True
