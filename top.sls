@@ -423,6 +423,9 @@ production:
     - tomcat.shibboleth-idp
 
   'I@environment:production and I@role:web-server': &webserver
+    - php.ng
+    - php.ng.cli
+    - php.ng.apache2
     - shibboleth.sp
     - apache
     - apache.certificates
@@ -435,6 +438,7 @@ production:
     - apache.mod_ssl
     - apache.mod_wsgi
     - apache.vhosts.standard
+    - apache.content.testsp
     - opentracker
     - trac
 
