@@ -19,5 +19,14 @@ syscons_{{ setting }}:
   sysrc.managed:
     - name: {{ setting|yaml_encode }}
     - value: {{ value|yaml_encode }}
+    - onchanges_in:
+        - module: syscons-restart
   {% endif %}
 {% endfor %}
+
+## Inert by default, this only restarts the syscons service if
+## triggered by changes made above.
+syscons-restart:
+  module.wait:
+    - name: service.restart
+    - m_name: syscons
