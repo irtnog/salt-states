@@ -3,7 +3,6 @@
 salt-reactor-scripts:
   file.recurse:
     - name: {{ salt_settings.config_path }}/reactors
-    - template: jinja
     - source: salt://{{ slspath }}/files/reactors
     - clean: yes
     - dir_mode: 700
