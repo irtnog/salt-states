@@ -13,7 +13,7 @@ salt_cloud_deps:
         - py27-requests-kerberos # security/py-requests-kerberos
         - py27-six              # devel/py-six
         - py27-impacket         # net/py-impacket
-        - samba44               # net/samba44
+        - samba48               # net/samba48
 
   pip.installed:
     - names:
