@@ -22,9 +22,8 @@
           perms: full_control
 
   cmd.run:
-    - names:
-        - {{ 'certutil -decode -f c:\\salt\\var\\win-certstore\\%s.pfx.b64 c:\\salt\\var\\win-certstore\\%s.pfx'|format(name, name)|yaml_encode }}
-        - {{ 'certutil%s -p %s -importpfx c:\\salt\\var\\win-certstore\\%s.pfx'|format(csp, pfx_password, name)|yaml_encode }}
+    - name:
+        {{ 'certutil -decode -f c:\\salt\\var\\win-certstore\\%s.pfx.b64 c:\\salt\\var\\win-certstore\\%s.pfx && certutil%s -p %s -importpfx c:\\salt\\var\\win-certstore\\%s.pfx'|format(name, name, csp, pfx_password, name)|yaml_encode }}
     - onchanges:
         - file: {{ state_id|yaml_encode }}
 {%- endfor %}
