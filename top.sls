@@ -482,6 +482,7 @@ production:
   l00000006.irtnog.net:
     ## dev tools
     - bonjour-sdk
+    - blender
     - cmake
     - eclipse
     - virtualbox
