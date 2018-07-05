@@ -1,0 +1,3 @@
+blender:
+  pkg.installed:
+    []
