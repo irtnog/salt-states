@@ -479,6 +479,10 @@ production:
   'I@environment:production and I@role:sbs':
     - stunnel-sbs
 
+  uxeprdlnxidp01.irtnog.net:
+    ## dev tools
+    - rpm-build
+
   l00000006.irtnog.net:
     ## dev tools
     - bonjour-sdk
