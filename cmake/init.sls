@@ -1,2 +1,3 @@
 cmake:
-  pkg.installed: []
+  pkg.installed:
+    []
