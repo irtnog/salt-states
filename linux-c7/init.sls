@@ -8,7 +8,7 @@ linux-c7:
 
   service.restart:
     - name: abi
-    - watch:
+    - onchanges:
         - pkg: linux-c7
         - sysrc: linux-c7
 
