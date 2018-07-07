@@ -2,6 +2,16 @@ linux-c7:
   pkg.installed:
     []
 
+  sysrc.managed:
+    - name: linux_enable
+    - value: 'YES'
+
+  service.restart:
+    - name: abi
+    - watch:
+        - pkg: linux-c7
+        - sysrc: linux-c7
+
 /compat/linux/proc:
   mount.mounted:
     - device: linprocfs
