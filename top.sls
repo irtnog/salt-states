@@ -365,6 +365,7 @@ production:
     - salt.formulas
     - salt.gitfs.gitpython
     - salt.master
+    - salt.reactors
     - salt.cloud.ext
     - saltpad
     - certbot
