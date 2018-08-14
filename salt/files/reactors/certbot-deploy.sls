@@ -5,11 +5,9 @@
 ### certificate-related actions (issuance, deployment, and renewal)
 ### via Pillar.
 
-{%- set domains = data['data']['domains']|default([]) %}
-
 certbot_deploy:
   local.state.apply:
-    - tgt: {{ tag }}:True
+    - tgt: {{ tag }}:*
     - tgt_type: pillar
 
 #### CERTBOT-DEPLOY.SLS ends here.
