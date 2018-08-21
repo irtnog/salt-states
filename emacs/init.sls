@@ -1,12 +1,11 @@
-{%- from "emacs/map.jinja" import emacs_settings with context %}
+{%- from "emacs/map.jinja" import emacs with context %}
 
 emacs:
-{%- if 'ppa' in emacs_settings %}
+{%- if 'ppa' in emacs %}
   pkgrepo.managed:
-    - ppa: {{ emacs_settings.ppa|yaml_encode }}
+    - ppa: {{ emacs.ppa|yaml_encode }}
     - require_in:
         - pkg: emacs
-{%  else %}
 {%- endif %}
   pkg.installed:
-    - pkgs: {{ emacs_settings.packages|yaml }}
+    - pkgs: {{ emacs.packages|yaml }}
