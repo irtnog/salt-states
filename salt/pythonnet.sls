@@ -1,4 +1,5 @@
 pythonnet:
   pip.installed:
-    - pip_bin: |
-        C:\salt\bin\scripts\pip.exe
+    - cwd: 'C:\salt\bin\Scripts'
+    - bin_env: 'C:\salt\bin\Scripts\pip.exe'
+    - upgrade: True
