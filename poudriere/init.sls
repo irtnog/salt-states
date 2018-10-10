@@ -5,7 +5,6 @@ poudriere:
   pkg.installed:
     - pkgs:
         - poudriere-devel
-        - ccache
         - qemu-user-static
 
 qemu_user_static:
