@@ -1,6 +1,6 @@
 ## Salt's ldap3 execution module requires the python-ldap library.
-## This installs Christoph Gohlke’s unofficial binary, as official
-## pre-built packages of python-ldap aren't available from PyPI and
+## This installs Christoph Gohlke’s unofficial binary as official
+## pre-built packages of python-ldap are not available from PyPI, and
 ## building it locally requires Visual C++ et al.
 
 salt-python-ldap:
