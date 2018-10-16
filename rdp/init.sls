@@ -1,4 +1,4 @@
-{%- if salt['grains.get']('osversion').split('.')[0] < 6 %}
+{%- if salt['grains.get']('osversion').split('.')[0] >= 6 %}
 
 ## only supported on Windows Server 2008 or newer
 remote-desktop:
