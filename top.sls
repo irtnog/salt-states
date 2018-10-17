@@ -480,6 +480,10 @@ production:
   'I@environment:production and I@role:sbs':
     - stunnel-sbs
 
+  cinip103ntsvr.irtnog.net:
+    - iis.certificates
+    - rd-gateway.certificates
+
   uxeprdlnxidp01.irtnog.net:
     ## dev tools
     - rpm-build
