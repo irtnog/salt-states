@@ -487,6 +487,7 @@ production:
   uxeprdlnxidp01.irtnog.net:
     ## dev tools
     - rpm-build
+    - rpm-sign
 
   l00000006.irtnog.net:
     ## dev tools
