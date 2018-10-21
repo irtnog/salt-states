@@ -62,7 +62,7 @@ class AwsAttributeRelease(satosa.micro_services.base.ResponseMicroService):
         ## the resulting configuration.
         for account in aws_accounts:
             if not isinstance(config[account], dict):
-                msg = "Configuration value for {} must be a dictionary"
+                msg = "Configuration value for {} must be a dictionary".format(account)
                 satosa_logging(logger, logging.ERROR, msg, None)
                 raise AwsAttributeReleaseError(msg)
 
@@ -137,7 +137,7 @@ class AwsAttributeRelease(satosa.micro_services.base.ResponseMicroService):
         ## Assert the Role.
         msg = "sp_config = {}".format(sp_config)
         satosa_logging(logger, logging.DEBUG, msg, context.state)
-        data.attributes['aws_role_entitlement'] = [
+        data.attributes['RoleEntitlement'] = [
             "arn:aws:iam::{0}:role/{1},arn:aws:iam::{0}:saml-provider/{2}".format(
                 account,
                 role,
