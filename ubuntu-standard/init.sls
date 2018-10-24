@@ -1,0 +1,3 @@
+ubuntu-standard:
+  pkg.installed:
+    []
