@@ -1,7 +1,7 @@
 stunnel_sbs:
-  service.running:
-    - name: stunnel
-    - enable: True
+  module.wait:
+    - name: cmd.run
+    - m_name: net stop stunnel && net start stunnel
 
 {%- for name, keymat in salt['pillar.get']('stunnel-sbs:certificates', {})|dictsort %}
 
@@ -20,6 +20,6 @@ stunnel_sbs_{{ name }}:
         Administrators:
           perms: full_control
     - watch_in:
-        - service: stunnel_sbs
+        - module: stunnel_sbs
 
 {%- endfor %}
