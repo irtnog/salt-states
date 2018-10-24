@@ -1,0 +1,3 @@
+ubuntu-desktop:
+  pkg.installed:
+    []
