@@ -1,7 +1,6 @@
 stunnel_sbs:
-  module.wait:
-    - name: cmd.run
-    - m_name: net stop stunnel && net start stunnel
+  cmd.run:
+    - name: net stop stunnel && net start stunnel
 
 {%- for name, keymat in salt['pillar.get']('stunnel-sbs:certificates', {})|dictsort %}
 
@@ -19,7 +18,7 @@ stunnel_sbs_{{ name }}:
     - win_perms:
         Administrators:
           perms: full_control
-    - watch_in:
+    - onchanges_in:
         - module: stunnel_sbs
 
 {%- endfor %}
