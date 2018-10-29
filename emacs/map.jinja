@@ -1,6 +1,14 @@
 {%- import_yaml "emacs/defaults.yaml" as default_settings %}
 
 {%- set distro_map = salt['grains.filter_by']({
+      'Debian': {
+        'ppa':
+          'ppa:kelleyk/emacs',
+        'packages': [
+          'emacs26',
+        ],
+      }
+
       'Solaris': {
         'packages': [
           'gnu-emacs',

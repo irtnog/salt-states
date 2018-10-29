@@ -1,7 +1,7 @@
 {%- from "emacs/map.jinja" import emacs with context %}
 
 emacs:
-{%- if 'ppa' in emacs %}
+{%- if emacs['ppa']|default(None) %}
   pkgrepo.managed:
     - ppa: {{ emacs.ppa|yaml_encode }}
     - require_in:
