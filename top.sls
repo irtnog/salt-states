@@ -102,6 +102,7 @@ production:
     - pam_mkhomedir
     - pki
     - postfix
+    - rsync
     - screen
     - sched.patch
     - snmp
