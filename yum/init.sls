@@ -5,5 +5,8 @@ yum:
     - pkgs:
         - deltarpm
         - yum-cron
+        - rpm-build
+        - rpm-sign
+        - createrepo
 
 {% endif %}
