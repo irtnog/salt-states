@@ -10,7 +10,10 @@
 set_hostname:
   file.managed:
     - name: /etc/hostname
-    - contents: {{ fqdn|yaml_encode }}
+    - contents: {{
+        fqdn|yaml_encode if salt['grains.get']('os_family') == 'RedHat' else
+        hostname|yaml_encode
+      }}
 
   cmd.run:
     - name:
