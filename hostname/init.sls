@@ -22,6 +22,35 @@ set_hostname:
     - onchanges:
         - file: set_hostname
 
+{%-   elif salt['grains.get']('os_family') == 'Windows' %}
+
+set_hostname:
+  system.computer_name:
+    - name: {{ hostname|yaml_encode }}
+
+{%-     set netdom = salt['pillar.get']('netdom', {}) %}
+{%-     if 'join' in netdom
+        and netdom['join'] is mapping
+        and netdom['join'] %}
+{%-       set params = netdom['join'] %}
+
+join_domain:
+  system.join_domain:
+    - name: {{ params['domain']|yaml_encode }}
+    - username: {{ params['user']|yaml_encode }}
+    - password: {{ params['password']|yaml_encode }}
+    - account_ou: {{ params['ou']|join(',')|yaml_encode }}
+    - account_exists: True
+    - onchanges_in:
+        - system: reboot_apply_changes
+
+{%-     endif %}
+
+reboot_apply_changes:
+  system.reboot:
+    - onchanges:
+        - system: set_hostname
+
 {%-   endif %}
 
 {%-   if salt['grains.get']('biosversion').find('amazon') > -1 %}
