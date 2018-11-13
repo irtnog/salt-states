@@ -1,5 +1,3 @@
-{% if salt['grains.get']('os_family') == 'RedHat' %}
-
 yum:
   pkg.installed:
     - pkgs:
@@ -9,4 +7,9 @@ yum:
         - rpm-sign
         - createrepo
 
-{% endif %}
+  pkgrepo.managed:
+    - name: irtnog
+    - humanname: IRTNOG Package Repository for RHEL/CentOS $releasever
+    - baseurl: https://yum.irtnog.org/$releasever/$basearch/latest
+    - gpgkey: https://yum.irtnog.org/RPM-GPG-KEY-xenophon@irtnog.org
+    - gpgcheck: 1
