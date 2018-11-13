@@ -126,6 +126,9 @@ production:
     - virt-what
     - w3m
 
+  'I@environment:production and G@os_family:Debian and J@role:^(desktop|laptop)$': &debiangui
+    - ibus-gtk3
+
   'I@environment:production and G@os_family:FreeBSD': &freebsd
     - poudriere.client
     - pki
@@ -540,6 +543,7 @@ production:
 
 development:
   'I@environment:development and G@os_family:Debian': *debian
+  'I@environment:development and G@os_family:Debian and J@role:^(desktop|laptop)$': *debiangui
   'I@environment:development and G@os_family:FreeBSD': *freebsd
   'I@environment:development and G@os_family:RedHat': *redhat
   'I@environment:development and G@os_family:Suse': *suse
