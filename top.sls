@@ -163,6 +163,7 @@ production:
     - mounts
     - moused
     - ncurses
+    - net-tools
     - nfs.client
     - nis.client
     - nmap
