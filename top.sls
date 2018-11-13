@@ -558,5 +558,7 @@ development:
   'I@environment:development and I@role:identity-provider': *identityprovider
   'I@environment:development and I@role:web-server': *webserver
   'I@environment:development and I@role:perfsonar': *perfsonar
+  'I@environment:development and I@role:devstack': *devstack
+  'I@environment:development and I@role:moodle': *moodle
 
 #### TOP.SLS ends here.
