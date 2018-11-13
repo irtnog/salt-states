@@ -66,6 +66,7 @@
 
 production:
   'I@environment:production and G@os_family:Debian': &debian
+    - apt
 {%- if salt['grains.get']('os') != 'Raspbian' %}
     - salt.pkgrepo
     - shibboleth.repo
