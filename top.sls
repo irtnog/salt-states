@@ -166,6 +166,7 @@ production:
     - pam_mkhomedir
     - portsnap
     - postfix
+    - rsync
     - sched.patch
     - screen
     - ssh
