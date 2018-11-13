@@ -87,6 +87,7 @@ production:
     - fail2ban.config
     - fonts
     - git
+    - hostname
     - htop
     - irssi
     - kerberos5
