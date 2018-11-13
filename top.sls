@@ -271,6 +271,7 @@ production:
     - nmap
     - ntp.ng
     - p7zip
+    - rsync
     - screen
     - selinux
     - snmp
