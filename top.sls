@@ -224,6 +224,7 @@ production:
     - pam_mkhomedir
     - pki
     - postfix
+    - rsync
     - sched.patch
     - screen
     - selinux
