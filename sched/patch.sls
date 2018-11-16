@@ -1,14 +1,4 @@
 auto-update:
-  pkg.installed:
-    - pkgs:
-{%- if salt['grains.get']('os_family') == 'FreeBSD' %}
-        - py27-dateutil
-{%- elif salt['grains.get']('os_family') in ['Debian', 'RedHat'] %}
-        - python-dateutil       # FIXME
-{%- else %}
-        []
-{%- endif %}
-
   schedule.present:
     - function: state.apply
     - job_args:
@@ -21,7 +11,5 @@ auto-update:
 {%- else %}
         - Saturday 3:00am
 {%- endif %}
-    - require:
-        - pkg: auto-update
 
 ## TODO: add returner
