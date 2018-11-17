@@ -105,6 +105,7 @@ production:
     - pam_mkhomedir
     - pki
     - postfix
+    - python-dateutil
     - rsync
     - screen
     - sched.patch
@@ -174,6 +175,7 @@ production:
     - pam_mkhomedir
     - portsnap
     - postfix
+    - python-dateutil
     - rsync
     - sched.patch
     - screen
@@ -233,6 +235,7 @@ production:
     - pam_mkhomedir
     - pki
     - postfix
+    - python-dateutil
     - rsync
     - sched.patch
     - screen
@@ -338,6 +341,7 @@ production:
     - perfmon
     - powershell
     - putty
+    - python-dateutil
     - python-ldap
     - rdp
     - sysinternals-suite
