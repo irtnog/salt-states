@@ -341,6 +341,7 @@ production:
     - perfmon
     - powershell
     - putty
+    - pythonnet
     - python-dateutil
     - python-ldap
     - rdp
