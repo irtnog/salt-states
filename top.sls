@@ -100,6 +100,7 @@ production:
     - nfs.client
     - nmap
     - ntp.ng
+    - openldap
     - p7zip
     - pam_mkhomedir
     - pki
@@ -168,6 +169,7 @@ production:
     - nis.client
     - nmap
     - ntp.ng
+    - openldap
     - p7zip
     - pam_mkhomedir
     - portsnap
@@ -226,6 +228,7 @@ production:
     - nis.client
     - nmap
     - ntp.ng
+    - openldap
     - p7zip
     - pam_mkhomedir
     - pki
@@ -335,6 +338,7 @@ production:
     - perfmon
     - powershell
     - putty
+    - python-ldap
     - rdp
     - sysinternals-suite
     - tightvnc
