@@ -465,7 +465,7 @@ production:
   'I@environment:production and I@role:perfsonar': &perfsonar
     - perfsonar
 
-  'I@environment:production and I@role:devstack':
+  'I@environment:production and I@role:devstack': &devstack
     - apache
     - mysql
     - mysql.python
@@ -475,7 +475,7 @@ production:
     - openstack.repo
     - openstack.keystone
 
-  'I@environment:production and I@role:moodle':
+  'I@environment:production and I@role:moodle': &moodle
     - php.ng
     - php.ng.cli
     - php.ng.gd
