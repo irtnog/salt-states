@@ -133,6 +133,9 @@ production:
 
   'I@environment:production and G@os_family:Debian and J@role:^(desktop|laptop)$': &debiangui
     - ibus-gtk3
+{%- if salt['grains.get']('os') != 'Ubuntu' %}
+    - ubuntu-desktop
+{%- endif %}
 
   'I@environment:production and G@os_family:FreeBSD': &freebsd
     - poudriere.client
