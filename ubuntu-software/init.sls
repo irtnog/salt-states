@@ -1,0 +1,3 @@
+ubuntu-software:
+  pkg.installed:
+    []
