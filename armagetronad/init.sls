@@ -1,3 +1,3 @@
-armagatronad:
+armagetronad:
   pkg.installed:
     []
