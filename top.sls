@@ -371,6 +371,7 @@ production:
     - gpmc
     - icloud
     - itunes
+    - minecraft
     - rsat
     - steam
     - subversion
