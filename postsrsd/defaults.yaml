@@ -1,0 +1,23 @@
+postsrsd:
+  packages:
+    - postsrsd
+  services:
+    - postsrsd
+  config_file:
+    ~
+  domain:
+    ~
+  exclude_domains:
+    []
+  srs_separator:
+    =
+  srs_secret:
+    ~
+  srs_forward_port:
+    10001
+  srs_reverse_port:
+    10002
+  run_as:
+    nobody
+  chroot:
+    ~

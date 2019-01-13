@@ -1,0 +1,16 @@
+{%- import_yaml "postsrsd/defaults.yaml" as default_settings %}
+
+{%- set distro_map = salt['grains.filter_by']({
+      'RedHat': {
+        'config_file':
+          '/etc/sysconfig/postsrsd',
+      },
+    }) %}
+
+{%- do default_settings.postsrsd.update(distro_map) %}
+
+{%- set postsrsd = salt['pillar.get'](
+      'postsrsd',
+      default=default_settings.postsrsd,
+      merge=True,
+    ) %}
