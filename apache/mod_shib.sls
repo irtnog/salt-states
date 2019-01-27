@@ -9,7 +9,7 @@ include:
 mod_shib:
   file.managed:
     - name: {{
-        '%s/%s.conf'|format(
+        '%s/%s'|format(
           apache.modulesdir if 'modulesdir' in apache else apache.confdir,
           '070_mod_shib.conf' if grains['os_family'] == 'FreeBSD' else 'shib.conf'
         )|yaml_encode  
