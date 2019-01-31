@@ -1,0 +1,3 @@
+seyon:
+  pkg.installed:
+    []
