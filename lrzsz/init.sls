@@ -1,0 +1,3 @@
+lrzsz:
+  pkg.installed:
+    []
