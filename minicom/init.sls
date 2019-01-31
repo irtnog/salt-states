@@ -1,0 +1,3 @@
+minicom:
+  pkg.installed:
+    []
