@@ -1,0 +1,3 @@
+ckermit:
+  pkg.installed:
+    []
