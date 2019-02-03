@@ -367,6 +367,7 @@ production:
     - cheat-engine
     - chrome
     - csc
+    - cygwin
     - echo-desktop
     - fiddler
     - firefox
