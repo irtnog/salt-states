@@ -127,14 +127,15 @@ production:
     - users
     - virt-what
     - w3m
-{%- if salt['grains.get']('os') != 'Ubuntu' %}
+{%- if grains['os'] == 'Ubuntu' %}
     - ubuntu-software
 {%- endif %}
 
   'I@environment:production and G@os_family:Debian and J@role:^(desktop|laptop)$': &debiangui
-    - ibus-gtk3
-{%- if salt['grains.get']('os') != 'Ubuntu' %}
+{%- if grains['os'] == 'Ubuntu' %}
     - ubuntu-desktop
+{%- else %}
+    []
 {%- endif %}
 
   'I@environment:production and G@os_family:FreeBSD': &freebsd
