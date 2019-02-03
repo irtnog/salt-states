@@ -132,10 +132,9 @@ production:
 {%- endif %}
 
   'I@environment:production and G@os_family:Debian and J@role:^(desktop|laptop)$': &debiangui
+    - seyon
 {%- if grains['os'] == 'Ubuntu' %}
     - ubuntu-desktop
-{%- else %}
-    []
 {%- endif %}
 
   'I@environment:production and G@os_family:FreeBSD': &freebsd
