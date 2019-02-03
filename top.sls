@@ -515,14 +515,15 @@ production:
     - iis.certificates
     - rd-gateway.certificates
 
-  l00000006.irtnog.net:
-    ## dev tools
+  l00000006.irtnog.net: &windows-dev-tools
     - bonjour-sdk
     - blender
     - cmake
     - eclipse
     - virtualbox
     - vs-community
+
+  l00000009.irtnog.net: *windows-dev-tools
 
 ####
 #### STAGING ENVIRONMENT
