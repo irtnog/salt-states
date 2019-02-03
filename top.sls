@@ -79,6 +79,7 @@ production:
     - aws.cli
     - banners
     - boto
+    - ckermit
     - cron
     - cvs
     - dig
@@ -92,7 +93,9 @@ production:
     - htop
     - irssi
     - kerberos5
+    - lrzsz
     - man
+    - minicom
     - mosh
     - mounts
     - ncurses
