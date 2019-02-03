@@ -92,6 +92,8 @@ production:
     - hostname
     - htop
     - irssi
+    - jq
+    - jshon
     - kerberos5
     - lrzsz
     - man
