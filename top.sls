@@ -120,6 +120,7 @@ production:
     - systemd
     - tcpdump
     - tcsh
+    - telnet
 {#- Enable the ufw SLS on minions not running in AWS. #}
 {%- if not salt['grains.get']('biosversion', '').endswith('amazon') %}
     - ufw
