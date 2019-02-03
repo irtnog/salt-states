@@ -368,7 +368,6 @@ production:
     - chrome
     - csc
     - cygwin
-    - echo-desktop
     - fiddler
     - firefox
     - fonts
