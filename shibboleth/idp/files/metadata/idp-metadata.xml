@@ -1,0 +1,5 @@
+{%- from 'shibboleth/idp/map.jinja' import shibidp -%}
+{%- set idp_metadata_file = 'salt://shibboleth/mda/sources/%s.xml'|format(shibidp['hostname'] -%}
+{%- if salt['cp.is_cached'](idp_metadata_file, saltenv=saltenv) -%}
+{{    salt['cp.get_file_str'](idp_metadata_file, saltenv=saltenv) }}
+{%- endif -%}
