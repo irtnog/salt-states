@@ -1,0 +1,27 @@
+{%- import_yaml 'opensc/defaults.yaml' as default_settings %}
+
+{%- set distro_map = salt['grains.filter_by']({
+  'Windows': {
+    'packages': salt['grains.filter_by']({
+      'AMD64': [
+        'opensc-win64',
+        'opensc-win32',
+      ],
+      'x86': [
+        'opensc-win32',
+      ],
+    }, grain='cpuarch'),
+  },
+
+  'default': {},
+}) %}
+
+{%- set pillar_data = salt['pillar.get']('opensc', {}) %}
+
+{#- Build the final configuration by merging pillar data and
+    O/S-specific settings with the defaults (in that order of
+    precedence).
+#}
+{%- do salt['defaults.merge'](defaults['opensc'], distro_map) %}
+{%- do salt['defaults.merge'](defaults['opensc'], pillar_data) %}
+{%- set factorio = defaults['opensc'] %}
