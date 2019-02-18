@@ -85,10 +85,12 @@ production:
     - dig
     - dos2unix
     - emacs
+    - exfat
     - fail2ban
     - fail2ban.config
     - fonts
     - git
+    - gnupg-pkcs11-scd
     - hostname
     - htop
     - irssi
@@ -105,6 +107,7 @@ production:
     - nfs.client
     - nmap
     - ntp.ng
+    - opensc
     - openldap
     - p7zip
     - pam_mkhomedir
@@ -133,6 +136,7 @@ production:
     - users
     - virt-what
     - w3m
+    - woeusb
 {%- if grains['os'] == 'Ubuntu' %}
     - ubuntu-software
 {%- endif %}
