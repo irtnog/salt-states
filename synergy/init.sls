@@ -1,5 +1,5 @@
 synergy:
-  pkg.latest:
+  pkg.installed:
 {%- if grains['os_family'] in ['Debian', 'RedHat', 'MacOS'] %}
     - sources:
         - synergy: {{ salt['grains.filter_by']({
@@ -11,6 +11,7 @@ synergy:
             'Raspbian': 'salt://synergy/dist/synergy_2.0.12.beta~b62+0b61673b_armhf.deb',
             'Ubuntu':   'salt://synergy/dist/synergy_2.0.12.beta~b1677+0b61673b_amd64.deb',
           }, grain='os')|yaml_encode }}
+    - allow_updates: True
 {%- else %}
     []
 {%- endif %}
