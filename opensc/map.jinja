@@ -24,4 +24,4 @@
 #}
 {%- do salt['defaults.merge'](defaults['opensc'], distro_map) %}
 {%- do salt['defaults.merge'](defaults['opensc'], pillar_data) %}
-{%- set factorio = defaults['opensc'] %}
+{%- set opensc = defaults['opensc'] %}
