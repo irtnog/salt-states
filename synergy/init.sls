@@ -1,9 +1,16 @@
 synergy:
   pkg.latest:
-{%- if grains['os_family'] == 'Debian' %}
+{%- if grains['os_family'] in ['Debian', 'RedHat', 'MacOS'] %}
     - sources:
-        - synergy:
-            salt://synergy/dist/synergy_2.0.12.beta~b1677+0b61673b_{{ grains['osarch']|lower }}.deb
+        - synergy: {{ salt['grains.filter_by']({
+            'CentOS':   'salt://synergy/dist/synergy-2.0.12-1710.beta.0b61673b.el7.centos.x86_64.rpm',
+            'Debian':   'salt://synergy/dist/synergy_2.0.12.beta~b74+0b61673b_amd64.deb',
+            'Fedora':   'salt://synergy/dist/synergy-2.0.12-1710.beta.0b61673b.el7.centos.x86_64.rpm',
+            'MacOS':    'salt://synergy/dist/Synergy_v2.0.12-beta_b1807-50472cde.dmg',
+            'RedHat':   'salt://synergy/dist/synergy-2.0.12-1710.beta.0b61673b.el7.centos.x86_64.rpm',
+            'Raspbian': 'salt://synergy/dist/synergy_2.0.12.beta~b62+0b61673b_armhf.deb',
+            'Ubuntu':   'salt://synergy/dist/synergy_2.0.12.beta~b1677+0b61673b_amd64.deb',
+          }, grain='os')|yaml_encode }}
 {%- else %}
     []
 {%- endif %}
