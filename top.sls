@@ -79,6 +79,7 @@ production:
     - aws.cli
     - banners
     - boto
+    - build-essentials
     - ckermit
     - cron
     - cvs
@@ -142,6 +143,7 @@ production:
 {%- endif %}
 
   'I@environment:production and G@os_family:Debian and J@role:^(desktop|laptop)$': &debiangui
+    - ccsm
     - seyon
 {%- if grains['os'] == 'Ubuntu' %}
     - ubuntu-desktop
@@ -518,6 +520,10 @@ production:
   cinip103ntsvr.irtnog.net:
     - iis.certificates
     - rd-gateway.certificates
+
+  l00000005.irtnog.net: &ubuntu-dev-tools
+    - linux-source
+    - teensyduino
 
   l00000006.irtnog.net: &windows-dev-tools
     - bonjour-sdk
