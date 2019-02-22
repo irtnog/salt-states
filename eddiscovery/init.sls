@@ -1,0 +1,3 @@
+eddiscovery:
+  pkg.installed:
+    []
