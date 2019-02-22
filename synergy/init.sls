@@ -31,9 +31,13 @@ synergy_power_request_override:
 
 synergy2_power_request_override:
   reg.present:
-    - use:
-        - reg: synergy_power_request_override
+    - name:
+        HKLM\SYSTEM\CurrentControlSet\Power\PowerRequestOverride\Process
     - vname:
         synergy-core.exe
+    - vtype:
+        REG_DWORD
+    - vdata:
+        3                       # DISPLAY, SYSTEM
 
 {%- endif %}
