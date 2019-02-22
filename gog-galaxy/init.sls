@@ -1,0 +1,3 @@
+gog-galaxy:
+  pkg.installed:
+    []
