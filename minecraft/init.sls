@@ -7,8 +7,8 @@ minecraft:
 minecraft_shortcut:
   file.managed:
     - name:
-        {{ salt['environ.get']('ProgramData') }}\Microsoft\Windows\Start Menu\Programs\Minecraft\Minecraft (roaming profile).lnk
+        {{ salt['environ.get']('ProgramData') }}\Microsoft\Windows\Start Menu\Programs\Minecraft Launcher\Minecraft Launcher.lnk
     - source:
-        salt://minecraft/files/Minecraft (roaming profile).lnk
+        salt://minecraft/files/Minecraft Launcher.lnk
 
 {%- endif %}
