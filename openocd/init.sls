@@ -1,0 +1,3 @@
+openocd:
+  pkg.installed:
+    []
