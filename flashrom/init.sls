@@ -1,0 +1,3 @@
+flashrom:
+  pkg.installed:
+    []
