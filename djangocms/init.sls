@@ -2,9 +2,7 @@
 
 djangocms:
   pkg.installed:
-    - pkgs:
-        - apache24
-        - py27-virtualenv
+    - pkgs: {{ salt['pillar.get']('djangocms:packages', ['apache24', 'py27-virtualenv'])|yaml }}
 
   file.directory:
     - name: /usr/local/www/djangocms
@@ -16,8 +14,7 @@ djangocms:
     - name: /usr/local/www/djangocms
     - user: www
     - pip_upgrade: True
-    - pip_pkgs:
-        - djangocms-installer
+    - pip_pkgs: {{ salt['pillar.get']('djangocms:pip-packages', ['djangocms-installer'])|yaml }}
     - require:
         - pkg: djangocms
         - file: djangocms
