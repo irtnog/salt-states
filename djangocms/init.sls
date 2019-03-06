@@ -38,6 +38,7 @@ djangocms_{{ site }}:
     - source: salt://djangocms/files/settings.py
     - template: jinja
     - context:
+        site: {{ site|yaml_encode }}
         settings: {{ settings|yaml }}
     - require:
         - cmd: djangocms_{{ site }}
