@@ -28,8 +28,11 @@ SECRET_KEY = {{ settings['SECRET_KEY']|yaml_squote }}
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = {{ settings['ALLOWED_HOSTS']|default([])|yaml }}
-
+ALLOWED_HOSTS = [
+{%- for host in settings['ALLOWED_HOSTS']|default([]) %}
+    {{ host|yaml_squote }},
+{%- endfor %}
+]
 
 # Application definition
 
@@ -98,7 +101,8 @@ TEMPLATES = [
 ]
 
 
-MIDDLEWARE = {{ settings['MIDDLEWARE']|default([
+MIDDLEWARE = [
+{%- for middleware in settings['MIDDLEWARE']|default([
     'cms.middleware.utils.ApphookReloadMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -111,7 +115,10 @@ MIDDLEWARE = {{ settings['MIDDLEWARE']|default([
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
     'cms.middleware.language.LanguageCookieMiddleware'
-])|yaml }}
+]) %}
+    {{ middleware|yaml_squote }},
+{%- endfor %}
+]
 
 INSTALLED_APPS = [
     'djangocms_admin_style',
@@ -175,7 +182,24 @@ CMS_PERMISSION = True
 
 CMS_PLACEHOLDER_CONF = {}
 
-DATABASES = {{ settings['DATABASES']|yaml }}
+DATABASES = {
+{%- for database, settings in settings['DATABASES']|default ({
+    'default': {
+        'CONN_MAX_AGE': 0,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'HOST': 'localhost',
+        'NAME': 'project.db',
+        'PASSWORD': '',
+        'PORT': '',
+        'USER': ''
+    }})|dictsort %}
+    '{{ database }}': {
+{%-   for key, value in settings|dictsort %}
+        '{{ key }}': {{ value|yaml_squote if value is string else value }},
+{%-   endfor %}
+  },
+{%- endfor %}
+}
 
 MIGRATION_MODULES = {
     
