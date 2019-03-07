@@ -19,13 +19,18 @@ djangocms:
         - pkg: djangocms
         - file: djangocms
 
+{%- set current_path = salt['environ.get']('PATH', '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin') %}
+{%- set venv_path = '/usr/local/www/djangocms/bin:' ~ current_path %}
 {%- for site, settings in salt['pillar.get']('djangocms:sites', {})|dictsort %}
 
 djangocms_{{ site }}:
   cmd.run:
     ## FIXME: replace `true` with the appropriate post-upgrade command
     - name: |
-        [[ ! -e {{ site }} ]] && djangocms-installer {{ site }} || true
+        [ ! -d {{ site }} ] && djangocms-installer {{ site }} || true
+    - env:
+        - PATH: {{ venv_path|yaml_encode }}
+        - VIRTUAL_ENV: /usr/local/www/djangocms
     - runas: www
     - watch:
         - pkg: djangocms
