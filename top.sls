@@ -523,7 +523,10 @@ production:
     - rd-gateway.certificates
 
   l00000005.irtnog.net: &ubuntu-dev-tools
+    - android-sdk
+    - flashrom
     - linux-source
+    - openocd
     - teensyduino
 
   l00000006.irtnog.net: &windows-dev-tools
