@@ -27,7 +27,7 @@ djangocms_{{ site }}:
   cmd.run:
     ## FIXME: replace `true` with the appropriate post-upgrade command
     - name: |
-        [ ! -d {{ site }} ] && /usr/local/www/djangocms/bin/djangocms-installer {{ site }} || true
+        [ ! -d {{ site }} ] && /usr/local/www/djangocms/bin/djangocms {{ site }} || true
     - env:
         - PATH: {{ venv_path|yaml_encode }}
         - VIRTUAL_ENV: /usr/local/www/djangocms
