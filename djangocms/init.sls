@@ -24,7 +24,8 @@ djangocms:
 djangocms_{{ site }}:
   cmd.run:
     ## FIXME: replace `true` with the appropriate post-upgrade command
-    - name: [[ ! -e {{ site }} ]] && djangocms-installer {{ site }} || true
+    - name: |
+        [[ ! -e {{ site }} ]] && djangocms-installer {{ site }} || true
     - runas: www
     - watch:
         - pkg: djangocms
