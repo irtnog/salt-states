@@ -478,6 +478,7 @@ production:
     - apache.mod_wsgi
     - apache.vhosts.standard
     - apache.content.testsp
+    - djangocms
     - opentracker
     - trac
 
