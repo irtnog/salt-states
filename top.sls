@@ -146,6 +146,7 @@ production:
     - ccsm
     - seyon
 {%- if grains['os'] == 'Ubuntu' %}
+    - lightdm
     - ubuntu-desktop
 {%- endif %}
 
