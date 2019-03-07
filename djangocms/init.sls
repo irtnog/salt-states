@@ -27,7 +27,7 @@ djangocms_{{ site }}:
   cmd.run:
     ## FIXME: replace `true` with the appropriate post-upgrade command
     - name: |
-        [ ! -d {{ site }} ] && /usr/local/www/djangocms/bin/djangocms {{ site }} || true
+        [ ! -d {{ site }} ] && ./bin/djangocms --utc {{ site }} || ./bin/python {{ site }}/manage.py migrate
     - cwd: /usr/local/www/djangocms
     - env:
         - PATH: {{ venv_path|yaml_encode }}
