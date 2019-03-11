@@ -10,6 +10,7 @@
         (Get-WebBinding -Name "{{ site }}"
             -Protocol https
             -IPAddress {{ binding['ip_address']|default('*') }}
-            -Port {{ binding['port']|default(443) }}).AddSslCertificate("{{ binding['certificate'] }}", "my")
+            -Port {{ binding['port']|default(443) }}
+        ).AddSslCertificate("{{ binding['certificate'] }}", "my")
 {%-   endfor %}
 {%- endfor %}
