@@ -1,6 +1,6 @@
-{%- set certfp = salt['pillar.get']('rds:gateway:certificate') %}
+{%- set certfp = salt['pillar.get']('rds_gateway:certificate') %}
 {%- if certfp %}
-rd_gateway_certificates:
+rds_gateway_certificate:
   cmd.run:
     - shell: powershell
     - name:
@@ -12,5 +12,5 @@ rd_gateway_certificates:
     - name: service.restart
     - m_name: TSGateway
     - require:
-        - cmd: rd_gateway_certificates
+        - cmd: rds_gateway_certificate
 {%- endif %}
