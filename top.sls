@@ -529,8 +529,9 @@ production:
     - linux-source
     - openocd
     - teensyduino
+    - swap-caps-control
 
-  l00000006.irtnog.net: &windows-dev-tools
+  l00000006.irtnog.net:
     - bonjour-sdk
     - blender
     - cmake
@@ -538,7 +539,14 @@ production:
     - virtualbox
     - vs-community
 
-  l00000009.irtnog.net: *windows-dev-tools
+  l00000009.irtnog.net:
+    - bonjour-sdk
+    - blender
+    - cmake
+    - eclipse
+    - virtualbox
+    - vs-community
+    - swap-caps-control
 
 ####
 #### STAGING ENVIRONMENT
