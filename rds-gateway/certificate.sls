@@ -1,4 +1,4 @@
-{%- set certfp = salt['pillar.get']('rds_gateway:certificate') %}
+{%- set certfp = salt['pillar.get']('rds:gateway:certificate') %}
 {%- if certfp %}
 rds_gateway_certificate:
   cmd.run:
