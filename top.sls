@@ -521,7 +521,7 @@ production:
 
   cinip103ntsvr.irtnog.net:
     - iis.certificates
-    - rd-gateway.certificates
+    - rds-gateway.certificate
 
   l00000005.irtnog.net: &ubuntu-dev-tools
     - android-sdk
